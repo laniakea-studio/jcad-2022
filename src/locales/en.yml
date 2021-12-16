@@ -1,0 +1,14 @@
+btnContact: Contact
+menu:
+  blog: Blog
+  about: About Us
+  contact: Contact
+contact:
+  submitSuccess: Thank you. We'll be in touch!
+  fillAllInputs: Please fill all fields.
+  name: Name
+  email: Email
+  company: Company
+  phoneOrEmail: Phone or email
+  message: Message
+  send: Send

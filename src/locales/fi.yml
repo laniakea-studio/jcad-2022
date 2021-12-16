@@ -1,0 +1,14 @@
+btnContact: Ota yhteyttä
+menu:
+  blog: Blogi
+  about: Meistä
+  contact: Yhteystiedot
+contact:
+  submitSuccess: Kiitos, vastaanotimme viestisi. Palaamme pian!
+  fillAllInputs: Täytä kaikki kentät.
+  name: Nimi
+  email: Sähköposti
+  company: Yritys
+  phoneOrEmail: Puhelin tai sähköposti
+  message: Viesti
+  send: Lähetä
