@@ -17,8 +17,7 @@ const Home = ({ pageContext }) => {
     <Layout>
       <Main>
         <div className="heading">
-          <SvgHeaderFrameWide />
-          <h2>{text.home}</h2>
+          <h1>Under construction...</h1>
         </div>
       </Main>
     </Layout>
@@ -30,6 +29,7 @@ export default Home;
 const Main = styled.main`
   width: 100%;
   height: 100vh;
+  color: #fff;
   background: ${theme.primary};
   justify-content: center;
   align-items: center;
