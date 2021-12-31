@@ -11,7 +11,6 @@ import { theme } from "../theme/theme";
 const Home = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
-  const { data } = pageContext;
 
   return (
     <Layout>
