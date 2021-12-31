@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Layout } from "../components/Layout";
+import { LocaleContext } from "../contexts/LocaleContext";
 import fi from "../locales/fi.yml";
+import en from "../locales/en.yml";
+import sv from "../locales/sv.yml";
 
 const Blog = ({ pageContext }) => {
-  const text = fi;
+  const { locale, localeSlugs } = useContext(LocaleContext);
+  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
 
   return (
     <Layout>
       <Main>
-        <h1>{data.title}</h1>
+        <h1>{data.yritys}</h1>
       </Main>
     </Layout>
   );

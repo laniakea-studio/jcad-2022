@@ -1,8 +1,46 @@
 btnContact: Ota yhteyttä
+seeMore: Tutustu
+bookDemo: Tilaa demo
+footer:
+  admin: Hallinto
+  accounts: Asiakkuudet
+  buttonBackToTop: Takaisin ylös
+  companyName: JCAD
+  linkGdpr: Tietosuojaseloste
+pricing:
+  vat: + alv 24 %
+  selectPeriod: Valitse sopimuskausi
+  selectLicense: Valitse lisenssien määrä
+  selectProduct: Valitse ohjelmisto
+  mo: kk
+  user: käyttäjä
+  users: käyttäjää
+slugs:
+  product: maaralaskentaohjelmisto
+  pricing: hinta
+  contact: yhteystiedot
+  booking: varaa-demo
+product:
+  activeUsers: Aktiivista käyttäjää
+  customerHappiness: Asiakastyytyväisyys
+  benefits: Hyödyt yrityksille
+  references: Käyttökokemuksia
+contactPage:
+  title: Yhteystiedot
+  sales: Myynti ja tilaukset
+  support: Asiakaspalvelu ja tuki
+  accounts: Asiakkuudet
+  experts: Asiantuntijat
+  locations: Toimipisteet
+  billing: Verkkolasku
+  admin: Hallinto
 menu:
-  blog: Blogi
-  about: Meistä
-  contact: Yhteystiedot
+  home: Etusivu
+  product: Määrälaskenta
+  pricing: Hinta
+  contact: Yhteys
+  booking: Demo
+  login: Kirjaudu
 contact:
   submitSuccess: Kiitos, vastaanotimme viestisi. Palaamme pian!
   fillAllInputs: Täytä kaikki kentät.

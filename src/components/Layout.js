@@ -1,39 +1,51 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import fi from "../locales/fi.yml";
+import en from "../locales/en.yml";
+import sv from "../locales/sv.yml";
 import "../theme/index.css";
 import GlobalStyle from "../theme/global";
 import { theme } from "../theme/theme";
 import { BurgerIcon } from "./BurgerIcon";
+import { SvgLogo } from "./SvgCollection";
+import { LocaleContext } from "../contexts/LocaleContext";
+import { Footer } from "./Footer";
+import { PopupButton } from "react-calendly";
 
 const menuFi = [
-  { title: fi.menu.about, to: "/about" },
-  { title: fi.menu.blog, to: "/blog" },
-  { title: fi.menu.contact, to: "/contact" },
+  { title: fi.menu.product, to: fi.slugs.product },
+  { title: fi.menu.pricing, to: fi.slugs.pricing },
+  { title: fi.menu.contact, to: fi.slugs.contact },
 ];
-
+const menuEn = [
+  { title: en.menu.product, to: en.slugs.product },
+  { title: en.menu.pricing, to: en.slugs.pricing },
+  { title: en.menu.contact, to: en.slugs.contact },
+];
+const menuSv = [
+  { title: sv.menu.product, to: sv.slugs.product },
+  { title: sv.menu.pricing, to: sv.slugs.pricing },
+  { title: sv.menu.contact, to: sv.slugs.contact },
+];
 export const Layout = ({ children, secondary }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const menu = menuFi;
-  /*
-  const { datoCmsSite } = useStaticQuery(graphql`
-    query HeaderQuery {
-      datoCmsSite {
-        globalSeo {
-          fallbackSeo {
-            description
-            title
-          }
-        }
+
+  const { locale, localeSlugs } = useContext(LocaleContext);
+  const menu = locale === "fi" ? menuFi : locale === "en" ? menuEn : menuSv;
+  const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
+  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+
+  const { site } = useStaticQuery(graphql`
+    query {
+      site: datoCmsSite {
         faviconMetaTags {
           tags
         }
       }
     }
   `);
-  */
 
   useEffect(() => {
     //Prevent scrolling bg on iOS: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
@@ -47,7 +59,7 @@ export const Layout = ({ children, secondary }) => {
   return (
     <>
       <GlobalStyle />
-      <HelmetDatoCms /*favicon={datoCmsSite.faviconMetaTags}*/>
+      <HelmetDatoCms favicon={site.faviconMetaTags}>
         <meta
           name="viewport"
           content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -55,13 +67,44 @@ export const Layout = ({ children, secondary }) => {
       </HelmetDatoCms>
       <Header secondary={false}>
         <div>
+          <div className="localeLinks">
+            <Link
+              to={localeSlugs.fi}
+              className={locale === "fi" && "thisLocale"}
+            >
+              FI
+            </Link>
+            <Link
+              to={localeSlugs.en}
+              className={locale === "en" && "thisLocale"}
+            >
+              EN
+            </Link>
+            <Link
+              to={localeSlugs.sv}
+              className={locale === "sv" && "thisLocale"}
+            >
+              SV
+            </Link>
+          </div>
           <Link className="logo" to="/">
-            <strong>Logo</strong>
+            <SvgLogo />
           </Link>
           <nav className="mainNav">
             {menu.map((i) => (
-              <Link to={i.to}>{i.title}</Link>
+              <Link
+                to={`/${prefix + i.to}`}
+                activeClassName="active"
+                style={{ marginTop: 8 }}
+              >
+                {i.title}
+              </Link>
             ))}
+            <PopupButton
+              className="btn white-outlines"
+              url="https://calendly.com/jcad-booking/tilaa-demo"
+              text={text.bookDemo}
+            />
           </nav>
           <div className="burger">
             <BurgerIcon
@@ -72,13 +115,20 @@ export const Layout = ({ children, secondary }) => {
               }}
             />
           </div>
+          <a
+            className="linkLogin"
+            href="https://extra.jcad.fi/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{text.menu.login}</span>
+            <SvgLogin />
+          </a>
         </div>
       </Header>
       <MobileMenu menuOpen={menuOpen} closeMenu={() => setMenuOpen(false)} />
-      <Page>{children}</Page>
-      <Footer>
-        <div className="content"></div>
-      </Footer>
+      {children}
+      <Footer />
     </>
   );
 };
@@ -86,16 +136,42 @@ export const Layout = ({ children, secondary }) => {
 const Header = styled.header`
   width: 100%;
   z-index: 10;
-  background: ${(props) => (props.secondary ? "none" : "#fff")};
-  position: ${(props) => (props.secondary ? "absolute" : "relative")};
+  background: none;
+  position: absolute;
+  border-bottom: 1px solid #fff;
+  height: 130px;
   > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding: 20px 20px 20px;
-    max-width: 1440px;
+    height: 130px;
+    padding: 20px 80px 20px;
+    max-width: 1500px;
     margin: 0 auto;
+  }
+  .localeLinks {
+    position: absolute;
+    color: #fff;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+    ${theme.tablet} {
+      display: none;
+    }
+    > a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      opacity: 0.4;
+    }
+    > a.thisLocale {
+      opacity: 1;
+    }
   }
   a.logo {
     display: flex;
@@ -104,12 +180,41 @@ const Header = styled.header`
       flex-basis: 140px;
     }
     svg {
-      width: 200px;
+      width: 140px;
       path {
-        fill: ${(props) => (props.secondary ? "#fff" : theme.primary)};
+        fill: #fff;
       }
     }
   }
+  a.linkLogin {
+    position: absolute;
+    color: #fff;
+    top: 34px;
+    right: -46px;
+    width: 130px;
+    font-weight: 600;
+    align-items: center;
+    height: 30px;
+    font-size: 15px;
+    text-transform: uppercase;
+    display: flex;
+    transform: rotate(270deg);
+    opacity: 1;
+    ${theme.tablet} {
+      display: none;
+    }
+    &:hover {
+      opacity: 0.9;
+      transit: all 0.2s;
+    }
+    svg {
+      width: 20px;
+      margin-top: -3px;
+      margin-left: 6px;
+      transform: rotate(90deg);
+    }
+  }
+
   nav.mainNav {
     display: flex;
     flex: 1;
@@ -118,10 +223,43 @@ const Header = styled.header`
       display: none;
     }
     font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     > a {
-      color: ${(props) => (props.secondary ? "#fff" : theme.primary)};
+      color: #fff;
       padding: 10px 30px;
       font-weight: 400;
+    }
+    a.active:after {
+      content: url('data:image/svg+xml; utf8, <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12.0862" y1="2.18557e-08" x2="12.0862" y2="24" stroke="white"/><circle cx="12" cy="12.0002" r="8.18966" stroke="white"/><line y1="11.9136" x2="24" y2="11.9136" stroke="white"/></svg>');
+      display: block;
+      width: 22px;
+      height: 10px;
+      margin: 6px auto 0;
+      transform: scale(1);
+      //animation: pulse 2s infinite;
+    }
+    /* See Glow pulse: https://stackoverflow.com/questions/36707159/how-to-create-a-pulsing-glow-ring-animation-in-css */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+      90% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
     }
   }
   .burger {
@@ -137,7 +275,7 @@ const Header = styled.header`
     font-size: 15px;
     a {
       padding: 2px 5px;
-      color: ${(props) => (props.secondary ? "#fff" : theme.primary)};
+      color: #fff;
     }
     a.disabled {
       pointer-events: none;
@@ -147,26 +285,6 @@ const Header = styled.header`
     ${theme.mobile} {
       display: none;
     }
-  }
-`;
-
-const Page = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Footer = styled.footer`
-  ${theme.fullWidth}
-  color: #fff;
-  background: ${theme.bg};
-  .content {
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 100px;
-    padding-bottom: 40px;
   }
 `;
 
@@ -221,3 +339,19 @@ const MobileMenu = ({ menuOpen }) => {
     </div>
   );
 };
+
+const SvgLogin = () => (
+  <svg
+    width="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M2.49998 2.5083H17.5C18.4166 2.5083 19.1666 3.24997 19.1666 4.17497V15.8416C19.1666 16.7583 18.4166 17.4916 17.5 17.4916H2.49998C1.58331 17.4916 0.833313 16.7583 0.833313 15.8416V12.5H2.49998V15.85H17.5V4.1583H2.49998V7.49997H0.833313V4.17497C0.833313 3.2583 1.58331 2.5083 2.49998 2.5083ZM12.5 9.99997L9.16665 13.3333V10.8333H0.833313V9.16663H9.16665V6.66663L12.5 9.99997Z"
+      fill="white"
+    />
+  </svg>
+);

@@ -1,6 +1,6 @@
-btnContact: Ota yhteyttä
-seeMore: See more
-bookDemo: Book demo
+btnContact: Kontakta
+seeMore: See mer
+bookDemo: Boka demo
 footer:
   admin: Hallinto
   accounts: Asiakkuudet
@@ -12,35 +12,35 @@ pricing:
   selectPeriod: Valitse sopimuskausi
   selectLicense: Valitse lisenssi
   selectProduct: Valitse ohjelmisto
-  mo: mos.
+  mo: kk
   user: käyttäjä
   users: käyttäjää
 slugs:
-  product: product
-  pricing: pricing
-  contact: contact
-  booking: book-demo
+  product: produkten
+  pricing: pris
+  contact: kontakter
+  booking: boka-demo
 product:
-  activeUsers: Active users
-  customerHappiness: of customers recommend
-  benefits: Benefits for your company
-  references: Customer experiences
+  activeUsers: Aktiva användare
+  customerHappiness: Asiakastyytyväisyys
+  benefits: Hyödyt yrityksille
+  references: Käyttökokemuksia
 contactPage:
-  title: Contacts
-  sales: Sales and orders
-  support: Customer Service & Support
+  title: Kontakter
+  sales: Försäljning
+  support: Kundtjänst
   accounts: Account Management
   experts: Specialists
-  locations: Offices
+  locations: Locations
   billing: Invoice
   admin: Administration
 menu:
-  home: Home
-  product: Product
-  pricing: Pricing
-  contact: Contact
-  booking: Book demo
-  login: Login
+  home: Start
+  product: Produkten
+  pricing: Prislista
+  contact: Kontakter
+  booking: Boka demo
+  login: Logga in
 contact:
   submitSuccess: Thank you. We'll be in touch!
   fillAllInputs: Please fill all fields.

@@ -1,15 +1,23 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "localhost:8888",
-    title: "New Site",
+    siteUrl: "https://jcad.fi",
+    title: "JCAD",
   },
   plugins: [
-    /*{
+    {
       resolve: "gatsby-source-datocms",
       options: {
-        apiToken: "",
+        apiToken: "5228a824e8faebccad983f61f3df7c",
       },
-    },*/
+    },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        typekit: {
+          id: "ppq2vtw",
+        },
+      },
+    },
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",

@@ -1,8 +1,8 @@
 {
-  "name": "kuuskodit",
+  "name": "jcad",
   "version": "1.0.0",
   "private": true,
-  "description": "Kuuskodit",
+  "description": "Jcad",
   "author": "laniakea-studio",
   "keywords": [
     "gatsby"
@@ -23,16 +23,17 @@
     "gatsby-plugin-sharp": "^4.3.0",
     "gatsby-plugin-sitemap": "^5.3.0",
     "gatsby-plugin-styled-components": "^5.3.0",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-datocms": "^3.0.11",
     "gatsby-source-filesystem": "^4.3.0",
     "gatsby-transformer-sharp": "^4.3.0",
-    "google-map-react": "^2.1.10",
     "react": "^17.0.1",
+    "react-calendly": "^2.2.2",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "react-images": "^1.2.0-beta.7",
-    "react-photo-gallery": "^8.0.0",
+    "react-vivus": "^0.0.2",
     "styled-components": "^5.3.3",
+    "vivus": "^0.4.6",
     "yaml-loader": "^0.6.0"
   }
 }
