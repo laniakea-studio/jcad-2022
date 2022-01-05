@@ -8,6 +8,48 @@ export const SvgCrossHair = () => (
   </svg>
 );
 
+export const SvgNumbersFrameMob = () => (
+  <svg
+    className="SvgNumbersFrameMob"
+    width="342"
+    height="316"
+    viewBox="0 0 342 316"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0 11.353L342 11.353"
+      stroke="black"
+      stroke-width="0.6"
+      stroke-dasharray="4 4"
+    />
+    <path
+      d="M0 80.0908L342 80.0908"
+      stroke="black"
+      stroke-width="0.6"
+      stroke-dasharray="4 4"
+    />
+    <path
+      d="M173.021 10.998V107.981"
+      stroke="black"
+      stroke-width="0.6"
+      stroke-dasharray="4 4"
+    />
+    <path
+      d="M182.723 11.3527L164.363 11.3527M180.029 11.3527C180.029 10.3173 179.864 9.29198 179.544 8.33538C179.224 7.37877 178.754 6.50958 178.162 5.77742C177.57 5.04527 176.867 4.46449 176.093 4.06825C175.32 3.67201 174.491 3.46807 173.653 3.46807C172.816 3.46807 171.987 3.67201 171.213 4.06825C170.44 4.46449 169.737 5.04527 169.145 5.77742C168.553 6.50958 168.083 7.37877 167.763 8.33538C167.442 9.29198 167.277 10.3173 167.277 11.3527C167.277 13.4438 167.949 15.4493 169.145 16.928C170.341 18.4066 171.962 19.2373 173.653 19.2373C174.491 19.2373 175.32 19.0334 176.093 18.6371C176.867 18.2409 177.57 17.6601 178.162 16.928C179.358 15.4493 180.029 13.4438 180.029 11.3527V11.3527Z"
+      stroke="black"
+      stroke-width="0.6"
+    />
+    <path d="M173.542 22.7051V6.06702e-05" stroke="black" stroke-width="0.6" />
+
+    <path
+      d="M21.5567 287.223L12.4478 293.003M17.0051 290.115L17.0051 -40.824L17.0051 290.115ZM21.5567 293.003L12.4478 287.223L21.5567 293.003ZM21.5567 127.285L12.4478 121.507L21.5567 127.285ZM21.5567 -37.9379L12.4478 -43.7158L21.5567 -37.9379ZM21.5567 -43.7158L12.4478 -37.9379L21.5567 -43.7158ZM21.5567 121.507L12.4478 127.285L21.5567 121.507Z"
+      stroke="black"
+      stroke-width="0.6"
+    />
+  </svg>
+);
+
 export const SvgHeadingFrame = () => (
   <svg
     className="SvgHeadingFrame"
@@ -235,9 +277,10 @@ export const SvgLogo = () => {
   );
 };
 
-export const SvgLogoFooter = ({ className }) => {
+export const SvgLogoFooter = () => {
   return (
     <svg
+      className="SvgLogoFooter"
       xmlns="http://www.w3.org/2000/svg"
       width="136.322"
       height="45.537"

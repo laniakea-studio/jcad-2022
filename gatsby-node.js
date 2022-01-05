@@ -72,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
           puhelin
           email
         }
-        hallinto {
+        henkilosto {
           nimi
           titteli
           puhelin

@@ -3,7 +3,9 @@ seeMore: Tutustu
 bookDemo: Tilaa demo
 footer:
   admin: Hallinto
+  sales: Myynti
   accounts: Asiakkuudet
+  support: Asiakaspalvelu ja tuotetuki
   buttonBackToTop: Takaisin ylös
   companyName: JCAD
   linkGdpr: Tietosuojaseloste
@@ -34,6 +36,7 @@ contactPage:
   locations: Toimipisteet
   billing: Verkkolasku
   admin: Hallinto
+  people: Henkilöstö
 menu:
   home: Etusivu
   product: Määrälaskenta

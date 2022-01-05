@@ -4,9 +4,6 @@ import { theme } from "./theme";
 const GlobalStyle = createGlobalStyle`
 
 /* New style */
-
-
-
 section {
   display: flex;
 }
@@ -19,8 +16,12 @@ section {
 }
 .padding {
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 20px;  
   @media (min-width: 600px) {
+    padding-left: 80px;
+     padding-right: 80px;
+  }
+  @media (min-width: 900px) {
     padding-left: 80px;
      padding-right: 80px;
   }

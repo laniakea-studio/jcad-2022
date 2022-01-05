@@ -63,36 +63,6 @@ const Contact = ({ pageContext }) => {
             <div className="Col1">
               <div className="heading">
                 <SvgHeadingFrame />
-                <h2>{text.contactPage.accounts}</h2>
-              </div>
-            </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.asiakkuudet.map((i) => {
-                  return <ContactItem i={i} />;
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
-                <h2>{text.contactPage.admin}</h2>
-              </div>
-            </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.hallinto.map((i) => {
-                  return <ContactItem i={i} />;
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
                 <h2>{text.contactPage.locations}</h2>
               </div>
             </div>
@@ -107,6 +77,21 @@ const Contact = ({ pageContext }) => {
                       <div dangerouslySetInnerHTML={{ __html: i.osoite }} />
                     </div>
                   );
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="Area row">
+            <div className="Col1">
+              <div className="heading">
+                <SvgHeadingFrame />
+                <h2>{text.contactPage.accounts}</h2>
+              </div>
+            </div>
+            <div className="Col2 row">
+              <div className="Grid">
+                {data.yhteystiedot.asiakkuudet.map((i) => {
+                  return <ContactItem i={i} />;
                 })}
               </div>
             </div>

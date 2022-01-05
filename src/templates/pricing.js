@@ -316,6 +316,7 @@ const Main = styled.main`
   }
   .plans {
     padding-top: 15px;
+    padding-bottom: 70px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;

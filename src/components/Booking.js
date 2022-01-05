@@ -13,19 +13,21 @@ export const Booking = ({ data }) => {
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
 
   return (
-    <Div className="col wrap padding align-center">
-      <h2>Miten JCAD toimii?</h2>
-      <p>
-        Tiiviin 15–60 min verkkotapaamisen aikana laskemme yhdessä, millä
-        tavalla JCAD voisi tehostaa määrälaskentaa yrityksessänne.
-      </p>
-      <p>Näe omin silmin, miten JCAD toimii.</p>
-      <div className="DemoBtn">
-        <PopupButton
-          className="btn white-outlines"
-          url="https://calendly.com/jcad-booking/tilaa-demo"
-          text="Tilaa demo"
-        />
+    <Div>
+      <div className="wrap padding col align-center">
+        <h2>Miten JCAD toimii?</h2>
+        <p>
+          Tiiviin 15–60 min verkkotapaamisen aikana laskemme yhdessä, millä
+          tavalla JCAD voisi tehostaa määrälaskentaa yrityksessänne.
+        </p>
+        <p>Näe omin silmin, miten JCAD toimii.</p>
+        <div className="DemoBtn">
+          <PopupButton
+            className="btn white-outlines"
+            url="https://calendly.com/jcad-booking/tilaa-demo"
+            text="Tilaa demo"
+          />
+        </div>
       </div>
     </Div>
   );
@@ -50,6 +52,7 @@ const Div = styled.div`
   h2 {
     font-size: 52px;
     margin-bottom: 30px;
+    text-align: center;
   }
   p {
     max-width: 580px;

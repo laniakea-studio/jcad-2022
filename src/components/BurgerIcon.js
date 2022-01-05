@@ -36,10 +36,9 @@ const MenuIcon = styled.a`
   ${theme.tablet} {
     display: block;
   }
-
   .line {
     display: block;
-    background: #000;
+    background: #fff;
     width: 40px;
     height: ${menuOptions.heightLine};
     position: absolute;

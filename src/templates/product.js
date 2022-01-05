@@ -7,28 +7,42 @@ import fi from "../locales/fi.yml";
 import en from "../locales/en.yml";
 import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
-import { SvgCircle } from "../components/SvgCollection";
+import { SvgCircle, SvgNumbersFrameMob } from "../components/SvgCollection";
 import { Booking } from "../components/Booking";
 import Ticker from "../components/Ticker";
 import { PopupButton } from "react-calendly";
+import kuva1 from "../assets/kuva1.jpg";
+import kuva2 from "../assets/kuva2.jpg";
+import kuva3 from "../assets/kuva3.jpg";
 
 const Product = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
 
+  const handleNavClick = (event, destination) => {
+    event.preventDefault();
+    let element = document.querySelector(`#${destination}`);
+    element.scrollIntoView({ block: "start" });
+  };
+
   return (
     <Layout locale={pageContext.locale} transparent={false}>
       <Main>
         <div className="hero">
-          <div className="wrapper col justifyCenter">
+          <div className="wrap col padding justifyCenter">
             <div className="leftLine" />
             <div className="rightLine" />
 
             <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
             <p>{data.product.lead}</p>
             <div className="btns">
-              <button className="btn white">{text.seeMore}</button>
+              <button
+                className="btn white"
+                onClick={(e) => handleNavClick(e, "customers")}
+              >
+                {text.seeMore}
+              </button>
               <PopupButton
                 className="btn white-outlines"
                 url="https://calendly.com/jcad-booking/tilaa-demo"
@@ -39,15 +53,17 @@ const Product = ({ pageContext }) => {
             <SvgCircle id="circle-2" />
           </div>
         </div>
-        <div className="sec-1">
+        <div id="customers" className="sec-1">
           <Ticker data={data.product.customers} />
           <div className="numberBox">
             <SvgNumberTopline />
             <SvgNumberFrame />
+
             <div className="number-1">
               <span className="number">{data.product.activeUser}</span>
               <span className="sub">{text.product.activeUsers}</span>
             </div>
+
             <div className="number-2">
               <span className="number">{data.product.customerHappiness} %</span>
               <span className="sub">
@@ -62,9 +78,9 @@ const Product = ({ pageContext }) => {
               </span>
             </div>
           </div>
-          <p className="customers">{data.product.section1Content}</p>
+          <p className="customers padding">{data.product.section1Content}</p>
         </div>
-        <div className="sec-2">
+        <div className="sec-2 padding wrap">
           <div className="heading">
             <SvgHeadingFrame />
             <h2>{text.product.benefits}</h2>
@@ -78,49 +94,14 @@ const Product = ({ pageContext }) => {
             />
 
             <div className="image">
-              <svg
-                width="401"
-                height="283"
-                viewBox="0 0 401 283"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="24.5"
-                  y="24.5"
-                  width="196"
-                  height="192"
-                  stroke="black"
-                />
-                <rect x="0.5" y="0.5" width="24" height="236" stroke="black" />
-                <path d="M24.5 0.5H377.5V24.5H24.5V0.5Z" stroke="black" />
-                <circle
-                  cx="219.092"
-                  cy="218.092"
-                  r="8"
-                  transform="rotate(-45 219.092 218.092)"
-                  stroke="black"
-                />
-                <line
-                  x1="209.546"
-                  y1="227.638"
-                  x2="228.638"
-                  y2="208.546"
-                  stroke="black"
-                />
-                <line
-                  x1="228.638"
-                  y1="227.638"
-                  x2="209.546"
-                  y2="208.546"
-                  stroke="black"
-                />
-              </svg>
+              <img src={kuva1} alt="" />
             </div>
           </div>
           <div className="point">
             <SvgPoint2Frame />
-            <div className="image"></div>
+            <div className="image">
+              <img src={kuva2} alt="" />
+            </div>
             <div
               className="content"
               dangerouslySetInnerHTML={{
@@ -135,10 +116,12 @@ const Product = ({ pageContext }) => {
                 __html: data.product.points[2].content,
               }}
             />
-            <div className="image"></div>
+            <div className="image">
+              <img src={kuva3} alt="" />
+            </div>
           </div>
         </div>
-        <div className="sec-3">
+        <div className="sec-3 padding wrap">
           <div className="heading">
             <SvgHeaderFrameWide />
             <h2>{text.product.references}</h2>
@@ -171,6 +154,7 @@ const Main = styled.main`
     display: flex;
     align-items: center;
     padding-left: 30px;
+    overflow: hidden;
     h2 {
       font-size: 28px;
       text-transform: uppercase;
@@ -187,10 +171,8 @@ const Main = styled.main`
     height: 100%;
     color: #fff;
     position: relative;
-    .wrapper {
+    .wrap {
       height: 100vh;
-      padding-left: 80px;
-      padding-right: 80px;
       overflow: hidden;
     }
     h1 {
@@ -259,11 +241,17 @@ const Main = styled.main`
       max-width: 720px;
       margin: 100px auto;
       text-align: center;
+      ${theme.mobile} {
+        font-size: 16px;
+      }
     }
     .SvgNumberFrame,
     .SvgNumberTopline {
       position: absolute;
       width: 100%;
+      ${theme.mobile} {
+        display: none;
+      }
     }
     .numberBox {
       margin-top: 40px;
@@ -271,6 +259,7 @@ const Main = styled.main`
       display: flex;
       justify-content: center;
       height: 300px;
+      overflow: hidden;
       > div {
         display: flex;
         flex-direction: column;
@@ -287,6 +276,18 @@ const Main = styled.main`
       }
       .number-2 {
         padding-left: 60px;
+      }
+      ${theme.mobile} {
+        flex-direction: column;
+        .number-1,
+        .number-2 {
+          padding-left: 0;
+          > span.sub {
+            padding-left: 0;
+            margin-top: 4px;
+            margin-bottom: 10px;
+          }
+        }
       }
     }
     span.number {
@@ -328,6 +329,8 @@ const Main = styled.main`
         font-size: 15px;
         border-radius: 6px;
         position: absolute;
+        font-family: "din-2014", sans-serif;
+        font-style: normal;
         z-index: 1;
         bottom: 115%;
         left: 50%;
@@ -352,16 +355,34 @@ const Main = styled.main`
     }
   }
   .sec-2 {
-    padding-left: 80px;
-    padding-right: 80px;
     display: flex;
     flex-direction: column;
+    &.padding {
+      @media (min-width: 600px) {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      @media (min-width: 1100px) {
+        padding-left: 80px;
+        padding-right: 80px;
+      }
+    }
     .point {
       display: flex;
       min-height: 420px;
       align-items: center;
       position: relative;
+      @media (max-width: 700px) {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        flex-direction: column;
+        &:nth-child(odd) {
+          flex-direction: column-reverse;
+        }
+      }
+
       .SvgPoint2Frame {
+        display: none;
         position: absolute;
         top: 0;
         right: 0;
@@ -382,24 +403,43 @@ const Main = styled.main`
         display: flex;
         justify-content: center;
         align-items: center;
+        > img {
+          width: 100%;
+          max-width: 300px;
+        }
       }
+    }
+    .point:nth-child(odd) .image > img {
+      margin-right: auto;
     }
   }
   .sec-3 {
-    padding-left: 80px;
-    padding-right: 80px;
     display: flex;
     flex-direction: column;
+    &.padding {
+      @media (min-width: 600px) {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      @media (min-width: 1100px) {
+        padding-left: 80px;
+        padding-right: 80px;
+      }
+    }
     .references {
       display: flex;
       justify-content: space-between;
       padding-top: 60px;
       padding-bottom: 120px;
+      @media (max-width: 700px) {
+        flex-direction: column;
+      }
     }
     .item {
       display: flex;
       flex-direction: column;
       padding-right: 30px;
+      padding-bottom: 60px;
       h4,
       p,
       span {
@@ -437,7 +477,12 @@ const SvgTooltip = () => (
 );
 
 const SvgHeaderFrameWide = () => (
-  <svg viewBox="0 0 1179 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="1179"
+    viewBox="0 0 1179 93"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <g>
       <path d="M581.809 49.5802V45.244" stroke="black" stroke-width="0.6" />
       <path

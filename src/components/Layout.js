@@ -106,7 +106,7 @@ export const Layout = ({ children, secondary }) => {
               text={text.bookDemo}
             />
           </nav>
-          <div className="burger">
+          <div className={`burger${menuOpen ? " menuOpen" : ""}`}>
             <BurgerIcon
               menuOpen={menuOpen}
               onClick={(e) => {
@@ -128,7 +128,7 @@ export const Layout = ({ children, secondary }) => {
       </Header>
       <MobileMenu menuOpen={menuOpen} closeMenu={() => setMenuOpen(false)} />
       {children}
-      <Footer />
+      <Footer menu={menu} prefix={prefix} />
     </>
   );
 };
@@ -140,6 +140,9 @@ const Header = styled.header`
   position: absolute;
   border-bottom: 1px solid #fff;
   height: 130px;
+  .menuOpen .line {
+    background: #000;
+  }
   > div {
     display: flex;
     justify-content: space-between;
@@ -149,6 +152,10 @@ const Header = styled.header`
     padding: 20px 80px 20px;
     max-width: 1500px;
     margin: 0 auto;
+    ${theme.mobile} {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
   .localeLinks {
     position: absolute;
@@ -293,7 +300,7 @@ const MobileMenu = ({ menuOpen }) => {
   return (
     <div
       style={{ display: menuOpen ? "flex" : "none" }}
-      className="mobileMenu"
+      className={`mobileMenu`}
       css={`
         position: fixed;
         background: rgba(255, 255, 255, 1);

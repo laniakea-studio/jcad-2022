@@ -11,7 +11,7 @@ import ReactVivus from "react-vivus";
 import { LocaleContext } from "../contexts/LocaleContext";
 import { SvgLogoFooter, SvgLogo } from "./SvgCollection.js";
 
-export const Footer = () => {
+export const Footer = ({ menu, prefix }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
 
@@ -19,12 +19,6 @@ export const Footer = () => {
     query {
       yhteystiedot: datoCmsYhteystiedot {
         myyntiJaTilaukset {
-          nimi
-          titteli
-          puhelin
-          email
-        }
-        hallinto {
           nimi
           titteli
           puhelin
@@ -51,25 +45,155 @@ export const Footer = () => {
     }
   `);
 
-  const handleNavClick = (event, destination) => {
-    event.preventDefault();
-    let element = document.querySelector(`#${destination}`);
-    element.scrollIntoView({ block: "start" });
-  };
-
   return (
     <FooterDiv>
       <div className="container">
-        <div className="content">
+        <div className="content  wrap">
           <SvgLogoFrame className="logoFrame" />
           <div className="row header">
-            <a
-              className="backToTop"
-              href="#intro"
-              onClick={(e) => handleNavClick(e, "intro")}
-            >
-              {text.footer.buttonBackToTop}
-            </a>
+            <div>
+              <SvgLogoFooter />
+            </div>
+            <div className="FooterMenu">
+              {menu.map((i) => (
+                <Link
+                  to={`/${prefix + i.to}`}
+                  activeClassName="active"
+                  style={{ marginTop: 8 }}
+                >
+                  {i.title}
+                </Link>
+              ))}
+            </div>
+            <div>
+              <a
+                className="backToTop"
+                href="#intro"
+                onClick={(e) => window.scrollTo(0, 0)}
+              >
+                {text.footer.buttonBackToTop}
+              </a>
+            </div>
+          </div>
+
+          <div className="row contacts">
+            <div className="col">
+              <div className="titleBox">
+                <h3>{text.footer.sales}</h3>
+              </div>
+              <p>
+                {yhteystiedot.myyntiJaTilaukset[0].nimi && (
+                  <>
+                    <strong>{yhteystiedot.myyntiJaTilaukset[0].nimi}</strong>
+                    <br />
+                  </>
+                )}
+                {yhteystiedot.myyntiJaTilaukset[0].titteli && (
+                  <>
+                    {yhteystiedot.myyntiJaTilaukset[0].titteli} <br />
+                  </>
+                )}
+                {yhteystiedot.myyntiJaTilaukset[0].puhelin && (
+                  <>
+                    <a
+                      href={`tel:${yhteystiedot.myyntiJaTilaukset[0].puhelin.replace(
+                        /\s+/g,
+                        ""
+                      )}`}
+                    >
+                      {yhteystiedot.myyntiJaTilaukset[0].puhelin}
+                    </a>
+                    <br />
+                  </>
+                )}
+                <a
+                  href={`mailto:${yhteystiedot.myyntiJaTilaukset[0].email.replace(
+                    /\s+/g,
+                    ""
+                  )}`}
+                >
+                  {yhteystiedot.myyntiJaTilaukset[0].email}
+                </a>
+              </p>
+            </div>
+            <div className="col">
+              <div className="titleBox">
+                <h3>{text.footer.support}</h3>
+              </div>
+              <p>
+                {yhteystiedot.asiakaspalvelu[0].nimi && (
+                  <>
+                    <strong>{yhteystiedot.asiakaspalvelu[0].nimi}</strong>
+                    <br />
+                  </>
+                )}
+                {yhteystiedot.asiakaspalvelu[0].titteli && (
+                  <>
+                    {yhteystiedot.asiakaspalvelu[0].titteli} <br />
+                  </>
+                )}
+                {yhteystiedot.asiakaspalvelu[0].puhelin && (
+                  <>
+                    <a
+                      href={`tel:${yhteystiedot.asiakaspalvelu[0].puhelin.replace(
+                        /\s+/g,
+                        ""
+                      )}`}
+                    >
+                      {yhteystiedot.asiakaspalvelu[0].puhelin}
+                    </a>
+                    <br />
+                  </>
+                )}
+                <a
+                  href={`mailto:${yhteystiedot.asiakaspalvelu[0].email.replace(
+                    /\s+/g,
+                    ""
+                  )}`}
+                >
+                  {yhteystiedot.asiakaspalvelu[0].email}
+                </a>
+              </p>
+            </div>
+            <div className="col">
+              <div className="titleBox">
+                <h3>{text.footer.accounts}</h3>
+              </div>
+              <p>
+                {yhteystiedot.asiakkuudet[0].nimi && (
+                  <>
+                    <strong>{yhteystiedot.asiakkuudet[0].nimi}</strong>
+                    <br />
+                  </>
+                )}
+                {yhteystiedot.asiakkuudet[0].titteli && (
+                  <>
+                    {yhteystiedot.asiakkuudet[0].titteli} <br />
+                  </>
+                )}
+                {yhteystiedot.asiakkuudet[0].puhelin && (
+                  <>
+                    <a
+                      href={`tel:${yhteystiedot.asiakkuudet[0].puhelin.replace(
+                        /\s+/g,
+                        ""
+                      )}`}
+                    >
+                      {yhteystiedot.asiakkuudet[0].puhelin}
+                    </a>
+                    <br />
+                  </>
+                )}
+                <a
+                  href={`mailto:${yhteystiedot.asiakkuudet[0].email.replace(
+                    /\s+/g,
+                    ""
+                  )}`}
+                >
+                  {yhteystiedot.asiakkuudet[0].email}
+                </a>
+              </p>
+            </div>
           </div>
 
           <div className="row logoBox">
@@ -95,7 +219,7 @@ export const Footer = () => {
             <a
               className="backToTop"
               href="#intro"
-              onClick={(e) => handleNavClick(e, "intro")}
+              onClick={(e) => window.scrollTo(0, 0)}
             >
               {text.footer.buttonBackToTop}
             </a>
@@ -113,12 +237,12 @@ const FooterDiv = styled.footer`
   padding-right: 0;
   color: #fff;
   text-align: left;
-
   .content {
     position: relative;
     overflow: hidden;
     > div {
       z-index: 10;
+      position: relative;
     }
   }
   .logoFrame {
@@ -142,11 +266,42 @@ const FooterDiv = styled.footer`
       text-decoration: underline;
     }
   }
-  a.backToTop {
-    margin-left: auto;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 19px;
+
+  .row.header {
+    //align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+    margin-bottom: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+    > div {
+      display: flex;
+      flex: 1;
+    }
+    .FooterMenu {
+      display: none;
+      text-align: center;
+      width: 100%;
+      align-items: center;
+      flex-direction: column;
+      margin-top: -13px;
+
+      > a {
+        display: inline-flex;
+        font-size: 18px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+    a.backToTop {
+      margin-left: auto;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 19px;
+    }
   }
 
   ${theme.mobile} {
@@ -182,6 +337,99 @@ const FooterDiv = styled.footer`
       left: 0;
       right: 0;
       bottom: -140px;
+    }
+  }
+
+  .row.contacts {
+    min-height: 220px;
+    border-bottom: 1px solid #fff;
+    margin-left: 50px;
+    margin-right: 50px;
+    p {
+      font-size: 18px;
+      strong {
+        text-transform: uppercase;
+      }
+    }
+    .titleBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #fff;
+      height: 68px;
+      padding-left: 40px;
+      padding-right: 40px;
+      margin-bottom: 20px;
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+    }
+    .col {
+      flex: 1;
+      padding: 50px;
+      justify-content: flex-start;
+    }
+    .col:nth-child(2) {
+      flex: 2;
+    }
+    ${theme.max900} {
+      margin-top: 20px;
+      flex-direction: column;
+      border-bottom: none;
+      .col {
+        padding: 40px 0 0;
+      }
+
+      .titleBox h3 {
+        font-size: 28px;
+        padding-left: 24px;
+      }
+      .titleBox {
+        margin-left: 0;
+        border-left-style: none;
+        text-align: left;
+        height: auto;
+        width: auto;
+        justify-content: flex-start;
+        padding-left: 24px;
+        padding-right: 48px;
+        max-width: fit-content;
+      }
+      p {
+        padding-left: 48px;
+      }
+    }
+  }
+  @media (max-width: 1000px) {
+    svg.logoFrame {
+      display: none;
+    }
+    border-top: 1px solid #fff;
+    .row.contacts {
+      border-bottom: none;
+    }
+  }
+  @media (max-width: 900px) {
+    .row.header,
+    .row.contacts {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .row.header {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+  @media (max-width: 900px) {
+    .row p.copy {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .header a.backToTop {
+      display: none;
     }
   }
 `;
