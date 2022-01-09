@@ -171,6 +171,9 @@ const Main = styled.main`
     height: 100%;
     color: #fff;
     position: relative;
+    ${theme.mobile} {
+      padding-top: 50px;
+    }
     .wrap {
       height: 100vh;
       overflow: hidden;
@@ -201,6 +204,9 @@ const Main = styled.main`
       margin-right: -200px;
       margin-bottom: -200px;
       animation: spin 180s infinite;
+      ${theme.mobile} {
+        margin-bottom: -600px;
+      }
     }
     #circle-2 {
       position: absolute;

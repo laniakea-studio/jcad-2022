@@ -29,6 +29,7 @@ const Contact = ({ pageContext }) => {
             <SvgDashedLine className="rightTitleLine" />
             <SvgHaircross className="rightCircle" />
           </div>
+
           <div className="Area row">
             <div className="Col1">
               <div className="heading">
@@ -63,6 +64,21 @@ const Contact = ({ pageContext }) => {
             <div className="Col1">
               <div className="heading">
                 <SvgHeadingFrame />
+                <h2>{text.contactPage.accounts}</h2>
+              </div>
+            </div>
+            <div className="Col2 row">
+              <div className="Grid">
+                {data.yhteystiedot.asiakkuudet.map((i) => {
+                  return <ContactItem i={i} />;
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="Area row">
+            <div className="Col1">
+              <div className="heading">
+                <SvgHeadingFrame />
                 <h2>{text.contactPage.locations}</h2>
               </div>
             </div>
@@ -81,21 +97,7 @@ const Contact = ({ pageContext }) => {
               </div>
             </div>
           </div>
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
-                <h2>{text.contactPage.accounts}</h2>
-              </div>
-            </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.asiakkuudet.map((i) => {
-                  return <ContactItem i={i} />;
-                })}
-              </div>
-            </div>
-          </div>
+
           <div className="Area row">
             <div className="Col1">
               <div className="heading">
@@ -114,6 +116,21 @@ const Contact = ({ pageContext }) => {
                       <div dangerouslySetInnerHTML={{ __html: i.osoite }} />
                     </div>
                   );
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="Area row">
+            <div className="Col1">
+              <div className="heading">
+                <SvgHeadingFrame />
+                <h2>{text.contactPage.people}</h2>
+              </div>
+            </div>
+            <div className="Col2 row">
+              <div className="Grid">
+                {data.yhteystiedot.henkilosto.map((i) => {
+                  return <ContactItem i={i} />;
                 })}
               </div>
             </div>
@@ -155,6 +172,7 @@ const Main = styled.main`
   color: #fff;
   background: ${theme.primary};
   min-height: 100vh;
+
   .Area {
     ${theme.max900} {
       flex-wrap: wrap;
@@ -176,6 +194,10 @@ const Main = styled.main`
       position: relative;
       padding-bottom: 70px;
       width: 65%;
+      ${theme.max900} {
+        width: 100%;
+        padding-bottom: 30px;
+      }
     }
     .Grid {
       display: grid;
@@ -189,6 +211,9 @@ const Main = styled.main`
       }
       ${theme.max900} {
         grid-template-columns: repeat(2, 1fr);
+      }
+      ${theme.mobile} {
+        grid-template-columns: repeat(1, 1fr);
       }
     }
     .Item {
@@ -234,8 +259,11 @@ const Main = styled.main`
         font-size: 38px;
         background: ${theme.primary};
         padding: 0 20px;
-        z-index: 10;
+        z-index: 1;
         letter-spacing: 1px;
+      }
+      ${theme.mobile} {
+        border-left-style: solid !important;
       }
     }
     .rightCircle,

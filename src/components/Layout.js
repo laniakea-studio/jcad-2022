@@ -126,7 +126,14 @@ export const Layout = ({ children, secondary }) => {
           </a>
         </div>
       </Header>
-      <MobileMenu menuOpen={menuOpen} closeMenu={() => setMenuOpen(false)} />
+      <MobileMenu
+        menuOpen={menuOpen}
+        menu={menu}
+        text={text}
+        closeMenu={() => setMenuOpen(false)}
+        localeSlugs={localeSlugs}
+        locale={locale}
+      />
       {children}
       <Footer menu={menu} prefix={prefix} />
     </>
@@ -140,8 +147,8 @@ const Header = styled.header`
   position: absolute;
   border-bottom: 1px solid #fff;
   height: 130px;
-  .menuOpen .line {
-    background: #000;
+  ${theme.mobile} {
+    border-bottom: none;
   }
   > div {
     display: flex;
@@ -295,53 +302,88 @@ const Header = styled.header`
   }
 `;
 
-const MobileMenu = ({ menuOpen }) => {
-  const menu = menuFi;
+const MobileMenu = ({ menu, menuOpen, text, localeSlugs, locale }) => {
+  const color = "#fff";
   return (
     <div
       style={{ display: menuOpen ? "flex" : "none" }}
-      className={`mobileMenu`}
       css={`
         position: fixed;
-        background: rgba(255, 255, 255, 1);
+        z-index: 2;
+        background-color: rgba(0, 0, 83, 0.8);
+        backdrop-filter: blur(6px);
         width: 100%;
         height: 100vh;
-        z-index: 2;
+        padding-top: 50px;
+        color: ${color};
+        justify-content: center;
+        align-items: center;
         display: flex;
         flex-direction: column;
-        color: #000;
-        top: 0;
-        .contentBox {
-          min-height: -webkit-fill-available;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          padding-top: 70px;
+        &.atTop {
+          z-index: 1;
+          padding-top: 50px;
+          a {
+            padding: 12px;
+          }
+          button {
+            margin: 20px auto 20px;
+            transform: scale(1);
+          }
         }
-        nav.mobile {
-          display: flex;
-          flex-direction: column;
-          font-size: 28px;
-          text-align: right;
-          align-items: end;
+        a {
+          font-size: 23px;
+          padding: 20px 10px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.02em;
+        }
+        a:last-child {
+          font-size: 14px;
+        }
+        button {
+          margin: 30px auto 30px;
+          transform: scale(1.05);
+        }
+        .line {
+          height: 1px;
+          width: 100%;
+          background: ${color};
+        }
+        .localeLinksMobile {
           padding-top: 40px;
           a {
-            width: 100%;
-            padding: 10px 20px;
-            margin: 8px 0;
+            font-size: 18px;
+            font-weight: 500;
           }
-          a.active {
-            opacity: 0.6;
+          a.thisLocale {
+            opacity: 0.4;
           }
         }
       `}
     >
-      <div className="contentBox">
-        <nav className="mobile">
-          {menu.map((i) => (
-            <Link to={i.to}>{i.title}</Link>
-          ))}
-        </nav>
+      {menu.map((i) => (
+        <Link to={`/${i.to}`}>{i.title}</Link>
+      ))}
+      <PopupButton
+        className="btn white-outlines"
+        url="https://calendly.com/jcad-booking/tilaa-demo"
+        text={text.bookDemo}
+      />
+      <div className="line" />
+      <a href="https://extra.jcad.fi/" target="_blank" rel="noreferrer">
+        {text.menu.login}
+      </a>
+      <div className="localeLinksMobile">
+        <Link to={localeSlugs.fi} className={locale === "fi" && "thisLocale"}>
+          FI
+        </Link>
+        <Link to={localeSlugs.en} className={locale === "en" && "thisLocale"}>
+          EN
+        </Link>
+        <Link to={localeSlugs.sv} className={locale === "sv" && "thisLocale"}>
+          SV
+        </Link>
       </div>
     </div>
   );

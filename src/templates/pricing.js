@@ -198,6 +198,10 @@ const Main = styled.main`
   padding-top: 220px;
   padding-left: 80px;
   padding-right: 80px;
+  ${theme.mobile} {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .selectBox {
     position: relative;
     margin-top: 10px;
@@ -206,6 +210,9 @@ const Main = styled.main`
     height: 48px;
     border: 1px dashed #fff;
     font-size: 18px;
+    ${theme.mobile} {
+      margin-bottom: 0;
+    }
   }
   .selected {
     display: flex;
@@ -302,6 +309,9 @@ const Main = styled.main`
   .selections {
     display: flex;
     margin-top: 40px;
+    ${theme.max1000} {
+      flex-direction: column;
+    }
     > div {
       display: flex;
       flex-direction: column;
@@ -320,7 +330,10 @@ const Main = styled.main`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    ${theme.mobile} {
+    ${theme.max1100} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    ${theme.max800} {
       grid-template-columns: repeat(1, 1fr);
     }
     .item {
