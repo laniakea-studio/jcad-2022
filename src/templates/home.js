@@ -43,7 +43,6 @@ const HomePage = ({ pageContext }) => {
   const { height } = useWindowDimensions();
   const { scrollY } = useViewportScroll();
   const [showModal, setShowModal] = useState(false);
-  const [htmlBg, setHtmlBg] = useState("#73B7DB");
 
   const [pulseOne, setPulseOne] = useState(false);
   const [pulseTwo, setPulseTwo] = useState(false);
@@ -54,18 +53,6 @@ const HomePage = ({ pageContext }) => {
   const startAnim4 = height * 2;
 
   useEffect(() => {
-    if (yPosition < startAnim4 && htmlBg === "#73B7DB") return;
-    if (yPosition < startAnim4 && htmlBg !== "#73B7DB") {
-      setHtmlBg("#73B7DB");
-      document.querySelector("html").style.background = "#73B7DB";
-      return;
-    }
-    if (yPosition > startAnim4 + 3 * height && htmlBg === "#000053") return;
-    if (yPosition > startAnim4 + 3 * height && htmlBg !== "#000053") {
-      setHtmlBg("#000053");
-      document.querySelector("html").style.background = "#000053";
-      return;
-    }
     if (yPosition < startAnim4 + height && !pulseOne) {
       setPulseOne(true);
       setPulseTwo(false);
