@@ -343,6 +343,9 @@ const Main = styled.main`
         margin-left: -60px;
         opacity: 0;
         transition: opacity 0.3s;
+        ${theme.mobile} {
+          margin-left: -160px;
+        }
         &:after {
           content: "";
           position: absolute;

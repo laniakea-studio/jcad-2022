@@ -24,6 +24,7 @@ const Ticker = ({ data }) => {
             display: none;
           }
         }
+
         .leftFade {
           left: 0;
           background: linear-gradient(

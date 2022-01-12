@@ -233,6 +233,7 @@ export const Footer = ({ menu, prefix }) => {
 const FooterDiv = styled.footer`
   flex-direction: column;
   background: ${theme.primary};
+  padding-top: 46px;
   padding-left: 0;
   padding-right: 0;
   color: #fff;
@@ -299,6 +300,7 @@ const FooterDiv = styled.footer`
     a.backToTop {
       margin-left: auto;
       text-transform: uppercase;
+      margin-right: 180px;
       font-weight: 700;
       font-size: 19px;
     }

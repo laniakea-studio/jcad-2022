@@ -31,11 +31,12 @@ const menuSv = [
 ];
 export const Layout = ({ children, secondary }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const { locale, localeSlugs } = useContext(LocaleContext);
   const menu = locale === "fi" ? menuFi : locale === "en" ? menuEn : menuSv;
   const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+
+  const [flatHeader, setFlatHeader] = useState(false);
 
   const { site } = useStaticQuery(graphql`
     query {
@@ -48,13 +49,23 @@ export const Layout = ({ children, secondary }) => {
   `);
 
   useEffect(() => {
-    //Prevent scrolling bg on iOS: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
-    if (menuOpen) {
-      document.body.style.overflowY = "hidden";
-    } else {
-      document.body.style.overflowY = "auto";
-    }
-  }, [menuOpen]);
+    const onScroll = () => {
+      if (window.pageYOffset <= 70 && !flatHeader) return;
+      if (window.pageYOffset > 70 && flatHeader) return;
+      if (window.pageYOffset <= 70 && flatHeader) {
+        console.log(window.pageYOffset);
+        console.log("Set header: false");
+      }
+      if (window.pageYOffset >= 70 && !flatHeader) {
+        console.log(window.pageYOffset);
+        console.log("Set header: true");
+      }
+    };
+    // clean up code
+    window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
@@ -65,7 +76,7 @@ export const Layout = ({ children, secondary }) => {
           content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </HelmetDatoCms>
-      <Header secondary={false}>
+      <Header className={flatHeader ? "flat" : ""}>
         <div>
           <div className="localeLinks">
             <Link
@@ -147,6 +158,24 @@ const Header = styled.header`
   position: absolute;
   border-bottom: 1px solid #fff;
   height: 130px;
+  transition: all 0.4s;
+  &.flat {
+    height: 70px;
+
+    > div {
+      height: 70px;
+      transition: all 0.4s;
+    }
+    background-color: rgba(0, 0, 83, 0.95);
+    backdrop-filter: blur(2px);
+    .localeLinks {
+      display: none;
+    }
+    a.linkLogin {
+      display: none;
+    }
+  }
+
   ${theme.mobile} {
     border-bottom: none;
   }

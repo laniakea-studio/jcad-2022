@@ -22,6 +22,13 @@ slugs:
   pricing: hinta
   contact: yhteystiedot
   booking: varaa-demo
+home:
+  slide1title: Tehokkuus
+  slide2title: Virheiden torjuminen
+  slide3title: Tarkkuus
+  referencesTitle: Asiakaskokemuksia
+  aboutTitle: Meistä
+  ourCustomersTitle: Asiakkaitamme
 product:
   activeUsers: Aktiivista käyttäjää
   customerHappiness: Asiakastyytyväisyys

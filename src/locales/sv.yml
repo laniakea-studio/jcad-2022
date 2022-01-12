@@ -17,6 +17,13 @@ pricing:
   mo: kk
   user: käyttäjä
   users: käyttäjää
+home:
+  slide1title: Tehokkuus
+  slide2title: Virheiden torjuminen
+  slide3title: Tarkkuus
+  referencesTitle: Asiakaskokemuksia
+  aboutTitle: Meistä
+  ourCustomersTitle: Asiakkaitamme
 slugs:
   product: produkten
   pricing: pris

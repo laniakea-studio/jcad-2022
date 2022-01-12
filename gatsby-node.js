@@ -27,6 +27,38 @@ exports.createPages = async ({ graphql, actions }) => {
   locales.forEach(async (locale) => {
     const query = await graphql(`
     {
+      home: datoCmsEtusivu(locale: { eq: "${locale}" }) {
+        seoMetaTags {
+          tags 
+        }
+        kuva {
+          gatsbyImageData(
+            width: 1600
+            placeholder: BLURRED
+            forceBlurhash: false
+          )
+        }
+        otsikko1
+        otsikko2
+        otsikko3
+        slide1
+        slide2
+        slide3
+        partners {
+          url
+          alt
+        }
+      }
+      about: datoCmsAbout(locale: { eq: "${locale}" })  {
+        content
+        taustakuva {
+          gatsbyImageData(
+            width: 1600
+            placeholder: BLURRED
+            forceBlurhash: false
+          )
+        }
+      }    
       product: datoCmsTuotesivu(locale: { eq: "${locale}" }) {
         title
         lead
@@ -60,6 +92,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             yritys
+            sitaatti
             quote
             nimi
           }
@@ -132,7 +165,11 @@ exports.createPages = async ({ graphql, actions }) => {
           en: "/en",
           sv: "/sv",
         },
-        data: { product: data.product, references: data.allReferences.edges },
+        data: {
+          home: data.home,
+          about: data.about,
+          referenssit: data.allReferences,
+        },
       },
     });
 
