@@ -24,8 +24,9 @@ exports.createPages = async ({ graphql, actions }) => {
     booking: "boka-demo",
   };
 
-  locales.forEach(async (locale) => {
-    const query = await graphql(`
+  await Promise.all(
+    locales.map(async (locale) => {
+      const query = await graphql(`
     {
       home: datoCmsEtusivu(locale: { eq: "${locale}" }) {
         seoMetaTags {
@@ -137,57 +138,57 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-    const { data } = query;
+      const { data } = query;
 
-    // Page Templates
-    const home = path.resolve(`src/templates/home.js`);
-    const product = path.resolve(`src/templates/product.js`);
-    const pricing = path.resolve(`src/templates/pricing.js`);
-    const booking = path.resolve(`src/templates/booking.js`);
-    const article = path.resolve(`src/templates/Article.js`);
-    const contact = path.resolve(`src/templates/contact.js`);
+      // Page Templates
+      const home = path.resolve(`src/templates/home.js`);
+      const product = path.resolve(`src/templates/product.js`);
+      const pricing = path.resolve(`src/templates/pricing.js`);
+      const booking = path.resolve(`src/templates/booking.js`);
+      const article = path.resolve(`src/templates/Article.js`);
+      const contact = path.resolve(`src/templates/contact.js`);
 
-    const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
-    const pageSlugs =
-      locale === "fi"
-        ? pageSlugsFi
-        : locale === "en"
-        ? pageSlugsEn
-        : pageSlugsSv;
+      const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
+      const pageSlugs =
+        locale === "fi"
+          ? pageSlugsFi
+          : locale === "en"
+          ? pageSlugsEn
+          : pageSlugsSv;
 
-    createPage({
-      path: `/${prefix}`,
-      component: home,
-      context: {
-        locale: locale,
-        localeSlugs: {
-          fi: "/",
-          en: "/en",
-          sv: "/sv",
+      createPage({
+        path: `/${prefix}`,
+        component: home,
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: "/",
+            en: "/en",
+            sv: "/sv",
+          },
+          data: {
+            home: data.home,
+            about: data.about,
+            referenssit: data.allReferences,
+          },
         },
-        data: {
-          home: data.home,
-          about: data.about,
-          referenssit: data.allReferences,
-        },
-      },
-    });
+      });
 
-    createPage({
-      path: `/${prefix + pageSlugs.product}`,
-      component: product,
-      context: {
-        locale: locale,
-        localeSlugs: {
-          fi: `/${pageSlugsFi.product}`,
-          en: `/en/${pageSlugsEn.product}`,
-          sv: `/sv/${pageSlugsSv.product}`,
+      createPage({
+        path: `/${prefix + pageSlugs.product}`,
+        component: product,
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${pageSlugsFi.product}`,
+            en: `/en/${pageSlugsEn.product}`,
+            sv: `/sv/${pageSlugsSv.product}`,
+          },
+          data: { product: data.product, references: data.allReferences.edges },
         },
-        data: { product: data.product, references: data.allReferences.edges },
-      },
-    });
+      });
 
-    /*
+      /*
     data.allReferences.edges.map((i) => {
       createPage({
         path: `/${prefix}reference/${i.node.slug}`,
@@ -205,32 +206,33 @@ exports.createPages = async ({ graphql, actions }) => {
     });
     */
 
-    createPage({
-      path: `/${prefix + pageSlugs.pricing}`,
-      component: pricing,
-      context: {
-        locale: locale,
-        localeSlugs: {
-          fi: `/${pageSlugsFi.pricing}`,
-          en: `/en/${pageSlugsEn.pricing}`,
-          sv: `/sv/${pageSlugsSv.pricing}`,
+      createPage({
+        path: `/${prefix + pageSlugs.pricing}`,
+        component: pricing,
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${pageSlugsFi.pricing}`,
+            en: `/en/${pageSlugsEn.pricing}`,
+            sv: `/sv/${pageSlugsSv.pricing}`,
+          },
+          data: { pricing: data.pricing },
         },
-        data: { pricing: data.pricing },
-      },
-    });
+      });
 
-    createPage({
-      path: `/${prefix + pageSlugs.contact}`,
-      component: contact,
-      context: {
-        locale: locale,
-        localeSlugs: {
-          fi: `/${pageSlugsFi.contact}`,
-          en: `/en/${pageSlugsEn.contact}`,
-          sv: `/sv/${pageSlugsSv.contact}`,
+      createPage({
+        path: `/${prefix + pageSlugs.contact}`,
+        component: contact,
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${pageSlugsFi.contact}`,
+            en: `/en/${pageSlugsEn.contact}`,
+            sv: `/sv/${pageSlugsSv.contact}`,
+          },
+          data: { yhteystiedot: data.yhteystiedot },
         },
-        data: { yhteystiedot: data.yhteystiedot },
-      },
-    });
-  });
+      });
+    })
+  );
 };
