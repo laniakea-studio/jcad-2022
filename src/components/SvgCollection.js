@@ -8,6 +8,63 @@ export const SvgCrossHair = () => (
   </svg>
 );
 
+export const SvgDashedLine = ({ className }) => {
+  return (
+    <svg
+      className="SvgDashedLine"
+      xmlns="http://www.w3.org/2000/svg"
+      width="508"
+      height="1"
+      viewBox="0 0 508 1"
+    >
+      <line
+        x1="508"
+        transform="translate(0 0.5)"
+        fill="none"
+        stroke="#fff"
+        stroke-width="1"
+        stroke-dasharray="4 4"
+      />
+    </svg>
+  );
+};
+
+export const SvgHaircross = ({ className }) => {
+  return (
+    <svg
+      className="SvgHaircross"
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 22 22"
+    >
+      <g data-name="Group 2156" transform="translate(-1130.97 -6342.587)">
+        <g data-name="Group 2153" transform="translate(1134.438 6342.587)">
+          <g data-name="Group 1962" transform="translate(0 0)">
+            <path
+              data-name="Path 1804"
+              d="M-2.986-7.336A7.886,7.886,0,0,0,4.9-15.222a7.886,7.886,0,0,0-7.886-7.886,7.886,7.886,0,0,0-7.886,7.886A7.886,7.886,0,0,0-2.986-7.336Zm0,3.332V-26.713"
+              transform="translate(10.872 26.713)"
+              fill="none"
+              stroke="#fff"
+              stroke-width="1"
+            />
+          </g>
+        </g>
+        <g data-name="Group 2154" transform="translate(1130.97 6353.941)">
+          <path
+            data-name="Path 1820"
+            d="M0,0H22.709"
+            fill="none"
+            stroke="#fff"
+            stroke-width="1"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+};
+
 export const SvgNumbersFrameMob = () => (
   <svg
     className="SvgNumbersFrameMob"

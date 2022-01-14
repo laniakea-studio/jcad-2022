@@ -7,7 +7,12 @@ import fi from "../locales/fi.yml";
 import en from "../locales/en.yml";
 import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
-import { SvgCircle, SvgNumbersFrameMob } from "../components/SvgCollection";
+import {
+  SvgCircle,
+  SvgNumbersFrameMob,
+  SvgHaircross,
+  SvgDashedLine,
+} from "../components/SvgCollection";
 import { Booking } from "../components/Booking";
 import Ticker from "../components/Ticker";
 import { PopupButton } from "react-calendly";
@@ -34,7 +39,7 @@ const Product = ({ pageContext }) => {
             <div className="leftLine" />
             <div className="rightLine" />
 
-            <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
+            <h dangerouslySetInnerHTML={{ __html: data.product.title }} />
             <p>{data.product.lead}</p>
             <div className="btns">
               <button
@@ -55,6 +60,7 @@ const Product = ({ pageContext }) => {
         </div>
         <div id="customers" className="sec-1">
           <Ticker data={data.product.customers} />
+          <p className="customers padding">{data.product.section1Content}</p>
           <div className="numberBox">
             <SvgNumberTopline />
             <SvgNumberFrame />
@@ -73,20 +79,25 @@ const Product = ({ pageContext }) => {
                 {text.product.customerHappiness}
                 <i className="tooltip">
                   <SvgTooltip />
-                  <p class="tooltiptext">
-                    Otanta: 714 <br />
-                    Lähde: Asiakaskysely 2021
-                  </p>
+                  <p
+                    class="tooltiptext"
+                    dangerouslySetInnerHTML={{ __html: data.product.tooltip }}
+                  />
                 </i>
               </span>
             </div>
           </div>
-          <p className="customers padding">{data.product.section1Content}</p>
         </div>
         <div className="sec-2 padding wrap">
-          <div className="heading">
-            <SvgHeadingFrame />
-            <h2>{text.product.benefits}</h2>
+          <div className="Title">
+            <SvgHaircross className="leftCircle" />
+            <SvgDashedLine className="leftTitleLine" />
+            <div className="titleBox">
+              <h2 className="blueBg">{text.product.benefits}</h2>
+            </div>
+
+            <SvgDashedLine className="rightTitleLine" />
+            <SvgHaircross className="rightCircle" />
           </div>
           <div className="point">
             <div
@@ -248,7 +259,7 @@ const Main = styled.main`
     .customers {
       font-size: 20px;
       max-width: 720px;
-      margin: 100px auto;
+      margin: 50px auto 80px;
       text-align: center;
       ${theme.mobile} {
         font-size: 16px;
@@ -340,6 +351,7 @@ const Main = styled.main`
         position: absolute;
         font-family: "din-2014", sans-serif;
         font-style: normal;
+        white-space: pre-line;
         z-index: 1;
         bottom: 115%;
         left: 50%;
@@ -366,6 +378,67 @@ const Main = styled.main`
       }
     }
   }
+  .Title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    .leftCircle,
+    .leftTitleLine {
+      position: absolute;
+      margin: auto;
+      left: 40px;
+      top: 0;
+      bottom: 0;
+    }
+    .SvgHaircross {
+      path {
+        stroke: #000;
+      }
+    }
+    .SvgDashedLine {
+      line {
+        stroke: #000;
+      }
+    }
+    .titleBox {
+      width: 640px;
+      height: 94px;
+      border: 1px solid #000;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h2.blueBg {
+        font-size: 38px;
+        background: #fff;
+        padding: 0 20px;
+        z-index: 1;
+        letter-spacing: 1px;
+        color: #000;
+      }
+    }
+    .rightCircle,
+    .rightTitleLine {
+      position: absolute;
+      margin: auto;
+      right: 40px;
+      top: 0;
+      bottom: 0;
+    }
+    ${theme.max900} {
+      justify-content: flex-start;
+      .SvgHaircross,
+      .SvgDashedLine {
+        display: none;
+      }
+      .titleBox h2.blueBg {
+        font-size: 28px;
+      }
+    }
+  }
   .sec-2 {
     display: flex;
     flex-direction: column;
@@ -381,7 +454,7 @@ const Main = styled.main`
     }
     .point {
       display: flex;
-      min-height: 420px;
+      min-height: 340px;
       align-items: center;
       position: relative;
       @media (max-width: 700px) {
@@ -428,6 +501,7 @@ const Main = styled.main`
   .sec-3 {
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
     &.padding {
       @media (min-width: 600px) {
         padding-left: 40px;

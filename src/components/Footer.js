@@ -345,8 +345,12 @@ const FooterDiv = styled.footer`
   .row.contacts {
     min-height: 220px;
     border-bottom: 1px solid #fff;
-    margin-left: 50px;
-    margin-right: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    ${theme.max900} {
+      padding-left: 0;
+      padding-right: 0;
+    }
     p {
       font-size: 18px;
       strong {
@@ -367,6 +371,8 @@ const FooterDiv = styled.footer`
         font-weight: 700;
         letter-spacing: 1px;
         text-transform: uppercase;
+        text-align: center;
+        line-height: 1.2;
       }
     }
     .col {
@@ -376,6 +382,11 @@ const FooterDiv = styled.footer`
     }
     .col:nth-child(2) {
       flex: 2;
+    }
+    ${theme.max1000} {
+      .col {
+        padding: 30px;
+      }
     }
     ${theme.max900} {
       margin-top: 20px;

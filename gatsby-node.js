@@ -69,6 +69,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
         activeUser
         customerHappiness
+        tooltip
         section1Content
         points {
           content
