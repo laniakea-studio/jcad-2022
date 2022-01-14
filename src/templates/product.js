@@ -65,7 +65,10 @@ const Product = ({ pageContext }) => {
             </div>
 
             <div className="number-2">
-              <span className="number">{data.product.customerHappiness} %</span>
+              <span className="number">
+                {data.product.customerHappiness.toLocaleString(locale)}
+                &nbsp;%
+              </span>
               <span className="sub">
                 {text.product.customerHappiness}
                 <i className="tooltip">
