@@ -166,9 +166,15 @@ h1 {
   }
 }
 
+#ohjelmisto h2,
+#meistä h2,
+#asiakaskokemuksia h2 {
+  font-size: 24px;
+}
+
 .homePage .container,
 .homePage .heroContainer {
-  max-width: 1440px;
+  max-width: 1500px;
   box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
@@ -178,8 +184,8 @@ h1 {
 .homePage section {
   display: flex;
   margin: 0 auto;
-  padding-left: 84px;
-  padding-right: 84px;
+  padding-left: 40px;
+  padding-right: 40px;
   box-sizing: border-box;
 }
 

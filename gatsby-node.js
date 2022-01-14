@@ -187,6 +187,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
 
+    /*
     data.allReferences.edges.map((i) => {
       createPage({
         path: `/${prefix}reference/${i.node.slug}`,
@@ -194,9 +195,15 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           locale: locale,
           data: i.node,
+          localeSlugs: {
+            fi: `/reference/${pageSlugsFi.pricing}`,
+            en: `/en/reference/${pageSlugsEn.pricing}`,
+            sv: `/sv/reference/${pageSlugsSv.pricing}`,
+          },
         },
       });
     });
+    */
 
     createPage({
       path: `/${prefix + pageSlugs.pricing}`,
@@ -223,20 +230,6 @@ exports.createPages = async ({ graphql, actions }) => {
           sv: `/sv/${pageSlugsSv.contact}`,
         },
         data: { yhteystiedot: data.yhteystiedot },
-      },
-    });
-
-    createPage({
-      path: `/${prefix + pageSlugs.booking}`,
-      component: booking,
-      context: {
-        locale: locale,
-        localeSlugs: {
-          fi: `/${pageSlugsFi.booking}`,
-          en: `/en/${pageSlugsEn.booking}`,
-          sv: `/sv/${pageSlugsSv.booking}`,
-        },
-        data: "",
       },
     });
   });

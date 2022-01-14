@@ -187,44 +187,6 @@ const HomePage = ({ pageContext }) => {
       <Layout seo={data.home.seoMetaTags} showModal={() => setShowModal(true)}>
         <main className="homePage">
           <div
-            css={`
-              position: fixed;
-              top: 0;
-              width: 1px;
-              height: 100vh;
-              margin-left: 40px;
-              z-index: 1;
-              background: #fff;
-              ${theme.laptop} {
-                margin-left: 40px;
-              }
-              ${theme.tablet} {
-                display: none;
-              }
-            `}
-          />
-          <div
-            css={`
-              position: fixed;
-              top: 0;
-              right: 0;
-              width: 1px;
-              height: 100vh;
-              margin-right: 40px;
-              z-index: 1;
-              background: #fff;
-              ${theme.laptop} {
-                margin-right: 40px;
-              }
-              ${theme.tablet} {
-                display: none;
-              }
-              @media (min-width: 1440px) {
-                margin-right: calc((100vw - 1440px) / 2 + 40px);
-              }
-            `}
-          />
-          <div
             id="intro"
             css={`
             ${theme.fullWidth}
@@ -364,9 +326,21 @@ const HomePage = ({ pageContext }) => {
 
               <div className="layer" />
               <div
+                css={`
+                  position: absolute;
+                  max-width: 1500px;
+                  margin: 0 auto;
+                  width: 100%;
+                  height: 100%;
+                `}
+              >
+                <div className="leftLine" />
+                <div className="rightLine" />
+              </div>
+              <div
                 id="heroContent"
                 css={`
-                  max-width: 1440px;
+                  max-width: 1500px;
                   margin: 0 auto;
                   width: 100%;
                   position: absolute;
@@ -421,10 +395,11 @@ const HomePage = ({ pageContext }) => {
               height: 400vh;
               position: relative;
               scroll-snap-align: start;
+              align-items: center;
               .sectionBox {
                 flex-direction: column;
                 height: 100vh;
-                max-width: 1440px;
+                max-width: 1500px;
                 margin: 0 auto;
                 width: 100%;
                 position: sticky;
@@ -457,6 +432,18 @@ const HomePage = ({ pageContext }) => {
               }
             `}
           >
+            <div
+              css={`
+                position: absolute;
+                max-width: 1500px;
+                margin: 0 auto;
+                width: 100%;
+                height: 100%;
+              `}
+            >
+              <div className="leftLine" />
+              <div className="rightLine" />
+            </div>
             <div
               css={`
                 position: absolute;
@@ -774,111 +761,7 @@ const HomePage = ({ pageContext }) => {
               </div>
             </div>
           </section>
-          <section
-            id="hinnasto"
-            css={`
-              ${theme.fullWidth}
-              flex-direction: column;
-              background: ${theme.indigo};
-              padding-left: 0;
-              padding-right: 0;
-              padding-bottom: 100px;
-              color: #fff;
-              text-align: left;
-              min-height: 100vh;
-              scroll-snap-align: start;
-              .container {
-                width: 100%;
-                height: 100%;
-              }
-              .textBox p {
-                max-width: 645px;
-                padding-left: 40px;
-                padding-right: 40px;
-                margin: 0 auto;
-                font-size: 34px;
-                line-height: 1.2;
-              }
-              ${theme.tablet} {
-                .container {
-                  padding-left: 0;
-                  padding-right: 0;
-                }
-                .column.content {
-                  margin-top: 60px;
-                  padding-left: 40px;
-                  padding-right: 40px;
-                }
-                .totalBox {
-                  text-align: center;
-                  width: 100%;
-                }
-              }
-              ${theme.max900} {
-                .container .textBox {
-                  margin-top: 50px;
-                  margin-bottom: 50px;
-                }
-              }
-              ${theme.mobile} {
-                .textBox p {
-                  font-size: 25px;
-                  padding-left: 20px;
-                  padding-right: 20px;
-                }
-                .column.content {
-                  margin-top: 40px;
-                  padding-left: 20px;
-                  padding-right: 20px;
-                }
-                padding-bottom: 0;
-                .svgHorizontalX {
-                  display: none;
-                }
-              }
-            `}
-          >
-            <div className="container">
-              <div
-                className="row column"
-                css={`
-                  position: relative;
-                  .svgBg {
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    top: 200px;
-                    z-index: 0;
-                    width: 100%;
-                  }
-                  .svgHorizontalX {
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    bottom: 20px;
-                    width: calc(100% + 12px);
-                    margin-left: -6px;
-                    ${theme.tablet} {
-                      width: calc(100% - 12px);
-                      margin-left: auto;
-                      margin-right: auto;
-                    }
-                  }
-                  ${theme.max900} {
-                    padding-top: 50px;
-                  }
-                  ${theme.mobile} {
-                    .svgBg {
-                      display: none;
-                    }
-                  }
-                `}
-              >
-                <SvgBg2 className="svgBg" />
-                <SvgLineXXX className="svgHorizontalX" />
-              </div>
-            </div>
-          </section>
+
           <div
             css={`
               ${theme.fullWidth}
@@ -898,7 +781,7 @@ const HomePage = ({ pageContext }) => {
                   display: flex;
                   flex-direction: column;
                 }
-                @media (max-width: 1440px) {
+                @media (max-width: 1500px) {
                   padding-left: 0;
                   padding-right: 0;
                 }
@@ -1276,8 +1159,8 @@ const HomePage = ({ pageContext }) => {
               ${theme.fullWidth}
               flex-direction: column;
               background: ${theme.indigo};
-              padding-left: 0;
-              padding-right: 0;
+              padding-left: 0 !important;
+              padding-right: 0 !important;
               padding-bottom: 30px;
               position: relative;
               overflow: hidden;
@@ -1378,6 +1261,9 @@ const HomePage = ({ pageContext }) => {
               alt="JCAD Meistä"
             />
             <div className="container">
+              <div className="leftLine" />
+              <div className="rightLine" />
+
               <div className="first row">
                 <div
                   className="line"

@@ -6,7 +6,7 @@ import fi from "../locales/fi.yml";
 import en from "../locales/en.yml";
 import sv from "../locales/sv.yml";
 
-const Blog = ({ pageContext }) => {
+const Article = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
@@ -20,7 +20,7 @@ const Blog = ({ pageContext }) => {
   );
 };
 
-export default Blog;
+export default Article;
 
 const Main = styled.main`
   width: 100%;
