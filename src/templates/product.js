@@ -207,6 +207,7 @@ const Main = styled.main`
       display: flex;
       > button {
         width: 200px;
+        z-index: 1;
       }
       > button:not(:last-child) {
         margin-right: 30px;
