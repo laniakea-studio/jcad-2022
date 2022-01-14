@@ -38,7 +38,7 @@ export const Layout = ({ children, secondary }) => {
 
   const [flatHeader, setFlatHeader] = useState(false);
 
-  const { site } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query {
       site: datoCmsSite {
         faviconMetaTags {
@@ -60,12 +60,13 @@ export const Layout = ({ children, secondary }) => {
     }
   `);
 
+  const { site } = data;
   const booking =
     locale === "fi"
-      ? site.bookingFi
+      ? data.bookingFi
       : locale === "en"
-      ? site.bookingEn
-      : site.bookingSv;
+      ? data.bookingEn
+      : data.bookingSv;
 
   useEffect(() => {
     const onScroll = () => {
