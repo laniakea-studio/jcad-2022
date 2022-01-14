@@ -38,6 +38,8 @@ const Pricing = ({ pageContext }) => {
     `
   );
 
+  console.log(data);
+
   const [priceSelections, setPriceSelections] = useState({
     ohjelmisto: hinnasto.valikkoOhjelmisto[0],
     sopimuskausi: hinnasto.valikkoSopimuskausi[0],
