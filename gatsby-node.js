@@ -100,8 +100,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      yhteystiedot: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {
-        calendlyBookingUrl
+      yhteystiedot: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {        
         myyntiJaTilaukset {
           nimi
           titteli
