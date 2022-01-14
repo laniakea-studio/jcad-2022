@@ -50,8 +50,8 @@ const Product = ({ pageContext }) => {
               </button>
               <PopupButton
                 className="btn white-outlines"
-                url="https://calendly.com/jcad-booking/tilaa-demo"
-                text={text.bookDemo}
+                url={data.booking.calendlyBookingUrl}
+                text={data.booking.buttonText}
               />
             </div>
             <SvgCircle id="circle-1" />
@@ -195,6 +195,7 @@ const Main = styled.main`
     h1 {
       font-size: 52px;
       margin-bottom: 40px;
+      font-weight: 400;
     }
     p {
       font-size: 22px;

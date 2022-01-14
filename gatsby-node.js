@@ -100,7 +100,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      bookingFi: datoCmsTilaaDemo(locale: { eq: "${locale}" }) {
+      booking: datoCmsTilaaDemo(locale: { eq: "${locale}" }) {
         title
         content
         calendlyBookingUrl
@@ -190,7 +190,11 @@ exports.createPages = async ({ graphql, actions }) => {
             en: `/en/${pageSlugsEn.product}`,
             sv: `/sv/${pageSlugsSv.product}`,
           },
-          data: { product: data.product, references: data.allReferences.edges },
+          data: {
+            product: data.product,
+            booking: data.booking,
+            references: data.allReferences.edges,
+          },
         },
       });
 
