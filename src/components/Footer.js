@@ -269,10 +269,9 @@ const FooterDiv = styled.footer`
   }
 
   .row.header {
-    //align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-top: 70px;
+    margin-top: 100px;
     margin-bottom: 30px;
     margin-left: 100px;
     margin-right: 100px;
@@ -287,7 +286,6 @@ const FooterDiv = styled.footer`
       align-items: center;
       flex-direction: column;
       margin-top: -13px;
-
       > a {
         display: inline-flex;
         font-size: 18px;

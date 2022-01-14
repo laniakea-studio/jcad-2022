@@ -45,8 +45,27 @@ export const Layout = ({ children, secondary }) => {
           tags
         }
       }
+      bookingFi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
+        calendlyBookingUrl
+        buttonText
+      }
+      bookingEn: datoCmsTilaaDemo(locale: { eq: "en" }) {
+        calendlyBookingUrl
+        buttonText
+      }
+      bookingSv: datoCmsTilaaDemo(locale: { eq: "sv" }) {
+        calendlyBookingUrl
+        buttonText
+      }
     }
   `);
+
+  const booking =
+    locale === "fi"
+      ? site.bookingFi
+      : locale === "en"
+      ? site.bookingEn
+      : site.bookingSv;
 
   useEffect(() => {
     const onScroll = () => {
@@ -98,7 +117,7 @@ export const Layout = ({ children, secondary }) => {
               SV
             </Link>
           </div>
-          <Link className="logo" to="/">
+          <Link className="logo" to={`/${prefix}`}>
             <SvgLogo />
           </Link>
           <nav className="mainNav">
@@ -113,8 +132,8 @@ export const Layout = ({ children, secondary }) => {
             ))}
             <PopupButton
               className="btn white-outlines"
-              url="https://calendly.com/jcad-booking/tilaa-demo"
-              text={text.bookDemo}
+              url={booking.calendlyBookingUrl}
+              text={booking.buttonText}
             />
           </nav>
           <div className={`burger${menuOpen ? " menuOpen" : ""}`}>
@@ -232,10 +251,10 @@ const Header = styled.header`
   a.linkLogin {
     position: absolute;
     color: #fff;
-    top: 34px;
     right: -46px;
     width: 130px;
     font-weight: 600;
+    justify-content: center;
     align-items: center;
     height: 30px;
     font-size: 15px;

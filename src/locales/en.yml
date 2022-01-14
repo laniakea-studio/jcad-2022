@@ -32,7 +32,7 @@ slugs:
 product:
   activeUsers: Active users
   customerHappiness: of customers recommend
-  benefits: Benefits for your company
+  benefits: Benefits
   references: Customer experiences
 contactPage:
   title: Contacts

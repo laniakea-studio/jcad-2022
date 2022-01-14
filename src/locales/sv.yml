@@ -32,7 +32,7 @@ slugs:
 product:
   activeUsers: Aktiva användare
   customerHappiness: Asiakastyytyväisyys
-  benefits: Hyödyt yrityksille
+  benefits: Fördelar
   references: Käyttökokemuksia
 contactPage:
   title: Kontakter

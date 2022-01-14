@@ -10,6 +10,7 @@ import { LocaleContext } from "../contexts/LocaleContext";
 import { SvgHeadingFrame } from "../components/SvgCollection";
 import useComponentVisible from "../hooks/useComponentVisible";
 import { Booking } from "../components/Booking";
+import { PopupButton } from "react-calendly";
 
 const Pricing = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
@@ -169,7 +170,12 @@ const Pricing = ({ pageContext }) => {
                     <span className="price">{price}</span>
                     <span className="vat">{text.pricing.vat}</span>
                   </div>
-                  <button className="btn white-outlines">Avaa chat</button>
+                  <PopupButton
+                    className="btn white-outlines"
+                    url={data.booking.calendlyBookingUrl}
+                    text={data.booking.buttonText}
+                  />
+
                   <div
                     className="footerContent"
                     dangerouslySetInnerHTML={{ __html: i.teksti2 }}

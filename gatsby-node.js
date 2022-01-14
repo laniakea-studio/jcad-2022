@@ -100,6 +100,12 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      bookingFi: datoCmsTilaaDemo(locale: { eq: "${locale}" }) {
+        title
+        content
+        calendlyBookingUrl
+        buttonText
+      }
       yhteystiedot: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {        
         myyntiJaTilaukset {
           nimi
@@ -216,7 +222,7 @@ exports.createPages = async ({ graphql, actions }) => {
             en: `/en/${pageSlugsEn.pricing}`,
             sv: `/sv/${pageSlugsSv.pricing}`,
           },
-          data: { pricing: data.pricing },
+          data: { pricing: data.pricing, booking: data.booking },
         },
       });
 
