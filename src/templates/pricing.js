@@ -177,15 +177,16 @@ const Pricing = ({ pageContext }) => {
                 <div className="item">
                   <h3>{i.title}</h3>
                   <img src={i.icon.url} alt={i.icon.alt} />
-                  <div
-                    className="mainContent"
-                    dangerouslySetInnerHTML={{ __html: i.teksti1 }}
-                  />
                   <div className="priceContent">
                     <span className="startPrive">{i.startprice}</span>
                     <span className="price">{price}</span>
                     <span className="vat">{text.pricing.vat}</span>
                   </div>
+                  <div
+                    className="mainContent"
+                    dangerouslySetInnerHTML={{ __html: i.teksti1 }}
+                  />
+
                   <PopupButton
                     className="btn white-outlines"
                     url={data.booking.calendlyBookingUrl}
@@ -373,7 +374,7 @@ const Main = styled.main`
       padding: 50px 30px 30px;
       img {
         margin-top: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
       }
       .mainContent,
       .footerContent {
@@ -383,7 +384,6 @@ const Main = styled.main`
         }
       }
       .mainContent {
-        min-height: 220px;
       }
       .footerContent {
         margin-top: 20px;
@@ -395,6 +395,7 @@ const Main = styled.main`
       .priceContent {
         display: flex;
         flex-direction: column;
+        padding-bottom: 30px;
       }
       span.price {
         font-size: 36px;
@@ -404,7 +405,7 @@ const Main = styled.main`
         opacity: 0.5;
       }
       .btn {
-        margin-top: 30px;
+        margin-top: auto;
         width: 220px;
       }
     }
