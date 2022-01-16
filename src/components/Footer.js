@@ -210,8 +210,18 @@ export const Footer = ({ menu, prefix }) => {
           <div className="row">
             <p className="copy">
               © {new Date().getFullYear()} {text.footer.companyName}.{" "}
-              <Link to="/tietosuojaseloste">{text.footer.linkGdpr}</Link>.{" "}
-              {yhteystiedot.ytunnus}
+              <Link
+                to={
+                  locale === "fi"
+                    ? "/tietosuojaseloste"
+                    : locale === "en"
+                    ? "/en/gdpr"
+                    : "/sv/gdpr"
+                }
+              >
+                {text.footer.linkGdpr}
+              </Link>
+              . {yhteystiedot.ytunnus}
             </p>
           </div>
           <div className="backTop">

@@ -1,31 +1,31 @@
-btnContact: Ota yhteyttä
+btnContact: Contact us
 seeMore: See more
 bookDemo: Book demo
 footer:
-  admin: Hallinto
-  sales: Myynti
-  accounts: Asiakkuudet
-  support: Asiakaspalvelu ja tuotetuki
+  admin: Admin
+  sales: Sales
+  accounts: Accounts
+  support: Customer service and support
   buttonBackToTop: Back to top
   companyName: JCAD
-  linkGdpr: Tietosuojaseloste
+  linkGdpr: GDPR
 pricing:
   vat: + vat 24 %
-  selectPeriod: Valitse sopimuskausi
-  selectLicense: Valitse lisenssi
-  selectProduct: Valitse ohjelmisto
+  selectPeriod: Contract period
+  selectLicense: Licenses
+  selectProduct: Software
   mo: mos.
   license: License
-  period: Period
-  user: käyttäjä
-  users: käyttäjää
+  period: Contract period
+  user: user
+  users: users
 home:
-  slide1title: Tehokkuus
-  slide2title: Virheiden torjuminen
-  slide3title: Tarkkuus
-  referencesTitle: Asiakaskokemuksia
-  aboutTitle: Meistä
-  ourCustomersTitle: Asiakkaitamme
+  slide1title: Efficiency
+  slide2title: Preventing mistakes
+  slide3title: Precision
+  referencesTitle: Experiences
+  aboutTitle: About us
+  ourCustomersTitle: Our customers
 slugs:
   product: product
   pricing: pricing
@@ -62,3 +62,5 @@ contact:
   phoneOrEmail: Phone or email
   message: Message
   send: Send
+gdpr:
+  buttonBack: Back

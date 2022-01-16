@@ -62,3 +62,5 @@ contact:
   phoneOrEmail: Puhelin tai sähköposti
   message: Viesti
   send: Lähetä
+gdpr:
+  buttonBack: Takaisin

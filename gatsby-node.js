@@ -10,18 +10,21 @@ exports.createPages = async ({ graphql, actions }) => {
     pricing: "hinta",
     contact: "yhteystiedot",
     booking: "varaa-demo",
+    gdpr: "tietosuojaseloste",
   };
   const pageSlugsEn = {
     product: "product",
     pricing: "pricing",
     contact: "contact",
     booking: "book-demo",
+    gdpr: "gdpr",
   };
   const pageSlugsSv = {
     product: "produkten",
     pricing: "pris",
     contact: "kontakter",
     booking: "boka-demo",
+    gdpr: "gdpr",
   };
 
   await Promise.all(
@@ -140,6 +143,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
         ytunnus
       }
+      gdpr: datoCmsTietosuoja(locale: { eq: "${locale}" }) {        
+        tietosuojaseloste
+      }
     }
   `);
 
@@ -152,6 +158,7 @@ exports.createPages = async ({ graphql, actions }) => {
       const booking = path.resolve(`src/templates/booking.js`);
       const article = path.resolve(`src/templates/Article.js`);
       const contact = path.resolve(`src/templates/contact.js`);
+      const gdpr = path.resolve(`src/templates/gdpr.js`);
 
       const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
       const pageSlugs =
@@ -240,6 +247,20 @@ exports.createPages = async ({ graphql, actions }) => {
             sv: `/sv/${pageSlugsSv.contact}`,
           },
           data: { yhteystiedot: data.yhteystiedot },
+        },
+      });
+
+      createPage({
+        path: `/${prefix + pageSlugs.gdpr}`,
+        component: gdpr,
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${pageSlugsFi.gdpr}`,
+            en: `/en/${pageSlugsEn.gdpr}`,
+            sv: `/sv/${pageSlugsSv.gdpr}`,
+          },
+          data: data.gdpr,
         },
       });
     })
