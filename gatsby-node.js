@@ -84,7 +84,6 @@ exports.createPages = async ({ graphql, actions }) => {
           }
           title
           teksti1
-          teksti2
           price
           startprice
         }

@@ -6,15 +6,17 @@ footer:
   sales: Myynti
   accounts: Asiakkuudet
   support: Asiakaspalvelu ja tuotetuki
-  buttonBackToTop: Takaisin ylös
+  buttonBackToTop: Back to top
   companyName: JCAD
   linkGdpr: Tietosuojaseloste
 pricing:
-  vat: + alv 24 %
+  vat: + vat 24 %
   selectPeriod: Valitse sopimuskausi
   selectLicense: Valitse lisenssi
   selectProduct: Valitse ohjelmisto
   mo: mos.
+  license: License
+  period: Period
   user: käyttäjä
   users: käyttäjää
 home:

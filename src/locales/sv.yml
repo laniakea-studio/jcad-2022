@@ -14,7 +14,9 @@ pricing:
   selectPeriod: Valitse sopimuskausi
   selectLicense: Valitse lisenssi
   selectProduct: Valitse ohjelmisto
-  mo: kk
+  mo: mån.
+  license: Lisens
+  period: Period
   user: käyttäjä
   users: käyttäjää
 home:

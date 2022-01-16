@@ -8,9 +8,15 @@ import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
 import { LocaleContext } from "../contexts/LocaleContext";
 import { SvgHeadingFrame } from "../components/SvgCollection";
-import useComponentVisible from "../hooks/useComponentVisible";
 import { Booking } from "../components/Booking";
 import { PopupButton } from "react-calendly";
+
+const valikkoSopimuskausi = [
+  { value: 0, label: 12 },
+  { value: -50, label: 24 },
+  { value: -100, label: 36 },
+  { value: -150, label: 48 },
+];
 
 const Pricing = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
@@ -42,29 +48,34 @@ const Pricing = ({ pageContext }) => {
 
   const [priceSelections, setPriceSelections] = useState({
     ohjelmisto: hinnasto.valikkoOhjelmisto[0],
-    sopimuskausi: hinnasto.valikkoSopimuskausi[0],
-    lisenssi: hinnasto.valikkoLisenssi[0],
+    sopimuskausi: valikkoSopimuskausi[0],
+    lisenssi: 1,
   });
 
   const [price, setPrice] = useState(null);
 
   useEffect(() => {
-    if (priceSelections.lisenssi.value) {
-      const { ohjelmisto, lisenssi, sopimuskausi } = priceSelections;
+    const { ohjelmisto, lisenssi, sopimuskausi } = priceSelections;
+    if (priceSelections.lisenssi > 0) {
       setPrice(
-        `${(ohjelmisto.value + sopimuskausi.value) * lisenssi.value} €/kk`
+        `${(ohjelmisto.value + sopimuskausi.value) * lisenssi} €/${
+          text.pricing.mo
+        }`
       );
     } else {
-      setPrice(null);
+      setPrice(
+        `${(ohjelmisto.value + sopimuskausi.value) * 1} €/${text.pricing.mo}`
+      );
     }
   }, [priceSelections]);
 
-  const {
-    ref: refTwo,
-    isComponentVisible: showDropTwo,
-    setIsComponentVisible: setShowDropTwo,
-  } = useComponentVisible(false);
-
+  const handleLicenseChange = (e) => {
+    setPriceSelections({
+      ...priceSelections,
+      lisenssi: e.target.value,
+    });
+  };
+  console.log(priceSelections.lisenssi);
   return (
     <Layout>
       <div
@@ -86,7 +97,7 @@ const Pricing = ({ pageContext }) => {
             <div>
               <h3 className="selectHeading">1. {text.pricing.selectPeriod} </h3>
               <div className="periodBtns">
-                {hinnasto.valikkoSopimuskausi.map((i) => (
+                {valikkoSopimuskausi.map((i) => (
                   <button
                     className={
                       i.value === priceSelections.sopimuskausi.value && "active"
@@ -98,61 +109,72 @@ const Pricing = ({ pageContext }) => {
                       })
                     }
                   >
-                    {i.label}
+                    {i.label} {text.pricing.mo}
                   </button>
                 ))}
               </div>
             </div>
             <div>
-              <h3 className="selectHeading">
-                2. {text.pricing.selectLicense}{" "}
-              </h3>
-              <div className="selectBox" ref={refTwo}>
-                <div onClick={() => setShowDropTwo(true)} className="selected">
-                  <span>{priceSelections.lisenssi.label}</span>
-                  <svg
-                    className="dropindicator"
-                    width="30"
-                    height="15"
-                    viewBox="0 0 30 15"
-                  >
-                    <path
-                      id="Polygon_9"
-                      data-name="Polygon 9"
-                      d="M15,0,30,15H0Z"
-                      transform="translate(30 15) rotate(180)"
-                      fill="#fff"
-                    />
-                  </svg>
-                </div>
-                <div
-                  className="options"
-                  style={{
-                    display: showDropTwo ? "inline-flex" : "none",
+              <h3 className="selectHeading">2. {text.pricing.selectLicense}</h3>
+              <div
+                className="licenseBox"
+                css={`
+                  padding-top: 15px;
+                  display: flex;
+                  input {
+                    height: 48px;
+                    border: 1px dashed #fff;
+                    color: #fff;
+                    font-size: 18px;
+                    padding: 10px;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    width: 140px;
+                  }
+                  button {
+                    height: 48px;
+                    width: 48px;
+                    border: 1px solid #fff;
+                    display: flex;
+                    border-radius: 50%;
+                    font-size: 22px;
+                    justify-content: center;
+                    align-items: center;
+                    color: #fff;
+                    &:disabled {
+                      opacity: 0.4;
+                      pointer: cursor;
+                    }
+                  }
+                `}
+              >
+                <button
+                  disabled={priceSelections.lisenssi < 2}
+                  onClick={() => {
+                    setPriceSelections({
+                      ...priceSelections,
+                      lisenssi: --priceSelections.lisenssi,
+                    });
                   }}
                 >
-                  {hinnasto.valikkoLisenssi.map((item) => {
-                    return (
-                      <div
-                        class={`optionItem ${
-                          item.label === priceSelections.lisenssi.label
-                            ? "active"
-                            : "passive"
-                        }`}
-                        onClick={() => {
-                          setShowDropTwo(false);
-                          setPriceSelections({
-                            ...priceSelections,
-                            lisenssi: item,
-                          });
-                        }}
-                      >
-                        <div className="ball" />
-                        {item.label}
-                      </div>
-                    );
-                  })}
-                </div>
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="1"
+                  value={priceSelections.lisenssi}
+                  onChange={(e) => handleLicenseChange(e)}
+                ></input>
+                <button
+                  onClick={() => {
+                    setPriceSelections({
+                      ...priceSelections,
+                      lisenssi: ++priceSelections.lisenssi,
+                    });
+                  }}
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>
@@ -178,10 +200,17 @@ const Pricing = ({ pageContext }) => {
                     text={data.booking.buttonText}
                   />
 
-                  <div
-                    className="footerContent"
-                    dangerouslySetInnerHTML={{ __html: i.teksti2 }}
-                  />
+                  <div className="footerContent">
+                    <p>
+                      {text.pricing.period}:{" "}
+                      {priceSelections.sopimuskausi.label} {text.pricing.mo}
+                      <br />
+                      {text.pricing.license}: {priceSelections.lisenssi}{" "}
+                      {priceSelections.lisenssi < 2
+                        ? text.pricing.user
+                        : text.pricing.users}
+                    </p>
+                  </div>
                 </div>
               );
             })}
