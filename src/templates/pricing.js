@@ -31,14 +31,6 @@ const Pricing = ({ pageContext }) => {
             label
             value
           }
-          valikkoSopimuskausi {
-            label
-            value
-          }
-          valikkoLisenssi {
-            label
-            value
-          }
         }
       }
     `
