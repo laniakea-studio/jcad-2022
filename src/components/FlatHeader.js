@@ -49,12 +49,13 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
         width: 100%;
         display: flex;
         position: fixed;
-        transition: transform 0.4s;
+        transition: all 0.3s;
         background-color: ${menuOpen
           ? "rgba(0, 0, 83, 0)"
           : "rgba(0, 0, 83, 0.95)"};
         backdrop-filter: blur(2px);
         &.hide {
+          transition: all 0.3s;
           transform: translateY(-100%);
           opacity: 0;
         }
