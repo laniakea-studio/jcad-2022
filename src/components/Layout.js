@@ -12,6 +12,7 @@ import { BurgerIcon } from "./BurgerIcon";
 import { SvgLogo } from "./SvgCollection";
 import { LocaleContext } from "../contexts/LocaleContext";
 import { Footer } from "./Footer";
+import FlatHeader from "./FlatHeader";
 import { PopupButton } from "react-calendly";
 
 const menuFi = [
@@ -96,6 +97,12 @@ export const Layout = ({ children, secondary }) => {
           content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </HelmetDatoCms>
+      <FlatHeader
+        menu={menu}
+        booking={booking}
+        burgerOpen={menuOpen}
+        setBurgerOpen={() => setMenuOpen(!menuOpen)}
+      />
       <Header className={flatHeader ? "flat" : ""}>
         <div>
           <div className="localeLinks">
@@ -359,7 +366,7 @@ const MobileMenu = ({ menu, menuOpen, text, localeSlugs, locale }) => {
       css={`
         position: fixed;
         z-index: 2;
-        background-color: rgba(0, 0, 83, 0.8);
+        background-color: rgba(0, 0, 83, 0.95);
         backdrop-filter: blur(6px);
         width: 100%;
         height: 100vh;

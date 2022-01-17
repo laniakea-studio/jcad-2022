@@ -9,7 +9,7 @@ import sv from "../locales/sv.yml";
 import svgJcadLogo from "../assets/svgJcad.svg";
 import ReactVivus from "react-vivus";
 import { LocaleContext } from "../contexts/LocaleContext";
-import { SvgLogoFooter, SvgLogo } from "./SvgCollection.js";
+import { SvgLogoFooter } from "./SvgCollection.js";
 
 export const Footer = ({ menu, prefix }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);

@@ -10,7 +10,7 @@ footer:
   companyName: JCAD
   linkGdpr: GDPR
 pricing:
-  vat: + alv 24 %
+  vat: + moms 24 %
   selectPeriod: Avtalstid
   selectLicense: Licenser
   selectProduct: Valitse ohjelmisto
@@ -54,7 +54,7 @@ menu:
   booking: Boka demo
   login: Logga in
 contact:
-  submitSuccess: Thank you. We'll be in touch!
+  submitSuccess: Tack!
   fillAllInputs: Please fill all fields.
   name: Name
   email: Email

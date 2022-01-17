@@ -35,7 +35,7 @@ const Product = ({ pageContext }) => {
     <Layout locale={pageContext.locale} transparent={false}>
       <Main>
         <div className="hero">
-          <div className="wrap col padding justifyCenter">
+          <div className="wrap col padding">
             <div className="leftLine" />
             <div className="rightLine" />
 
@@ -196,6 +196,10 @@ const Main = styled.main`
       font-size: 52px;
       margin-bottom: 40px;
       font-weight: 400;
+      margin-top: 30vh;
+      ${theme.mobile} {
+        margin-top: 15vh;
+      }
     }
     p {
       font-size: 22px;
@@ -208,6 +212,8 @@ const Main = styled.main`
       > button {
         width: 200px;
         z-index: 1;
+        padding-left: 5px;
+        padding-right: 5px;
       }
       > button:not(:last-child) {
         margin-right: 30px;

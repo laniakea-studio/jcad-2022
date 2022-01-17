@@ -236,6 +236,7 @@ const HomePage = ({ pageContext }) => {
               z-index: 1;
               line-height: 1;
               color: #fff;
+              font-weight: 600;
             }
             h1 {
               font-size: 140px;

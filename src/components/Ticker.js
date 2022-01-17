@@ -58,6 +58,7 @@ const Ticker = ({ data }) => {
           box-sizing: border-box;
           img {
             width: 100%;
+            max-width: 220px;
           }
         }
         @keyframes ticker-kf {
