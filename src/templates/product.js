@@ -190,7 +190,9 @@ const Main = styled.main`
     }
     .wrap {
       height: 100vh;
-      overflow: hidden;
+      ${theme.max1100} {
+        overflow: hidden;
+      }
     }
     h1 {
       font-size: 52px;

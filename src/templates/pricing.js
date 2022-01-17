@@ -19,7 +19,7 @@ const valikkoSopimuskausi = [
 ];
 
 const Pricing = ({ pageContext }) => {
-  const { locale, localeSlugs } = useContext(LocaleContext);
+  const { locale } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
 
@@ -219,7 +219,7 @@ export default Pricing;
 
 const Main = styled.main`
   width: 100%;
-  max-width: 1440px;
+  max-width: 1500px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
