@@ -1,15 +1,16 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
 import { graphql, useStaticQuery } from "gatsby";
+import { HelmetDatoCms } from "gatsby-source-datocms";
+import React, { useContext, useEffect, useState } from "react";
+import { PopupButton } from "react-calendly";
 import styled from "styled-components";
+import { Booking } from "../components/Booking";
 import { Layout } from "../components/Layout";
-import fi from "../locales/fi.yml";
+import { SvgHeadingFrame } from "../components/SvgCollection";
+import { LocaleContext } from "../contexts/LocaleContext";
 import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
 import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
-import { LocaleContext } from "../contexts/LocaleContext";
-import { SvgHeadingFrame } from "../components/SvgCollection";
-import { Booking } from "../components/Booking";
-import { PopupButton } from "react-calendly";
 
 const valikkoSopimuskausi = [
   { value: 0, label: 12 },
@@ -69,149 +70,157 @@ const Pricing = ({ pageContext }) => {
   };
   console.log(priceSelections.lisenssi);
   return (
-    <Layout>
-      <div
-        css={`
-          background: ${theme.primary};
-          width: 100%;
-          min-height: 100vh;
-        `}
-      >
-        <Main>
-          <div className="leftLine" />
-          <div className="rightLine" />
-          <div className="heading">
-            <SvgHeadingFrame />
-            <h2>{text.menu.pricing}</h2>
-          </div>
-          <p className="lead">{data.pricing.lead}</p>
-          <div className="selections">
-            <div>
-              <h3 className="selectHeading">1. {text.pricing.selectPeriod} </h3>
-              <div className="periodBtns">
-                {valikkoSopimuskausi.map((i) => (
-                  <button
-                    className={
-                      i.value === priceSelections.sopimuskausi.value && "active"
+    <>
+      <HelmetDatoCms seo={data.pricing.seoMetaTags} />
+      <Layout>
+        <div
+          css={`
+            background: ${theme.primary};
+            width: 100%;
+            min-height: 100vh;
+          `}
+        >
+          <Main>
+            <div className="leftLine" />
+            <div className="rightLine" />
+            <div className="heading">
+              <SvgHeadingFrame />
+              <h2>{text.menu.pricing}</h2>
+            </div>
+            <p className="lead">{data.pricing.lead}</p>
+            <div className="selections">
+              <div>
+                <h3 className="selectHeading">
+                  1. {text.pricing.selectPeriod}{" "}
+                </h3>
+                <div className="periodBtns">
+                  {valikkoSopimuskausi.map((i) => (
+                    <button
+                      className={
+                        i.value === priceSelections.sopimuskausi.value &&
+                        "active"
+                      }
+                      onClick={() =>
+                        setPriceSelections({
+                          ...priceSelections,
+                          sopimuskausi: i,
+                        })
+                      }
+                    >
+                      {i.label} {text.pricing.mo}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h3 className="selectHeading">
+                  2. {text.pricing.selectLicense}
+                </h3>
+                <div
+                  className="licenseBox"
+                  css={`
+                    padding-top: 15px;
+                    display: flex;
+                    input {
+                      height: 48px;
+                      border: 1px dashed #fff;
+                      color: #fff;
+                      font-size: 18px;
+                      padding: 10px;
+                      margin-left: 10px;
+                      margin-right: 10px;
+                      width: 140px;
                     }
-                    onClick={() =>
+                    button {
+                      height: 48px;
+                      width: 48px;
+                      border: 1px solid #fff;
+                      display: flex;
+                      border-radius: 50%;
+                      font-size: 22px;
+                      justify-content: center;
+                      align-items: center;
+                      color: #fff;
+                      &:disabled {
+                        opacity: 0.4;
+                        pointer: cursor;
+                      }
+                    }
+                  `}
+                >
+                  <button
+                    disabled={priceSelections.lisenssi < 2}
+                    onClick={() => {
                       setPriceSelections({
                         ...priceSelections,
-                        sopimuskausi: i,
-                      })
-                    }
+                        lisenssi: --priceSelections.lisenssi,
+                      });
+                    }}
                   >
-                    {i.label} {text.pricing.mo}
+                    -
                   </button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="selectHeading">2. {text.pricing.selectLicense}</h3>
-              <div
-                className="licenseBox"
-                css={`
-                  padding-top: 15px;
-                  display: flex;
-                  input {
-                    height: 48px;
-                    border: 1px dashed #fff;
-                    color: #fff;
-                    font-size: 18px;
-                    padding: 10px;
-                    margin-left: 10px;
-                    margin-right: 10px;
-                    width: 140px;
-                  }
-                  button {
-                    height: 48px;
-                    width: 48px;
-                    border: 1px solid #fff;
-                    display: flex;
-                    border-radius: 50%;
-                    font-size: 22px;
-                    justify-content: center;
-                    align-items: center;
-                    color: #fff;
-                    &:disabled {
-                      opacity: 0.4;
-                      pointer: cursor;
-                    }
-                  }
-                `}
-              >
-                <button
-                  disabled={priceSelections.lisenssi < 2}
-                  onClick={() => {
-                    setPriceSelections({
-                      ...priceSelections,
-                      lisenssi: --priceSelections.lisenssi,
-                    });
-                  }}
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min="1"
-                  value={priceSelections.lisenssi}
-                  onChange={(e) => handleLicenseChange(e)}
-                ></input>
-                <button
-                  onClick={() => {
-                    setPriceSelections({
-                      ...priceSelections,
-                      lisenssi: ++priceSelections.lisenssi,
-                    });
-                  }}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
-          <h3 className="selectHeading">3. {text.pricing.selectProduct} </h3>
-          <div className="plans">
-            {data.pricing.tuotteet.map((i) => {
-              return (
-                <div className="item">
-                  <h3>{i.title}</h3>
-                  <img src={i.icon.url} alt={i.icon.alt} />
-                  <div className="priceContent">
-                    <span className="startPrive">{i.startprice}</span>
-                    <span className="price">{price}</span>
-                    <span className="vat">{text.pricing.vat}</span>
-                  </div>
-                  <div
-                    className="mainContent"
-                    dangerouslySetInnerHTML={{ __html: i.teksti1 }}
-                  />
-
-                  <PopupButton
-                    className="btn white-outlines"
-                    url={data.booking.calendlyBookingUrl}
-                    text={data.booking.buttonText}
-                  />
-
-                  <div className="footerContent">
-                    <p>
-                      {text.pricing.period}:{" "}
-                      {priceSelections.sopimuskausi.label} {text.pricing.mo}
-                      <br />
-                      {text.pricing.license}: {priceSelections.lisenssi}{" "}
-                      {priceSelections.lisenssi < 2
-                        ? text.pricing.user
-                        : text.pricing.users}
-                    </p>
-                  </div>
+                  <input
+                    type="number"
+                    min="1"
+                    value={priceSelections.lisenssi}
+                    onChange={(e) => handleLicenseChange(e)}
+                  ></input>
+                  <button
+                    onClick={() => {
+                      setPriceSelections({
+                        ...priceSelections,
+                        lisenssi: ++priceSelections.lisenssi,
+                      });
+                    }}
+                  >
+                    +
+                  </button>
                 </div>
-              );
-            })}
-          </div>
-          <Booking />
-        </Main>
-      </div>
-    </Layout>
+              </div>
+            </div>
+            <h3 className="selectHeading">3. {text.pricing.selectProduct} </h3>
+            <div className="plans">
+              {data.pricing.tuotteet.map((i) => {
+                return (
+                  <div className="item">
+                    <h3>{i.title}</h3>
+                    <img src={i.icon.url} alt={i.icon.alt} />
+                    <div className="priceContent">
+                      <span className="startPrive">{i.startprice}</span>
+                      <span className="price">{price}</span>
+                      <span className="vat">{text.pricing.vat}</span>
+                    </div>
+                    <div
+                      className="mainContent"
+                      dangerouslySetInnerHTML={{ __html: i.teksti1 }}
+                    />
+
+                    <PopupButton
+                      className="btn white-outlines"
+                      url={data.booking.calendlyBookingUrl}
+                      text={data.booking.buttonText}
+                    />
+
+                    <div className="footerContent">
+                      <p>
+                        {text.pricing.period}:{" "}
+                        {priceSelections.sopimuskausi.label} {text.pricing.mo}
+                        <br />
+                        {text.pricing.license}: {priceSelections.lisenssi}{" "}
+                        {priceSelections.lisenssi < 2
+                          ? text.pricing.user
+                          : text.pricing.users}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <Booking />
+          </Main>
+        </div>
+      </Layout>
+    </>
   );
 };
 

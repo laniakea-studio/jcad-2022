@@ -4,17 +4,16 @@ import {
   useTransform,
   useViewportScroll,
 } from "framer-motion";
-import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import React, { useEffect, useState, useContext } from "react";
+import { HelmetDatoCms } from "gatsby-source-datocms";
+import React, { useContext, useEffect, useState } from "react";
 import { useScrollYPosition } from "react-use-scroll-position";
 import ReactVivus from "react-vivus";
 import svgBg1 from "../assets/svgBg1.svg";
 import svgTriangle from "../assets/svgTriangle.svg";
-
+import { Layout } from "../components/Layout";
 import {
   Svg2ndBottomRight,
-  SvgBg2,
   SvgCircle,
   SvgDottedThinX,
   SvgDottedThinX2,
@@ -24,16 +23,13 @@ import {
   SvgVerticalXXX,
 } from "../components/SvgCollection-2021";
 import Ticker from "../components/Ticker";
+import { LocaleContext } from "../contexts/LocaleContext";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
+import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
+import sv from "../locales/sv.yml";
 import "../theme-2021/globals.css";
 import theme from "../theme-2021/theme";
-
-import styled from "styled-components";
-import { Layout } from "../components/Layout";
-import { LocaleContext } from "../contexts/LocaleContext";
-import fi from "../locales/fi.yml";
-import en from "../locales/en.yml";
-import sv from "../locales/sv.yml";
 
 const HomePage = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
@@ -184,7 +180,8 @@ const HomePage = ({ pageContext }) => {
 
   return (
     <>
-      <Layout seo={data.home.seoMetaTags} showModal={() => setShowModal(true)}>
+      <HelmetDatoCms seo={data.home.seoMetaTags} />
+      <Layout>
         <main className="homePage">
           <div
             id="intro"

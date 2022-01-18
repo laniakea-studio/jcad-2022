@@ -1,19 +1,19 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { PopupButton } from "react-calendly";
 import styled from "styled-components";
-import fi from "../locales/fi.yml";
+import { LocaleContext } from "../contexts/LocaleContext";
 import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
 import sv from "../locales/sv.yml";
-import "../theme/index.css";
 import GlobalStyle from "../theme/global";
+import "../theme/index.css";
 import { theme } from "../theme/theme";
 import { BurgerIcon } from "./BurgerIcon";
-import { SvgLogo } from "./SvgCollection";
-import { LocaleContext } from "../contexts/LocaleContext";
-import { Footer } from "./Footer";
 import FlatHeader from "./FlatHeader";
-import { PopupButton } from "react-calendly";
+import { Footer } from "./Footer";
+import { SvgLogo } from "./SvgCollection";
 
 const menuFi = [
   { title: fi.menu.product, to: fi.slugs.product },
@@ -30,7 +30,7 @@ const menuSv = [
   { title: sv.menu.pricing, to: sv.slugs.pricing },
   { title: sv.menu.contact, to: sv.slugs.contact },
 ];
-export const Layout = ({ children, secondary }) => {
+export const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { locale, localeSlugs } = useContext(LocaleContext);
   const menu = locale === "fi" ? menuFi : locale === "en" ? menuEn : menuSv;
@@ -100,8 +100,8 @@ export const Layout = ({ children, secondary }) => {
       <FlatHeader
         menu={menu}
         booking={booking}
-        burgerOpen={menuOpen}
-        setBurgerOpen={() => setMenuOpen(!menuOpen)}
+        menuOpen={menuOpen}
+        setMenuOpen={() => setMenuOpen(!menuOpen)}
       />
       <Header className={flatHeader ? "flat" : ""}>
         <div>

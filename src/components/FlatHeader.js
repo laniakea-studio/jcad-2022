@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useScrollData } from "scroll-data-hook";
 import { Link } from "gatsby";
+import React, { useContext, useEffect, useState } from "react";
+import { PopupButton } from "react-calendly";
+import { useScrollData } from "scroll-data-hook";
+import { LocaleContext } from "../contexts/LocaleContext";
+import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
+import sv from "../locales/sv.yml";
 import "../theme-2021/globals.css";
 import theme from "../theme-2021/theme";
-import fi from "../locales/fi.yml";
-import en from "../locales/en.yml";
-import sv from "../locales/sv.yml";
-import { LocaleContext } from "../contexts/LocaleContext";
-import { SvgLogoFooter, SvgLogo } from "./SvgCollection.js";
 import { BurgerIcon } from "./BurgerIcon";
-import { PopupButton } from "react-calendly";
+import { SvgLogo } from "./SvgCollection.js";
 
 const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
   const [show, setShow] = useState(false);
@@ -61,8 +61,12 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
         }
         .mobileRight {
           display: none;
+          padding-right: 40px;
           ${theme.max900} {
             display: flex;
+          }
+          ${theme.max600} {
+            padding-right: 20px;
           }
         }
         > div {
@@ -86,6 +90,12 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           align-items: center;
           path {
             fill: #fff;
+          }
+          ${theme.max900} {
+            padding-left: 40px;
+          }
+          ${theme.max600} {
+            padding-left: 20px;
           }
         }
         nav.mainNav {
@@ -134,15 +144,14 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
         </nav>
 
         <div className="mobileRight">
-          <div
-            id="burgerIcon"
-            className={menuOpen ? "open" : "closed"}
-            onClick={setMenuOpen}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+          <div className={`burger${menuOpen ? " menuOpen" : ""}`}>
+            <BurgerIcon
+              menuOpen={menuOpen}
+              onClick={(e) => {
+                e.preventDefault();
+                setMenuOpen(!menuOpen);
+              }}
+            />
           </div>
         </div>
       </div>

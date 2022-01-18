@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
-import { graphql, Link, useStaticQuery } from "gatsby";
-import { theme } from "../theme/theme";
-import { Pin } from "./SvgCollection.js";
-import fi from "../locales/fi.yml";
-import en from "../locales/en.yml";
-import sv from "../locales/sv.yml";
-import { LocaleContext } from "../contexts/LocaleContext";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { useContext } from "react";
 import { PopupButton } from "react-calendly";
+import styled from "styled-components";
+import { LocaleContext } from "../contexts/LocaleContext";
+import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
+import sv from "../locales/sv.yml";
+import { theme } from "../theme/theme";
 
 export const Booking = () => {
   const { locale, localeSlugs } = useContext(LocaleContext);

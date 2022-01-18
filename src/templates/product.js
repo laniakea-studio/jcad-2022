@@ -1,24 +1,23 @@
+import { HelmetDatoCms } from "gatsby-source-datocms";
 import React, { useContext } from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
-import styled from "styled-components";
-import { Layout } from "../components/Layout";
-import { LocaleContext } from "../contexts/LocaleContext";
-import fi from "../locales/fi.yml";
-import en from "../locales/en.yml";
-import sv from "../locales/sv.yml";
-import { theme } from "../theme/theme";
-import {
-  SvgCircle,
-  SvgNumbersFrameMob,
-  SvgHaircross,
-  SvgDashedLine,
-} from "../components/SvgCollection";
-import { Booking } from "../components/Booking";
-import Ticker from "../components/Ticker";
 import { PopupButton } from "react-calendly";
+import styled from "styled-components";
 import kuva1 from "../assets/kuva1.jpg";
 import kuva2 from "../assets/kuva2.jpg";
 import kuva3 from "../assets/kuva3.jpg";
+import { Booking } from "../components/Booking";
+import { Layout } from "../components/Layout";
+import {
+  SvgCircle,
+  SvgDashedLine,
+  SvgHaircross,
+} from "../components/SvgCollection";
+import Ticker from "../components/Ticker";
+import { LocaleContext } from "../contexts/LocaleContext";
+import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
+import sv from "../locales/sv.yml";
+import { theme } from "../theme/theme";
 
 const Product = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
@@ -32,127 +31,130 @@ const Product = ({ pageContext }) => {
   };
 
   return (
-    <Layout locale={pageContext.locale} transparent={false}>
-      <Main>
-        <div className="hero">
-          <div className="wrap col padding">
-            <div className="leftLine" />
-            <div className="rightLine" />
+    <>
+      <HelmetDatoCms seo={data.product.seoMetaTags} />
+      <Layout locale={pageContext.locale} transparent={false}>
+        <Main>
+          <div className="hero">
+            <div className="wrap col padding">
+              <div className="leftLine" />
+              <div className="rightLine" />
 
-            <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
-            <p>{data.product.lead}</p>
-            <div className="btns">
-              <button
-                className="btn white"
-                onClick={(e) => handleNavClick(e, "customers")}
-              >
-                {text.seeMore}
-              </button>
-              <PopupButton
-                className="btn white-outlines"
-                url={data.booking.calendlyBookingUrl}
-                text={data.booking.buttonText}
+              <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
+              <p>{data.product.lead}</p>
+              <div className="btns">
+                <button
+                  className="btn white"
+                  onClick={(e) => handleNavClick(e, "customers")}
+                >
+                  {text.seeMore}
+                </button>
+                <PopupButton
+                  className="btn white-outlines"
+                  url={data.booking.calendlyBookingUrl}
+                  text={data.booking.buttonText}
+                />
+              </div>
+              <SvgCircle id="circle-1" />
+              <SvgCircle id="circle-2" />
+            </div>
+          </div>
+          <div id="customers" className="sec-1">
+            <Ticker data={data.product.customers} />
+            <p className="customers padding">{data.product.section1Content}</p>
+            <div className="numberBox">
+              <SvgNumberTopline />
+              <SvgNumberFrame />
+
+              <div className="number-1">
+                <span className="number">{data.product.activeUser}</span>
+                <span className="sub">{text.product.activeUsers}</span>
+              </div>
+
+              <div className="number-2">
+                <span className="number">
+                  {data.product.customerHappiness.toLocaleString(locale)}
+                  &nbsp;%
+                </span>
+                <span className="sub">
+                  {text.product.customerHappiness}
+                  <i className="tooltip">
+                    <SvgTooltip />
+                    <p
+                      class="tooltiptext"
+                      dangerouslySetInnerHTML={{ __html: data.product.tooltip }}
+                    />
+                  </i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="sec-2 padding wrap">
+            <div className="Title">
+              <SvgHaircross className="leftCircle" />
+              <SvgDashedLine className="leftTitleLine" />
+              <div className="titleBox">
+                <h2 className="blueBg">{text.product.benefits}</h2>
+              </div>
+
+              <SvgDashedLine className="rightTitleLine" />
+              <SvgHaircross className="rightCircle" />
+            </div>
+            <div className="point">
+              <div
+                className="content"
+                dangerouslySetInnerHTML={{
+                  __html: data.product.points[0].content,
+                }}
+              />
+
+              <div className="image">
+                <img src={kuva1} alt="" />
+              </div>
+            </div>
+            <div className="point">
+              <SvgPoint2Frame />
+              <div className="image">
+                <img src={kuva2} alt="" />
+              </div>
+              <div
+                className="content"
+                dangerouslySetInnerHTML={{
+                  __html: data.product.points[1].content,
+                }}
               />
             </div>
-            <SvgCircle id="circle-1" />
-            <SvgCircle id="circle-2" />
-          </div>
-        </div>
-        <div id="customers" className="sec-1">
-          <Ticker data={data.product.customers} />
-          <p className="customers padding">{data.product.section1Content}</p>
-          <div className="numberBox">
-            <SvgNumberTopline />
-            <SvgNumberFrame />
-
-            <div className="number-1">
-              <span className="number">{data.product.activeUser}</span>
-              <span className="sub">{text.product.activeUsers}</span>
-            </div>
-
-            <div className="number-2">
-              <span className="number">
-                {data.product.customerHappiness.toLocaleString(locale)}
-                &nbsp;%
-              </span>
-              <span className="sub">
-                {text.product.customerHappiness}
-                <i className="tooltip">
-                  <SvgTooltip />
-                  <p
-                    class="tooltiptext"
-                    dangerouslySetInnerHTML={{ __html: data.product.tooltip }}
-                  />
-                </i>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="sec-2 padding wrap">
-          <div className="Title">
-            <SvgHaircross className="leftCircle" />
-            <SvgDashedLine className="leftTitleLine" />
-            <div className="titleBox">
-              <h2 className="blueBg">{text.product.benefits}</h2>
-            </div>
-
-            <SvgDashedLine className="rightTitleLine" />
-            <SvgHaircross className="rightCircle" />
-          </div>
-          <div className="point">
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{
-                __html: data.product.points[0].content,
-              }}
-            />
-
-            <div className="image">
-              <img src={kuva1} alt="" />
-            </div>
-          </div>
-          <div className="point">
-            <SvgPoint2Frame />
-            <div className="image">
-              <img src={kuva2} alt="" />
-            </div>
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{
-                __html: data.product.points[1].content,
-              }}
-            />
-          </div>
-          <div className="point">
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{
-                __html: data.product.points[2].content,
-              }}
-            />
-            <div className="image">
-              <img src={kuva3} alt="" />
-            </div>
-          </div>
-        </div>
-        <div className="sec-3 padding wrap">
-          <div className="heading">
-            <SvgHeaderFrameWide />
-            <h2>{text.product.references}</h2>
-          </div>
-          <div className="references">
-            {data.references.map(({ node }) => (
-              <div className="item">
-                <h4>{node.yritys}</h4>
-                <p>{node.quote}</p>
-                <span>{node.nimi}</span>
+            <div className="point">
+              <div
+                className="content"
+                dangerouslySetInnerHTML={{
+                  __html: data.product.points[2].content,
+                }}
+              />
+              <div className="image">
+                <img src={kuva3} alt="" />
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-        <Booking />
-      </Main>
-    </Layout>
+          <div className="sec-3 padding wrap">
+            <div className="heading">
+              <SvgHeaderFrameWide />
+              <h2>{text.product.references}</h2>
+            </div>
+            <div className="references">
+              {data.references.map(({ node }) => (
+                <div className="item">
+                  <h4>{node.yritys}</h4>
+                  <p>{node.quote}</p>
+                  <span>{node.nimi}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <Booking />
+        </Main>
+      </Layout>
+    </>
   );
 };
 

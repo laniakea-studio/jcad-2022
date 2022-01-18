@@ -1,8 +1,7 @@
-import { graphql } from "gatsby";
 import React, { useContext } from "react";
 import { LocaleContext } from "../contexts/LocaleContext";
-import fi from "../locales/fi.yml";
 import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
 import sv from "../locales/sv.yml";
 import "../theme-2021/globals.css";
 import theme from "../theme-2021/theme";

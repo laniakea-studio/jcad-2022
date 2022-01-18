@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { theme } from "../theme/theme";
 
 const Ticker = ({ data }) => {

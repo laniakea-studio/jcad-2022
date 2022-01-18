@@ -1,12 +1,13 @@
+import { HelmetDatoCms } from "gatsby-source-datocms";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Layout } from "../components/Layout";
-import fi from "../locales/fi.yml";
+import { SvgHeadingFrame } from "../components/SvgCollection";
+import { LocaleContext } from "../contexts/LocaleContext";
 import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
 import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
-import { LocaleContext } from "../contexts/LocaleContext";
-import { SvgHeadingFrame } from "../components/SvgCollection";
 
 const Contact = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
@@ -14,130 +15,133 @@ const Contact = ({ pageContext }) => {
   const { data } = pageContext;
 
   return (
-    <Layout>
-      <Main>
-        <section className="First col wrap padding">
-          <div className="leftLine" />
-          <div className="rightLine" />
-          <div className="Title">
-            <SvgHaircross className="leftCircle" />
-            <SvgDashedLine className="leftTitleLine" />
-            <div className="titleBox">
-              <h1 className="blueBg">{text.contactPage.title}</h1>
+    <>
+      <HelmetDatoCms seo={data.yhteystiedot.seoMetaTags} />
+      <Layout>
+        <Main>
+          <section className="First col wrap padding">
+            <div className="leftLine" />
+            <div className="rightLine" />
+            <div className="Title">
+              <SvgHaircross className="leftCircle" />
+              <SvgDashedLine className="leftTitleLine" />
+              <div className="titleBox">
+                <h1 className="blueBg">{text.contactPage.title}</h1>
+              </div>
+
+              <SvgDashedLine className="rightTitleLine" />
+              <SvgHaircross className="rightCircle" />
             </div>
 
-            <SvgDashedLine className="rightTitleLine" />
-            <SvgHaircross className="rightCircle" />
-          </div>
+            <div className="Area row">
+              <div className="Col1">
+                <div className="heading">
+                  <SvgHeadingFrame />
+                  <h2>{text.contactPage.sales}</h2>
+                </div>
+              </div>
+              <div className="Col2 row">
+                <div className="Grid">
+                  {data.yhteystiedot.myyntiJaTilaukset.map((i) => {
+                    return <ContactItem i={i} />;
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="Area row">
+              <div className="Col1">
+                <div className="heading">
+                  <SvgHeadingFrame />
+                  <h2>{text.contactPage.support}</h2>
+                </div>
+              </div>
+              <div className="Col2 row">
+                <div className="Grid">
+                  {data.yhteystiedot.asiakaspalvelu.map((i) => {
+                    return <ContactItem i={i} />;
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="Area row">
+              <div className="Col1">
+                <div className="heading">
+                  <SvgHeadingFrame />
+                  <h2>{text.contactPage.accounts}</h2>
+                </div>
+              </div>
+              <div className="Col2 row">
+                <div className="Grid">
+                  {data.yhteystiedot.asiakkuudet.map((i) => {
+                    return <ContactItem i={i} />;
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="Area row">
+              <div className="Col1">
+                <div className="heading">
+                  <SvgHeadingFrame />
+                  <h2>{text.contactPage.locations}</h2>
+                </div>
+              </div>
+              <div className="Col2 row">
+                <div className="Grid">
+                  {data.yhteystiedot.toimipisteet.map((i) => {
+                    return (
+                      <div className="Item">
+                        <p className="osoiteNimi">
+                          <strong>{i.nimi}</strong>
+                        </p>
+                        <div dangerouslySetInnerHTML={{ __html: i.osoite }} />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
 
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
-                <h2>{text.contactPage.sales}</h2>
+            <div className="Area row">
+              <div className="Col1">
+                <div className="heading">
+                  <SvgHeadingFrame />
+                  <h2>{text.contactPage.billing}</h2>
+                </div>
+              </div>
+              <div className="Col2 row">
+                <div className="Grid">
+                  {data.yhteystiedot.laskutus.map((i) => {
+                    return (
+                      <div className="Item">
+                        <p className="osoiteNimi">
+                          <strong>{i.nimi}</strong>
+                        </p>
+                        <div dangerouslySetInnerHTML={{ __html: i.osoite }} />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.myyntiJaTilaukset.map((i) => {
-                  return <ContactItem i={i} />;
-                })}
+            <div className="Area row">
+              <div className="Col1">
+                <div className="heading">
+                  <SvgHeadingFrame />
+                  <h2>{text.contactPage.people}</h2>
+                </div>
+              </div>
+              <div className="Col2 row">
+                <div className="Grid">
+                  {data.yhteystiedot.henkilosto.map((i) => {
+                    return <ContactItem i={i} />;
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
-                <h2>{text.contactPage.support}</h2>
-              </div>
-            </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.asiakaspalvelu.map((i) => {
-                  return <ContactItem i={i} />;
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
-                <h2>{text.contactPage.accounts}</h2>
-              </div>
-            </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.asiakkuudet.map((i) => {
-                  return <ContactItem i={i} />;
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
-                <h2>{text.contactPage.locations}</h2>
-              </div>
-            </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.toimipisteet.map((i) => {
-                  return (
-                    <div className="Item">
-                      <p className="osoiteNimi">
-                        <strong>{i.nimi}</strong>
-                      </p>
-                      <div dangerouslySetInnerHTML={{ __html: i.osoite }} />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
-                <h2>{text.contactPage.billing}</h2>
-              </div>
-            </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.laskutus.map((i) => {
-                  return (
-                    <div className="Item">
-                      <p className="osoiteNimi">
-                        <strong>{i.nimi}</strong>
-                      </p>
-                      <div dangerouslySetInnerHTML={{ __html: i.osoite }} />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="Area row">
-            <div className="Col1">
-              <div className="heading">
-                <SvgHeadingFrame />
-                <h2>{text.contactPage.people}</h2>
-              </div>
-            </div>
-            <div className="Col2 row">
-              <div className="Grid">
-                {data.yhteystiedot.henkilosto.map((i) => {
-                  return <ContactItem i={i} />;
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
-      </Main>
-    </Layout>
+          </section>
+        </Main>
+      </Layout>
+    </>
   );
 };
 

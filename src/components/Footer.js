@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import styled from "styled-components";
-import { theme } from "../theme/theme";
-import { Pin } from "./SvgCollection.js";
-import fi from "../locales/fi.yml";
-import en from "../locales/en.yml";
-import sv from "../locales/sv.yml";
-import svgJcadLogo from "../assets/svgJcad.svg";
+import React, { useContext } from "react";
 import ReactVivus from "react-vivus";
+import styled from "styled-components";
+import svgJcadLogo from "../assets/svgJcad.svg";
 import { LocaleContext } from "../contexts/LocaleContext";
+import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
+import sv from "../locales/sv.yml";
+import { theme } from "../theme/theme";
 import { SvgLogoFooter } from "./SvgCollection.js";
 
 export const Footer = ({ menu, prefix }) => {

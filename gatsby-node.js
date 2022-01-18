@@ -64,6 +64,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }    
       product: datoCmsTuotesivu(locale: { eq: "${locale}" }) {
+        seoMetaTags {
+          tags 
+        }
         title
         lead
         customers {
@@ -78,7 +81,10 @@ exports.createPages = async ({ graphql, actions }) => {
           content
         }
       }
-      pricing: datoCmsPricing(locale: { eq: "${locale}" }) {       
+      pricing: datoCmsPricing(locale: { eq: "${locale}" }) {
+        seoMetaTags {
+          tags 
+        }
         lead
         tuotteet {
           icon {
@@ -108,7 +114,10 @@ exports.createPages = async ({ graphql, actions }) => {
         calendlyBookingUrl
         buttonText
       }
-      yhteystiedot: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {        
+      yhteystiedot: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {
+        seoMetaTags {
+          tags           
+        }     
         myyntiJaTilaukset {
           nimi
           titteli
