@@ -236,7 +236,7 @@ const HomePage = ({ pageContext }) => {
               font-weight: 600;
             }
             h1 {
-              font-size: 140px;
+              font-size: 120px;
               max-width: 900px;
             }
             h2 {

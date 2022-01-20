@@ -18,7 +18,12 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
   const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
 
-  const threshold = 400;
+  const path = typeof window !== "undefined" ? window.location.pathname : "";
+  const isHome =
+    path === "/" ? true : path === "/en" ? true : path === "/sv" ? true : false;
+  console.log({ isHome });
+
+  const threshold = isHome ? 1100 : 400;
 
   useEffect(() => {
     if (position.y < threshold && !menuOpen) {

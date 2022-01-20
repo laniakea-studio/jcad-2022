@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .leftFade {
+    display: none;
     left: 0;
     background: linear-gradient(
       270deg,
@@ -40,6 +41,7 @@ const GlobalStyle = createGlobalStyle`
     );
   }
   .rightFade {
+    display: none;
     right: 0;
     background: linear-gradient(
       90deg,
