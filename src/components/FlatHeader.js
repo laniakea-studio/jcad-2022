@@ -65,7 +65,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           ${theme.max900} {
             display: flex;
           }
-          ${theme.max600} {
+          ${theme.mobile} {
             padding-right: 20px;
           }
         }
@@ -94,7 +94,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           ${theme.max900} {
             padding-left: 40px;
           }
-          ${theme.max600} {
+          ${theme.mobile} {
             padding-left: 20px;
           }
         }

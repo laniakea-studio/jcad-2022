@@ -397,7 +397,7 @@ const HomePage = ({ pageContext }) => {
               .sectionBox {
                 flex-direction: column;
                 height: 100vh;
-                max-width: 1500px;
+                max-width: 1440px;
                 margin: 0 auto;
                 width: 100%;
                 position: sticky;
@@ -511,8 +511,13 @@ const HomePage = ({ pageContext }) => {
                   display: flex;
                   align-items: center;
                   position: absolute;
-                  width: 100%;
-
+                  width: 100%;                  
+                  padding-left: 10px;
+                  padding-right: 10px;
+                  ${theme.max1500} {
+                  padding-left: 0; 
+                  padding-right: 0; 
+                  }
                   .line {
                     height: 1px;
                     width: 32px;
@@ -522,7 +527,7 @@ const HomePage = ({ pageContext }) => {
                   h2 {
                     position: absolute;
                     left: 45px;
-                    top: 29px;
+                    top: 32px;
                     width: 260px;
                   }
                   .progressCircle {

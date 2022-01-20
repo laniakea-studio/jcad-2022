@@ -3,6 +3,20 @@ import { theme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 
+@keyframes ticker-kf {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(-1600px, 0, 0);
+      }
+    }
+
+    .img-ticker {
+      animation: ticker-kf 45s linear infinite;
+    }
+    
 /* New style */
 section {
   display: flex;
