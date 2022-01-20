@@ -10,7 +10,7 @@ const Ticker = ({ data }) => {
   }, []);
 
   return (
-    <Div class="overflow-hidden tickerBox">
+    <Div class="tickerBox">
       <div class="img-ticker">
         {logos.length > 1 &&
           logos.map((item) => {
