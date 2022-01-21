@@ -313,7 +313,8 @@ const Main = styled.main`
     }
     svg {
       position: absolute;
-      width: 400px;
+      max-width: 400px;
+      overflow: hidden;
       top: 0;
       left: 0;
       path {

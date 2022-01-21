@@ -170,6 +170,7 @@ export const Layout = ({ children }) => {
         text={text}
         closeMenu={() => setMenuOpen(false)}
         localeSlugs={localeSlugs}
+        prefix={prefix}
         locale={locale}
       />
       {children}
@@ -358,7 +359,7 @@ const Header = styled.header`
   }
 `;
 
-const MobileMenu = ({ menu, menuOpen, text, localeSlugs, locale }) => {
+const MobileMenu = ({ menu, menuOpen, text, localeSlugs, locale, prefix }) => {
   const color = "#fff";
   return (
     <div
@@ -419,7 +420,7 @@ const MobileMenu = ({ menu, menuOpen, text, localeSlugs, locale }) => {
       `}
     >
       {menu.map((i) => (
-        <Link to={`/${i.to}`}>{i.title}</Link>
+        <Link to={`/${prefix + i.to}`}>{i.title}</Link>
       ))}
       <PopupButton
         className="btn white-outlines"
