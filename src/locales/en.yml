@@ -10,11 +10,11 @@ footer:
   companyName: JCAD
   linkGdpr: GDPR
 pricing:
-  vat: + vat 24 %
+  vat: + VAT 24 %
   selectPeriod: Contract period
   selectLicense: Licenses
   selectProduct: Software
-  mo: mos.
+  mo: mo.
   license: License
   period: Contract period
   user: user
@@ -43,9 +43,9 @@ contactPage:
   accounts: Account Management
   experts: Specialists
   locations: Offices
-  billing: Invoice
+  billing: Invoicing
   admin: Administration
-  people: People
+  people: Personel
 menu:
   home: Home
   product: Product
