@@ -424,7 +424,7 @@ const MobileMenu = ({ menu, menuOpen, text, localeSlugs, locale, prefix }) => {
       ))}
       <PopupButton
         className="btn white-outlines"
-        url="https://calendly.com/jcad-booking/tilaa-demo"
+        url={booking.calendlyBookingUrl}
         text={text.bookDemo}
       />
       <div className="line" />
