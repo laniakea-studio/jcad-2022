@@ -171,6 +171,7 @@ export const Layout = ({ children }) => {
         closeMenu={() => setMenuOpen(false)}
         localeSlugs={localeSlugs}
         prefix={prefix}
+        bookinigUrl={booking.calendlyBookingUrl}
         locale={locale}
       />
       {children}
@@ -359,7 +360,15 @@ const Header = styled.header`
   }
 `;
 
-const MobileMenu = ({ menu, menuOpen, text, localeSlugs, locale, prefix }) => {
+const MobileMenu = ({
+  menu,
+  menuOpen,
+  text,
+  localeSlugs,
+  locale,
+  prefix,
+  bookingUrl,
+}) => {
   const color = "#fff";
   return (
     <div
@@ -424,7 +433,7 @@ const MobileMenu = ({ menu, menuOpen, text, localeSlugs, locale, prefix }) => {
       ))}
       <PopupButton
         className="btn white-outlines"
-        url={booking.calendlyBookingUrl}
+        url={bookingUrl}
         text={text.bookDemo}
       />
       <div className="line" />
