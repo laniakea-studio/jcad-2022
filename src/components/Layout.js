@@ -171,7 +171,7 @@ export const Layout = ({ children }) => {
         closeMenu={() => setMenuOpen(false)}
         localeSlugs={localeSlugs}
         prefix={prefix}
-        bookinigUrl={booking.calendlyBookingUrl}
+        bookingUrl={booking.calendlyBookingUrl}
         locale={locale}
       />
       {children}
