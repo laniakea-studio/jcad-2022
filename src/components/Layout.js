@@ -14,6 +14,7 @@ import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
+import { GdprBanner } from "./GdprBanner";
 
 const menuFi = [
   { title: fi.menu.product, to: fi.slugs.product },
@@ -97,6 +98,7 @@ export const Layout = ({ children }) => {
           content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </HelmetDatoCms>
+      <GdprBanner />
       <FlatHeader
         menu={menu}
         booking={booking}
