@@ -1,8 +1,14 @@
-import React from "react";
-import theme from "../styles/theme";
-import text from "../locales/fi.yml";
+import React, { useContext } from "react";
+import theme from "../theme-2021/theme";
+import { LocaleContext } from "../contexts/LocaleContext";
+import en from "../locales/en.yml";
+import fi from "../locales/fi.yml";
+import sv from "../locales/sv.yml";
 
 const GdprSettings = ({ gdprSettings, setGdprSettings, handleGdprConsent }) => {
+  const { locale } = useContext(LocaleContext);
+  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+
   const onChange = (e) => {
     console.log(e);
     const key = e.target.name;

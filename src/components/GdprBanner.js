@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { LocaleContext } from "../contexts/LocaleContext";
 import en from "../locales/en.yml";
 import fi from "../locales/fi.yml";
 import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
+import { useLocalStorage } from "../hooks/useLocaleStorage";
 import { NoSSR } from "./NoSSR";
 import GdprSettings from "./GdprSettings";
+import Modal from "./Modal";
 
 export const GdprBanner = () => {
   const { locale } = useContext(LocaleContext);
@@ -122,6 +124,7 @@ export const GdprBanner = () => {
               button.btn {
                 width: 180px;
                 height: 48px;
+                font-size: 16px;
                 border: 1px solid #fff;
                 padding: 0 20px;
                 color: #fff;

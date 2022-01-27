@@ -64,3 +64,5 @@ contact:
   send: Lähetä
 gdpr:
   buttonBack: Takaisin
+modal:
+  btnClose: Sulje
