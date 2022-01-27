@@ -64,5 +64,21 @@ contact:
   send: Send
 gdpr:
   buttonBack: Tillbaka
+gdprBanner:
+  title: Kunnioitamme yksityisyyttäsi
+  content: Käytämme evästeitä käyttökokemuksen ja tilastoinnin parantamiseksi sekä markkinoinnin kohdetamiseen. Sallitko tämän?
+  gdpr: Tietosuojaseloste
+  btnYes: Ja
+  btnAdjust: Settings
+gdprSettings:
+  title: Kunnioitamme yksityisyyttäsi
+  content: Säädä asetuksista, mitä tietoja annat sivustomme kerätä.
+  firstSwitch:
+    strong: Käyttöä koskevat tiedot
+    p: Sallit meidän kerätä anonyymia tietoa käytöstäsi. Tiedon avulla saamme tilastoja esimerkiksi kävijämääristä ja käyttäjien demografiasta.
+  secondSwitch:
+    strong: Mainonnan kohdentaminen
+    p: Sallit mainosevästeiden keräämisen ja saatat nähdä mainoksemme vierailessasi toisella verkkosivustolla.
+  save: Tallenna asetukset
 modal:
   btnClose: Stäng

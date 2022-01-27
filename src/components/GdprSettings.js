@@ -10,7 +10,6 @@ const GdprSettings = ({ gdprSettings, setGdprSettings, handleGdprConsent }) => {
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
 
   const onChange = (e) => {
-    console.log(e);
     const key = e.target.name;
     const value = !gdprSettings[key];
     setGdprSettings({ ...gdprSettings, [key]: value });
@@ -69,7 +68,7 @@ const GdprSettings = ({ gdprSettings, setGdprSettings, handleGdprConsent }) => {
           align-items: center;
           position: relative;
           padding: 20px;
-          max-width: 600px;
+          max-width: 550px;
           cursor: pointer;
           ${theme.mobile} {
             padding: 20px 0;
@@ -151,8 +150,8 @@ const GdprSettings = ({ gdprSettings, setGdprSettings, handleGdprConsent }) => {
     >
       <SvgVertical className="svgLeft" />
       <div className="center">
-        <h3>Kunnioitamme yksityisyyttäsi</h3>
-        <p>Säädä asetuksista, mitä tietoja annat sivustomme kerätä.</p>
+        <h3>{text.gdprSettings.title}</h3>
+        <p>{text.gdprSettings.content}</p>
         <div>
           <label className="switchZone">
             <div className="switch">
@@ -166,13 +165,9 @@ const GdprSettings = ({ gdprSettings, setGdprSettings, handleGdprConsent }) => {
             </div>
             <div className="text">
               <p>
-                <strong>Käyttöä koskevat tiedot</strong>
+                <strong>{text.gdprSettings.firstSwitch.strong}</strong>
               </p>
-              <p>
-                Sallit meidän kerätä anonyymia tietoa käytöstäsi. Tiedon avulla
-                saamme tilastoja esimerkiksi kävijämääristä ja käyttäjien
-                demografiasta.
-              </p>
+              <p>{text.gdprSettings.firstSwitch.p}</p>
             </div>
           </label>
         </div>
@@ -189,12 +184,9 @@ const GdprSettings = ({ gdprSettings, setGdprSettings, handleGdprConsent }) => {
             </div>
             <div className="text">
               <p>
-                <strong>Mainonnan kohdentaminen</strong>
+                <strong>{text.gdprSettings.secondSwitch.strong}</strong>
               </p>
-              <p>
-                Sallit mainosevästeiden keräämisen ja saatat nähdä mainoksemme
-                vierailessasi toisella verkkosivustolla.
-              </p>
+              <p>{text.gdprSettings.secondSwitch.p}</p>
             </div>
           </label>
         </div>
@@ -220,7 +212,7 @@ const GdprSettings = ({ gdprSettings, setGdprSettings, handleGdprConsent }) => {
             cursor: pointer;
           `}
         >
-          Tallenna asetukset
+          {text.gdprSettings.save}
         </button>
       </div>
       <SvgVertical className="svgRight" />

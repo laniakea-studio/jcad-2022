@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import en from "../locales/en.yml";
 import fi from "../locales/fi.yml";
@@ -39,6 +40,7 @@ export const GdprBanner = () => {
 
   const handleGdprConsent = (e) => {
     e.preventDefault();
+    console.log(gdprSettings);
     setShowGdprSettings(false);
     setShowGdprBanner(false);
 
@@ -51,6 +53,15 @@ export const GdprBanner = () => {
       analytics_storage: gdprSettings.analytics ? "granted" : "denied",
     });
   };
+
+  /*
+  useEffect(() => {
+    window.gtag("consent", "update", {
+      ad_storage: adStorage === "granted" ? "granted" : "denied",
+      analytics_storage: analyticsStorage === "granted" ? "granted" : "denied",
+    });
+    
+  }, []);*/
 
   return (
     <NoSSR>
@@ -156,15 +167,22 @@ export const GdprBanner = () => {
         >
           <div>
             <div className="content">
-              <h4>Kunnioitamme yksityisyyttäsi</h4>
-              <p className="question">
-                Käytämme evästeitä käyttökokemuksen ja tilastoinnin
-                parantamiseksi sekä markkinoinnin kohdetamiseen. Sallitko tämän?
-              </p>
+              <h4>{text.gdprBanner.title}</h4>
+              <p className="question">{text.gdprBanner.content}</p>
               <p>
-                <a href="/tietosuojaseloste" target="_blank" rel="noreferrer">
-                  Tietosuojaseloste
-                </a>
+                <Link
+                  to={
+                    locale === "fi"
+                      ? "/tietosuojaseloste"
+                      : locale === "en"
+                      ? "/en/gdpr"
+                      : "/sv/gdpr"
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {text.gdprBanner.gdpr}
+                </Link>
               </p>
             </div>
 
@@ -176,13 +194,13 @@ export const GdprBanner = () => {
                   setShowGdprSettings(true);
                 }}
               >
-                Säädä asetuksia
+                {text.gdprBanner.btnAdjust}
               </button>
               <button
                 className="btn white"
                 onClick={(e) => handleGdprConsent(e)}
               >
-                Salli evästeet
+                {text.gdprBanner.btnYes}
               </button>
             </div>
           </div>

@@ -64,5 +64,21 @@ contact:
   send: Send
 gdpr:
   buttonBack: Back
+gdprBanner:
+  title: We respect your privacy
+  content: Is it ok for us to collect information related to your visit to our site?
+  gdpr: Privacy policy
+  btnYes: Yes
+  btnAdjust: Settings
+gdprSettings:
+  title: We respect your privacy
+  content: Manage your settings.
+  firstSwitch:
+    strong: Usage data
+    p: Cookies, device identifiers, or other information can be stored or accessed on your device for the purposes presented to you.
+  secondSwitch:
+    strong: Personalised adds
+    p: Personalised ads can be shown to you based on a profile about you.
+  save: Save settings
 modal:
   btnClose: Close
