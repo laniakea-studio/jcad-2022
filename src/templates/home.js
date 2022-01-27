@@ -270,7 +270,7 @@ const HomePage = ({ pageContext }) => {
               .otsikko-1,
               .otsikko-2,
               .otsikko-3 {
-                left: 20px;
+                left: 100px;
               }
               h1 {
                 font-size: 120px;
@@ -288,10 +288,12 @@ const HomePage = ({ pageContext }) => {
             ${theme.mobile} {
               .otsikko-1,
               .otsikko-2 {                
-                top: 175px;              
+                top: 175px; 
+                left: 20px;             
               }
               .otsikko-3 {
                 top: 330px;
+                left: 20px;
               }
               h1 {
                 font-size: 65px;
