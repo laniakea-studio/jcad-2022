@@ -78,6 +78,11 @@ const Div = styled.div`
       width: 100%;
       max-width: 220px;
     }
+    ${theme.max600} {
+      width: 200px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
   @keyframes ticker-kf {
     0% {

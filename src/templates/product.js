@@ -18,17 +18,12 @@ import en from "../locales/en.yml";
 import fi from "../locales/fi.yml";
 import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 const Product = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
-
-  const handleNavClick = (event, destination) => {
-    event.preventDefault();
-    let element = document.querySelector(`#${destination}`);
-    element.scrollIntoView({ block: "start" });
-  };
 
   return (
     <>
@@ -45,7 +40,7 @@ const Product = ({ pageContext }) => {
               <div className="btns">
                 <button
                   className="btn white"
-                  onClick={(e) => handleNavClick(e, "customers")}
+                  onClick={() => scrollTo("#customers")}
                 >
                   {text.seeMore}
                 </button>
@@ -270,7 +265,7 @@ const Main = styled.main`
     padding-bottom: 40px;
     .customers {
       font-size: 20px;
-      max-width: 720px;
+      max-width: 630px;
       margin: 50px auto 80px;
       text-align: center;
       ${theme.mobile} {

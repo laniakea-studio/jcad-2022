@@ -107,7 +107,7 @@ const Pricing = ({ pageContext }) => {
                         })
                       }
                     >
-                      {i.label} {text.pricing.mo}
+                      {i.label}&nbsp;{text.pricing.mo}
                     </button>
                   ))}
                 </div>
@@ -425,6 +425,7 @@ const Main = styled.main`
     display: flex;
     align-items: center;
     padding-left: 30px;
+    overflow: hidden;
     h2 {
       font-size: 28px;
       text-transform: uppercase;

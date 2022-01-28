@@ -67,7 +67,7 @@ const GlobalStyle = createGlobalStyle`
     img {
       width: 100%;
       max-width: 220px;
-    }
+    }    
   }
   @keyframes ticker-kf {
     0% {

@@ -4,6 +4,7 @@ export const theme = {
   primary: "#000053",
   max400: "@media(max-width: 400px)",
   max500: "@media(max-width: 500px)",
+  max600: "@media(max-width: 600px)",
   mobile: "@media(max-width: 600px)",
   max700: "@media(max-width: 700px)",
   max800: "@media(max-width: 800px)",
