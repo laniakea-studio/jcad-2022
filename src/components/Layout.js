@@ -305,6 +305,9 @@ const Header = styled.header`
       padding: 10px 30px;
       font-weight: 400;
     }
+    a.active {
+      text-decoration: line-through;
+    }
     a.active:after {
       content: url('data:image/svg+xml; utf8, <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12.0862" y1="2.18557e-08" x2="12.0862" y2="24" stroke="white"/><circle cx="12" cy="12.0002" r="8.18966" stroke="white"/><line y1="11.9136" x2="24" y2="11.9136" stroke="white"/></svg>');
       display: block;
@@ -382,7 +385,7 @@ const MobileMenu = ({
         backdrop-filter: blur(6px);
         width: 100%;
         height: 100vh;
-        padding-top: 50px;
+        padding-top: 80px;
         color: ${color};
         justify-content: center;
         align-items: center;
@@ -438,7 +441,7 @@ const MobileMenu = ({
         url={bookingUrl}
         text={text.bookDemo}
       />
-      <div className="line" />
+
       <a href="https://extra.jcad.fi/" target="_blank" rel="noreferrer">
         {text.menu.login}
       </a>

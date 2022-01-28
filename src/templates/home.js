@@ -286,13 +286,16 @@ const HomePage = ({ pageContext }) => {
               }
             }
             ${theme.mobile} {
-              .otsikko-1,
+              .otsikko-1 {
+                top: 170px; 
+                left: 20px;
+              }
               .otsikko-2 {                
-                top: 175px; 
+                top: 105px; 
                 left: 20px;             
               }
               .otsikko-3 {
-                top: 330px;
+                top: 300px;
                 left: 20px;
               }
               h1 {
@@ -792,12 +795,12 @@ const HomePage = ({ pageContext }) => {
                 }
                 .titleBox {
                   margin-top: 140px;
-                  width: 50%;
                   height: 94px;
                   border: 1px solid #000;
                   display: flex;
                   align-items: center;
                   padding-left: 30px;
+                  padding-right: 30px;
                   margin-left: 1px;
                 }
                 p.quote {
@@ -892,8 +895,8 @@ const HomePage = ({ pageContext }) => {
                   top: 50px;
                 }
                 ${theme.tablet} {
-                  padding-left: 0;
-                  padding-right: 0;
+                  padding-left: 0 !important;
+                  padding-right: 0 !important;
                   .titleBox {
                     margin-top: 70px;
                   }
@@ -937,9 +940,6 @@ const HomePage = ({ pageContext }) => {
                   }
                 }
                 ${theme.mobile} {
-                  .titleBox {
-                    width: 260px;
-                  }
                   .first.row {
                     height: 200px;
                   }
@@ -1050,6 +1050,7 @@ const HomePage = ({ pageContext }) => {
                       .circleLine {
                         display: none;
                         position: absolute;
+                        height: 100%;
                         bottom: 0;
                         right: -50px;
                         ${theme.mobile} {
@@ -1166,7 +1167,7 @@ const HomePage = ({ pageContext }) => {
               background: ${theme.indigo};
               padding-left: 0 !important;
               padding-right: 0 !important;
-              padding-bottom: 30px;
+              padding-bottom: 0;
               position: relative;
               overflow: hidden;
               color: #fff;
@@ -1211,6 +1212,9 @@ const HomePage = ({ pageContext }) => {
               .textBox {
                 margin: 30px auto;
                 max-width: 780px;
+                p {
+                  margin-bottom: 18px !important;
+                }
               }
               svg.divider {
                 width: calc(100% + 10px);

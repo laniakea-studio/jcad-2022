@@ -251,7 +251,7 @@ const FooterDiv = styled.footer`
     position: relative;
     overflow: hidden;
     > div {
-      z-index: 10;
+      z-index: 1;
       position: relative;
     }
   }
@@ -405,7 +405,7 @@ const FooterDiv = styled.footer`
 
       .titleBox h3 {
         font-size: 28px;
-        padding-left: 24px;
+        text-align: left;
       }
       .titleBox {
         margin-left: 0;
@@ -414,12 +414,14 @@ const FooterDiv = styled.footer`
         height: auto;
         width: auto;
         justify-content: flex-start;
-        padding-left: 24px;
+        padding-left: 20px;
         padding-right: 48px;
-        max-width: fit-content;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        max-width: 95%;
       }
       p {
-        padding-left: 48px;
+        padding-left: 20px;
       }
     }
   }
@@ -439,8 +441,8 @@ const FooterDiv = styled.footer`
       margin-right: 0;
     }
     .row.header {
-      padding-left: 48px;
-      padding-right: 48px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
   @media (max-width: 900px) {
