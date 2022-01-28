@@ -5,6 +5,7 @@ import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { Booking } from "../components/Booking";
 import { Layout } from "../components/Layout";
+import { Switch } from "../components/Switch";
 import { SvgHeadingFrame } from "../components/SvgCollection";
 import { LocaleContext } from "../contexts/LocaleContext";
 import en from "../locales/en.yml";
@@ -18,6 +19,13 @@ const valikkoSopimuskausi = [
   { value: -100, label: 36 },
   { value: -150, label: 48 },
 ];
+
+const extraHinnasto = {
+  12: 279,
+  24: 229,
+  36: 179,
+  48: 129,
+};
 
 const Pricing = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -37,29 +45,35 @@ const Pricing = ({ pageContext }) => {
     `
   );
 
-  console.log(data);
-
   const [priceSelections, setPriceSelections] = useState({
     ohjelmisto: hinnasto.valikkoOhjelmisto[0],
     sopimuskausi: valikkoSopimuskausi[0],
     lisenssi: 1,
+    kustannuslaskenta: false,
   });
 
-  const [price, setPrice] = useState(null);
+  const [price, setPrice] = useState([null, null, null]);
 
   useEffect(() => {
-    const { ohjelmisto, lisenssi, sopimuskausi } = priceSelections;
-    if (priceSelections.lisenssi > 0) {
-      setPrice(
-        `${(ohjelmisto.value + sopimuskausi.value) * lisenssi} €/${
-          text.pricing.mo
-        }`
-      );
-    } else {
-      setPrice(
-        `${(ohjelmisto.value + sopimuskausi.value) * 1} €/${text.pricing.mo}`
-      );
-    }
+    const { ohjelmisto, lisenssi, sopimuskausi, kustannuslaskenta } =
+      priceSelections;
+    const kustannuslaskentaValue = kustannuslaskenta
+      ? extraHinnasto[sopimuskausi.label]
+      : 0;
+    const lisenssiValue = lisenssi < 1 ? 1 : lisenssi;
+
+    setPrice([
+      `${
+        (ohjelmisto.value + sopimuskausi.value + kustannuslaskentaValue) *
+        lisenssiValue
+      } €/${text.pricing.mo}`,
+      `${(ohjelmisto.value + sopimuskausi.value) * lisenssiValue} €/${
+        text.pricing.mo
+      }`,
+      `${(ohjelmisto.value + sopimuskausi.value) * lisenssiValue} €/${
+        text.pricing.mo
+      }`,
+    ]);
   }, [priceSelections]);
 
   const handleLicenseChange = (e) => {
@@ -68,7 +82,7 @@ const Pricing = ({ pageContext }) => {
       lisenssi: e.target.value,
     });
   };
-  console.log(priceSelections.lisenssi);
+
   return (
     <>
       <HelmetDatoCms seo={data.pricing.seoMetaTags} />
@@ -180,27 +194,42 @@ const Pricing = ({ pageContext }) => {
             </div>
             <h3 className="selectHeading">3. {text.pricing.selectProduct} </h3>
             <div className="plans">
-              {data.pricing.tuotteet.map((i) => {
+              {data.pricing.tuotteet.map((i, index) => {
                 return (
                   <div className="item">
                     <h3>{i.title}</h3>
                     <img src={i.icon.url} alt={i.icon.alt} />
                     <div className="priceContent">
                       <span className="startPrive">{i.startprice}</span>
-                      <span className="price">{price}</span>
+                      <span className="price">{price[index]}</span>
                       <span className="vat">{text.pricing.vat}</span>
                     </div>
                     <div
                       className="mainContent"
                       dangerouslySetInnerHTML={{ __html: i.teksti1 }}
                     />
+                    {index === 0 && (
+                      <div className="addons">
+                        <p>{text.pricing.addons}</p>
+                        <Switch
+                          handleSwitch={() =>
+                            setPriceSelections({
+                              ...priceSelections,
+                              kustannuslaskenta:
+                                !priceSelections.kustannuslaskenta,
+                            })
+                          }
+                          checked={priceSelections.kustannuslaskenta}
+                          label={text.pricing.kustannus}
+                        />
+                      </div>
+                    )}
 
                     <PopupButton
                       className="btn white-outlines"
                       url={data.booking.calendlyBookingUrl}
                       text={data.booking.buttonText}
                     />
-
                     <div className="footerContent">
                       <p>
                         {text.pricing.period}:{" "}
@@ -361,6 +390,15 @@ const Main = styled.main`
     }
     > div:last-child {
       flex: 1;
+    }
+  }
+  .addons {
+    text-align: center;
+    padding-bottom: 20px;
+    p {
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      opacity: 0.9;
     }
   }
   .plans {

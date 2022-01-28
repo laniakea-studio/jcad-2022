@@ -19,6 +19,8 @@ pricing:
   period: Avtalstid
   user: användare
   users: användare
+  addons: Extra
+  kustannus: Kostnadskalkylator
 home:
   slide1title: Effektivitet
   slide2title: Motverka fel

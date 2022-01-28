@@ -74,14 +74,6 @@ export const Layout = ({ children }) => {
     const onScroll = () => {
       if (window.pageYOffset <= 70 && !flatHeader) return;
       if (window.pageYOffset > 70 && flatHeader) return;
-      if (window.pageYOffset <= 70 && flatHeader) {
-        console.log(window.pageYOffset);
-        console.log("Set header: false");
-      }
-      if (window.pageYOffset >= 70 && !flatHeader) {
-        console.log(window.pageYOffset);
-        console.log("Set header: true");
-      }
     };
     // clean up code
     window.removeEventListener("scroll", onScroll);

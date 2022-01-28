@@ -16,8 +16,6 @@ const ImageGallery = ({ data }) => {
     setViewerIsOpen(false);
   };
 
-  console.log(data);
-
   const photos = data.map((i) => {
     return {
       src: i.url,

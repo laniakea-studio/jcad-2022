@@ -13,6 +13,15 @@ import { SvgLogoFooter } from "./SvgCollection.js";
 export const Footer = ({ menu, prefix }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+  const path = typeof window !== "undefined" ? window.location.pathname : "";
+  const isContactPage =
+    path === "/yhteystiedot"
+      ? true
+      : path === "/en/contact"
+      ? true
+      : path === "/sv/kontakter"
+      ? true
+      : false;
 
   const { yhteystiedot } = useStaticQuery(graphql`
     query {
@@ -75,125 +84,127 @@ export const Footer = ({ menu, prefix }) => {
             </div>
           </div>
 
-          <div className="row contacts">
-            <div className="col">
-              <div className="titleBox">
-                <h3>{text.footer.sales}</h3>
+          {!isContactPage && (
+            <div className="row contacts">
+              <div className="col">
+                <div className="titleBox">
+                  <h3>{text.footer.sales}</h3>
+                </div>
+                <p>
+                  {yhteystiedot.myyntiJaTilaukset[0].nimi && (
+                    <>
+                      <strong>{yhteystiedot.myyntiJaTilaukset[0].nimi}</strong>
+                      <br />
+                    </>
+                  )}
+                  {yhteystiedot.myyntiJaTilaukset[0].titteli && (
+                    <>
+                      {yhteystiedot.myyntiJaTilaukset[0].titteli} <br />
+                    </>
+                  )}
+                  {yhteystiedot.myyntiJaTilaukset[0].puhelin && (
+                    <>
+                      <a
+                        href={`tel:${yhteystiedot.myyntiJaTilaukset[0].puhelin.replace(
+                          /\s+/g,
+                          ""
+                        )}`}
+                      >
+                        {yhteystiedot.myyntiJaTilaukset[0].puhelin}
+                      </a>
+                      <br />
+                    </>
+                  )}
+                  <a
+                    href={`mailto:${yhteystiedot.myyntiJaTilaukset[0].email.replace(
+                      /\s+/g,
+                      ""
+                    )}`}
+                  >
+                    {yhteystiedot.myyntiJaTilaukset[0].email}
+                  </a>
+                </p>
               </div>
-              <p>
-                {yhteystiedot.myyntiJaTilaukset[0].nimi && (
-                  <>
-                    <strong>{yhteystiedot.myyntiJaTilaukset[0].nimi}</strong>
-                    <br />
-                  </>
-                )}
-                {yhteystiedot.myyntiJaTilaukset[0].titteli && (
-                  <>
-                    {yhteystiedot.myyntiJaTilaukset[0].titteli} <br />
-                  </>
-                )}
-                {yhteystiedot.myyntiJaTilaukset[0].puhelin && (
-                  <>
-                    <a
-                      href={`tel:${yhteystiedot.myyntiJaTilaukset[0].puhelin.replace(
-                        /\s+/g,
-                        ""
-                      )}`}
-                    >
-                      {yhteystiedot.myyntiJaTilaukset[0].puhelin}
-                    </a>
-                    <br />
-                  </>
-                )}
-                <a
-                  href={`mailto:${yhteystiedot.myyntiJaTilaukset[0].email.replace(
-                    /\s+/g,
-                    ""
-                  )}`}
-                >
-                  {yhteystiedot.myyntiJaTilaukset[0].email}
-                </a>
-              </p>
-            </div>
-            <div className="col">
-              <div className="titleBox">
-                <h3>{text.footer.support}</h3>
+              <div className="col">
+                <div className="titleBox">
+                  <h3>{text.footer.support}</h3>
+                </div>
+                <p>
+                  {yhteystiedot.asiakaspalvelu[0].nimi && (
+                    <>
+                      <strong>{yhteystiedot.asiakaspalvelu[0].nimi}</strong>
+                      <br />
+                    </>
+                  )}
+                  {yhteystiedot.asiakaspalvelu[0].titteli && (
+                    <>
+                      {yhteystiedot.asiakaspalvelu[0].titteli} <br />
+                    </>
+                  )}
+                  {yhteystiedot.asiakaspalvelu[0].puhelin && (
+                    <>
+                      <a
+                        href={`tel:${yhteystiedot.asiakaspalvelu[0].puhelin.replace(
+                          /\s+/g,
+                          ""
+                        )}`}
+                      >
+                        {yhteystiedot.asiakaspalvelu[0].puhelin}
+                      </a>
+                      <br />
+                    </>
+                  )}
+                  <a
+                    href={`mailto:${yhteystiedot.asiakaspalvelu[0].email.replace(
+                      /\s+/g,
+                      ""
+                    )}`}
+                  >
+                    {yhteystiedot.asiakaspalvelu[0].email}
+                  </a>
+                </p>
               </div>
-              <p>
-                {yhteystiedot.asiakaspalvelu[0].nimi && (
-                  <>
-                    <strong>{yhteystiedot.asiakaspalvelu[0].nimi}</strong>
-                    <br />
-                  </>
-                )}
-                {yhteystiedot.asiakaspalvelu[0].titteli && (
-                  <>
-                    {yhteystiedot.asiakaspalvelu[0].titteli} <br />
-                  </>
-                )}
-                {yhteystiedot.asiakaspalvelu[0].puhelin && (
-                  <>
-                    <a
-                      href={`tel:${yhteystiedot.asiakaspalvelu[0].puhelin.replace(
-                        /\s+/g,
-                        ""
-                      )}`}
-                    >
-                      {yhteystiedot.asiakaspalvelu[0].puhelin}
-                    </a>
-                    <br />
-                  </>
-                )}
-                <a
-                  href={`mailto:${yhteystiedot.asiakaspalvelu[0].email.replace(
-                    /\s+/g,
-                    ""
-                  )}`}
-                >
-                  {yhteystiedot.asiakaspalvelu[0].email}
-                </a>
-              </p>
-            </div>
-            <div className="col">
-              <div className="titleBox">
-                <h3>{text.footer.accounts}</h3>
+              <div className="col">
+                <div className="titleBox">
+                  <h3>{text.footer.accounts}</h3>
+                </div>
+                <p>
+                  {yhteystiedot.asiakkuudet[0].nimi && (
+                    <>
+                      <strong>{yhteystiedot.asiakkuudet[0].nimi}</strong>
+                      <br />
+                    </>
+                  )}
+                  {yhteystiedot.asiakkuudet[0].titteli && (
+                    <>
+                      {yhteystiedot.asiakkuudet[0].titteli} <br />
+                    </>
+                  )}
+                  {yhteystiedot.asiakkuudet[0].puhelin && (
+                    <>
+                      <a
+                        href={`tel:${yhteystiedot.asiakkuudet[0].puhelin.replace(
+                          /\s+/g,
+                          ""
+                        )}`}
+                      >
+                        {yhteystiedot.asiakkuudet[0].puhelin}
+                      </a>
+                      <br />
+                    </>
+                  )}
+                  <a
+                    href={`mailto:${yhteystiedot.asiakkuudet[0].email.replace(
+                      /\s+/g,
+                      ""
+                    )}`}
+                  >
+                    {yhteystiedot.asiakkuudet[0].email}
+                  </a>
+                </p>
               </div>
-              <p>
-                {yhteystiedot.asiakkuudet[0].nimi && (
-                  <>
-                    <strong>{yhteystiedot.asiakkuudet[0].nimi}</strong>
-                    <br />
-                  </>
-                )}
-                {yhteystiedot.asiakkuudet[0].titteli && (
-                  <>
-                    {yhteystiedot.asiakkuudet[0].titteli} <br />
-                  </>
-                )}
-                {yhteystiedot.asiakkuudet[0].puhelin && (
-                  <>
-                    <a
-                      href={`tel:${yhteystiedot.asiakkuudet[0].puhelin.replace(
-                        /\s+/g,
-                        ""
-                      )}`}
-                    >
-                      {yhteystiedot.asiakkuudet[0].puhelin}
-                    </a>
-                    <br />
-                  </>
-                )}
-                <a
-                  href={`mailto:${yhteystiedot.asiakkuudet[0].email.replace(
-                    /\s+/g,
-                    ""
-                  )}`}
-                >
-                  {yhteystiedot.asiakkuudet[0].email}
-                </a>
-              </p>
             </div>
-          </div>
+          )}
 
           <div className="row logoBox">
             <ReactVivus

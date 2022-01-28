@@ -19,6 +19,8 @@ pricing:
   period: Sopimuskausi
   user: käyttäjä
   users: käyttäjää
+  addons: Lisäominaisuudet
+  kustannus: Kustannuslaskin
 slugs:
   product: maaralaskentaohjelmisto
   pricing: hinta

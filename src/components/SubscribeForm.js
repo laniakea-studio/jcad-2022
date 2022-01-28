@@ -27,7 +27,6 @@ export const SubscribeForm = ({ locale }) => {
   const onInputChange = (e) => {
     const key = e.target.name;
     const value = e.target.value;
-    console.log(formData);
     setFormData({ ...formData, [key]: value });
   };
 

@@ -19,6 +19,8 @@ pricing:
   period: Contract period
   user: user
   users: users
+  addons: Extensions
+  kustannus: Cost calculator
 home:
   slide1title: Efficiency
   slide2title: Preventing mistakes

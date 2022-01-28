@@ -252,6 +252,10 @@ li {
   font-size: 16px;
   line-height: 1.6;
 }
+ul, ol {
+    font-size: 18px;
+    line-height: 1.6;  
+}
 h1,
 h2 {  
   font-weight: 400;
