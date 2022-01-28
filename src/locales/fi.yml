@@ -20,7 +20,7 @@ pricing:
   user: käyttäjä
   users: käyttäjää
   addons: Lisäominaisuudet
-  kustannus: Kustannuslaskin
+  kustannus: Kustannuslaskenta
 slugs:
   product: maaralaskentaohjelmisto
   pricing: hinta

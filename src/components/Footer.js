@@ -253,7 +253,7 @@ export const Footer = ({ menu, prefix }) => {
 const FooterDiv = styled.footer`
   flex-direction: column;
   background: ${theme.primary};
-  padding-top: 46px;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
   color: #fff;
