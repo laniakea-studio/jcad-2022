@@ -187,7 +187,7 @@ const Main = styled.main`
     }
     .wrap {
       height: 100vh;
-      ${theme.max1100} {
+      ${theme.max1500} {
         overflow: hidden;
       }
     }
