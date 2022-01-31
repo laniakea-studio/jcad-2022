@@ -944,7 +944,7 @@ const HomePage = ({ pageContext }) => {
                     height: 200px;
                   }
                   .third.row .column:first-child {
-                    height: 450px;
+                    height: 300px;
                     svg.triangle {
                       width: 210% !important;
                       margin-bottom: 50px;

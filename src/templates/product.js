@@ -217,6 +217,11 @@ const Main = styled.main`
       > button:not(:last-child) {
         margin-right: 30px;
       }
+      .white-outlines {
+        background-color: rgba(0, 0, 83, 0.4);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+      }
     }
     #circle-1 {
       position: absolute;
