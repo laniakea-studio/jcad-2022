@@ -23,35 +23,93 @@ export const Footer = ({ menu, prefix }) => {
       ? true
       : false;
 
-  const { yhteystiedot } = useStaticQuery(graphql`
-    query {
-      yhteystiedot: datoCmsYhteystiedot {
-        myyntiJaTilaukset {
-          nimi
-          titteli
-          puhelin
-          email
+  const { yhteystiedotFi, yhteystiedotEn, yhteystiedotSv } =
+    useStaticQuery(graphql`
+      query {
+        yhteystiedotFi: datoCmsYhteystiedot(locale: { eq: "fi" }) {
+          myyntiJaTilaukset {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          asiakaspalvelu {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          asiakkuudet {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          toimipisteet {
+            nimi
+            osoite
+          }
+          ytunnus
         }
-        asiakaspalvelu {
-          nimi
-          titteli
-          puhelin
-          email
+        yhteystiedotEn: datoCmsYhteystiedot(locale: { eq: "en" }) {
+          myyntiJaTilaukset {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          asiakaspalvelu {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          asiakkuudet {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          toimipisteet {
+            nimi
+            osoite
+          }
+          ytunnus
         }
-        asiakkuudet {
-          nimi
-          titteli
-          puhelin
-          email
+        yhteystiedotSv: datoCmsYhteystiedot(locale: { eq: "sv" }) {
+          myyntiJaTilaukset {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          asiakaspalvelu {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          asiakkuudet {
+            nimi
+            titteli
+            puhelin
+            email
+          }
+          toimipisteet {
+            nimi
+            osoite
+          }
+          ytunnus
         }
-        toimipisteet {
-          nimi
-          osoite
-        }
-        ytunnus
       }
-    }
-  `);
+    `);
+
+  const yhteystiedot =
+    locale === "fi"
+      ? yhteystiedotFi
+      : locale === "en"
+      ? yhteystiedotEn
+      : yhteystiedotSv;
 
   return (
     <FooterDiv>
