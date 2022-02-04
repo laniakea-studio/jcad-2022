@@ -192,6 +192,9 @@ const Main = styled.main`
       min-width: 450px;
       ${theme.max900} {
         position: static;
+        min-width: 0;
+        overflow: hidden;
+        width: 100%;
       }
     }
     .Col2 {
