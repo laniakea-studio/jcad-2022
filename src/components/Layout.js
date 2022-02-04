@@ -383,6 +383,8 @@ const MobileMenu = ({
         align-items: center;
         display: flex;
         flex-direction: column;
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
         &.atTop {
           z-index: 1;
           padding-top: 50px;
