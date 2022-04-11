@@ -15,16 +15,12 @@ import { theme } from "../theme/theme";
 
 const valikkoSopimuskausi = [
   { value: 0, label: 12 },
-  { value: -50, label: 24 },
-  { value: -100, label: 36 },
-  { value: -150, label: 48 },
+  { value: -130, label: 48 },
 ];
 
 const extraHinnasto = {
-  12: 279,
-  24: 229,
-  36: 179,
-  48: 129,
+  12: 249,
+  48: 179,
 };
 
 const Pricing = ({ pageContext }) => {
