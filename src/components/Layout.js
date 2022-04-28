@@ -98,7 +98,7 @@ export const Layout = ({ children }) => {
           content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </HelmetDatoCms>
-      <GdprBanner />
+
       <FlatHeader
         menu={menu}
         booking={booking}
