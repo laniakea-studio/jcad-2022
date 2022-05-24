@@ -3,11 +3,6 @@ import { theme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 
-/* Cookiebot Customize */
-#CybotCookiebotDialog .CybotCookiebotDialogHide {
-    display: none;
-}
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
