@@ -36,7 +36,7 @@ const Product = ({ pageContext }) => {
               <div className="rightLine" />
 
               <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
-              <p>{data.product.lead}..</p>
+              <p>{data.product.lead}</p>
               <div className="btns">
                 <button
                   className="btn white"
