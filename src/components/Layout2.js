@@ -186,7 +186,7 @@ const Header = styled.header`
   .btn {
     font-size: 15px;
     font-weight: 600;
-    border: none;
+    border: none !important;
     margin-top: -2px;
   }
   &.flat {
