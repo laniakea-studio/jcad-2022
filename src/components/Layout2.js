@@ -13,25 +13,17 @@ import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
-import { GdprBanner } from "./GdprBanner";
 
-const menuFi = [
-  { title: fi.menu.product, to: fi.slugs.product },
-  { title: fi.menu.pricing, to: fi.slugs.pricing },
-  { title: fi.menu.contact, to: fi.slugs.contact },
-  { title: fi.menu.about, to: fi.slugs.about },
-];
+const menuFi = [{ title: "Tilaa JCAD", to: fi.slugs.product }];
 const menuEn = [
   { title: en.menu.product, to: en.slugs.product },
   { title: en.menu.pricing, to: en.slugs.pricing },
   { title: en.menu.contact, to: en.slugs.contact },
-  { title: en.menu.about, to: en.slugs.about },
 ];
 const menuSv = [
   { title: sv.menu.product, to: sv.slugs.product },
   { title: sv.menu.pricing, to: sv.slugs.pricing },
   { title: sv.menu.contact, to: sv.slugs.contact },
-  { title: sv.menu.about, to: sv.slugs.about },
 ];
 export const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -189,9 +181,14 @@ const Header = styled.header`
   z-index: 10;
   background: none;
   position: absolute;
-  border-bottom: 1px solid #fff;
   height: 130px;
   transition: all 0.4s;
+  .btn {
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    margin-top: -2px;
+  }
   &.flat {
     height: 70px;
 
@@ -256,7 +253,7 @@ const Header = styled.header`
       flex-basis: 140px;
     }
     svg {
-      width: 140px;
+      width: 85px;
       path {
         fill: #fff;
       }
@@ -298,14 +295,13 @@ const Header = styled.header`
     ${theme.tablet} {
       display: none;
     }
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 15px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     > a {
       color: #fff;
       padding: 10px 30px;
-      font-weight: 400;
+      font-weight: 600;
     }
     a.active {
       text-decoration: line-through;

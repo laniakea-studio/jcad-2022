@@ -154,7 +154,8 @@ section {
   .rightLine {
     width: 1px;
     height: 100%;
-    background: #fff;
+    border: none;
+    border-left: 1px dashed #ffffff;
     position: absolute;
     top: 0;
     bottom: 0;

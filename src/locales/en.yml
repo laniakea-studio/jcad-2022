@@ -1,3 +1,26 @@
+prefix: /en/
+slugs:
+  product: product
+  pricing: pricing
+  contact: contact
+  booking: book-demo
+  about: about
+  rekry: rekry
+  webinars: webinars
+  blog: blog
+  references: references
+menu:
+  home: Home
+  product: Product
+  pricing: Pricing
+  contact: Contact
+  booking: Book demo
+  login: Login
+  about: About us
+  rekry: Jobs
+  webinars: Webinars
+  blog: Blog
+  references: References
 btnContact: Contact us
 seeMore: See more
 bookDemo: Book demo
@@ -28,11 +51,6 @@ home:
   referencesTitle: Experiences
   aboutTitle: About us
   ourCustomersTitle: Our customers
-slugs:
-  product: product
-  pricing: pricing
-  contact: contact
-  booking: book-demo
 product:
   activeUsers: Active users
   customerHappiness: of customers recommend
@@ -48,13 +66,6 @@ contactPage:
   billing: Invoicing
   admin: Administration
   people: Personel
-menu:
-  home: Home
-  product: Product
-  pricing: Pricing
-  contact: Contact
-  booking: Book demo
-  login: Login
 contact:
   submitSuccess: Thank you. We'll be in touch!
   fillAllInputs: Please fill all fields.

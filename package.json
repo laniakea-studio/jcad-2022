@@ -34,7 +34,6 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-use-scroll-position": "^2.0.0",
-    "react-vivus": "^0.0.2",
     "scroll-data-hook": "^1.0.4",
     "styled-components": "^5.3.3",
     "vivus": "^0.4.6",

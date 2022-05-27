@@ -1,3 +1,26 @@
+prefix: /
+slugs:
+  product: maaralaskentaohjelmisto
+  pricing: hinta
+  contact: yhteystiedot
+  booking: varaa-demo
+  about: meista
+  rekry: rekry
+  webinars: webinaarit
+  blog: blogi
+  references: referenssit
+menu:
+  home: Etusivu
+  product: Määrälaskentasovellus
+  pricing: Hinnoittelu
+  contact: Yhteys
+  booking: Demo
+  login: Kirjaudu
+  about: Meistä
+  rekry: Rekry
+  webinars: Webinaarit
+  blog: Blogi
+  references: Referenssit
 btnContact: Ota yhteyttä
 seeMore: Tutustu
 bookDemo: Tilaa demo
@@ -21,11 +44,6 @@ pricing:
   users: käyttäjää
   addons: Lisäominaisuudet
   kustannus: Kustannuslaskenta
-slugs:
-  product: maaralaskentaohjelmisto
-  pricing: hinta
-  contact: yhteystiedot
-  booking: varaa-demo
 home:
   slide1title: Tehokkuus
   slide2title: Virheiden torjuminen
@@ -48,13 +66,6 @@ contactPage:
   billing: Verkkolasku
   admin: Hallinto
   people: Henkilöstö
-menu:
-  home: Etusivu
-  product: Määrälaskenta
-  pricing: Hinta
-  contact: Yhteys
-  booking: Demo
-  login: Kirjaudu
 contact:
   submitSuccess: Kiitos, vastaanotimme viestisi. Palaamme pian!
   fillAllInputs: Täytä kaikki kentät.

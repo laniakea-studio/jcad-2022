@@ -5,26 +5,37 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const locales = ["fi", "en", "sv"];
 
-  const pageSlugsFi = {
-    product: "maaralaskentaohjelmisto",
-    pricing: "hinta",
-    contact: "yhteystiedot",
-    booking: "varaa-demo",
-    gdpr: "tietosuojaseloste",
-  };
-  const pageSlugsEn = {
-    product: "product",
-    pricing: "pricing",
-    contact: "contact",
-    booking: "book-demo",
-    gdpr: "gdpr",
-  };
-  const pageSlugsSv = {
-    product: "produkten",
-    pricing: "pris",
-    contact: "kontakter",
-    booking: "boka-demo",
-    gdpr: "gdpr",
+  const slugs = {
+    fi: {
+      product: "maaralaskentaohjelmisto",
+      pricing: "hinta",
+      contact: "yhteystiedot",
+      booking: "varaa-demo",
+      gdpr: "tietosuojaseloste",
+      about: "meista",
+      webinars: "webinaarit",
+      jobs: "rekry",
+    },
+    en: {
+      product: "product",
+      pricing: "pricing",
+      contact: "contact",
+      booking: "book-demo",
+      gdpr: "gdpr",
+      about: "about",
+      webinars: "webinars",
+      jobs: "jobs",
+    },
+    sv: {
+      product: "produkten",
+      pricing: "pris",
+      contact: "kontakter",
+      booking: "boka-demo",
+      gdpr: "gdpr",
+      about: "om-oss",
+      webinars: "webinarer",
+      jobs: "jobb",
+    },
   };
 
   await Promise.all(
@@ -108,6 +119,14 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allWebinaari: allDatoCmsWebinaari(filter: { locale: { eq: "${locale}" } }) {
+        edges {
+          node {
+            title
+            slug
+          }
+        }
+      }
       booking: datoCmsTilaaDemo(locale: { eq: "${locale}" }) {
         title
         content
@@ -160,26 +179,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       const { data } = query;
 
-      // Page Templates
-      const home = path.resolve(`src/templates/home.js`);
-      const product = path.resolve(`src/templates/product.js`);
-      const pricing = path.resolve(`src/templates/pricing.js`);
-      const booking = path.resolve(`src/templates/booking.js`);
-      const article = path.resolve(`src/templates/Article.js`);
-      const contact = path.resolve(`src/templates/contact.js`);
-      const gdpr = path.resolve(`src/templates/gdpr.js`);
-
       const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
-      const pageSlugs =
-        locale === "fi"
-          ? pageSlugsFi
-          : locale === "en"
-          ? pageSlugsEn
-          : pageSlugsSv;
 
       createPage({
         path: `/${prefix}`,
-        component: home,
+        component: path.resolve(`src/templates/home.js`),
         context: {
           locale: locale,
           localeSlugs: {
@@ -196,14 +200,14 @@ exports.createPages = async ({ graphql, actions }) => {
       });
 
       createPage({
-        path: `/${prefix + pageSlugs.product}`,
-        component: product,
+        path: `/${prefix + slugs[locale].product}`,
+        component: path.resolve(`src/templates/product.js`),
         context: {
           locale: locale,
           localeSlugs: {
-            fi: `/${pageSlugsFi.product}`,
-            en: `/en/${pageSlugsEn.product}`,
-            sv: `/sv/${pageSlugsSv.product}`,
+            fi: `/${slugs.fi.product}`,
+            en: `/en/${slugs.en.product}`,
+            sv: `/sv/${slugs.sv.product}`,
           },
           data: {
             product: data.product,
@@ -213,63 +217,111 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
 
-      /*
-    data.allReferences.edges.map((i) => {
-      createPage({
-        path: `/${prefix}reference/${i.node.slug}`,
-        component: article,
-        context: {
-          locale: locale,
-          data: i.node,
-          localeSlugs: {
-            fi: `/reference/${pageSlugsFi.pricing}`,
-            en: `/en/reference/${pageSlugsEn.pricing}`,
-            sv: `/sv/reference/${pageSlugsSv.pricing}`,
+      data.allWebinaari.edges.map((i) => {
+        createPage({
+          path: `/${prefix + slugs[locale].webinars}/${i.node.slug}`,
+          component: path.resolve(`src/templates/Webinar.js`),
+          context: {
+            locale: locale,
+            data: i.node,
+            localeSlugs: {
+              fi: `/${prefix + slugs.fi.webinars}`,
+              en: `/${prefix + slugs.en.webinars}`,
+              sv: `/${prefix + slugs.sv.webinars}`,
+            },
           },
-        },
+        });
       });
-    });
-    */
 
       createPage({
-        path: `/${prefix + pageSlugs.pricing}`,
-        component: pricing,
+        path: `/${prefix + slugs[locale].pricing}`,
+        component: path.resolve(`src/templates/pricing.js`),
         context: {
           locale: locale,
           localeSlugs: {
-            fi: `/${pageSlugsFi.pricing}`,
-            en: `/en/${pageSlugsEn.pricing}`,
-            sv: `/sv/${pageSlugsSv.pricing}`,
+            fi: `/${slugs.fi.pricing}`,
+            en: `/en/${slugs.en.pricing}`,
+            sv: `/sv/${slugs.sv.pricing}`,
           },
           data: { pricing: data.pricing, booking: data.booking },
         },
       });
 
       createPage({
-        path: `/${prefix + pageSlugs.contact}`,
-        component: contact,
+        path: `/${prefix + slugs[locale].contact}`,
+        component: path.resolve(`src/templates/contact.js`),
         context: {
           locale: locale,
           localeSlugs: {
-            fi: `/${pageSlugsFi.contact}`,
-            en: `/en/${pageSlugsEn.contact}`,
-            sv: `/sv/${pageSlugsSv.contact}`,
+            fi: `/${slugs.fi.contact}`,
+            en: `/en/${slugs.en.contact}`,
+            sv: `/sv/${slugs.sv.contact}`,
           },
           data: { yhteystiedot: data.yhteystiedot },
         },
       });
 
       createPage({
-        path: `/${prefix + pageSlugs.gdpr}`,
-        component: gdpr,
+        path: `/${prefix + slugs[locale].gdpr}`,
+        component: path.resolve(`src/templates/gdpr.js`),
         context: {
           locale: locale,
           localeSlugs: {
-            fi: `/${pageSlugsFi.gdpr}`,
-            en: `/en/${pageSlugsEn.gdpr}`,
-            sv: `/sv/${pageSlugsSv.gdpr}`,
+            fi: `/${slugs.fi.gdpr}`,
+            en: `/en/${slugs.en.gdpr}`,
+            sv: `/sv/${slugs.sv.gdpr}`,
           },
           data: data.gdpr,
+        },
+      });
+
+      createPage({
+        path: `/${prefix + slugs[locale].about}`,
+        component: path.resolve(`src/templates/about.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.about}`,
+            en: `/en/${slugs.en.about}`,
+            sv: `/sv/${slugs.sv.about}`,
+          },
+          data: {
+            home: data.home,
+            about: data.about,
+            referenssit: data.allReferences,
+          },
+        },
+      });
+
+      createPage({
+        path: `/${prefix + slugs[locale].webinars}`,
+        component: path.resolve(`src/templates/webinars.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.webinars}`,
+            en: `/en/${slugs.en.webinars}`,
+            sv: `/sv/${slugs.sv.webinars}`,
+          },
+          data: {
+            home: "",
+          },
+        },
+      });
+
+      createPage({
+        path: `/${prefix + slugs[locale].jobs}`,
+        component: path.resolve(`src/templates/jobs.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.jobs}`,
+            en: `/en/${slugs.en.jobs}`,
+            sv: `/sv/${slugs.sv.jobs}`,
+          },
+          data: {
+            home: "",
+          },
         },
       });
     })

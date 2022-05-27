@@ -1,3 +1,26 @@
+prefix: /sv/
+slugs:
+  product: produkten
+  pricing: pris
+  contact: kontakter
+  booking: boka-demo
+  about: om-oss
+  rekry: rekry
+  webinars: webinarer
+  blog: blog
+  references: referenser
+menu:
+  home: Start
+  product: Produkten
+  pricing: Prislista
+  contact: Kontakter
+  booking: Boka demo
+  login: Logga in
+  about: Om oss
+  rekry: Jobb
+  webinars: Webinarer
+  blog: Blog
+  references: Referenser
 btnContact: Kontakta
 seeMore: Se mer
 bookDemo: Boka demo
@@ -28,11 +51,6 @@ home:
   referencesTitle: Erfarenheter
   aboutTitle: Om oss
   ourCustomersTitle: Våra kunder
-slugs:
-  product: produkten
-  pricing: pris
-  contact: kontakter
-  booking: boka-demo
 product:
   activeUsers: Aktiva användare
   customerHappiness: Kundglädje
@@ -48,13 +66,6 @@ contactPage:
   billing: Fakturering
   admin: Administration
   people: Personal
-menu:
-  home: Start
-  product: Produkten
-  pricing: Prislista
-  contact: Kontakter
-  booking: Boka demo
-  login: Logga in
 contact:
   submitSuccess: Tack!
   fillAllInputs: Please fill all fields.
