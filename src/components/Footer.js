@@ -114,13 +114,13 @@ export const Footer = ({ menu, prefix }) => {
   // Animate Logo when in viewport
   const ref = useRef();
   /* Failed to execute 'unobserve' on 'IntersectionObserver': parameter 1 is not of type 'Element'.
-  
+   */
   const inViewport = useIntersection(ref, "-300px");
 
   if (inViewport) {
     ref.current.classList.add("active");
   }
-*/
+
   return (
     <FooterDiv>
       <div className="container">
