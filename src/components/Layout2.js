@@ -108,7 +108,7 @@ export const Layout = ({ children }) => {
               SV
             </Link>
           </div>
-          <Link className="logo" to={`/${prefix[locale]}`}>
+          <Link className="logo" to={`${prefix[locale]}`}>
             <SvgLogo />
           </Link>
           <nav className="mainNav">

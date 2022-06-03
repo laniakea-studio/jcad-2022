@@ -143,6 +143,227 @@ export const AnimatedBox = ({ index }) => {
           </svg>
         </>
       )}
+      {index === 2 && (
+        <svg
+          width="267"
+          height="142"
+          viewBox="0 0 267 142"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="0.5"
+            y="0.5"
+            width="56"
+            height="66"
+            stroke="white"
+            class="svg-elem-1"
+          ></rect>
+          <rect
+            x="67.5"
+            y="0.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-2"
+          ></rect>
+          <rect
+            x="67.5"
+            y="20.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-3"
+          ></rect>
+          <rect
+            x="67.5"
+            y="38.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-4"
+          ></rect>
+          <rect
+            x="67.5"
+            y="55.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-5"
+          ></rect>
+          <rect
+            x="143.5"
+            y="0.5"
+            width="56"
+            height="66"
+            stroke="white"
+            class="svg-elem-6"
+          ></rect>
+          <rect
+            x="210.5"
+            y="0.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-7"
+          ></rect>
+          <rect
+            x="210.5"
+            y="20.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-8"
+          ></rect>
+          <rect
+            x="210.5"
+            y="38.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-9"
+          ></rect>
+          <rect
+            x="210.5"
+            y="55.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-10"
+          ></rect>
+          <rect
+            x="143.5"
+            y="75.5"
+            width="56"
+            height="66"
+            stroke="white"
+            class="svg-elem-11"
+          ></rect>
+          <rect
+            x="210.5"
+            y="75.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-12"
+          ></rect>
+          <rect
+            x="210.5"
+            y="95.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-13"
+          ></rect>
+          <rect
+            x="210.5"
+            y="113.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-14"
+          ></rect>
+          <rect
+            x="210.5"
+            y="130.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-15"
+          ></rect>
+          <rect
+            x="0.5"
+            y="75.5"
+            width="56"
+            height="66"
+            stroke="white"
+            class="svg-elem-16"
+          ></rect>
+          <rect
+            x="67.5"
+            y="75.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-17"
+          ></rect>
+          <rect
+            x="67.5"
+            y="95.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-18"
+          ></rect>
+          <rect
+            x="67.5"
+            y="113.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-19"
+          ></rect>
+          <rect
+            x="67.5"
+            y="130.5"
+            width="56"
+            height="11"
+            stroke="white"
+            class="svg-elem-20"
+          ></rect>
+        </svg>
+      )}
+      {index === 3 && (
+        <svg
+          width="283"
+          height="142"
+          viewBox="0 0 283 142"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="282.5"
+            y="0.5"
+            width="141"
+            height="282"
+            transform="rotate(90 282.5 0.5)"
+            stroke="white"
+            class="svg-elem-1"
+          ></rect>
+          <rect
+            x="91.5"
+            y="23.5"
+            width="95"
+            height="72"
+            transform="rotate(90 91.5 23.5)"
+            stroke="white"
+            class="svg-elem-2"
+          ></rect>
+          <rect
+            x="265.5"
+            y="23.5"
+            width="19"
+            height="165"
+            transform="rotate(90 265.5 23.5)"
+            stroke="white"
+            class="svg-elem-3"
+          ></rect>
+          <rect
+            x="265.5"
+            y="99.5"
+            width="19"
+            height="165"
+            transform="rotate(90 265.5 99.5)"
+            stroke="white"
+            class="svg-elem-4"
+          ></rect>
+          <path
+            d="M175 55.1436L199 69L175 82.8564L175 55.1436Z"
+            stroke="white"
+            class="svg-elem-5"
+          ></path>
+        </svg>
+      )}
       {index === 4 && (
         <svg
           width="287"
@@ -194,6 +415,72 @@ export const AnimatedBox = ({ index }) => {
             stroke="white"
             class="svg-elem-7"
           ></path>
+        </svg>
+      )}
+      {index === 5 && (
+        <svg
+          width="278"
+          height="119"
+          viewBox="0 0 278 119"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="139.036"
+            cy="59.0356"
+            r="12.935"
+            transform="rotate(-45 139.036 59.0356)"
+            stroke="white"
+            class="svg-elem-1"
+          ></circle>
+          <circle
+            cx="139.036"
+            cy="59.0356"
+            r="41.2445"
+            transform="rotate(-45 139.036 59.0356)"
+            stroke="white"
+            class="svg-elem-2"
+          ></circle>
+          <circle
+            cx="139.036"
+            cy="59.0356"
+            r="29.1985"
+            transform="rotate(-45 139.036 59.0356)"
+            stroke="white"
+            class="svg-elem-3"
+          ></circle>
+          <circle
+            cx="42"
+            cy="59.0356"
+            r="12.935"
+            transform="rotate(-45 42 59.0356)"
+            stroke="white"
+            class="svg-elem-4"
+          ></circle>
+          <circle
+            cx="42"
+            cy="59.0356"
+            r="29.1985"
+            transform="rotate(-45 42 59.0356)"
+            stroke="white"
+            class="svg-elem-5"
+          ></circle>
+          <circle
+            cx="236"
+            cy="59.0356"
+            r="12.935"
+            transform="rotate(-45 236 59.0356)"
+            stroke="white"
+            class="svg-elem-6"
+          ></circle>
+          <circle
+            cx="236"
+            cy="59.0356"
+            r="29.1985"
+            transform="rotate(-45 236 59.0356)"
+            stroke="white"
+            class="svg-elem-7"
+          ></circle>
         </svg>
       )}
     </Div>

@@ -115,6 +115,16 @@ exports.createPages = async ({ graphql, actions }) => {
         arvosanat
         kuvaajanTeksti
       }
+      jobs: datoCmsRekry(locale: { eq: "${locale}" }) {
+        title
+        intro
+        positio {
+          content
+        }
+        liikevaihto
+        employees
+        askMore
+      }
       allReferences: allDatoCmsReferenssi(filter: { locale: { eq: "${locale}" } }) {
         edges {
           node {
@@ -335,7 +345,7 @@ exports.createPages = async ({ graphql, actions }) => {
             sv: `/sv/${slugs.sv.jobs}`,
           },
           data: {
-            home: "",
+            page: data.jobs,
           },
         },
       });
