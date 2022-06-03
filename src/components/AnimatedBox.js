@@ -5,96 +5,143 @@ export const AnimatedBox = ({ index }) => {
   return (
     <Div>
       {index === 0 && (
-        <svg
-          width="292"
-          height="142"
-          viewBox="0 0 292 142"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <line
-            x1="292"
-            y1="71.5"
-            y2="71.5"
-            stroke="white"
-            class="svg-elem-1"
-          ></line>
-          <rect
-            x="291.5"
-            y="0.5"
-            width="141"
-            height="290"
-            transform="rotate(90 291.5 0.5)"
-            stroke="white"
-            class="svg-elem-2"
-          ></rect>
-          <circle
-            cx="147"
-            cy="71"
-            r="12.935"
-            transform="rotate(-45 147 71)"
-            stroke="white"
-            class="svg-elem-3"
-          ></circle>
-          <line
-            x1="146.5"
-            y1="2.18557e-08"
-            x2="146.5"
-            y2="142"
-            stroke="white"
-            class="svg-elem-4"
-          ></line>
-        </svg>
+        <>
+          <svg
+            className="Sleep"
+            width="292"
+            height="142"
+            viewBox="0 0 292 142"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <line
+              x1="292"
+              y1="71.5"
+              y2="71.5"
+              stroke="white"
+              class="svg-elem-1"
+            ></line>
+            <rect
+              x="291.5"
+              y="0.5"
+              width="141"
+              height="290"
+              transform="rotate(90 291.5 0.5)"
+              stroke="white"
+              class="svg-elem-2"
+            ></rect>
+            <circle
+              cx="147"
+              cy="71"
+              r="12.935"
+              transform="rotate(-45 147 71)"
+              stroke="white"
+              class="svg-elem-3"
+            ></circle>
+            <line
+              x1="146.5"
+              y1="2.18557e-08"
+              x2="146.5"
+              y2="142"
+              stroke="white"
+              class="svg-elem-4"
+            ></line>
+          </svg>
+          <svg
+            className="Animate"
+            width="292"
+            height="142"
+            viewBox="0 0 292 142"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <line
+              x1="292"
+              y1="71.5"
+              y2="71.5"
+              stroke="white"
+              class="svg-elem-1"
+            ></line>
+            <rect
+              x="291.5"
+              y="0.5"
+              width="141"
+              height="290"
+              transform="rotate(90 291.5 0.5)"
+              stroke="white"
+              class="svg-elem-2"
+            ></rect>
+            <circle
+              cx="147"
+              cy="71"
+              r="12.935"
+              transform="rotate(-45 147 71)"
+              stroke="white"
+              class="svg-elem-3"
+            ></circle>
+            <line
+              x1="146.5"
+              y1="2.18557e-08"
+              x2="146.5"
+              y2="142"
+              stroke="white"
+              class="svg-elem-4"
+            ></line>
+          </svg>
+        </>
       )}
       {index === 1 && (
-        <svg
-          width="228"
-          height="119"
-          viewBox="0 0 228 119"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="14"
-            cy="55"
-            r="12.935"
-            transform="rotate(-45 14 55)"
-            stroke="white"
-            class="svg-elem-1"
-          ></circle>
-          <circle
-            cx="214"
-            cy="55"
-            r="12.935"
-            transform="rotate(-45 214 55)"
-            stroke="white"
-            class="svg-elem-2"
-          ></circle>
-          <circle
-            cx="111.036"
-            cy="59.0361"
-            r="41.2445"
-            transform="rotate(-45 111.036 59.0361)"
-            stroke="white"
-            class="svg-elem-3"
-          ></circle>
-          <line
-            x1="63.4599"
-            y1="107.299"
-            x2="157.222"
-            y2="13.5363"
-            stroke="white"
-            class="svg-elem-4"
-          ></line>
-          <line
-            x1="157.121"
-            y1="104.534"
-            x2="63.3586"
-            y2="10.7717"
-            stroke="white"
-            class="svg-elem-5"
-          ></line>
-        </svg>
+        <>
+          <svg
+            className="Animate"
+            width="228"
+            height="119"
+            viewBox="0 0 228 119"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="14"
+              cy="55"
+              r="12.935"
+              transform="rotate(-45 14 55)"
+              stroke="white"
+              class="svg-elem-1"
+            ></circle>
+            <circle
+              cx="214"
+              cy="55"
+              r="12.935"
+              transform="rotate(-45 214 55)"
+              stroke="white"
+              class="svg-elem-2"
+            ></circle>
+            <circle
+              cx="111.036"
+              cy="59.0361"
+              r="41.2445"
+              transform="rotate(-45 111.036 59.0361)"
+              stroke="white"
+              class="svg-elem-3"
+            ></circle>
+            <line
+              x1="63.4599"
+              y1="107.299"
+              x2="157.222"
+              y2="13.5363"
+              stroke="white"
+              class="svg-elem-4"
+            ></line>
+            <line
+              x1="157.121"
+              y1="104.534"
+              x2="63.3586"
+              y2="10.7717"
+              stroke="white"
+              class="svg-elem-5"
+            ></line>
+          </svg>
+        </>
       )}
       {index === 4 && (
         <svg

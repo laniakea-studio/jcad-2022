@@ -3,35 +3,19 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { Layout } from "../components/Layout2";
-import {
-  SvgCircle,
-  SvgDashedLine,
-  SvgHaircross,
-} from "../components/SvgCollection";
 import { theme } from "../theme/theme";
-import scrollTo from "gatsby-plugin-smoothscroll";
 import { AnimatedBox } from "../components/AnimatedBox";
+import { fullMenu, prefix } from "../constants/slugs";
 
-const HomePage = ({ pageContext }) => {
+// TODO: Magnetic button https://codesandbox.io/s/tgowd?file=/src/components/Button.js
+
+const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { data } = pageContext;
-
-  const prefix = text.prefix;
-  const gridItems = [
-    { title: "Määrälaskentaohjelmisto", slug: text.slugs.product },
-    { title: "Hinoittelu", slug: text.slugs.pricing },
-    { title: "Yhteystiedot", slug: text.slugs.contact },
-    { title: "Webinaarit", slug: text.slugs.webinars },
-    { title: "Meistä", slug: text.slugs.about },
-    { title: "Rekry", slug: text.slugs.rekry },
-  ];
-
-  console.log({ gridItems, prefix });
-
+  console.log(prefix[locale]);
   return (
     <>
       <Layout locale={pageContext.locale} transparent={false}>
@@ -62,11 +46,11 @@ const HomePage = ({ pageContext }) => {
             </div>
             <div class="DashLine" />
             <div className="Grid">
-              {gridItems.map((i, index) => (
+              {fullMenu[locale].map((i, index) => (
                 <Link
                   id={`Link-${index}`}
                   className="Link"
-                  to={prefix + i.slug}
+                  to={prefix[locale] + i.slug}
                 >
                   <header className="row">
                     <span>{i.title}</span>
@@ -83,14 +67,13 @@ const HomePage = ({ pageContext }) => {
   );
 };
 
-export default HomePage;
+export default Page;
 
 const Main = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
   background: ${theme.primary};
-  padding-bottom: 160px;
   .DashLine {
     position: absolute;
     left: 0;
@@ -152,14 +135,15 @@ const Main = styled.main`
   }
   .Grid {
     margin-top: 60px;
+    margin-bottom: 60px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     @media (max-width: 1000px) {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     @media (max-width: 700px) {
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(1, minmax(0, 1fr));
     }
   }
   .Link {
@@ -183,40 +167,49 @@ const Main = styled.main`
  * W. https://svgartista.net
  **************************************************/
   #Link-0 {
-    svg .svg-elem-1 {
-      stroke-dashoffset: 294px;
-      stroke-dasharray: 294px;
-      transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    svg.Sleep {
+      display: none;
+      position: absolute;
+      opacity: 0.3;
     }
-    svg .svg-elem-2 {
-      stroke-dashoffset: 864px;
-      stroke-dasharray: 864px;
-      transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-        0.12s;
+    svg.Animate {
+      position: absolute;
+      .svg-elem-1 {
+        stroke-dashoffset: 294px;
+        stroke-dasharray: 294px;
+        transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
+          0s;
+      }
+      .svg-elem-2 {
+        stroke-dashoffset: 864px;
+        stroke-dasharray: 864px;
+        transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
+          0.12s;
+      }
+      .svg-elem-3 {
+        stroke-dashoffset: 83.27300194836795px;
+        stroke-dasharray: 83.27300194836795px;
+        transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
+          0.24s;
+      }
+      .svg-elem-4 {
+        stroke-dashoffset: 144px;
+        stroke-dasharray: 144px;
+        transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
+          0.36s;
+      }
     }
-    svg .svg-elem-3 {
-      stroke-dashoffset: 83.27300194836795px;
-      stroke-dasharray: 83.27300194836795px;
-      transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-        0.24s;
-    }
-    svg .svg-elem-4 {
-      stroke-dashoffset: 144px;
-      stroke-dasharray: 144px;
-      transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-        0.36s;
-    }
-    &:hover {
-      svg .svg-elem-1 {
+    &:hover .Animate {
+      .svg-elem-1 {
         stroke-dashoffset: 0;
       }
-      svg .svg-elem-2 {
+      .svg-elem-2 {
         stroke-dashoffset: 0;
       }
-      svg .svg-elem-3 {
+      .svg-elem-3 {
         stroke-dashoffset: 0;
       }
-      svg .svg-elem-4 {
+      .svg-elem-4 {
         stroke-dashoffset: 0;
       }
     }
@@ -282,7 +275,7 @@ const Main = styled.main`
       fill: transparent;
       transition: stroke-dashoffset 0.4s cubic-bezier(0.47, 0, 0.745, 0.715)
           0.12s,
-        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.1s;
+        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
     }
     svg .svg-elem-3 {
       stroke-dashoffset: 883.2762451171875px;
@@ -290,7 +283,7 @@ const Main = styled.main`
       fill: transparent;
       transition: stroke-dashoffset 0.4s cubic-bezier(0.47, 0, 0.745, 0.715)
           0.24s,
-        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
+        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.1s;
     }
     svg .svg-elem-4 {
       stroke-dashoffset: 288.6121520996094px;
@@ -298,7 +291,7 @@ const Main = styled.main`
       fill: transparent;
       transition: stroke-dashoffset 0.4s cubic-bezier(0.47, 0, 0.745, 0.715)
           0.36s,
-        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.30000000000000004s;
+        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
     }
     svg .svg-elem-5 {
       stroke-dashoffset: 669.257080078125px;
@@ -306,21 +299,21 @@ const Main = styled.main`
       fill: transparent;
       transition: stroke-dashoffset 0.4s cubic-bezier(0.47, 0, 0.745, 0.715)
           0.48s,
-        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s;
+        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.3s;
     }
     svg .svg-elem-6 {
       stroke-dashoffset: 226.07794189453125px;
       stroke-dasharray: 226.07794189453125px;
       transition: stroke-dashoffset 0.4s cubic-bezier(0.47, 0, 0.745, 0.715)
           0.6s,
-        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s;
+        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s;
     }
     svg .svg-elem-7 {
       stroke-dashoffset: 404.1275634765625px;
       stroke-dasharray: 404.1275634765625px;
       transition: stroke-dashoffset 0.4s cubic-bezier(0.47, 0, 0.745, 0.715)
           0.72s,
-        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.6000000000000001s;
+        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s;
     }
     &:hover {
       svg .svg-elem-1 {

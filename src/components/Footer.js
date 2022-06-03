@@ -3,16 +3,14 @@ import React, { useContext, useRef } from "react";
 import styled from "styled-components";
 import svgJcadLogo from "../assets/svgJcad.svg";
 import { LocaleContext } from "../contexts/LocaleContext";
-import en from "../locales/en.yml";
-import fi from "../locales/fi.yml";
-import sv from "../locales/sv.yml";
+import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 import { SvgLogoFooter } from "./SvgCollection.js";
 import { useIntersection } from "../hooks/useIntersection";
 
 export const Footer = ({ menu, prefix }) => {
-  const { locale, localeSlugs } = useContext(LocaleContext);
-  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+  const { locale } = useContext(LocaleContext);
+  const text = snippet[locale];
   const path = typeof window !== "undefined" ? window.location.pathname : "";
   const isContactPage =
     path === "/yhteystiedot"
@@ -113,241 +111,21 @@ export const Footer = ({ menu, prefix }) => {
 
   // Animate Logo when in viewport
   const ref = useRef();
-  /* Failed to execute 'unobserve' on 'IntersectionObserver': parameter 1 is not of type 'Element'.
-   */
   const inViewport = useIntersection(ref, "-300px");
-
   if (inViewport) {
     ref.current.classList.add("active");
   }
 
   return (
     <FooterDiv>
-      <div className="container">
-        <div className="content  wrap">
-          <SvgLogoFrame className="logoFrame" />
-          <div className="row header">
-            <div>
-              <SvgLogoFooter />
-            </div>
-            <div className="FooterMenu">
-              {menu.map((i) => (
-                <Link
-                  to={`/${prefix + i.to}`}
-                  activeClassName="active"
-                  style={{ marginTop: 8 }}
-                >
-                  {i.title}
-                </Link>
-              ))}
-            </div>
-            <div>
-              <a
-                className="backToTop"
-                href="#intro"
-                onClick={(e) => window.scrollTo(0, 0)}
-              >
-                {text.footer.buttonBackToTop}
-              </a>
-            </div>
+      <div className="wrap padding">
+        <div className="leftLine" />
+        <div className="rightLine" />
+        <div className="row header">
+          <div>
+            <SvgLogoFooter />
           </div>
-
-          {!isContactPage && (
-            <div className="row contacts">
-              <div className="col">
-                <div className="titleBox">
-                  <h3>{text.footer.sales}</h3>
-                </div>
-                <p>
-                  {yhteystiedot.myyntiJaTilaukset[0].nimi && (
-                    <>
-                      <strong>{yhteystiedot.myyntiJaTilaukset[0].nimi}</strong>
-                      <br />
-                    </>
-                  )}
-                  {yhteystiedot.myyntiJaTilaukset[0].titteli && (
-                    <>
-                      {yhteystiedot.myyntiJaTilaukset[0].titteli} <br />
-                    </>
-                  )}
-                  {yhteystiedot.myyntiJaTilaukset[0].puhelin && (
-                    <>
-                      <a
-                        href={`tel:${yhteystiedot.myyntiJaTilaukset[0].puhelin.replace(
-                          /\s+/g,
-                          ""
-                        )}`}
-                      >
-                        {yhteystiedot.myyntiJaTilaukset[0].puhelin}
-                      </a>
-                      <br />
-                    </>
-                  )}
-                  <a
-                    href={`mailto:${yhteystiedot.myyntiJaTilaukset[0].email.replace(
-                      /\s+/g,
-                      ""
-                    )}`}
-                  >
-                    {yhteystiedot.myyntiJaTilaukset[0].email}
-                  </a>
-                </p>
-              </div>
-              <div className="col">
-                <div className="titleBox">
-                  <h3>{text.footer.support}</h3>
-                </div>
-                <p>
-                  {yhteystiedot.asiakaspalvelu[0].nimi && (
-                    <>
-                      <strong>{yhteystiedot.asiakaspalvelu[0].nimi}</strong>
-                      <br />
-                    </>
-                  )}
-                  {yhteystiedot.asiakaspalvelu[0].titteli && (
-                    <>
-                      {yhteystiedot.asiakaspalvelu[0].titteli} <br />
-                    </>
-                  )}
-                  {yhteystiedot.asiakaspalvelu[0].puhelin && (
-                    <>
-                      <a
-                        href={`tel:${yhteystiedot.asiakaspalvelu[0].puhelin.replace(
-                          /\s+/g,
-                          ""
-                        )}`}
-                      >
-                        {yhteystiedot.asiakaspalvelu[0].puhelin}
-                      </a>
-                      <br />
-                    </>
-                  )}
-                  <a
-                    href={`mailto:${yhteystiedot.asiakaspalvelu[0].email.replace(
-                      /\s+/g,
-                      ""
-                    )}`}
-                  >
-                    {yhteystiedot.asiakaspalvelu[0].email}
-                  </a>
-                </p>
-              </div>
-              <div className="col">
-                <div className="titleBox">
-                  <h3>{text.footer.accounts}</h3>
-                </div>
-                <p>
-                  {yhteystiedot.asiakkuudet[0].nimi && (
-                    <>
-                      <strong>{yhteystiedot.asiakkuudet[0].nimi}</strong>
-                      <br />
-                    </>
-                  )}
-                  {yhteystiedot.asiakkuudet[0].titteli && (
-                    <>
-                      {yhteystiedot.asiakkuudet[0].titteli} <br />
-                    </>
-                  )}
-                  {yhteystiedot.asiakkuudet[0].puhelin && (
-                    <>
-                      <a
-                        href={`tel:${yhteystiedot.asiakkuudet[0].puhelin.replace(
-                          /\s+/g,
-                          ""
-                        )}`}
-                      >
-                        {yhteystiedot.asiakkuudet[0].puhelin}
-                      </a>
-                      <br />
-                    </>
-                  )}
-                  <a
-                    href={`mailto:${yhteystiedot.asiakkuudet[0].email.replace(
-                      /\s+/g,
-                      ""
-                    )}`}
-                  >
-                    {yhteystiedot.asiakkuudet[0].email}
-                  </a>
-                </p>
-              </div>
-            </div>
-          )}
-
-          <div className="row logoBox">
-            <svg
-              ref={ref}
-              class="svgJcad"
-              xmlns="http://www.w3.org/2000/svg"
-              width="100%"
-              height="100%"
-              viewBox="0 0 795 266"
-            >
-              <g transform="translate(0 104.006)">
-                <g transform="translate(0 -103.506)">
-                  <g transform="translate(610.402 0.004)">
-                    <path
-                      d="M81.4,93.4a55.238,55.238,0,0,1-55.189,55.168h-29.3V-11.655h29.3A55.239,55.239,0,0,1,81.4,43.516ZM26.208-59.98h-78.48l.854,48.323V196.9H26.208a103.62,103.62,0,0,0,103.5-103.5V43.516a103.619,103.619,0,0,0-103.5-103.5"
-                      transform="translate(52.272 59.98)"
-                      fill="none"
-                      stroke="#fff"
-                      stroke-width=""
-                      class="svg-elem-1"
-                    ></path>
-                  </g>
-                  <g transform="translate(169.151 0.003)">
-                    <path
-                      d="M0,63.028V112.9A103.621,103.621,0,0,0,103.507,216.4h46.939l3.514-48.32H103.507A55.249,55.249,0,0,1,48.32,112.9V63.028A55.249,55.249,0,0,1,103.507,7.844h53.115l3.511-48.32H103.507A103.62,103.62,0,0,0,0,63.028"
-                      transform="translate(0 40.476)"
-                      fill="none"
-                      stroke="#fff"
-                      stroke-width="1"
-                      class="svg-elem-2"
-                    ></path>
-                  </g>
-                  <g transform="translate(0.001 0)">
-                    <path
-                      d="M48.836,98.15A55.249,55.249,0,0,1-6.348,153.334H-31.362l.854,48.318h24.16A103.621,103.621,0,0,0,97.159,98.15V-63.031H47.982L48.836-14.7Z"
-                      transform="translate(31.362 63.031)"
-                      fill="none"
-                      stroke="#fff"
-                      stroke-width="1"
-                      class="svg-elem-3"
-                    ></path>
-                  </g>
-                </g>
-                <g transform="translate(355.921 -103.506)">
-                  <path
-                    d="M35.684,0l-8.17,48.328-50.43,208.55H30.265l10.213-57.572h94.076l10.185,57.572h53.187L147.565,48.517,139.352,0Zm41.7,48.328H97.649L124.5,157.013H50.534Z"
-                    transform="translate(22.916)"
-                    fill="none"
-                    stroke="#fff"
-                    stroke-width="1"
-                    class="svg-elem-4"
-                  ></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <div className="row">
-            <p className="copy">
-              © {new Date().getFullYear()} {text.footer.companyName}.{" "}
-              <Link
-                to={
-                  locale === "fi"
-                    ? "/tietosuojaseloste"
-                    : locale === "en"
-                    ? "/en/gdpr"
-                    : "/sv/gdpr"
-                }
-              >
-                {text.footer.linkGdpr}
-              </Link>
-              . {yhteystiedot.ytunnus}
-            </p>
-          </div>
-          <div className="backTop">
-            <div />
+          <div>
             <a
               className="backToTop"
               href="#intro"
@@ -356,6 +134,211 @@ export const Footer = ({ menu, prefix }) => {
               {text.footer.buttonBackToTop}
             </a>
           </div>
+        </div>
+
+        {!isContactPage && (
+          <div className="row contacts">
+            <div className="col">
+              <div className="titleBox">
+                <h3>{text.footer.sales}</h3>
+              </div>
+              <p>
+                {yhteystiedot.myyntiJaTilaukset[0].nimi && (
+                  <>
+                    <strong>{yhteystiedot.myyntiJaTilaukset[0].nimi}</strong>
+                    <br />
+                  </>
+                )}
+                {yhteystiedot.myyntiJaTilaukset[0].titteli && (
+                  <>
+                    {yhteystiedot.myyntiJaTilaukset[0].titteli} <br />
+                  </>
+                )}
+                {yhteystiedot.myyntiJaTilaukset[0].puhelin && (
+                  <>
+                    <a
+                      href={`tel:${yhteystiedot.myyntiJaTilaukset[0].puhelin.replace(
+                        /\s+/g,
+                        ""
+                      )}`}
+                    >
+                      {yhteystiedot.myyntiJaTilaukset[0].puhelin}
+                    </a>
+                    <br />
+                  </>
+                )}
+                <a
+                  href={`mailto:${yhteystiedot.myyntiJaTilaukset[0].email.replace(
+                    /\s+/g,
+                    ""
+                  )}`}
+                >
+                  {yhteystiedot.myyntiJaTilaukset[0].email}
+                </a>
+              </p>
+            </div>
+            <div className="col">
+              <div className="titleBox">
+                <h3>{text.footer.support}</h3>
+              </div>
+              <p>
+                {yhteystiedot.asiakaspalvelu[0].nimi && (
+                  <>
+                    <strong>{yhteystiedot.asiakaspalvelu[0].nimi}</strong>
+                    <br />
+                  </>
+                )}
+                {yhteystiedot.asiakaspalvelu[0].titteli && (
+                  <>
+                    {yhteystiedot.asiakaspalvelu[0].titteli} <br />
+                  </>
+                )}
+                {yhteystiedot.asiakaspalvelu[0].puhelin && (
+                  <>
+                    <a
+                      href={`tel:${yhteystiedot.asiakaspalvelu[0].puhelin.replace(
+                        /\s+/g,
+                        ""
+                      )}`}
+                    >
+                      {yhteystiedot.asiakaspalvelu[0].puhelin}
+                    </a>
+                    <br />
+                  </>
+                )}
+                <a
+                  href={`mailto:${yhteystiedot.asiakaspalvelu[0].email.replace(
+                    /\s+/g,
+                    ""
+                  )}`}
+                >
+                  {yhteystiedot.asiakaspalvelu[0].email}
+                </a>
+              </p>
+            </div>
+            <div className="col">
+              <div className="titleBox">
+                <h3>{text.footer.accounts}</h3>
+              </div>
+              <p>
+                {yhteystiedot.asiakkuudet[0].nimi && (
+                  <>
+                    <strong>{yhteystiedot.asiakkuudet[0].nimi}</strong>
+                    <br />
+                  </>
+                )}
+                {yhteystiedot.asiakkuudet[0].titteli && (
+                  <>
+                    {yhteystiedot.asiakkuudet[0].titteli} <br />
+                  </>
+                )}
+                {yhteystiedot.asiakkuudet[0].puhelin && (
+                  <>
+                    <a
+                      href={`tel:${yhteystiedot.asiakkuudet[0].puhelin.replace(
+                        /\s+/g,
+                        ""
+                      )}`}
+                    >
+                      {yhteystiedot.asiakkuudet[0].puhelin}
+                    </a>
+                    <br />
+                  </>
+                )}
+                <a
+                  href={`mailto:${yhteystiedot.asiakkuudet[0].email.replace(
+                    /\s+/g,
+                    ""
+                  )}`}
+                >
+                  {yhteystiedot.asiakkuudet[0].email}
+                </a>
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="row logoBox">
+          <svg
+            ref={ref}
+            class="svgJcad"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 795 266"
+          >
+            <g transform="translate(0 104.006)">
+              <g transform="translate(0 -103.506)">
+                <g transform="translate(610.402 0.004)">
+                  <path
+                    d="M81.4,93.4a55.238,55.238,0,0,1-55.189,55.168h-29.3V-11.655h29.3A55.239,55.239,0,0,1,81.4,43.516ZM26.208-59.98h-78.48l.854,48.323V196.9H26.208a103.62,103.62,0,0,0,103.5-103.5V43.516a103.619,103.619,0,0,0-103.5-103.5"
+                    transform="translate(52.272 59.98)"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-width=""
+                    class="svg-elem-1"
+                  ></path>
+                </g>
+                <g transform="translate(169.151 0.003)">
+                  <path
+                    d="M0,63.028V112.9A103.621,103.621,0,0,0,103.507,216.4h46.939l3.514-48.32H103.507A55.249,55.249,0,0,1,48.32,112.9V63.028A55.249,55.249,0,0,1,103.507,7.844h53.115l3.511-48.32H103.507A103.62,103.62,0,0,0,0,63.028"
+                    transform="translate(0 40.476)"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-width="1"
+                    class="svg-elem-2"
+                  ></path>
+                </g>
+                <g transform="translate(0.001 0)">
+                  <path
+                    d="M48.836,98.15A55.249,55.249,0,0,1-6.348,153.334H-31.362l.854,48.318h24.16A103.621,103.621,0,0,0,97.159,98.15V-63.031H47.982L48.836-14.7Z"
+                    transform="translate(31.362 63.031)"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-width="1"
+                    class="svg-elem-3"
+                  ></path>
+                </g>
+              </g>
+              <g transform="translate(355.921 -103.506)">
+                <path
+                  d="M35.684,0l-8.17,48.328-50.43,208.55H30.265l10.213-57.572h94.076l10.185,57.572h53.187L147.565,48.517,139.352,0Zm41.7,48.328H97.649L124.5,157.013H50.534Z"
+                  transform="translate(22.916)"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-width="1"
+                  class="svg-elem-4"
+                ></path>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div className="row">
+          <p className="copy">
+            © {new Date().getFullYear()} {text.footer.companyName}.{" "}
+            <Link
+              to={
+                locale === "fi"
+                  ? "/tietosuojaseloste"
+                  : locale === "en"
+                  ? "/en/gdpr"
+                  : "/sv/gdpr"
+              }
+            >
+              {text.footer.linkGdpr}
+            </Link>
+            . {yhteystiedot.ytunnus}
+          </p>
+        </div>
+        <div className="backTop">
+          <div />
+          <a
+            className="backToTop"
+            href="#intro"
+            onClick={(e) => window.scrollTo(0, 0)}
+          >
+            {text.footer.buttonBackToTop}
+          </a>
         </div>
       </div>
     </FooterDiv>
@@ -370,18 +353,12 @@ const FooterDiv = styled.footer`
   padding-right: 0;
   color: #fff;
   text-align: left;
+  border-top: 0.8px dashed #fff;
   .content {
     position: relative;
     overflow: hidden;
-    > div {
-      z-index: 1;
-      position: relative;
-    }
   }
-  .logoFrame {
-    position: absolute;
-    width: 100%;
-  }
+
   .logoBox {
     display: flex;
     justify-content: center;
@@ -401,36 +378,18 @@ const FooterDiv = styled.footer`
   }
 
   .row.header {
-    display: flex;
     justify-content: space-between;
-    margin-top: 100px;
+    padding-top: 80px;
     margin-bottom: 30px;
-    margin-left: 100px;
-    margin-right: 100px;
     > div {
       display: flex;
       flex: 1;
     }
-    .FooterMenu {
-      display: none;
-      text-align: center;
-      width: 100%;
-      align-items: center;
-      flex-direction: column;
-      margin-top: -13px;
-      > a {
-        display: inline-flex;
-        font-size: 18px;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-    }
+
     a.backToTop {
       margin-left: auto;
       text-transform: uppercase;
-      margin-right: 180px;
+
       font-weight: 700;
       font-size: 19px;
     }
@@ -474,10 +433,7 @@ const FooterDiv = styled.footer`
 
   .row.contacts {
     min-height: 220px;
-    border-bottom: 1px solid #fff;
-    padding-left: 50px;
-    padding-right: 50px;
-    ${theme.max900} {
+    border-bottom: 0.8px dashed #fff ${theme.max900} {
       padding-left: 0;
       padding-right: 0;
     }
@@ -489,12 +445,10 @@ const FooterDiv = styled.footer`
     }
     .titleBox {
       display: flex;
-      justify-content: center;
+      //justify-content: center;
       align-items: center;
-      border: 1px solid #fff;
+      //border: 1px solid #fff;
       height: 68px;
-      padding-left: 40px;
-      padding-right: 40px;
       margin-bottom: 20px;
       h3 {
         font-size: 20px;
@@ -527,7 +481,7 @@ const FooterDiv = styled.footer`
       }
 
       .titleBox h3 {
-        font-size: 28px;
+        font-size: 20px;
         text-align: left;
       }
       .titleBox {
@@ -537,14 +491,14 @@ const FooterDiv = styled.footer`
         height: auto;
         width: auto;
         justify-content: flex-start;
-        padding-left: 20px;
+        padding-left: 0;
         padding-right: 48px;
         padding-top: 5px;
         padding-bottom: 5px;
         max-width: 95%;
       }
       p {
-        padding-left: 20px;
+        padding-left: 0;
       }
     }
   }
@@ -552,20 +506,12 @@ const FooterDiv = styled.footer`
     svg.logoFrame {
       display: none;
     }
-    border-top: 1px solid #fff;
-    .row.contacts {
-      border-bottom: none;
-    }
   }
   @media (max-width: 900px) {
     .row.header,
     .row.contacts {
       margin-left: 0;
       margin-right: 0;
-    }
-    .row.header {
-      padding-left: 20px;
-      padding-right: 20px;
     }
   }
   @media (max-width: 900px) {

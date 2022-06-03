@@ -48,7 +48,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
       className={show ? "show" : "hide"}
       css={`
         height: 70px;
-        border-bottom: 0.6px solid #fff;
+        border-bottom: 0.8px dashed #fff;
         z-index: 3;
         width: 100%;
         display: flex;

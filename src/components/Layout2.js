@@ -13,23 +13,11 @@ import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
+import { ctaMenu, fullMenu, prefix } from "../constants/slugs";
 
-const menuFi = [{ title: "Tilaa JCAD", to: fi.slugs.product }];
-const menuEn = [
-  { title: en.menu.product, to: en.slugs.product },
-  { title: en.menu.pricing, to: en.slugs.pricing },
-  { title: en.menu.contact, to: en.slugs.contact },
-];
-const menuSv = [
-  { title: sv.menu.product, to: sv.slugs.product },
-  { title: sv.menu.pricing, to: sv.slugs.pricing },
-  { title: sv.menu.contact, to: sv.slugs.contact },
-];
 export const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { locale, localeSlugs } = useContext(LocaleContext);
-  const menu = locale === "fi" ? menuFi : locale === "en" ? menuEn : menuSv;
-  const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
   const text = snippet[locale];
 
   const [flatHeader, setFlatHeader] = useState(false);
@@ -92,9 +80,8 @@ export const Layout = ({ children }) => {
           content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </HelmetDatoCms>
-
       <FlatHeader
-        menu={menu}
+        menu={ctaMenu[locale]}
         booking={booking}
         menuOpen={menuOpen}
         setMenuOpen={() => setMenuOpen(!menuOpen)}
@@ -121,13 +108,13 @@ export const Layout = ({ children }) => {
               SV
             </Link>
           </div>
-          <Link className="logo" to={`/${prefix}`}>
+          <Link className="logo" to={`/${prefix[locale]}`}>
             <SvgLogo />
           </Link>
           <nav className="mainNav">
-            {menu.map((i) => (
+            {ctaMenu[locale].map((i) => (
               <Link
-                to={`/${prefix + i.to}`}
+                to={`/${prefix[locale] + i.to}`}
                 activeClassName="active"
                 style={{ marginTop: 8 }}
               >
@@ -162,16 +149,16 @@ export const Layout = ({ children }) => {
       </Header>
       <MobileMenu
         menuOpen={menuOpen}
-        menu={menu}
+        menu={fullMenu[locale]}
         text={text}
         closeMenu={() => setMenuOpen(false)}
         localeSlugs={localeSlugs}
-        prefix={prefix}
+        prefix={prefix[locale]}
         bookingUrl={booking.calendlyBookingUrl}
         locale={locale}
       />
       {children}
-      <Footer menu={menu} prefix={prefix} />
+      <Footer menu={fullMenu[locale]} prefix={prefix[locale]} />
     </>
   );
 };
@@ -181,13 +168,16 @@ const Header = styled.header`
   z-index: 10;
   background: none;
   position: absolute;
-  height: 130px;
+  height: 115px;
   transition: all 0.4s;
+  border-bottom: 0.8px dashed #fff;
   .btn {
     font-size: 15px;
     font-weight: 600;
-    border: none !important;
-    margin-top: -2px;
+    border: 1px solid #fff !important;
+    height: 40px;
+    border-radius: 4px;
+    margin-top: 6px;
   }
   &.flat {
     height: 70px;
@@ -214,7 +204,7 @@ const Header = styled.header`
     justify-content: space-between;
     align-items: center;
     position: relative;
-    height: 130px;
+    height: 115px;
     padding: 20px 80px 20px;
     max-width: 1500px;
     margin: 0 auto;
@@ -229,7 +219,7 @@ const Header = styled.header`
     top: 0;
     left: 0;
     width: 30px;
-    height: 130px;
+    height: 115px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -263,12 +253,12 @@ const Header = styled.header`
     position: absolute;
     color: #fff;
     right: -46px;
-    width: 130px;
+    width: 115px;
     font-weight: 600;
     justify-content: center;
     align-items: center;
     height: 30px;
-    font-size: 15px;
+    font-size: 14px;
     text-transform: uppercase;
     display: flex;
     transform: rotate(270deg);

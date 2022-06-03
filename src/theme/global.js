@@ -96,7 +96,7 @@ input[type=number] {
 section {
   display: flex;
 }
-.wrap {
+.wrap, .container {
   width: 100%;  
   max-width: 1500px;
   margin-left: auto;
@@ -155,7 +155,7 @@ section {
     width: 1px;
     height: 100%;
     border: none;
-    border-left: 1px dashed #ffffff;
+    border-left: 0.6px dashed #ffffff;
     position: absolute;
     top: 0;
     bottom: 0;

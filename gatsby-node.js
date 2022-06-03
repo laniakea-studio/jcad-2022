@@ -108,6 +108,13 @@ exports.createPages = async ({ graphql, actions }) => {
           startprice
         }
       }
+      webinaarit: datoCmsWebinarsPage(locale: { eq: "${locale}" }) {
+        palautteita {
+          content
+        }
+        arvosanat
+        kuvaajanTeksti
+      }
       allReferences: allDatoCmsReferenssi(filter: { locale: { eq: "${locale}" } }) {
         edges {
           node {
@@ -119,11 +126,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allWebinaari: allDatoCmsWebinaari(filter: { locale: { eq: "${locale}" } }) {
+      allWebinars: allDatoCmsWebinar(filter: { locale: { eq: "${locale}" } }) {
         edges {
           node {
             title
             slug
+            webinaarinAjankohta
+            kestoMinuuttia
+            nosto
+            kuvaus
+            puhuja
           }
         }
       }
@@ -217,22 +229,6 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
 
-      data.allWebinaari.edges.map((i) => {
-        createPage({
-          path: `/${prefix + slugs[locale].webinars}/${i.node.slug}`,
-          component: path.resolve(`src/templates/Webinar.js`),
-          context: {
-            locale: locale,
-            data: i.node,
-            localeSlugs: {
-              fi: `/${prefix + slugs.fi.webinars}`,
-              en: `/${prefix + slugs.en.webinars}`,
-              sv: `/${prefix + slugs.sv.webinars}`,
-            },
-          },
-        });
-      });
-
       createPage({
         path: `/${prefix + slugs[locale].pricing}`,
         component: path.resolve(`src/templates/pricing.js`),
@@ -304,9 +300,28 @@ exports.createPages = async ({ graphql, actions }) => {
             sv: `/sv/${slugs.sv.webinars}`,
           },
           data: {
-            home: "",
+            page: data.webinaarit,
+            allWebinars: data.allWebinars.edges,
           },
         },
+      });
+
+      data.allWebinars.edges.map((i) => {
+        createPage({
+          path: `/${prefix + slugs[locale].webinars}/${i.node.slug}`,
+          component: path.resolve(`src/templates/Webinar.js`),
+          context: {
+            locale: locale,
+            data: {
+              page: i.node,
+            },
+            localeSlugs: {
+              fi: `/${prefix + slugs.fi.webinars}`,
+              en: `/${prefix + slugs.en.webinars}`,
+              sv: `/${prefix + slugs.sv.webinars}`,
+            },
+          },
+        });
       });
 
       createPage({
