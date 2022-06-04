@@ -28,6 +28,9 @@ import * as snippet from "../locales";
         placeholder: "Kirjoita tähän",
         isRequired: false,
       },
+      {type: "hidden",
+       name: "webinar",
+      },
       { type: "submit", text: text.contact.send },
     ],
     schema: {
@@ -90,10 +93,9 @@ export const NetlifyForm = ({ data }) => {
 
   const isFormValid = () => {
     let formIsValid = false;
+
     const requiredFields = form.filter((input) => input.isRequired);
-    console.log({ requiredFields });
     formIsValid = requiredFields.every((field) => formData[field.name]);
-    console.log({ formIsValid });
 
     return formIsValid;
   };
@@ -147,6 +149,9 @@ export const NetlifyForm = ({ data }) => {
                   rows="6"
                 />
               </div>
+            )}
+            {input.type === "hidden" && (
+              <input type="hidden" name={input.name} />
             )}
             {input.type === "submit" && (
               <button
