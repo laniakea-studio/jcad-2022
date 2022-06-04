@@ -69,8 +69,10 @@ contactPage:
 contact:
   submitSuccess: Thank you. We'll be in touch!
   fillAllInputs: Please fill all fields.
+  fillRequiredInputs: Please fill required fields (*).
   name: Name
   email: Email
+  phone: Phone
   company: Company
   phoneOrEmail: Phone or email
   message: Message

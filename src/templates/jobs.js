@@ -18,16 +18,35 @@ const Page = ({ pageContext }) => {
     name: "Työhakemus",
     inputs: [
       {
+        type: "text",
+        name: "name",
+        label: text.contact.name,
+        isRequired: true,
+      },
+      {
         type: "email",
         name: "email",
         label: text.contact.email,
         isRequired: true,
       },
-      { type: "submit", text: "Ilmoittaudu" },
+      {
+        type: "text",
+        name: "phone",
+        label: text.contact.phone,
+        isRequired: false,
+      },
+      {
+        type: "textarea",
+        name: "phone",
+        label: text.contact.message,
+        placeholder: "",
+        isRequired: true,
+      },
+      { type: "submit", text: text.contact.send },
     ],
     messages: {
       submitSucces: "Kiitos hakemuksestasi!",
-      fillAllInputs: text.contact.fillAllInputs,
+      fillAllInputs: text.contact.fillRequiredInputs,
     },
   };
 
@@ -72,9 +91,9 @@ const Page = ({ pageContext }) => {
                 <div className="Revenue row justify-center align-center">
                   <LineGroupSvg />
                   <div className="col">
-                    <span>Liikevaihto 2021</span>
+                    <span style={{ marginBottom: -26 }}>Liikevaihto 2021</span>
                     <span>
-                      <strong>{page.liikevaihto}</strong>
+                      <strong>{page.liikevaihto.toLocaleString()}</strong>
                     </span>
                     <span>miljoonaa euroa</span>
                   </div>
@@ -99,13 +118,13 @@ const Page = ({ pageContext }) => {
 
           <section className="Apply pagePadding">
             <div className="row container padding">
-              <div className="col justify-center">
+              <div className="col">
                 <div
                   className="content"
                   dangerouslySetInnerHTML={{ __html: page.askMore }}
                 />
               </div>
-              <div className="col justify-center">
+              <div className="col">
                 <NetlifyForm data={form} isLightBg />
               </div>
             </div>
@@ -205,6 +224,9 @@ const Main = styled.main`
   }
   .Revenue {
     border-bottom: 0.8px dashed #000;
+    span strong {
+      line-height: 1.1;
+    }
   }
   .Map {
     width: 50%;
@@ -219,6 +241,23 @@ const Main = styled.main`
     color: #000;
     .container {
       border-color: #000;
+      border-top: 0.8px dashed #000;
+      > .col:first-child {
+        width: 50%;
+        border-right: 0.8px dashed #fff;
+        padding-top: 70px;
+        padding-right: 40px;
+        padding-bottom: 70px;
+      }
+      > .col:last-child {
+        width: 50%;
+        padding-top: 70px;
+        padding-bottom: 70px;
+        padding-left: 20px;
+        svg {
+          width: 100%;
+        }
+      }
     }
   }
 `;

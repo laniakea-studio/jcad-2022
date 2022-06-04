@@ -43,7 +43,7 @@ const stylesLightBg = {
   label: "rgba(0,0,0,0.6)",
   labelFocus: "#000",
   inputColor: "#000",
-  border: "none",
+  border: "rgba(0,0,0,0)",
   borderFocus: "rgba(0,0,0,0.6)",
   background: "rgba(0,0,0,0.05)",
   backgroundFocus: "none",

@@ -69,8 +69,10 @@ contactPage:
 contact:
   submitSuccess: Kiitos, vastaanotimme viestisi. Palaamme pian!
   fillAllInputs: Täytä kaikki kentät.
+  fillRequiredInputs: Täytä pakolliset kentät (*).
   name: Nimi
   email: Sähköposti
+  phone: Puhelin
   company: Yritys
   phoneOrEmail: Puhelin tai sähköposti
   message: Viesti
