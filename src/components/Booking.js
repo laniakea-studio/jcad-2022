@@ -44,7 +44,7 @@ export const Booking = () => {
 
   return (
     <Div>
-      <div className="wrap padding col align-center">
+      <div className="container padding col align-center">
         <h2>{booking.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: booking.content }} />
         <div className="DemoBtn">

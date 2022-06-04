@@ -19,11 +19,9 @@ const Page = ({ pageContext }) => {
   return (
     <>
       <Layout locale={pageContext.locale} transparent={false}>
-        <Main>
-          <div className="Hero wrap padding">
-            <div className="leftLine" />
-            <div className="rightLine" />
-            <div className="row">
+        <Main className="pagePadding">
+          <div className="Hero container  col">
+            <div className="row padding">
               <div className="col">
                 <h1>Älykästä määrälaskentaa.</h1>
               </div>
@@ -44,8 +42,8 @@ const Page = ({ pageContext }) => {
                 </div>
               </div>
             </div>
-            <div class="DashLine" />
-            <div className="Grid">
+
+            <div className="Grid padding">
               {fullMenu[locale].map((i, index) => (
                 <Link
                   id={`Link-${index}`}
@@ -74,19 +72,6 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   background: ${theme.primary};
-  .DashLine {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: none;
-    border-top: 1px dashed #ffffff;
-    width: 100vw;
-    display: none;
-    @media (max-width: 1100px) {
-      display: none;
-    }
-  }
   .Hero {
     min-height: 100vh;
     background: ${theme.primary};
@@ -148,7 +133,7 @@ const Main = styled.main`
   }
   .Link {
     height: 240px;
-    border: 1px solid #ffffff;
+    border: 0.8px solid #ffffff;
     padding: 30px;
     transition: 1s;
     span {

@@ -15,6 +15,8 @@ import {
   BarElement,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { getFriendlyDateAndHour } from "../hooks/getFriendlyDateAndHour";
+import { transform } from "framer-motion";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
@@ -22,13 +24,16 @@ const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page, allWebinars } = pageContext.data;
+  const nextWebinar = allWebinars[0];
+  const [nextDate, nextHour] = getFriendlyDateAndHour(
+    new Date(nextWebinar.node.webinaarinAjankohta)
+  );
 
   const graphArrSource = page.arvosanat.split(",");
   const graphDataIsValid = graphArrSource.length === 10;
   const graphData = graphArrSource.map((number) => {
     return parseInt(number.trim());
   });
-  console.log("Asdf", graphData);
 
   const data = {
     labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
@@ -44,48 +49,47 @@ const Page = ({ pageContext }) => {
     <>
       <Layout locale={pageContext.locale} transparent={false}>
         <Main>
-          <section className="Hero row wrap padding">
-            <div className="leftLine" />
-            <div className="rightLine" />
-            <div className="col">
-              <h1>
-                Seuraava webinaari
-                <br /> ke 5.6 klo 9-10
-              </h1>
-              <p>
-                Webinaarissa käydään läpi määrälaskennan tehostamista ja sitä
-                rataa. JCAD-määrälaskentaohjelmiston avulla lasket pintojen,
-                tilojen ja rakenteiden määrät helposti, laadit tarjouksen
-                hetkessä, vältät laskuvirheet ja pidät määräluettelon ajan
-                tasalla läpi projektin.
-              </p>
-            </div>
-            <div className="col justify-center align-center">
-              <span
-                css={`
-                  font-size: 200px;
-                `}
-              >
-                5
-              </span>
-              <span>päivää jäljellä</span>
+          <section className="Hero pagePadding">
+            <div className="row container padding">
+              <div className="col">
+                <span className="uppercase" style={{ fontSize: 22 }}>
+                  Seuraava webinaari
+                </span>
+                <span className="uppercase" style={{ fontSize: 45 }}>
+                  {nextDate} klo {nextHour}
+                </span>
+                <h1 style={{ fontSize: 32, textTransform: "none" }}>
+                  {nextWebinar.node.title}
+                </h1>
+
+                <p>{nextWebinar.node.nosto}</p>
+              </div>
+              <div className="col justify-center align-center">
+                <LineSvg />
+                <span
+                  style={{ fontSize: 200, lineHeight: 0.85, marginTop: 20 }}
+                >
+                  5
+                </span>
+                <span
+                  className="uppercase"
+                  style={{ marginBottom: 30, fontWeight: 600 }}
+                >
+                  päivää jäljellä
+                </span>
+                <LineSvg />
+              </div>
             </div>
           </section>
-          <section className="Second">
+          <section className="Second pagePadding">
             <div className="row container padding">
               <div className="Coming col">
                 <h2>Tulevat webinaarit</h2>
                 <div className="List">
                   {allWebinars.map((i) => {
-                    let d = new Date(i.node.webinaarinAjankohta);
-                    const date = d.toLocaleDateString("fi-FI", {
-                      weekday: "short",
-                      month: "numeric",
-                      day: "numeric",
-                    });
-                    const hour = d.toLocaleTimeString("fi-FI", {
-                      timeStyle: "short",
-                    });
+                    const [date, hour] = getFriendlyDateAndHour(
+                      new Date(i.node.webinaarinAjankohta)
+                    );
 
                     return (
                       <Link
@@ -138,21 +142,22 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   color: #fff;
-  padding-top: 115px;
   background: ${theme.primary};
-
+  padding-top: 94px;
   .Hero {
     h1 {
       margin-bottom: 30px;
     }
-    .col {
+    .col:first-child {
       border-right: 0.8px dashed #fff;
-      flex: 3;
-      padding: 60px 0;
+      width: 61.8%;
+      padding-top: 60px;
+      padding-bottom: 60px;
       padding-right: 40px;
     }
     .col:last-child {
-      flex: 2;
+      width: 38.2%;
+      padding-left: 20px;
       border-right: none;
     }
   }
@@ -166,7 +171,7 @@ const Main = styled.main`
     }
   }
   .Coming {
-    flex: 3 1 0;
+    width: 61.8%;
     padding-top: 60px;
     border-right: 0.8px dashed #000;
     padding-bottom: 80px;
@@ -203,7 +208,7 @@ const Main = styled.main`
     }
   }
   .Aside {
-    flex: 2 1 0;
+    width: 38.2%;
     padding-top: 60px;
     padding-left: 40px;
     padding-right: 40px;
@@ -234,3 +239,68 @@ const Main = styled.main`
     }
   }
 `;
+
+const LineSvg = () => (
+  <svg
+    width="425"
+    height="8"
+    viewBox="0 0 425 8"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clip-path="url(#clip0_189_491)">
+      <path
+        d="M417.369 0.353387L424.647 7.64673"
+        stroke="white"
+        stroke-width="0.8"
+        stroke-miterlimit="10"
+      />
+      <path
+        d="M208.546 0.353387L215.824 7.64673"
+        stroke="white"
+        stroke-width="0.8"
+        stroke-miterlimit="10"
+      />
+      <path
+        d="M0.352774 0.353265L7.63086 7.64661"
+        stroke="white"
+        stroke-width="0.8"
+        stroke-miterlimit="10"
+      />
+      <path
+        d="M7.63086 0.353266L0.352773 7.64661"
+        stroke="white"
+        stroke-width="0.8"
+        stroke-miterlimit="10"
+      />
+      <path
+        d="M215.824 0.353388L208.546 7.64673"
+        stroke="white"
+        stroke-width="0.8"
+        stroke-miterlimit="10"
+      />
+      <path
+        d="M424.647 0.353388L417.369 7.64673"
+        stroke="white"
+        stroke-width="0.8"
+        stroke-miterlimit="10"
+      />
+      <path
+        d="M420.996 3.98743L4.00452 3.98739"
+        stroke="white"
+        stroke-width="0.8"
+        stroke-miterlimit="10"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_189_491">
+        <rect
+          width="425"
+          height="7.99996"
+          fill="white"
+          transform="translate(425 8) rotate(-180)"
+        />
+      </clipPath>
+    </defs>
+  </svg>
+);

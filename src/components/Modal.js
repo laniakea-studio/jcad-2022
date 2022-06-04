@@ -74,7 +74,7 @@ const Modal = ({ children, onClose, maxWidth }) => {
         .inner {
           width: 80%;
         }
-        ${theme.mobile} {
+        @media (max-width: 600px) {
           .leftMargin,
           .rightMargin {
             width: 1px;
@@ -189,7 +189,7 @@ const Modal = ({ children, onClose, maxWidth }) => {
                 font-size: 12px;
                 font-weight: 700;
                 margin-top: -20px;
-                ${theme.mobile} {
+                @media (max-width: 600px) {
                   transform: rotate(0deg);
                   padding-top: 7px;
                   padding-left: 12px;

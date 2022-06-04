@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { theme } from "../theme/theme";
 
 export const BurgerIcon = ({ menuOpen, onClick }) => {
   return (
@@ -19,7 +18,7 @@ export const BurgerIcon = ({ menuOpen, onClick }) => {
 };
 
 const menuOptions = {
-  heightLine: "2px",
+  heightLine: "1px",
   heightIcon: "26px",
   transitionTime: "0.2s",
   rotation: "45deg",
@@ -33,7 +32,7 @@ const MenuIcon = styled.a`
   position: relative;
   z-index: 3;
   display: none;
-  ${theme.tablet} {
+  @media (max-width: 1024px) {
     display: block;
   }
   .line {

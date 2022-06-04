@@ -31,7 +31,7 @@ const Product = ({ pageContext }) => {
       <Layout locale={pageContext.locale} transparent={false}>
         <Main>
           <div className="hero">
-            <div className="wrap col padding">
+            <div className="container col padding">
               <div className="leftLine" />
               <div className="rightLine" />
 
@@ -182,12 +182,12 @@ const Main = styled.main`
     height: 100%;
     color: #fff;
     position: relative;
-    ${theme.mobile} {
+    @media (max-width: 600px) {
       padding-top: 50px;
     }
     .wrap {
       height: 100vh;
-      ${theme.max1500} {
+      @media (max-width: 1500) {
         overflow: hidden;
       }
     }
@@ -196,7 +196,7 @@ const Main = styled.main`
       margin-bottom: 40px;
       font-weight: 400;
       margin-top: 30vh;
-      ${theme.mobile} {
+      @media (max-width: 600px) {
         margin-top: 15vh;
       }
     }
@@ -230,7 +230,7 @@ const Main = styled.main`
       margin-right: -200px;
       margin-bottom: -200px;
       animation: spin 180s infinite;
-      ${theme.mobile} {
+      @media (max-width: 600px) {
         margin-bottom: -600px;
       }
     }
@@ -242,7 +242,7 @@ const Main = styled.main`
       margin-bottom: -600px;
       animation: spin 130s infinite;
       animation-direction: reverse;
-      ${theme.max1100} {
+      @media (max-width: 1100px) {
         display: none;
       }
     }
@@ -256,7 +256,7 @@ const Main = styled.main`
         -webkit-transform: rotate(360deg);
       }
     }
-    ${theme.max700} {
+    @media (max-width: 700px) {
       h1 {
         font-size: 42px;
       }
@@ -273,7 +273,7 @@ const Main = styled.main`
       max-width: 630px;
       margin: 50px auto 80px;
       text-align: center;
-      ${theme.mobile} {
+      @media (max-width: 600px) {
         font-size: 16px;
       }
     }
@@ -281,7 +281,7 @@ const Main = styled.main`
     .SvgNumberTopline {
       position: absolute;
       width: 100%;
-      ${theme.mobile} {
+      @media (max-width: 600px) {
         display: none;
       }
     }
@@ -302,14 +302,14 @@ const Main = styled.main`
         .sub {
           padding-left: 20px;
         }
-        ${theme.max900} {
+        @media (max-width: 900px) {
           padding-left: 10%;
         }
       }
       .number-2 {
         padding-left: 60px;
       }
-      ${theme.mobile} {
+      @media (max-width: 600px) {
         flex-direction: column;
         .number-1,
         .number-2 {
@@ -325,7 +325,7 @@ const Main = styled.main`
     span.number {
       font-size: 150px;
       letter-spacing: -0.05em;
-      ${theme.max1000} {
+      @media (max-width: 1000px) {
         font-size: 100px;
       }
     }
@@ -335,7 +335,7 @@ const Main = styled.main`
       text-transform: uppercase;
       position: relative;
       display: inline;
-      ${theme.max900} {
+      @media (max-width: 900px) {
         font-size: 20px;
       }
     }
@@ -370,7 +370,7 @@ const Main = styled.main`
         margin-left: -60px;
         opacity: 0;
         transition: opacity 0.3s;
-        ${theme.mobile} {
+        @media (max-width: 600px) {
           margin-left: -160px;
         }
         &:after {
@@ -440,7 +440,7 @@ const Main = styled.main`
       top: 0;
       bottom: 0;
     }
-    ${theme.max900} {
+    @media (max-width: 900px) {
       justify-content: flex-start;
       .SvgHaircross,
       .SvgDashedLine {

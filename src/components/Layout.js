@@ -13,7 +13,6 @@ import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
-import { GdprBanner } from "./GdprBanner";
 
 const menuFi = [
   { title: fi.menu.product, to: fi.slugs.product },
@@ -49,15 +48,15 @@ export const Layout = ({ children }) => {
           tags
         }
       }
-      bookingFi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
+      fi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
         calendlyBookingUrl
         buttonText
       }
-      bookingEn: datoCmsTilaaDemo(locale: { eq: "en" }) {
+      en: datoCmsTilaaDemo(locale: { eq: "en" }) {
         calendlyBookingUrl
         buttonText
       }
-      bookingSv: datoCmsTilaaDemo(locale: { eq: "sv" }) {
+      sv: datoCmsTilaaDemo(locale: { eq: "sv" }) {
         calendlyBookingUrl
         buttonText
       }
@@ -65,12 +64,7 @@ export const Layout = ({ children }) => {
   `);
 
   const { site } = data;
-  const booking =
-    locale === "fi"
-      ? data.bookingFi
-      : locale === "en"
-      ? data.bookingEn
-      : data.bookingSv;
+  const booking = data[locale];
 
   useEffect(() => {
     const onScroll = () => {
@@ -209,7 +203,7 @@ const Header = styled.header`
     }
   }
 
-  ${theme.mobile} {
+  @media (max-width: 600px) {
     border-bottom: none;
   }
   > div {
@@ -221,7 +215,7 @@ const Header = styled.header`
     padding: 20px 80px 20px;
     max-width: 1500px;
     margin: 0 auto;
-    ${theme.mobile} {
+    @media (max-width: 600px) {
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -237,7 +231,7 @@ const Header = styled.header`
     flex-direction: column;
     justify-content: center;
     margin-left: 10px;
-    ${theme.tablet} {
+    @media (max-width: 1024px) {
       display: none;
     }
     > a {
@@ -252,7 +246,7 @@ const Header = styled.header`
   a.logo {
     display: flex;
     flex-basis: 160px;
-    ${theme.mobile} {
+    @media (max-width: 600px) {
       flex-basis: 140px;
     }
     svg {
@@ -276,7 +270,7 @@ const Header = styled.header`
     display: flex;
     transform: rotate(270deg);
     opacity: 1;
-    ${theme.tablet} {
+    @media (max-width: 1024px) {
       display: none;
     }
     &:hover {
@@ -295,7 +289,7 @@ const Header = styled.header`
     display: flex;
     flex: 1;
     justify-content: flex-end;
-    ${theme.tablet} {
+    @media (max-width: 1024px) {
       display: none;
     }
     font-size: 18px;
@@ -342,7 +336,7 @@ const Header = styled.header`
     }
   }
   .burger {
-    ${theme.tablet} {
+    @media (max-width: 1024px) {
       display: flex;
     }
   }
@@ -361,7 +355,7 @@ const Header = styled.header`
       cursor: default;
       opacity: 0.4;
     }
-    ${theme.mobile} {
+    @media (max-width: 600px) {
       display: none;
     }
   }

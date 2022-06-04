@@ -15,7 +15,7 @@ const TietosuojaPage = ({ pageContext }) => {
       <main
         css={`
           padding: 40px 20px 160px;
-          background: ${theme.indigo};
+          background: ${theme.primary};
           .content {
             margin: 100px auto;
             max-width: 900px;
@@ -25,7 +25,7 @@ const TietosuojaPage = ({ pageContext }) => {
               margin-bottom: 40px;
               font-size: 42px;
               text-align: center;
-              ${theme.mobile} {
+              @media (max-width: 600px) {
                 font-size: 32px;
               }
             }

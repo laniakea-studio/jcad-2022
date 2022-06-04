@@ -7,6 +7,7 @@ import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 import { SvgLogoFooter } from "./SvgCollection.js";
 import { useIntersection } from "../hooks/useIntersection";
+import { NetlifyForm } from "./NetlifyForm";
 
 export const Footer = ({ menu, prefix }) => {
   const { locale } = useContext(LocaleContext);
@@ -109,6 +110,21 @@ export const Footer = ({ menu, prefix }) => {
       ? yhteystiedotEn
       : yhteystiedotSv;
 
+  const contacts = [
+    {
+      title: text.footer.sales,
+      data: yhteystiedot.myyntiJaTilaukset[0],
+    },
+    {
+      title: text.footer.support,
+      data: yhteystiedot.asiakaspalvelu[0],
+    },
+    {
+      title: text.footer.accounts,
+      data: yhteystiedot.asiakkuudet[0],
+    },
+  ];
+
   // Animate Logo when in viewport
   const ref = useRef();
   const inViewport = useIntersection(ref, "-300px");
@@ -117,148 +133,46 @@ export const Footer = ({ menu, prefix }) => {
   }
 
   return (
-    <FooterDiv>
-      <div className="wrap padding">
-        <div className="leftLine" />
-        <div className="rightLine" />
-        <div className="row header">
-          <div>
+    <FooterDiv className="pagePadding col">
+      <div className="container padding">
+        <div className="row">
+          <div className="Logo">
             <SvgLogoFooter />
           </div>
-          <div>
-            <a
-              className="backToTop"
-              href="#intro"
-              onClick={(e) => window.scrollTo(0, 0)}
-            >
-              {text.footer.buttonBackToTop}
-            </a>
-          </div>
+          {!isContactPage &&
+            contacts.map((i, index) => (
+              <div className="Contact col">
+                <h3>{i.title}</h3>
+                <p>
+                  {i.data.nimi && index !== 1 && (
+                    <span className="name">
+                      {i.data.nimi}
+                      <br />
+                    </span>
+                  )}
+                  {i.data.titteli && (
+                    <>
+                      {i.data.titteli} <br />
+                    </>
+                  )}
+                  {i.data.puhelin && (
+                    <>
+                      <a href={`tel:${i.data.puhelin.replace(/\s+/g, "")}`}>
+                        {i.data.puhelin}
+                      </a>
+                      <br />
+                    </>
+                  )}
+                  <a href={`mailto:${i.data.email.replace(/\s+/g, "")}`}>
+                    {i.data.email}
+                  </a>
+                </p>
+              </div>
+            ))}
+          <NetlifyForm />
         </div>
 
-        {!isContactPage && (
-          <div className="row contacts">
-            <div className="col">
-              <div className="titleBox">
-                <h3>{text.footer.sales}</h3>
-              </div>
-              <p>
-                {yhteystiedot.myyntiJaTilaukset[0].nimi && (
-                  <>
-                    <strong>{yhteystiedot.myyntiJaTilaukset[0].nimi}</strong>
-                    <br />
-                  </>
-                )}
-                {yhteystiedot.myyntiJaTilaukset[0].titteli && (
-                  <>
-                    {yhteystiedot.myyntiJaTilaukset[0].titteli} <br />
-                  </>
-                )}
-                {yhteystiedot.myyntiJaTilaukset[0].puhelin && (
-                  <>
-                    <a
-                      href={`tel:${yhteystiedot.myyntiJaTilaukset[0].puhelin.replace(
-                        /\s+/g,
-                        ""
-                      )}`}
-                    >
-                      {yhteystiedot.myyntiJaTilaukset[0].puhelin}
-                    </a>
-                    <br />
-                  </>
-                )}
-                <a
-                  href={`mailto:${yhteystiedot.myyntiJaTilaukset[0].email.replace(
-                    /\s+/g,
-                    ""
-                  )}`}
-                >
-                  {yhteystiedot.myyntiJaTilaukset[0].email}
-                </a>
-              </p>
-            </div>
-            <div className="col">
-              <div className="titleBox">
-                <h3>{text.footer.support}</h3>
-              </div>
-              <p>
-                {yhteystiedot.asiakaspalvelu[0].nimi && (
-                  <>
-                    <strong>{yhteystiedot.asiakaspalvelu[0].nimi}</strong>
-                    <br />
-                  </>
-                )}
-                {yhteystiedot.asiakaspalvelu[0].titteli && (
-                  <>
-                    {yhteystiedot.asiakaspalvelu[0].titteli} <br />
-                  </>
-                )}
-                {yhteystiedot.asiakaspalvelu[0].puhelin && (
-                  <>
-                    <a
-                      href={`tel:${yhteystiedot.asiakaspalvelu[0].puhelin.replace(
-                        /\s+/g,
-                        ""
-                      )}`}
-                    >
-                      {yhteystiedot.asiakaspalvelu[0].puhelin}
-                    </a>
-                    <br />
-                  </>
-                )}
-                <a
-                  href={`mailto:${yhteystiedot.asiakaspalvelu[0].email.replace(
-                    /\s+/g,
-                    ""
-                  )}`}
-                >
-                  {yhteystiedot.asiakaspalvelu[0].email}
-                </a>
-              </p>
-            </div>
-            <div className="col">
-              <div className="titleBox">
-                <h3>{text.footer.accounts}</h3>
-              </div>
-              <p>
-                {yhteystiedot.asiakkuudet[0].nimi && (
-                  <>
-                    <strong>{yhteystiedot.asiakkuudet[0].nimi}</strong>
-                    <br />
-                  </>
-                )}
-                {yhteystiedot.asiakkuudet[0].titteli && (
-                  <>
-                    {yhteystiedot.asiakkuudet[0].titteli} <br />
-                  </>
-                )}
-                {yhteystiedot.asiakkuudet[0].puhelin && (
-                  <>
-                    <a
-                      href={`tel:${yhteystiedot.asiakkuudet[0].puhelin.replace(
-                        /\s+/g,
-                        ""
-                      )}`}
-                    >
-                      {yhteystiedot.asiakkuudet[0].puhelin}
-                    </a>
-                    <br />
-                  </>
-                )}
-                <a
-                  href={`mailto:${yhteystiedot.asiakkuudet[0].email.replace(
-                    /\s+/g,
-                    ""
-                  )}`}
-                >
-                  {yhteystiedot.asiakkuudet[0].email}
-                </a>
-              </p>
-            </div>
-          </div>
-        )}
-
-        <div className="row logoBox">
+        <div className="BigLogo row">
           <svg
             ref={ref}
             class="svgJcad"
@@ -314,7 +228,7 @@ export const Footer = ({ menu, prefix }) => {
           </svg>
         </div>
         <div className="row">
-          <p className="copy">
+          <p className="Copyright">
             © {new Date().getFullYear()} {text.footer.companyName}.{" "}
             <Link
               to={
@@ -330,36 +244,38 @@ export const Footer = ({ menu, prefix }) => {
             . {yhteystiedot.ytunnus}
           </p>
         </div>
-        <div className="backTop">
-          <div />
-          <a
-            className="backToTop"
-            href="#intro"
-            onClick={(e) => window.scrollTo(0, 0)}
-          >
-            {text.footer.buttonBackToTop}
-          </a>
-        </div>
       </div>
     </FooterDiv>
   );
 };
 
 const FooterDiv = styled.footer`
-  flex-direction: column;
   background: ${theme.primary};
-  padding-top: 0;
-  padding-left: 0;
-  padding-right: 0;
   color: #fff;
-  text-align: left;
   border-top: 0.8px dashed #fff;
-  .content {
-    position: relative;
-    overflow: hidden;
+  .container {
+    padding-top: 80px;
   }
-
-  .logoBox {
+  .Logo {
+    margin-right: 50px;
+    svg {
+      width: 85px;
+    }
+  }
+  .Contact {
+    padding-right: 30px;
+    max-width: 250px;
+    width: 100%;
+    .name {
+      text-transform: uppercase;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      height: 50px;
+    }
+  }
+  .BigLogo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -367,7 +283,7 @@ const FooterDiv = styled.footer`
     max-width: 900px;
     margin: 120px auto 0;
   }
-  .copy {
+  .Copyright {
     margin-left: 80px;
     margin-top: 60px;
     margin-bottom: 30px;
@@ -377,152 +293,6 @@ const FooterDiv = styled.footer`
     }
   }
 
-  .row.header {
-    justify-content: space-between;
-    padding-top: 80px;
-    margin-bottom: 30px;
-    > div {
-      display: flex;
-      flex: 1;
-    }
-
-    a.backToTop {
-      margin-left: auto;
-      text-transform: uppercase;
-
-      font-weight: 700;
-      font-size: 19px;
-    }
-  }
-
-  ${theme.mobile} {
-    .svgJcad {
-      g path {
-        stroke-width: 3;
-      }
-    }
-    a.backToTop {
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 50px;
-      margin-bottom: 40px;
-      text-transform: uppercase;
-      font-weight: 700;
-      z-index: 1;
-    }
-  }
-  .backTop {
-    overflow: hidden;
-    position: relative;
-    display: none;
-    ${theme.mobile} {
-      display: flex;
-    }
-    > div {
-      width: 200px;
-      height: 200px;
-      border: 1px solid #fff;
-      transform: rotate(45deg);
-      position: absolute;
-      margin: 0 auto;
-      left: 0;
-      right: 0;
-      bottom: -140px;
-    }
-  }
-
-  .row.contacts {
-    min-height: 220px;
-    border-bottom: 0.8px dashed #fff ${theme.max900} {
-      padding-left: 0;
-      padding-right: 0;
-    }
-    p {
-      font-size: 18px;
-      strong {
-        text-transform: uppercase;
-      }
-    }
-    .titleBox {
-      display: flex;
-      //justify-content: center;
-      align-items: center;
-      //border: 1px solid #fff;
-      height: 68px;
-      margin-bottom: 20px;
-      h3 {
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        text-align: center;
-        line-height: 1.2;
-      }
-    }
-    .col {
-      flex: 1;
-      padding: 50px;
-      justify-content: flex-start;
-    }
-    .col:nth-child(2) {
-      flex: 2;
-    }
-    ${theme.max1000} {
-      .col {
-        padding: 30px;
-      }
-    }
-    ${theme.max900} {
-      margin-top: 20px;
-      flex-direction: column;
-      border-bottom: none;
-      .col {
-        padding: 40px 0 0;
-      }
-
-      .titleBox h3 {
-        font-size: 20px;
-        text-align: left;
-      }
-      .titleBox {
-        margin-left: 0;
-        border-left-style: none;
-        text-align: left;
-        height: auto;
-        width: auto;
-        justify-content: flex-start;
-        padding-left: 0;
-        padding-right: 48px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        max-width: 95%;
-      }
-      p {
-        padding-left: 0;
-      }
-    }
-  }
-  @media (max-width: 1000px) {
-    svg.logoFrame {
-      display: none;
-    }
-  }
-  @media (max-width: 900px) {
-    .row.header,
-    .row.contacts {
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-  @media (max-width: 900px) {
-    .row p.copy {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .header a.backToTop {
-      display: none;
-    }
-  }
   /***************************************************
  * Generated by SVG Artista on 5/26/2022, 2:36:21 PM
  * MIT license (https://opensource.org/licenses/MIT)

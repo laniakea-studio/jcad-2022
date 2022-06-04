@@ -262,7 +262,7 @@ const Main = styled.main`
   padding-top: 220px;
   padding-left: 80px;
   padding-right: 80px;
-  ${theme.mobile} {
+  @media (max-width: 600px) {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -274,7 +274,7 @@ const Main = styled.main`
     height: 48px;
     border: 1px dashed #fff;
     font-size: 18px;
-    ${theme.mobile} {
+    @media (max-width: 600px) {
       margin-bottom: 0;
     }
   }
@@ -373,7 +373,7 @@ const Main = styled.main`
   .selections {
     display: flex;
     margin-top: 40px;
-    ${theme.max1000} {
+    @media (max-width: 1000px) {
       flex-direction: column;
     }
     > div {
@@ -403,10 +403,10 @@ const Main = styled.main`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    ${theme.max1100} {
+    @media (max-width: 1100px) {
       grid-template-columns: repeat(2, 1fr);
     }
-    ${theme.max800} {
+    @media (max-width: 800px) {
       grid-template-columns: repeat(1, 1fr);
     }
     .item {

@@ -17,7 +17,7 @@ const Page = ({ pageContext }) => {
     <>
       <Layout locale={pageContext.locale} transparent={false}>
         <Main>
-          <div className="wrap padding">
+          <div className="container padding">
             <h2>Tilaa JCAD</h2>
           </div>
         </Main>

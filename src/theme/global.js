@@ -38,7 +38,7 @@ input[type=number] {
     height: 100%;
     position: absolute;
     top: 0;
-    ${theme.max1440} {
+    @media (max-width: 1440px) {
       display: none;
     }
   }
@@ -96,80 +96,6 @@ input[type=number] {
 section {
   display: flex;
 }
-.wrap, .container {
-  width: 100%;  
-  max-width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-}
-.padding {
-  padding-left: 20px;
-  padding-right: 20px;  
-  @media (min-width: 600px) {
-    padding-left: 80px;
-     padding-right: 80px;
-  }
-  @media (min-width: 900px) {
-    padding-left: 80px;
-     padding-right: 80px;
-  }
-}
-.col {
-  display: flex;
-  flex-direction: column;
-}
-.row {
-  display: flex;
-  flex-direction: row;
-}
-.justify-center {
-  justify-content: center;
-}
-.align-center {
-  align-items: center;
-}
-
-
-
-/* Previous */
-
-
-.alignCenter {
-  align-items: center;
-}
-.justifyCenter {
-  justify-content: center;
-}
-.wrapper {
-  width: 100%;
-  height: 100%;
-  max-width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-}
-
-.leftLine,
-  .rightLine {
-    width: 1px;
-    height: 100%;
-    border: none;
-    border-left: 0.6px dashed #ffffff;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    @media (max-width: 600px) {
-    display: none;
-    }
-  }
-  .leftLine {
-    left: 40px;
-  }
-  .rightLine {
-    right: 40px;
-  }
-
 article {
   padding-left: 20px;
   padding-right: 20px;
@@ -226,6 +152,7 @@ article h3 {
   font-size: 18px;
   letter-spacing: 0.02em;
   width: fit-content;  
+  border-radius: 4px;  
 }
 .btn:not(.white, .outlines) {
   background: ${theme.primary};

@@ -265,7 +265,7 @@ const HomePage = ({ pageContext }) => {
               top: 400px;
             }
            
-            ${theme.tablet} {
+            @media (max-width: 1024px) {
               .otsikko-1,
               .otsikko-2,
               .otsikko-3 {
@@ -275,7 +275,7 @@ const HomePage = ({ pageContext }) => {
                 font-size: 120px;
               }
             }
-            ${theme.max900},
+            @media (max-width: 900px),
             (max-height: 770px) {
               h1 {
                 font-size: 90px;
@@ -284,7 +284,7 @@ const HomePage = ({ pageContext }) => {
                 font-size: 60px;
               }
             }
-            ${theme.mobile} {
+            @media (max-width: 600px) {
               .otsikko-1 {
                 top: 170px; 
                 left: 20px;
@@ -304,7 +304,7 @@ const HomePage = ({ pageContext }) => {
                 font-size: 42px;
               }
             }
-            ${theme.max400} {
+            @media (max-width: 400px) {
               h1 {
                 font-size: 55px;
               }
@@ -394,7 +394,7 @@ const HomePage = ({ pageContext }) => {
             css={`
               ${theme.fullWidth}
               flex-direction: column;
-              background: ${theme.indigo};
+              background: ${theme.primary};
               padding-left: 0;
               padding-right: 0;
               color: #fff;
@@ -412,7 +412,7 @@ const HomePage = ({ pageContext }) => {
                 top: 0;
               }
 
-              ${theme.tablet} {
+              @media (max-width: 1024px) {
                 .heroContainer {
                   padding-left: 0;
                   padding-right: 0;
@@ -427,7 +427,7 @@ const HomePage = ({ pageContext }) => {
                   width: 100%;
                 }
               }
-              ${theme.max900} {
+              @media (max-width: 900px) {
                 .heroContainer .textBox {
                   margin-top: 50px;
                   margin-bottom: 50px;
@@ -461,10 +461,10 @@ const HomePage = ({ pageContext }) => {
                 background-position-x: 0;
                 width: 6px;
                 height: 100%;
-                ${theme.max1000} {
+                @media (max-width: 1000px) {
                   left: calc(50% - 350px);
                 }
-                ${theme.max700} {
+                @media (max-width: 700px) {
                   display: none;
                 }
               `}
@@ -482,7 +482,7 @@ const HomePage = ({ pageContext }) => {
                 background-position-x: 0;
                 width: 1200px;
                 height: 100%;
-                ${theme.max700} {
+                @media (max-width: 700px) {
                   display: none;
                 }
               `}
@@ -499,10 +499,10 @@ const HomePage = ({ pageContext }) => {
                 background-position-x: 0;
                 width: 6px;
                 height: 100%;
-                ${theme.max1000} {
+                @media (max-width: 1000px) {
                   right: calc(50% - 350px);
                 }
-                ${theme.max700} {
+                @media (max-width: 700px) {
                   display: none;
                 }
               `}
@@ -522,7 +522,7 @@ const HomePage = ({ pageContext }) => {
                   width: 100%;                  
                   padding-left: 10px;
                   padding-right: 10px;
-                  ${theme.max1500} {
+                  @media (max-width: 1500) {
                   padding-left: 0; 
                   padding-right: 0; 
                   }
@@ -544,7 +544,7 @@ const HomePage = ({ pageContext }) => {
                     width: 50px;
                     margin-right: 30px;
                   }
-                  ${theme.mobile} {
+                  @media (max-width: 600px) {
                     .progressCircle {
                     margin-right: 0;
                     )
@@ -642,7 +642,7 @@ const HomePage = ({ pageContext }) => {
                     align-items: center;
                     height: 100vh;
                   }
-                  ${theme.mobile} {
+                  @media (max-width: 600px) {
                     p {
                       font-size: 25px;
                       padding-left: 20px;
@@ -709,7 +709,7 @@ const HomePage = ({ pageContext }) => {
                     top: -100px;
                     width: 100%;
                   }
-                  ${theme.mobile} {
+                  @media (max-width: 600px) {
                     svg.verticalLeft,
                     svg.verticalRight,
                     svg.topLine,
@@ -747,7 +747,7 @@ const HomePage = ({ pageContext }) => {
                       opacity: 1;
                       animation: pulse 0.7s;
                     }
-                    ${theme.mobile} {
+                    @media (max-width: 600px) {
                       top: auto;
                       bottom: 40px;
                     }
@@ -854,7 +854,7 @@ const HomePage = ({ pageContext }) => {
                   width: 95%;
                   height: 1px;
                   background: #000;
-                  ${theme.mobile} {
+                  @media (max-width: 600px) {
                     display: none;
                   }
                 }
@@ -897,7 +897,7 @@ const HomePage = ({ pageContext }) => {
                   margin-left: 60px;
                   top: 50px;
                 }
-                ${theme.tablet} {
+                @media (max-width: 1024px) {
                   padding-left: 0 !important;
                   padding-right: 0 !important;
                   .titleBox {
@@ -942,7 +942,7 @@ const HomePage = ({ pageContext }) => {
                     margin-left: 0;
                   }
                 }
-                ${theme.mobile} {
+                @media (max-width: 600px) {
                   .first.row {
                     height: 200px;
                   }
@@ -1045,7 +1045,7 @@ const HomePage = ({ pageContext }) => {
                       height: fit-content;
                       width: fit-content;
                       position: relative;
-                      ${theme.mobile} {
+                      @media (max-width: 600px) {
                         margin-top: 50px;
                         margin-left: -120px;
                         z-index: 1;
@@ -1056,7 +1056,7 @@ const HomePage = ({ pageContext }) => {
                         height: 100%;
                         bottom: 0;
                         right: -50px;
-                        ${theme.mobile} {
+                        @media (max-width: 600px) {
                           display: block;
                         }
                       }
@@ -1076,7 +1076,7 @@ const HomePage = ({ pageContext }) => {
                       margin: 0 auto;
                       background: #000;
                       bottom: 50px;
-                      ${theme.mobile} {
+                      @media (max-width: 600px) {
                         display: none;
                       }
                     `}
@@ -1107,7 +1107,7 @@ const HomePage = ({ pageContext }) => {
                     .column {
                       overflow: hidden;
                     }
-                    ${theme.mobile} {
+                    @media (max-width: 600px) {
                       .column {
                         min-height: 250px;
                       }
@@ -1156,7 +1156,7 @@ const HomePage = ({ pageContext }) => {
             css={`
               ${theme.fullWidth}
               flex-direction: column;
-              background: ${theme.indigo};
+              background: ${theme.primary};
               padding-left: 0 !important;
               padding-right: 0 !important;
               padding-bottom: 0;
@@ -1214,13 +1214,13 @@ const HomePage = ({ pageContext }) => {
                 margin-top: 40px;
                 margin-bottom: 50px;
               }
-              ${theme.tablet} {
+              @media (max-width: 1024px) {
                 .container {
                   padding-left: 0;
                   padding-right: 0;
                 }
               }
-              ${theme.mobile} {
+              @media (max-width: 600px) {
                 svg.divider {
                   display: none;
                 }

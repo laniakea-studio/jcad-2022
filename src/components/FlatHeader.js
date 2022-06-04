@@ -56,7 +56,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
         transition: all 0.3s;
         background-color: ${menuOpen
           ? "rgba(0, 0, 83, 0)"
-          : "rgba(0, 0, 83, 0.95)"};
+          : "rgba(0, 0, 83, 0.91)"};
         backdrop-filter: blur(2px);
         &.hide {
           transition: all 0.3s;
@@ -66,10 +66,10 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
         .mobileRight {
           display: none;
           padding-right: 40px;
-          ${theme.max900} {
+          @media (max-width: 900px) {
             display: flex;
           }
-          ${theme.mobile} {
+          @media (max-width: px) @media (max-width: 600px) {
             padding-right: 20px;
           }
         }
@@ -82,7 +82,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           max-width: 1440px;
           margin-left: auto;
           margin-right: auto;
-          ${theme.tablet} {
+          @media (max-width: 1024px) {
             padding-right: 0;
             padding-left: 0;
           }
@@ -95,10 +95,10 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           path {
             fill: #fff;
           }
-          ${theme.max900} {
+          @media (max-width: 900px) {
             padding-left: 40px;
           }
-          ${theme.mobile} {
+          @media (max-width: 600px) {
             padding-left: 20px;
           }
         }
@@ -110,27 +110,36 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           button.btn {
             height: 48px;
           }
-          ${theme.max900} {
+          @media (max-width: 900px) {
             display: none;
           }
-        }
-        nav.mainNav a {
-          color: #fff;
-          font-size: 18px;
-          font-weight: 700;
-          text-transform: uppercase;
-          display: inline-flex;
-          align-items: center;
-          padding: 10px;
-          margin-right: 30px;
-          position: relative;
-          &.active {
-            text-decoration: line-through;
+          .btn.white-outlines {
+            font-size: 14px !important;
+            font-weight: 600;
+            border: 1px solid #fff !important;
+            height: 40px;
+            border-radius: 4px;
+            min-width: 150px;
+          }
+          a {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            padding: 10px;
+            margin-right: 30px;
+            position: relative;
+            letter-spacing: 0.02em;
+            &.active {
+              text-decoration: line-through;
+            }
           }
         }
       `}
     >
-      <div>
+      <div className="padding">
         <Link className="logo" to={`/${prefix}`}>
           <SvgLogo />
         </Link>

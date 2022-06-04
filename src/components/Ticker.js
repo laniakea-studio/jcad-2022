@@ -38,7 +38,7 @@ const Div = styled.div`
     height: 100%;
     position: absolute;
     top: 0;
-    ${theme.max1440} {
+    @media (max-width: 1440px) {
       display: none;
     }
   }
@@ -78,7 +78,7 @@ const Div = styled.div`
       width: 100%;
       max-width: 220px;
     }
-    ${theme.max600} {
+    @media (max-width: 600px) {
       width: 200px;
       padding-left: 30px;
       padding-right: 30px;

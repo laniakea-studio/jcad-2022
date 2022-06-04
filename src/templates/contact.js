@@ -19,7 +19,7 @@ const Contact = ({ pageContext }) => {
       <HelmetDatoCms seo={data.yhteystiedot.seoMetaTags} />
       <Layout>
         <Main>
-          <section className="First col wrap padding">
+          <section className="First col container padding">
             <div className="leftLine" />
             <div className="rightLine" />
             <div className="Title">
@@ -178,7 +178,7 @@ const Main = styled.main`
   min-height: 100vh;
 
   .Area {
-    ${theme.max900} {
+    @media (max-width: 900px) {
       flex-wrap: wrap;
     }
     > div {
@@ -190,7 +190,7 @@ const Main = styled.main`
       height: 140px;
       width: 35%;
       min-width: 450px;
-      ${theme.max900} {
+      @media (max-width: 900px) {
         position: static;
         min-width: 0;
         overflow: hidden;
@@ -201,7 +201,7 @@ const Main = styled.main`
       position: relative;
       padding-bottom: 70px;
       width: 65%;
-      ${theme.max900} {
+      @media (max-width: 900px) {
         width: 100%;
         padding-bottom: 30px;
       }
@@ -210,16 +210,16 @@ const Main = styled.main`
       display: grid;
       width: 100%;
       grid-template-columns: repeat(3, 1fr);
-      ${theme.max1300} {
+      @media (max-width: 1300) {
         grid-template-columns: repeat(2, 1fr);
       }
-      ${theme.max1100} {
+      @media (max-width: 1100px) {
         grid-template-columns: repeat(1, 1fr);
       }
-      ${theme.max900} {
+      @media (max-width: 900px) {
         grid-template-columns: repeat(2, 1fr);
       }
-      ${theme.mobile} {
+      @media (max-width: 600px) {
         grid-template-columns: repeat(1, 1fr);
       }
     }
@@ -269,7 +269,7 @@ const Main = styled.main`
         z-index: 1;
         letter-spacing: 1px;
       }
-      ${theme.mobile} {
+      @media (max-width: 600px) {
         border-left-style: solid !important;
       }
     }
@@ -281,7 +281,7 @@ const Main = styled.main`
       top: 0;
       bottom: 0;
     }
-    ${theme.max900} {
+    @media (max-width: 900px) {
       justify-content: flex-start;
       .rightCircle,
       .leftCircle,

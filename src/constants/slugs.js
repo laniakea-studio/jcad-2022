@@ -17,6 +17,30 @@ export const webinar = {
   sv: "webinarer",
 };
 
+export const mainMenu = {
+  fi: [
+    { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
+    { title: "Hinoittelu", slug: "hinta" },
+    { title: "Webinaarit", slug: "webinaarit" },
+
+    { title: "Yhteystiedot", slug: "yhteystiedot" },
+  ],
+  en: [
+    { title: "Product", slug: "product" },
+    { title: "Pricing", slug: "pricing" },
+    { title: "Webinars", slug: "webinars" },
+
+    { title: "Contact", slug: "contact" },
+  ],
+  sv: [
+    { title: "Produkten", slug: "produkten" },
+    { title: "Prislista", slug: "pris" },
+    { title: "Webinarer", slug: "webinarer" },
+
+    { title: "Kontakter", slug: "kontakter" },
+  ],
+};
+
 export const fullMenu = {
   fi: [
     { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
