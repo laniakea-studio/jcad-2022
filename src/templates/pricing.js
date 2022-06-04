@@ -8,9 +8,7 @@ import { Layout } from "../components/Layout";
 import { Switch } from "../components/Switch";
 import { SvgHeadingFrame } from "../components/SvgCollection";
 import { LocaleContext } from "../contexts/LocaleContext";
-import en from "../locales/en.yml";
-import fi from "../locales/fi.yml";
-import sv from "../locales/sv.yml";
+import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 
 const valikkoSopimuskausi = [
@@ -25,24 +23,12 @@ const extraHinnasto = {
 
 const Pricing = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
-  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
-  const { data } = pageContext;
+  const text = snippet[locale];
 
-  const { hinnasto } = useStaticQuery(
-    graphql`
-      query {
-        hinnasto: datoCmsHinnasto {
-          valikkoOhjelmisto {
-            label
-            value
-          }
-        }
-      }
-    `
-  );
+  const { page, booking } = pageContext.data;
 
   const [priceSelections, setPriceSelections] = useState({
-    ohjelmisto: hinnasto.valikkoOhjelmisto[0],
+    ohjelmisto: page.valikkoOhjelmisto[0],
     sopimuskausi: valikkoSopimuskausi[0],
     lisenssi: 1,
     kustannuslaskenta: false,
@@ -81,7 +67,7 @@ const Pricing = ({ pageContext }) => {
 
   return (
     <>
-      <HelmetDatoCms seo={data.pricing.seoMetaTags} />
+      <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout>
         <div
           css={`
@@ -97,7 +83,7 @@ const Pricing = ({ pageContext }) => {
               <SvgHeadingFrame />
               <h2>{text.menu.pricing}</h2>
             </div>
-            <p className="lead">{data.pricing.lead}</p>
+            <p className="lead">{page.lead}</p>
             <div className="selections">
               <div>
                 <h3 className="selectHeading">
@@ -190,7 +176,7 @@ const Pricing = ({ pageContext }) => {
             </div>
             <h3 className="selectHeading">3. {text.pricing.selectProduct} </h3>
             <div className="plans">
-              {data.pricing.tuotteet.map((i, index) => {
+              {page.tuotteet.map((i, index) => {
                 return (
                   <div className="item">
                     <h3>{i.title}</h3>
@@ -223,8 +209,8 @@ const Pricing = ({ pageContext }) => {
 
                     <PopupButton
                       className="btn white-outlines"
-                      url={data.booking.calendlyBookingUrl}
-                      text={data.booking.buttonText}
+                      url={booking.calendlyBookingUrl}
+                      text={booking.buttonText}
                     />
                     <div className="footerContent">
                       <p>

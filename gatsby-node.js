@@ -42,7 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
     locales.map(async (locale) => {
       const query = await graphql(`
     {
-      home: datoCmsEtusivu(locale: { eq: "${locale}" }) {
+      about: datoCmsAbout(locale: { eq: "${locale}" }) {
         seoMetaTags {
           tags 
         }
@@ -64,16 +64,13 @@ exports.createPages = async ({ graphql, actions }) => {
           alt
         }
       }
-      about: datoCmsAbout(locale: { eq: "${locale}" })  {
-        content
-        taustakuva {
-          gatsbyImageData(
-            width: 1600
-            placeholder: BLURRED
-            forceBlurhash: false
-          )
+      home: datoCmsHome(locale: { eq: "${locale}" })  {
+        seoMetaTags {
+          tags 
         }
-      }    
+        title
+        intro        
+      }
       product: datoCmsTuotesivu(locale: { eq: "${locale}" }) {
         seoMetaTags {
           tags 
@@ -106,6 +103,10 @@ exports.createPages = async ({ graphql, actions }) => {
           teksti1
           price
           startprice
+        }
+        valikkoOhjelmisto {
+          label
+          value
         }
       }
       webinaarit: datoCmsWebinarsPage(locale: { eq: "${locale}" }) {
@@ -214,9 +215,7 @@ exports.createPages = async ({ graphql, actions }) => {
             sv: "/sv",
           },
           data: {
-            home: data.home,
-            about: data.about,
-            referenssit: data.allReferences,
+            page: data.home,
           },
         },
       });
@@ -249,7 +248,7 @@ exports.createPages = async ({ graphql, actions }) => {
             en: `/en/${slugs.en.pricing}`,
             sv: `/sv/${slugs.sv.pricing}`,
           },
-          data: { pricing: data.pricing, booking: data.booking },
+          data: { page: data.pricing, booking: data.booking },
         },
       });
 
@@ -292,8 +291,7 @@ exports.createPages = async ({ graphql, actions }) => {
             sv: `/sv/${slugs.sv.about}`,
           },
           data: {
-            home: data.home,
-            about: data.about,
+            home: data.about,
             referenssit: data.allReferences,
           },
         },

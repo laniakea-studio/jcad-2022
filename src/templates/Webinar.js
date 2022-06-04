@@ -27,24 +27,18 @@ const Page = ({ pageContext }) => {
 
   // Form
   const form = {
-    form: [
+    name: "Webinaari",
+    inputs: [
       {
         type: "email",
         name: "email",
         label: text.contact.email,
-        placeholder: "Email",
         isRequired: true,
       },
-      { type: "hidden", name: "webinar" },
-      { type: "hidden", name: "webinarDate" },
+      { type: "hidden", name: "webinarName", value: page.title },
+      { type: "hidden", name: "webinarDate", value: date },
       { type: "submit", text: "Ilmoittaudu" },
     ],
-    schema: {
-      "form-name": "Webinaari",
-      email: "",
-      webinar: page.title,
-      webinarDate: date,
-    },
     messages: {
       submitSucces: "Kiitos ilmoittautumisesta!",
       fillAllInputs: text.contact.fillAllInputs,

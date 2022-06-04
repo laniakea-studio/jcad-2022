@@ -7,48 +7,106 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout2";
 import { theme } from "../theme/theme";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import { NetlifyForm } from "../components/NetlifyForm";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
 
+  const form = {
+    name: "Työhakemus",
+    inputs: [
+      {
+        type: "email",
+        name: "email",
+        label: text.contact.email,
+        isRequired: true,
+      },
+      { type: "submit", text: "Ilmoittaudu" },
+    ],
+    messages: {
+      submitSucces: "Kiitos hakemuksestasi!",
+      fillAllInputs: text.contact.fillAllInputs,
+    },
+  };
+
   return (
     <>
       <Layout locale={pageContext.locale} transparent={false}>
         <Main>
-          <div className="Hero container padding row">
-            <div className="col">
-              <h1>{page.title}</h1>
-              <div
-                className="Content"
-                dangerouslySetInnerHTML={{ __html: page.intro }}
-              />
-            </div>
-            <div className="col justify-center align-center">
-              <AbstractSvg />
-            </div>
-          </div>
-
-          <section className="Second">
+          <section className="Hero pagePadding">
             <div className="row container padding">
-              <div className="Numbers col">
-                <div className="Revenue col justify-center align-center">
-                  <span>Liikevaihto 2021</span>
-                  <span>
-                    <strong>{page.liikevaihto}</strong>
-                  </span>
-                  <span>miljoonaa euroa</span>
+              <div className="col justify-center">
+                <h1>{page.title}</h1>
+                <div
+                  className="Content"
+                  dangerouslySetInnerHTML={{ __html: page.intro }}
+                />
+              </div>
+              <div className="col justify-center align-center">
+                <AbstractSvg />
+              </div>
+            </div>
+          </section>
+
+          <section className="Positions pagePadding">
+            <div className="grid row container padding">
+              {page.positio.map((i) => (
+                <div className="item">
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: i.content }}
+                  />
+                  <button className="btn white-outlines">
+                    Olen kiinnostunut
+                  </button>
                 </div>
-                <div className="Employees col justify-center align-center">
-                  <span>
-                    <strong>{page.employees}</strong>
-                  </span>
-                  <span>ainutlaatuista työkaveria</span>
+              ))}
+            </div>
+          </section>
+
+          <section className="Facts pagePadding">
+            <div className="row container padding">
+              <div className="Numbers col justify-center">
+                <div className="Revenue row justify-center align-center">
+                  <LineGroupSvg />
+                  <div className="col">
+                    <span>Liikevaihto 2021</span>
+                    <span>
+                      <strong>{page.liikevaihto}</strong>
+                    </span>
+                    <span>miljoonaa euroa</span>
+                  </div>
+                  <LineGroupSvg />
+                </div>
+                <div className="Employees row justify-center align-center">
+                  <LineGroupSvg />
+                  <div className="col">
+                    <span>
+                      <strong>{page.employees}</strong>
+                    </span>
+                    <span>persoonallista työkaveria</span>
+                  </div>
+                  <LineGroupSvg />
                 </div>
               </div>
               <div className="Map col">
                 <MapSvg />
+              </div>
+            </div>
+          </section>
+
+          <section className="Apply pagePadding">
+            <div className="row container padding">
+              <div className="col justify-center">
+                <div
+                  className="content"
+                  dangerouslySetInnerHTML={{ __html: page.askMore }}
+                />
+              </div>
+              <div className="col justify-center">
+                <NetlifyForm data={form} isLightBg />
               </div>
             </div>
           </section>
@@ -66,55 +124,184 @@ const Main = styled.main`
   flex-direction: column;
   color: #fff;
   background: ${theme.primary};
-  padding-left: 40px;
-  padding-right: 40px;
-  .Hero {
-    padding-top: 115px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-left: 0.8px dashed #fff;
-    border-right: 0.8px dashed #fff;
+  h1 {
+    font-weight: 700;
+    font-size: 64px;
+    text-transform: none;
+    margin-bottom: 30px;
+  }
+  .Hero .container {
+    padding-top: 94px;
     > .col:first-child {
-      flex: 5 1 0;
+      width: 50%;
       border-right: 0.8px dashed #fff;
-      padding-top: 40px;
+      padding-top: 70px;
       padding-right: 40px;
       padding-bottom: 70px;
     }
     > .col:last-child {
-      flex: 4 1 0;
+      width: 50%;
+      padding-top: 70px;
       padding-bottom: 70px;
+      padding-left: 20px;
+      svg {
+        width: 100%;
+      }
     }
   }
-  .Second {
+  .Positions {
+    .container {
+      border-top: 0.8px dashed #fff;
+    }
+    h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    p {
+      line-height: 1.3;
+    }
+    .grid {
+      padding-top: 30px;
+      padding-bottom: 50px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 520px));
+      gap: 40px;
+      @media (max-width: 700px) {
+        grid-template-columns: repeat(1, minmax(0, 520px));
+      }
+    }
+    .item {
+      padding: 30px 20px;
+      max-width: 415px;
+      &:first-child,
+      &:nth-child(2) {
+        border-bottom: 0.8px dashed #fff;
+      }
+    }
+  }
+  .Facts {
     background: #fff;
     color: #000;
-    width: 100%;
     .container {
-      border-left: 0.8px dashed #000;
-      border-right: 0.8px dashed #000;
+      border-color: #000;
     }
   }
   .Numbers {
-    flex: 3 1 0;
+    width: 50%;
     padding-top: 60px;
+    padding-right: 20px;
     border-right: 0.8px dashed #000;
     padding-bottom: 80px;
     span {
       text-transform: uppercase;
       font-size: 15px;
       text-align: center;
+      font-weight: 600;
       strong {
         font-size: 200px;
+        line-height: 0.8;
       }
     }
   }
+  .Revenue {
+    border-bottom: 0.8px dashed #000;
+  }
   .Map {
-    flex: 3 1 0;
+    width: 50%;
     padding-top: 60px;
     padding-bottom: 80px;
+    svg {
+      width: 100%;
+    }
+  }
+  .Apply {
+    background: #fff;
+    color: #000;
+    .container {
+      border-color: #000;
+    }
   }
 `;
+
+const LineGroupSvg = () => (
+  <svg
+    width="79"
+    height="295"
+    viewBox="0 0 79 295"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M78.338 13.1326H53.0825"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+    />
+    <path
+      d="M65.7104 24.4414C67.5905 24.4414 69.1059 19.3903 69.1059 13.1325C69.1059 6.87477 67.5905 1.82367 65.7104 1.82367C63.8303 1.82367 62.3149 6.87477 62.3149 13.1325C62.3149 19.3903 63.8303 24.4414 65.7104 24.4414V24.4414Z"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+    />
+    <path
+      d="M78.338 102.649H53.0825"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+    />
+    <path
+      d="M65.7104 113.958C67.5905 113.958 69.1059 108.879 69.1059 102.649C69.1059 96.4193 67.5905 91.3401 65.7104 91.3401C63.8303 91.3401 62.3149 96.3912 62.3149 102.649C62.3149 108.907 63.8303 113.958 65.7104 113.958Z"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+    />
+    <path
+      d="M78.338 192.166H53.0825"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+    />
+    <path
+      d="M65.7104 203.475C67.5905 203.475 69.1059 198.396 69.1059 192.166C69.1059 185.936 67.5905 180.857 65.7104 180.857C63.8303 180.857 62.3149 185.908 62.3149 192.166C62.3149 198.424 63.8303 203.475 65.7104 203.475Z"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+    />
+    <path
+      d="M78.338 281.683H53.0825"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+    />
+    <path
+      d="M65.7104 293.019C67.5905 293.019 69.1059 287.94 69.1059 281.711C69.1059 275.481 67.5905 270.402 65.7104 270.402C63.8303 270.402 62.3149 275.453 62.3149 281.711C62.3149 287.968 63.8303 293.019 65.7104 293.019Z"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+    />
+    <path
+      d="M31.6431 294.816V-6.10352e-05"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+      stroke-dasharray="4 4"
+    />
+    <path
+      d="M16.3779 294.816V-6.10352e-05"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+      stroke-dasharray="4 4"
+    />
+    <path
+      d="M1 294.816V0"
+      stroke="black"
+      stroke-width="0.8"
+      stroke-miterlimit="10"
+      stroke-dasharray="4 4"
+    />
+  </svg>
+);
 
 const AbstractSvg = () => (
   <svg
@@ -206,15 +393,15 @@ const AbstractSvg = () => (
 const MapSvg = () => (
   <svg
     width="603"
-    height="612"
-    viewBox="0 0 603 612"
+    height="567"
+    viewBox="0 0 603 567"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M226.258 8.91286C226.258 19.5526 210.325 19.5526 210.325 8.91286C210.325 -1.72689 226.258 -1.72689 226.258 8.91286Z"
+      d="M226.258 8.91292C226.258 19.5527 210.325 19.5527 210.325 8.91292C210.325 -1.72683 226.258 -1.72683 226.258 8.91292Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -222,7 +409,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M254.938 8.91286C254.938 19.5526 239.004 19.5526 239.004 8.91286C239.004 -1.72689 254.938 -1.72689 254.938 8.91286Z"
+      d="M254.938 8.91292C254.938 19.5527 239.004 19.5527 239.004 8.91292C239.004 -1.72683 254.938 -1.72683 254.938 8.91292Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -230,7 +417,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M283.599 8.91286C283.599 19.5526 267.666 19.5526 267.666 8.91286C267.666 -1.72689 283.599 -1.72689 283.599 8.91286Z"
+      d="M283.599 8.91292C283.599 19.5527 267.666 19.5527 267.666 8.91292C267.666 -1.72683 283.599 -1.72683 283.599 8.91292Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -238,7 +425,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 8.91286C312.315 19.5526 296.382 19.5526 296.382 8.91286C296.382 -1.72689 312.315 -1.72689 312.315 8.91286Z"
+      d="M312.315 8.91292C312.315 19.5527 296.382 19.5527 296.382 8.91292C296.382 -1.72683 312.315 -1.72683 312.315 8.91292Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -246,7 +433,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 8.91286C340.995 19.5526 325.062 19.5526 325.062 8.91286C325.062 -1.72689 340.995 -1.72689 340.995 8.91286Z"
+      d="M340.995 8.91292C340.995 19.5527 325.062 19.5527 325.062 8.91292C325.062 -1.72683 340.995 -1.72683 340.995 8.91292Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -254,7 +441,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 8.91286C369.657 19.5526 353.724 19.5526 353.724 8.91286C353.724 -1.72689 369.657 -1.72689 369.657 8.91286Z"
+      d="M369.657 8.91292C369.657 19.5527 353.724 19.5527 353.724 8.91292C353.724 -1.72683 369.657 -1.72683 369.657 8.91292Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -262,7 +449,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 8.91286C398.355 19.5526 382.422 19.5526 382.422 8.91286C382.422 -1.72689 398.355 -1.72689 398.355 8.91286Z"
+      d="M398.355 8.91292C398.355 19.5527 382.422 19.5527 382.422 8.91292C382.422 -1.72683 398.355 -1.72683 398.355 8.91292Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -270,7 +457,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 8.91286C427.016 19.5526 411.083 19.5526 411.083 8.91286C411.083 -1.72689 427.016 -1.72689 427.016 8.91286Z"
+      d="M427.016 8.91292C427.016 19.5527 411.083 19.5527 411.083 8.91292C411.083 -1.72683 427.016 -1.72683 427.016 8.91292Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -278,7 +465,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M254.938 37.6569C254.938 48.2967 239.004 48.2967 239.004 37.6569C239.004 27.0172 254.938 27.0172 254.938 37.6569Z"
+      d="M254.938 37.6571C254.938 48.2968 239.004 48.2968 239.004 37.6571C239.004 27.0173 254.938 27.0173 254.938 37.6571Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -286,7 +473,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M283.599 37.6569C283.599 48.2967 267.666 48.2967 267.666 37.6569C267.666 27.0172 283.599 27.0172 283.599 37.6569Z"
+      d="M283.599 37.6571C283.599 48.2968 267.666 48.2968 267.666 37.6571C267.666 27.0173 283.599 27.0173 283.599 37.6571Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -294,7 +481,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 37.6569C312.315 48.2967 296.382 48.2967 296.382 37.6569C296.382 27.0172 312.315 27.0172 312.315 37.6569Z"
+      d="M312.315 37.6571C312.315 48.2968 296.382 48.2968 296.382 37.6571C296.382 27.0173 312.315 27.0173 312.315 37.6571Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -302,7 +489,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 37.6569C340.995 48.2967 325.062 48.2967 325.062 37.6569C325.062 27.0172 340.995 27.0172 340.995 37.6569Z"
+      d="M340.995 37.6571C340.995 48.2968 325.062 48.2968 325.062 37.6571C325.062 27.0173 340.995 27.0173 340.995 37.6571Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -310,7 +497,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 37.6569C369.657 48.2967 353.724 48.2967 353.724 37.6569C353.724 27.0172 369.657 27.0172 369.657 37.6569Z"
+      d="M369.657 37.6571C369.657 48.2968 353.724 48.2968 353.724 37.6571C353.724 27.0173 369.657 27.0173 369.657 37.6571Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -318,7 +505,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 37.6569C398.355 48.2967 382.422 48.2967 382.422 37.6569C382.422 27.0172 398.355 27.0172 398.355 37.6569Z"
+      d="M398.355 37.6571C398.355 48.2968 382.422 48.2968 382.422 37.6571C382.422 27.0173 398.355 27.0173 398.355 37.6571Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -326,7 +513,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 37.6569C427.016 48.2967 411.083 48.2967 411.083 37.6569C411.083 27.0172 427.016 27.0172 427.016 37.6569Z"
+      d="M427.016 37.6571C427.016 48.2968 411.083 48.2968 411.083 37.6571C411.083 27.0173 427.016 27.0173 427.016 37.6571Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -334,7 +521,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M455.714 37.6569C455.714 48.2967 439.781 48.2967 439.781 37.6569C439.781 27.0172 455.714 27.0172 455.714 37.6569Z"
+      d="M455.714 37.6571C455.714 48.2968 439.781 48.2968 439.781 37.6571C439.781 27.0173 455.714 27.0173 455.714 37.6571Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -342,7 +529,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M254.938 66.401C254.938 77.0408 239.004 77.0408 239.004 66.401C239.004 55.7613 254.938 55.7613 254.938 66.401Z"
+      d="M254.938 66.4012C254.938 77.041 239.004 77.041 239.004 66.4012C239.004 55.7614 254.938 55.7614 254.938 66.4012Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -350,7 +537,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M283.599 66.401C283.599 77.0408 267.666 77.0408 267.666 66.401C267.666 55.7613 283.599 55.7613 283.599 66.401Z"
+      d="M283.599 66.4012C283.599 77.041 267.666 77.041 267.666 66.4012C267.666 55.7614 283.599 55.7614 283.599 66.4012Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -358,7 +545,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 66.401C312.315 77.0408 296.382 77.0408 296.382 66.401C296.382 55.7613 312.315 55.7613 312.315 66.401Z"
+      d="M312.315 66.4012C312.315 77.041 296.382 77.041 296.382 66.4012C296.382 55.7614 312.315 55.7614 312.315 66.4012Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -366,7 +553,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 66.401C340.995 77.0408 325.062 77.0408 325.062 66.401C325.062 55.7613 340.995 55.7613 340.995 66.401Z"
+      d="M340.995 66.4012C340.995 77.041 325.062 77.041 325.062 66.4012C325.062 55.7614 340.995 55.7614 340.995 66.4012Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -374,7 +561,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 66.401C369.657 77.0408 353.724 77.0408 353.724 66.401C353.724 55.7613 369.657 55.7613 369.657 66.401Z"
+      d="M369.657 66.4012C369.657 77.041 353.724 77.041 353.724 66.4012C353.724 55.7614 369.657 55.7614 369.657 66.4012Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -382,7 +569,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 66.401C398.355 77.0408 382.422 77.0408 382.422 66.401C382.422 55.7613 398.355 55.7613 398.355 66.401Z"
+      d="M398.355 66.4012C398.355 77.041 382.422 77.041 382.422 66.4012C382.422 55.7614 398.355 55.7614 398.355 66.4012Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -390,7 +577,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 66.401C427.016 77.0408 411.083 77.0408 411.083 66.401C411.083 55.7613 427.016 55.7613 427.016 66.401Z"
+      d="M427.016 66.4012C427.016 77.041 411.083 77.041 411.083 66.4012C411.083 55.7614 427.016 55.7614 427.016 66.4012Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -398,7 +585,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M455.714 66.401C455.714 77.0408 439.781 77.0408 439.781 66.401C439.781 55.7613 455.714 55.7613 455.714 66.401Z"
+      d="M455.714 66.4012C455.714 77.041 439.781 77.041 439.781 66.4012C439.781 55.7614 455.714 55.7614 455.714 66.4012Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -406,7 +593,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 95.145C312.315 105.785 296.382 105.785 296.382 95.145C296.382 84.5053 312.315 84.5053 312.315 95.145Z"
+      d="M312.315 95.1449C312.315 105.785 296.382 105.785 296.382 95.1449C296.382 84.5051 312.315 84.5051 312.315 95.1449Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -414,7 +601,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 95.145C340.995 105.785 325.062 105.785 325.062 95.145C325.062 84.5053 340.995 84.5053 340.995 95.145Z"
+      d="M340.995 95.1449C340.995 105.785 325.062 105.785 325.062 95.1449C325.062 84.5051 340.995 84.5051 340.995 95.1449Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -422,7 +609,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 95.145C369.657 105.785 353.724 105.785 353.724 95.145C353.724 84.5053 369.657 84.5053 369.657 95.145Z"
+      d="M369.657 95.1449C369.657 105.785 353.724 105.785 353.724 95.1449C353.724 84.5051 369.657 84.5051 369.657 95.1449Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -430,7 +617,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 95.145C398.355 105.785 382.422 105.785 382.422 95.145C382.422 84.5053 398.355 84.5053 398.355 95.145Z"
+      d="M398.355 95.1449C398.355 105.785 382.422 105.785 382.422 95.1449C382.422 84.5051 398.355 84.5051 398.355 95.1449Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -438,7 +625,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 95.145C427.016 105.785 411.083 105.785 411.083 95.145C411.083 84.5053 427.016 84.5053 427.016 95.145Z"
+      d="M427.016 95.1449C427.016 105.785 411.083 105.785 411.083 95.1449C411.083 84.5051 427.016 84.5051 427.016 95.1449Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -567,7 +754,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M254.938 181.377C254.938 192.017 239.004 192.017 239.004 181.377C239.004 170.737 254.938 170.737 254.938 181.377Z"
+      d="M254.938 181.377C254.938 192.017 239.004 192.017 239.004 181.377C239.004 170.738 254.938 170.738 254.938 181.377Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -575,7 +762,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M283.599 181.377C283.599 192.017 267.666 192.017 267.666 181.377C267.666 170.737 283.599 170.737 283.599 181.377Z"
+      d="M283.599 181.377C283.599 192.017 267.666 192.017 267.666 181.377C267.666 170.738 283.599 170.738 283.599 181.377Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -583,7 +770,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 181.377C312.315 192.017 296.382 192.017 296.382 181.377C296.382 170.737 312.315 170.737 312.315 181.377Z"
+      d="M312.315 181.377C312.315 192.017 296.382 192.017 296.382 181.377C296.382 170.738 312.315 170.738 312.315 181.377Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -591,7 +778,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 181.377C340.995 192.017 325.062 192.017 325.062 181.377C325.062 170.737 340.995 170.737 340.995 181.377Z"
+      d="M340.995 181.377C340.995 192.017 325.062 192.017 325.062 181.377C325.062 170.738 340.995 170.738 340.995 181.377Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -599,7 +786,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 181.377C369.657 192.017 353.724 192.017 353.724 181.377C353.724 170.737 369.657 170.737 369.657 181.377Z"
+      d="M369.657 181.377C369.657 192.017 353.724 192.017 353.724 181.377C353.724 170.738 369.657 170.738 369.657 181.377Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -607,7 +794,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 181.377C398.355 192.017 382.422 192.017 382.422 181.377C382.422 170.737 398.355 170.737 398.355 181.377Z"
+      d="M398.355 181.377C398.355 192.017 382.422 192.017 382.422 181.377C382.422 170.738 398.355 170.738 398.355 181.377Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -615,7 +802,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 181.377C427.016 192.017 411.083 192.017 411.083 181.377C411.083 170.737 427.016 170.737 427.016 181.377Z"
+      d="M427.016 181.377C427.016 192.017 411.083 192.017 411.083 181.377C411.083 170.738 427.016 170.738 427.016 181.377Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -623,7 +810,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M455.714 181.377C455.714 192.017 439.781 192.017 439.781 181.377C439.781 170.737 455.714 170.737 455.714 181.377Z"
+      d="M455.714 181.377C455.714 192.017 439.781 192.017 439.781 181.377C439.781 170.738 455.714 170.738 455.714 181.377Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -711,7 +898,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M197.578 238.865C197.578 249.505 181.645 249.505 181.645 238.865C181.645 228.226 197.578 228.226 197.578 238.865Z"
+      d="M197.578 238.866C197.578 249.505 181.645 249.505 181.645 238.866C181.645 228.226 197.578 228.226 197.578 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -719,7 +906,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M226.258 238.865C226.258 249.505 210.325 249.505 210.325 238.865C210.325 228.226 226.258 228.226 226.258 238.865Z"
+      d="M226.258 238.866C226.258 249.505 210.325 249.505 210.325 238.866C210.325 228.226 226.258 228.226 226.258 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -727,7 +914,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M254.938 238.865C254.938 249.505 239.004 249.505 239.004 238.865C239.004 228.226 254.938 228.226 254.938 238.865Z"
+      d="M254.938 238.866C254.938 249.505 239.004 249.505 239.004 238.866C239.004 228.226 254.938 228.226 254.938 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -735,7 +922,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M283.599 238.865C283.599 249.505 267.666 249.505 267.666 238.865C267.666 228.226 283.599 228.226 283.599 238.865Z"
+      d="M283.599 238.866C283.599 249.505 267.666 249.505 267.666 238.866C267.666 228.226 283.599 228.226 283.599 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -743,7 +930,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 238.865C312.315 249.505 296.382 249.505 296.382 238.865C296.382 228.226 312.315 228.226 312.315 238.865Z"
+      d="M312.315 238.866C312.315 249.505 296.382 249.505 296.382 238.866C296.382 228.226 312.315 228.226 312.315 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -751,7 +938,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 238.865C340.995 249.505 325.062 249.505 325.062 238.865C325.062 228.226 340.995 228.226 340.995 238.865Z"
+      d="M340.995 238.866C340.995 249.505 325.062 249.505 325.062 238.866C325.062 228.226 340.995 228.226 340.995 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -759,7 +946,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 238.865C369.657 249.505 353.724 249.505 353.724 238.865C353.724 228.226 369.657 228.226 369.657 238.865Z"
+      d="M369.657 238.866C369.657 249.505 353.724 249.505 353.724 238.866C353.724 228.226 369.657 228.226 369.657 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -767,7 +954,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 238.865C398.355 249.505 382.422 249.505 382.422 238.865C382.422 228.226 398.355 228.226 398.355 238.865Z"
+      d="M398.355 238.866C398.355 249.505 382.422 249.505 382.422 238.866C382.422 228.226 398.355 228.226 398.355 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -775,7 +962,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 238.865C427.016 249.505 411.083 249.505 411.083 238.865C411.083 228.226 427.016 228.226 427.016 238.865Z"
+      d="M427.016 238.866C427.016 249.505 411.083 249.505 411.083 238.866C411.083 228.226 427.016 228.226 427.016 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -783,7 +970,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M455.714 238.865C455.714 249.505 439.781 249.505 439.781 238.865C439.781 228.226 455.714 228.226 455.714 238.865Z"
+      d="M455.714 238.866C455.714 249.505 439.781 249.505 439.781 238.866C439.781 228.226 455.714 228.226 455.714 238.866Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -984,7 +1171,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M140.219 325.098C140.219 335.737 124.286 335.737 124.286 325.098C124.286 314.458 140.219 314.458 140.219 325.098Z"
+      d="M140.219 325.097C140.219 335.737 124.286 335.737 124.286 325.097C124.286 314.458 140.219 314.458 140.219 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -992,7 +1179,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M168.899 325.098C168.899 335.737 152.965 335.737 152.965 325.098C152.965 314.458 168.899 314.458 168.899 325.098Z"
+      d="M168.899 325.097C168.899 335.737 152.965 335.737 152.965 325.097C152.965 314.458 168.899 314.458 168.899 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1000,7 +1187,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M197.578 325.098C197.578 335.737 181.645 335.737 181.645 325.098C181.645 314.458 197.578 314.458 197.578 325.098Z"
+      d="M197.578 325.097C197.578 335.737 181.645 335.737 181.645 325.097C181.645 314.458 197.578 314.458 197.578 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1008,7 +1195,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M226.258 325.098C226.258 335.737 210.325 335.737 210.325 325.098C210.325 314.458 226.258 314.458 226.258 325.098Z"
+      d="M226.258 325.097C226.258 335.737 210.325 335.737 210.325 325.097C210.325 314.458 226.258 314.458 226.258 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1016,7 +1203,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M254.938 325.098C254.938 335.737 239.004 335.737 239.004 325.098C239.004 314.458 254.938 314.458 254.938 325.098Z"
+      d="M254.938 325.097C254.938 335.737 239.004 335.737 239.004 325.097C239.004 314.458 254.938 314.458 254.938 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1024,7 +1211,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M283.599 325.098C283.599 335.737 267.666 335.737 267.666 325.098C267.666 314.458 283.599 314.458 283.599 325.098Z"
+      d="M283.599 325.097C283.599 335.737 267.666 335.737 267.666 325.097C267.666 314.458 283.599 314.458 283.599 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1032,7 +1219,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 325.098C312.315 335.737 296.382 335.737 296.382 325.098C296.382 314.458 312.315 314.458 312.315 325.098Z"
+      d="M312.315 325.097C312.315 335.737 296.382 335.737 296.382 325.097C296.382 314.458 312.315 314.458 312.315 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1040,7 +1227,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 325.098C340.995 335.737 325.062 335.737 325.062 325.098C325.062 314.458 340.995 314.458 340.995 325.098Z"
+      d="M340.995 325.097C340.995 335.737 325.062 335.737 325.062 325.097C325.062 314.458 340.995 314.458 340.995 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1048,7 +1235,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 325.098C369.657 335.737 353.724 335.737 353.724 325.098C353.724 314.458 369.657 314.458 369.657 325.098Z"
+      d="M369.657 325.097C369.657 335.737 353.724 335.737 353.724 325.097C353.724 314.458 369.657 314.458 369.657 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1056,7 +1243,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 325.098C398.355 335.737 382.422 335.737 382.422 325.098C382.422 314.458 398.355 314.458 398.355 325.098Z"
+      d="M398.355 325.097C398.355 335.737 382.422 335.737 382.422 325.097C382.422 314.458 398.355 314.458 398.355 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1064,7 +1251,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 325.098C427.016 335.737 411.083 335.737 411.083 325.098C411.083 314.458 427.016 314.458 427.016 325.098Z"
+      d="M427.016 325.097C427.016 335.737 411.083 335.737 411.083 325.097C411.083 314.458 427.016 314.458 427.016 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1072,7 +1259,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M455.714 325.098C455.714 335.737 439.781 335.737 439.781 325.098C439.781 314.458 455.714 314.458 455.714 325.098Z"
+      d="M455.714 325.097C455.714 335.737 439.781 335.737 439.781 325.097C439.781 314.458 455.714 314.458 455.714 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1080,7 +1267,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M484.394 325.098C484.394 335.737 468.461 335.737 468.461 325.098C468.461 314.458 484.394 314.458 484.394 325.098Z"
+      d="M484.394 325.097C484.394 335.737 468.461 335.737 468.461 325.097C468.461 314.458 484.394 314.458 484.394 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1088,7 +1275,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M513.074 325.098C513.074 335.737 497.141 335.737 497.141 325.098C497.141 314.458 513.074 314.458 513.074 325.098Z"
+      d="M513.074 325.097C513.074 335.737 497.141 335.737 497.141 325.097C497.141 314.458 513.074 314.458 513.074 325.097Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1200,7 +1387,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M140.219 382.604C140.219 393.244 124.286 393.244 124.286 382.604C124.286 371.964 140.219 371.964 140.219 382.604Z"
+      d="M140.219 382.604C140.219 393.244 124.286 393.244 124.286 382.604C124.286 371.965 140.219 371.965 140.219 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1208,7 +1395,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M168.899 382.604C168.899 393.244 152.965 393.244 152.965 382.604C152.965 371.964 168.899 371.964 168.899 382.604Z"
+      d="M168.899 382.604C168.899 393.244 152.965 393.244 152.965 382.604C152.965 371.965 168.899 371.965 168.899 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1216,7 +1403,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M197.578 382.604C197.578 393.244 181.645 393.244 181.645 382.604C181.645 371.964 197.578 371.964 197.578 382.604Z"
+      d="M197.578 382.604C197.578 393.244 181.645 393.244 181.645 382.604C181.645 371.965 197.578 371.965 197.578 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1224,7 +1411,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M226.258 382.604C226.258 393.244 210.325 393.244 210.325 382.604C210.325 371.964 226.258 371.964 226.258 382.604Z"
+      d="M226.258 382.604C226.258 393.244 210.325 393.244 210.325 382.604C210.325 371.965 226.258 371.965 226.258 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1232,7 +1419,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M254.938 382.604C254.938 393.244 239.004 393.244 239.004 382.604C239.004 371.964 254.938 371.964 254.938 382.604Z"
+      d="M254.938 382.604C254.938 393.244 239.004 393.244 239.004 382.604C239.004 371.965 254.938 371.965 254.938 382.604Z"
       fill="black"
       stroke="black"
       stroke-width="0.8"
@@ -1241,7 +1428,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M283.599 382.604C283.599 393.244 267.666 393.244 267.666 382.604C267.666 371.964 283.599 371.964 283.599 382.604Z"
+      d="M283.599 382.604C283.599 393.244 267.666 393.244 267.666 382.604C267.666 371.965 283.599 371.965 283.599 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1249,7 +1436,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 382.604C312.315 393.244 296.382 393.244 296.382 382.604C296.382 371.964 312.315 371.964 312.315 382.604Z"
+      d="M312.315 382.604C312.315 393.244 296.382 393.244 296.382 382.604C296.382 371.965 312.315 371.965 312.315 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1257,7 +1444,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 382.604C340.995 393.244 325.062 393.244 325.062 382.604C325.062 371.964 340.995 371.964 340.995 382.604Z"
+      d="M340.995 382.604C340.995 393.244 325.062 393.244 325.062 382.604C325.062 371.965 340.995 371.965 340.995 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1265,7 +1452,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 382.604C369.657 393.244 353.724 393.244 353.724 382.604C353.724 371.964 369.657 371.964 369.657 382.604Z"
+      d="M369.657 382.604C369.657 393.244 353.724 393.244 353.724 382.604C353.724 371.965 369.657 371.965 369.657 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1273,7 +1460,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 382.604C398.355 393.244 382.422 393.244 382.422 382.604C382.422 371.964 398.355 371.964 398.355 382.604Z"
+      d="M398.355 382.604C398.355 393.244 382.422 393.244 382.422 382.604C382.422 371.965 398.355 371.965 398.355 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1281,7 +1468,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 382.604C427.016 393.244 411.083 393.244 411.083 382.604C411.083 371.964 427.016 371.964 427.016 382.604Z"
+      d="M427.016 382.604C427.016 393.244 411.083 393.244 411.083 382.604C411.083 371.965 427.016 371.965 427.016 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1289,7 +1476,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M455.714 382.604C455.714 393.244 439.781 393.244 439.781 382.604C439.781 371.964 455.714 371.964 455.714 382.604Z"
+      d="M455.714 382.604C455.714 393.244 439.781 393.244 439.781 382.604C439.781 371.965 455.714 371.965 455.714 382.604Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1393,7 +1580,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M140.219 440.092C140.219 450.732 124.286 450.732 124.286 440.092C124.286 429.453 140.219 429.453 140.219 440.092Z"
+      d="M140.219 440.092C140.219 450.732 124.286 450.732 124.286 440.092C124.286 429.452 140.219 429.452 140.219 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1401,7 +1588,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M168.899 440.092C168.899 450.732 152.965 450.732 152.965 440.092C152.965 429.453 168.899 429.453 168.899 440.092Z"
+      d="M168.899 440.092C168.899 450.732 152.965 450.732 152.965 440.092C152.965 429.452 168.899 429.452 168.899 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1409,7 +1596,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M197.578 440.092C197.578 450.732 181.645 450.732 181.645 440.092C181.645 429.453 197.578 429.453 197.578 440.092Z"
+      d="M197.578 440.092C197.578 450.732 181.645 450.732 181.645 440.092C181.645 429.452 197.578 429.452 197.578 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1417,7 +1604,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M226.258 440.092C226.258 450.732 210.325 450.732 210.325 440.092C210.325 429.453 226.258 429.453 226.258 440.092Z"
+      d="M226.258 440.092C226.258 450.732 210.325 450.732 210.325 440.092C210.325 429.452 226.258 429.452 226.258 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1425,7 +1612,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M254.938 440.092C254.938 450.732 239.004 450.732 239.004 440.092C239.004 429.453 254.938 429.453 254.938 440.092Z"
+      d="M254.938 440.092C254.938 450.732 239.004 450.732 239.004 440.092C239.004 429.452 254.938 429.452 254.938 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1433,7 +1620,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M283.599 440.092C283.599 450.732 267.666 450.732 267.666 440.092C267.666 429.453 283.599 429.453 283.599 440.092Z"
+      d="M283.599 440.092C283.599 450.732 267.666 450.732 267.666 440.092C267.666 429.452 283.599 429.452 283.599 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1441,7 +1628,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M312.315 440.092C312.315 450.732 296.382 450.732 296.382 440.092C296.382 429.453 312.315 429.453 312.315 440.092Z"
+      d="M312.315 440.092C312.315 450.732 296.382 450.732 296.382 440.092C296.382 429.452 312.315 429.452 312.315 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1449,7 +1636,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M340.995 440.092C340.995 450.732 325.062 450.732 325.062 440.092C325.062 429.453 340.995 429.453 340.995 440.092Z"
+      d="M340.995 440.092C340.995 450.732 325.062 450.732 325.062 440.092C325.062 429.452 340.995 429.452 340.995 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1457,7 +1644,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M369.657 440.092C369.657 450.732 353.724 450.732 353.724 440.092C353.724 429.453 369.657 429.453 369.657 440.092Z"
+      d="M369.657 440.092C369.657 450.732 353.724 450.732 353.724 440.092C353.724 429.452 369.657 429.452 369.657 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1465,7 +1652,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M398.355 440.092C398.355 450.732 382.422 450.732 382.422 440.092C382.422 429.453 398.355 429.453 398.355 440.092Z"
+      d="M398.355 440.092C398.355 450.732 382.422 450.732 382.422 440.092C382.422 429.452 398.355 429.452 398.355 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"
@@ -1473,7 +1660,7 @@ const MapSvg = () => (
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M427.016 440.092C427.016 450.732 411.083 450.732 411.083 440.092C411.083 429.453 427.016 429.453 427.016 440.092Z"
+      d="M427.016 440.092C427.016 450.732 411.083 450.732 411.083 440.092C411.083 429.452 427.016 429.452 427.016 440.092Z"
       stroke="black"
       stroke-width="0.8"
       stroke-miterlimit="10"

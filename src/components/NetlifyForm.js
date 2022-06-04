@@ -5,48 +5,27 @@ import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 
 /* E.g. data 
-  {
-    form: [
-      {
-        type: "text",
-        name: "name",
-        label: text.contact.name,
-        placeholder: text.contact.name,
-        isRequired: true,
-      },
+ const form = {
+    name: "Webinaari",
+    inputs: [
       {
         type: "email",
         name: "email",
         label: text.contact.email,
-        placeholder: "Email",
         isRequired: true,
       },
-      {
-        type: "textarea",
-        name: "message",
-        label: text.contact.message,
-        placeholder: "Kirjoita tähän",
-        isRequired: false,
-      },
-      {type: "hidden",
-       name: "webinar",
-      },
-      { type: "submit", text: text.contact.send },
+      { type: "hidden", name: "webinarName", value: page.title },
+      { type: "hidden", name: "webinarDate", value: date },
+      { type: "submit", text: "Ilmoittaudu" },
     ],
-    schema: {
-      "form-name": "Ilmoittaudu",
-      name: "",
-      email: "",
-      message: "",
-    },
     messages: {
-      submitSucces: text.contact.submitSuccess,
+      submitSucces: "Kiitos ilmoittautumisesta!",
       fillAllInputs: text.contact.fillAllInputs,
     },
   }
-*/
+  */
 
-const styles = {
+const stylesDarkBg = {
   label: "rgba(255,255,255,0.6)",
   labelFocus: "#fff",
   inputColor: "#fff",
@@ -58,15 +37,41 @@ const styles = {
   buttonBorder: "#fff",
   buttonColor: theme.primary,
   placeholder: "rgba(255,255,255,0.3)",
+  messageColor: "#fff",
+};
+const stylesLightBg = {
+  label: "rgba(0,0,0,0.6)",
+  labelFocus: "#000",
+  inputColor: "#000",
+  border: "none",
+  borderFocus: "rgba(0,0,0,0.6)",
+  background: "rgba(0,0,0,0.05)",
+  backgroundFocus: "none",
+  buttonBackground: "none",
+  buttonBorder: "#000",
+  buttonColor: "#000",
+  placeholder: "rgba(0,0,0,0.3)",
+  messageColor: "#000",
 };
 
-export const NetlifyForm = ({ data }) => {
-  const { form, schema, messages } = data;
-  /* Configure Form: form.name === schema[key] */
+export const NetlifyForm = ({ data, isLightBg }) => {
+  const { name, inputs, messages } = data;
+  const styles = isLightBg ? stylesLightBg : stylesDarkBg;
+
+  let schema = {
+    "form-name": name,
+  };
+
+  const schemaInputs = inputs.filter((input) => input.type !== "submit");
+  schema = schemaInputs.reduce(
+    (o, key) => ({ ...o, [key.name]: key.value || "" }),
+    schema
+  );
 
   const [formData, setFormData] = useState(schema);
   const [showMessage, setShowMessage] = useState(null);
 
+  console.log(formData);
   const onInputChange = (e) => {
     const key = e.target.name;
     const value = e.target.value;
@@ -94,15 +99,87 @@ export const NetlifyForm = ({ data }) => {
   const isFormValid = () => {
     let formIsValid = false;
 
-    const requiredFields = form.filter((input) => input.isRequired);
+    const requiredFields = inputs.filter((input) => input.isRequired);
     formIsValid = requiredFields.every((field) => formData[field.name]);
 
     return formIsValid;
   };
 
   return (
-    <Form name={schema["form-name"]} method="POST" data-netlify="true">
-      {form.map((input) => {
+    <form
+      name={schema["form-name"]}
+      method="POST"
+      data-netlify="true"
+      css={`
+        font-weight: 400;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        max-width: 560px;
+        display: flex;
+        flex-direction: column;
+        .input {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          padding-bottom: 5px;
+        }
+        .input:focus-within label {
+          color: ${styles.labelFocus};
+        }
+        label {
+          font-size: 16px;
+          margin-bottom: 5px;
+          font-weight: 400;
+          cursor: pointer;
+          color: ${styles.label};
+        }
+        .input textarea,
+        .input input {
+          border-radius: 4px;
+          margin-bottom: 10px;
+          color: ${styles.inputColor};
+          padding: 20px;
+          transition: border-color 0.2s;
+          border: 1px solid ${styles.border};
+          background: ${styles.background};
+          &:focus {
+            border-color: ${styles.borderFocus};
+            transition: border-color 0.2s;
+          }
+          &::placeholder {
+            color: ${styles.placeholder};
+          }
+        }
+        input {
+          height: 50px;
+        }
+
+        button.submit {
+          border-radius: 3px;
+          color: ${styles.buttonColor};
+          background: ${styles.buttonBackground};
+          border: 1px solid ${styles.buttonBorder};
+          height: 50px;
+          text-transform: uppercase;
+        }
+        .messageBox {
+          padding: 12px;
+          text-align: center;
+          font-weight: 500;
+          color: ${styles.messageColor};
+          min-height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          span {
+            padding: 0 8px;
+          }
+        }
+      `}
+    >
+      {inputs.map((input) => {
         return (
           <>
             {input.type === "text" && (
@@ -168,7 +245,7 @@ export const NetlifyForm = ({ data }) => {
       <div className="messageBox">
         {showMessage && <span>{showMessage}</span>}
       </div>
-    </Form>
+    </form>
   );
 };
 
@@ -177,74 +254,3 @@ function encode(data) {
     .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&");
 }
-
-const Form = styled.form.attrs((props) => ({
-  netlify: "netlify",
-}))`
-  font-weight: 400;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  max-width: 560px;
-  display: flex;
-  flex-direction: column;
-  .input {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding-bottom: 20px;
-  }
-  .input:focus-within label {
-    color: ${styles.labelFocus};
-  }
-  label {
-    font-size: 16px;
-    margin-bottom: 5px;
-    font-weight: 400;
-    cursor: pointer;
-    color: ${styles.label};
-  }
-  textarea,
-  input {
-    border-radius: 4px;
-    margin-bottom: 10px;
-    color: ${styles.inputColor};
-    padding: 20px;
-    transition: border-color 0.2s;
-    border-color: ${styles.border};
-    &:focus {
-      border-color: ${styles.borderFocus};
-      transition: border-color 0.2s;
-    }
-    &::placeholder {
-      color: ${styles.placeholder};
-    }
-  }
-  input {
-    height: 50px;
-  }
-
-  button.submit {
-    border-radius: 3px;
-    color: ${styles.buttonColor};
-    background: ${styles.buttonBackground};
-    border: 1px solid ${styles.buttonBorder};
-    height: 50px;
-    text-transform: uppercase;
-  }
-  .messageBox {
-    padding: 12px;
-    text-align: center;
-    font-weight: 500;
-    color: #fff;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    span {
-      padding: 0 8px;
-    }
-  }
-`;

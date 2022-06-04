@@ -14,8 +14,8 @@ import { fullMenu, prefix } from "../constants/slugs";
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
-  const { data } = pageContext;
-  console.log(prefix[locale]);
+  const { page } = pageContext.data;
+
   return (
     <>
       <Layout locale={pageContext.locale} transparent={false}>
@@ -23,15 +23,10 @@ const Page = ({ pageContext }) => {
           <div className="Hero container  col">
             <div className="row padding">
               <div className="col">
-                <h1>Älykästä määrälaskentaa.</h1>
+                <h1>{page.title}</h1>
               </div>
               <div className="col">
-                <p>
-                  JCAD-määrälaskentaohjelmiston avulla lasket pintojen, tilojen
-                  ja rakenteiden määrät helposti, laadit tarjouksen hetkessä,
-                  vältät laskuvirheet ja pidät määräluettelon ajan tasalla läpi
-                  projektin.
-                </p>
+                <p>{page.intro}</p>
                 <div className="row">
                   <Link className="HeroLink" to={"/maaralaskentaohjelmisto"}>
                     Tutustu ohjelmistoon

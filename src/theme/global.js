@@ -149,28 +149,28 @@ article h3 {
   height: 58px;
   font-weight: 500;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 15px;
   letter-spacing: 0.02em;
   width: fit-content;  
   border-radius: 4px;  
 }
 .btn:not(.white, .outlines) {
   background: ${theme.primary};
-  border: 2px solid ${theme.primary};
+  border: 1px solid ${theme.primary};
   color: #fff;
 }
 .btn.white {
   background: #fff;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   color: ${theme.primary};
 }
 .btn.outlines {
-  border: 2px solid ${theme.primary};
+  border: 1px solid ${theme.primary};
   color: ${theme.primary};
 }
 .btn.white-outlines {
   background: none;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   color: #fff;
 }
 section {
