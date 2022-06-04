@@ -37,7 +37,6 @@ const Page = ({ pageContext }) => {
       },
       { type: "hidden", name: "webinar" },
       { type: "hidden", name: "webinarDate" },
-      { type: "hidden", name: "webinar" },
       { type: "submit", text: "Ilmoittaudu" },
     ],
     schema: {
