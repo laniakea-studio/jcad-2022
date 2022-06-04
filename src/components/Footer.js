@@ -132,6 +132,44 @@ export const Footer = ({ menu, prefix }) => {
     ref.current.classList.add("active");
   }
 
+  // Conf Form
+  const form = {
+    form: [
+      {
+        type: "text",
+        name: "name",
+        label: text.contact.name,
+        placeholder: text.contact.name,
+        isRequired: true,
+      },
+      {
+        type: "email",
+        name: "email",
+        label: text.contact.email,
+        placeholder: "Email",
+        isRequired: true,
+      },
+      {
+        type: "textarea",
+        name: "message",
+        label: text.contact.message,
+        placeholder: "Kirjoita tähän",
+        isRequired: false,
+      },
+      { type: "submit", text: text.contact.send },
+    ],
+    schema: {
+      "form-name": "Ilmoittaudu",
+      message: "",
+      email: "",
+      name: "",
+    },
+    messages: {
+      submitSucces: text.contact.submitSuccess,
+      fillAllInputs: text.contact.fillAllInputs,
+    },
+  };
+
   return (
     <FooterDiv className="pagePadding col">
       <div className="container padding">
@@ -169,7 +207,7 @@ export const Footer = ({ menu, prefix }) => {
                 </p>
               </div>
             ))}
-          <NetlifyForm />
+          <NetlifyForm data={form} />
         </div>
 
         <div className="BigLogo row">

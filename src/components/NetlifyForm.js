@@ -4,6 +4,45 @@ import { theme } from "../theme/theme";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 
+/* E.g. data 
+  {
+    form: [
+      {
+        type: "text",
+        name: "name",
+        label: text.contact.name,
+        placeholder: text.contact.name,
+        isRequired: true,
+      },
+      {
+        type: "email",
+        name: "email",
+        label: text.contact.email,
+        placeholder: "Email",
+        isRequired: true,
+      },
+      {
+        type: "textarea",
+        name: "message",
+        label: text.contact.message,
+        placeholder: "Kirjoita tähän",
+        isRequired: false,
+      },
+      { type: "submit", text: text.contact.send },
+    ],
+    schema: {
+      "form-name": "Ilmoittaudu",
+      name: "",
+      email: "",
+      message: "",
+    },
+    messages: {
+      submitSucces: text.contact.submitSuccess,
+      fillAllInputs: text.contact.fillAllInputs,
+    },
+  }
+*/
+
 const styles = {
   label: "rgba(255,255,255,0.6)",
   labelFocus: "#fff",
@@ -18,46 +57,11 @@ const styles = {
   placeholder: "rgba(255,255,255,0.3)",
 };
 
-export const NetlifyForm = () => {
-  const { locale } = useContext(LocaleContext);
-  const text = snippet[locale];
-
+export const NetlifyForm = ({ data }) => {
+  const { form, schema, messages } = data;
   /* Configure Form: form.name === schema[key] */
-  const form = [
-    {
-      type: "text",
-      name: "name",
-      label: text.contact.name,
-      placeholder: text.contact.name,
-    },
-    {
-      type: "email",
-      name: "email",
-      label: text.contact.email,
-      placeholder: "Email",
-    },
-    {
-      type: "textarea",
-      name: "message",
-      label: text.contact.message,
-      placeholder: "Kirjoita tähän",
-    },
-    { type: "submit", text: text.contact.send },
-  ];
-  const schema = {
-    "form-name": "Ilmoittaudu",
-    message: "",
-    contact: "",
-    name: "",
-    company: "",
-    webinarDate: "",
-  };
-  const messages = {
-    submitSucces: text.contact.submitSuccess,
-    fillAllInputs: text.contact.fillAllInputs,
-  };
 
-  const [formData, setFormData] = useState(form);
+  const [formData, setFormData] = useState(schema);
   const [showMessage, setShowMessage] = useState(null);
 
   const onInputChange = (e) => {
@@ -76,7 +80,7 @@ export const NetlifyForm = () => {
       })
         .then(() => {
           setShowMessage(messages.submitSucces);
-          setFormData(form);
+          setFormData(schema);
         })
         .catch((error) => alert(error));
     } else {
@@ -86,20 +90,24 @@ export const NetlifyForm = () => {
 
   const isFormValid = () => {
     let formIsValid = false;
-    if (formData.message && formData.contact) {
-      formIsValid = true;
-    }
+    const requiredFields = form.filter((input) => input.isRequired);
+    console.log({ requiredFields });
+    formIsValid = requiredFields.every((field) => formData[field.name]);
+    console.log({ formIsValid });
+
     return formIsValid;
   };
 
   return (
-    <Form name={form["form-name"]} method="POST" data-netlify="true">
+    <Form name={schema["form-name"]} method="POST" data-netlify="true">
       {form.map((input) => {
         return (
           <>
             {input.type === "text" && (
               <div className="input">
-                <label htmlFor={input.name}>{input.label}</label>
+                <label htmlFor={input.name}>
+                  {input.label} {input.isRequired && "*"}
+                </label>
                 <input
                   id={input.name}
                   name={input.name}
@@ -112,7 +120,9 @@ export const NetlifyForm = () => {
             )}
             {input.type === "email" && (
               <div className="input">
-                <label htmlFor={input.name}>{input.label}</label>
+                <label htmlFor={input.name}>
+                  {input.label} {input.isRequired && "*"}
+                </label>
                 <input
                   id={input.name}
                   name={input.name}
@@ -125,7 +135,9 @@ export const NetlifyForm = () => {
             )}
             {input.type === "textarea" && (
               <div className="input">
-                <label htmlFor={input.name}>{input.label}</label>
+                <label htmlFor={input.name}>
+                  {input.label} {input.isRequired && "*"}
+                </label>
                 <textarea
                   id={input.name}
                   name={input.name}
@@ -183,6 +195,7 @@ const Form = styled.form.attrs((props) => ({
   label {
     font-size: 16px;
     margin-bottom: 5px;
+    font-weight: 400;
     cursor: pointer;
     color: ${styles.label};
   }
@@ -212,6 +225,7 @@ const Form = styled.form.attrs((props) => ({
     background: ${styles.buttonBackground};
     border: 1px solid ${styles.buttonBorder};
     height: 50px;
+    text-transform: uppercase;
   }
   .messageBox {
     padding: 12px;

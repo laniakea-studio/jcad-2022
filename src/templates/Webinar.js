@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout2";
 import { theme } from "../theme/theme";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import { NetlifyForm } from "../components/NetlifyForm";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -23,6 +24,30 @@ const Page = ({ pageContext }) => {
   const hour = d.toLocaleTimeString("fi-FI", {
     timeStyle: "short",
   });
+
+  // Form
+  const form = {
+    form: [
+      {
+        type: "email",
+        name: "email",
+        label: text.contact.email,
+        placeholder: "Email",
+        isRequired: true,
+      },
+      { type: "submit", text: "Ilmoittaudu" },
+    ],
+    schema: {
+      "form-name": "Webinaari",
+      email: "",
+      webinar: page.title,
+      webinarDate: date,
+    },
+    messages: {
+      submitSucces: "Kiitos ilmoittautumisesta!",
+      fillAllInputs: text.contact.fillAllInputs,
+    },
+  };
 
   return (
     <>
@@ -69,7 +94,9 @@ const Page = ({ pageContext }) => {
                 />
               </div>
             </div>
-            <div className="col"></div>
+            <div className="col">
+              <NetlifyForm data={form} />
+            </div>
           </div>
         </Main>
       </Layout>
@@ -88,21 +115,23 @@ const Main = styled.main`
   padding-left: 40px;
   padding-right: 40px;
   .container {
-    padding-top: 115px;
+    padding-top: 94px;
     padding-left: 40px;
     padding-right: 40px;
     border-left: 0.8px dashed #fff;
     border-right: 0.8px dashed #fff;
     > .col:first-child {
-      flex: 5 1 0;
+      width: 61.8%;
       border-right: 0.8px dashed #fff;
       padding-top: 40px;
       padding-right: 40px;
       padding-bottom: 70px;
     }
     > .col:last-child {
-      flex: 4 1 0;
+      padding-top: 40px;
+      width: 38.2%;
       padding-bottom: 70px;
+      padding-left: 40px;
     }
   }
   p {
