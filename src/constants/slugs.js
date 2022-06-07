@@ -4,10 +4,10 @@ export const prefix = {
   sv: "/sv/",
 };
 
-export const ctaMenu = {
-  fi: [{ title: "Tilaa JCAD", to: "" }],
-  en: [{ title: "Tilaa JCAD", to: "" }],
-  sv: [{ title: "Tilaa JCAD", to: "" }],
+export const order = {
+  fi: { title: "Tilaa JCAD", slug: "/tilaa" },
+  en: { title: "Tilaa JCAD", slug: "/order" },
+  sv: { title: "Tilaa JCAD", slug: "/bestall" },
 };
 
 // Todo: use this as source for gatsby node

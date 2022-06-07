@@ -48,7 +48,7 @@ const Page = ({ pageContext }) => {
   return (
     <>
       <Layout locale={pageContext.locale} transparent={false}>
-        <Main>
+        <Main className="pagePadding">
           <div className="container padding row">
             <div className="col">
               <h1>{page.title}</h1>
@@ -108,10 +108,10 @@ const Main = styled.main`
   flex-direction: column;
   color: #fff;
   background: ${theme.primary};
+  padding-top: 94px;
   padding-left: 40px;
   padding-right: 40px;
   .container {
-    padding-top: 94px;
     padding-left: 40px;
     padding-right: 40px;
     border-left: 0.8px dashed #fff;

@@ -12,7 +12,7 @@ import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
-import { ctaMenu, fullMenu, mainMenu, prefix } from "../constants/slugs";
+import { ctaMenu, fullMenu, mainMenu, prefix, order } from "../constants/slugs";
 
 export const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -90,8 +90,11 @@ export const Layout = ({ children }) => {
           <div className="col space-around">
             <nav className="Top flex justify-end align-center">
               <div className="secondaryLinks">
-                <Link to="/" className="Login">
-                  Tilaa JCAD
+                <Link
+                  to={`${prefix[locale] + order[locale].slug}`}
+                  className="Login"
+                >
+                  {order[locale].title}
                 </Link>
                 <a
                   className="Login"
@@ -125,7 +128,10 @@ export const Layout = ({ children }) => {
             </nav>
             <nav className="Main flex justify-end align-center">
               {mainMenu[locale].map((i) => (
-                <Link to={`/${prefix[locale] + i.to}`} activeClassName="active">
+                <Link
+                  to={`${prefix[locale] + i.slug}`}
+                  activeClassName="active"
+                >
                   {i.title}
                 </Link>
               ))}

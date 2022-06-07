@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout2";
 import { theme } from "../theme/theme";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import { NetlifyForm } from "../components/NetlifyForm";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -16,9 +17,12 @@ const Page = ({ pageContext }) => {
   return (
     <>
       <Layout locale={pageContext.locale} transparent={false}>
-        <Main>
-          <div className="container padding">
-            <h2>Tilaa JCAD</h2>
+        <Main className="pagePadding">
+          <div className="row container padding">
+            <div className="Form col">
+              <NetlifyForm />
+              <h2>Tilaa JCAD</h2>
+            </div>
           </div>
         </Main>
       </Layout>

@@ -10,31 +10,31 @@ exports.createPages = async ({ graphql, actions }) => {
       product: "maaralaskentaohjelmisto",
       pricing: "hinta",
       contact: "yhteystiedot",
-      booking: "varaa-demo",
       gdpr: "tietosuojaseloste",
       about: "meista",
       webinars: "webinaarit",
       jobs: "rekry",
+      order: "tilaa",
     },
     en: {
       product: "product",
       pricing: "pricing",
       contact: "contact",
-      booking: "book-demo",
       gdpr: "gdpr",
       about: "about",
       webinars: "webinars",
       jobs: "jobs",
+      order: "order",
     },
     sv: {
       product: "produkten",
       pricing: "pris",
       contact: "kontakter",
-      booking: "boka-demo",
       gdpr: "gdpr",
       about: "om-oss",
       webinars: "webinarer",
       jobs: "jobb",
+      order: "bestall",
     },
   };
 
@@ -344,6 +344,22 @@ exports.createPages = async ({ graphql, actions }) => {
           },
           data: {
             page: data.jobs,
+          },
+        },
+      });
+
+      createPage({
+        path: `/${prefix + slugs[locale].order}`,
+        component: path.resolve(`src/templates/order.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.order}`,
+            en: `/en/${slugs.en.order}`,
+            sv: `/sv/${slugs.sv.order}`,
+          },
+          data: {
+            page: {},
           },
         },
       });

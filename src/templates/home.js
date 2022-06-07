@@ -29,10 +29,19 @@ const Page = ({ pageContext }) => {
                 <p>{page.intro}</p>
                 <div className="row">
                   <Link className="HeroLink" to={"/maaralaskentaohjelmisto"}>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                        fill="#fff"
+                      />
+                    </svg>
                     Tutustu ohjelmistoon
-                  </Link>
-                  <Link className="HeroLink" to={""}>
-                    Varaa demo
                   </Link>
                 </div>
               </div>
@@ -104,10 +113,8 @@ const Main = styled.main`
     font-size: 18px;
     font-weight: 600;
     opacity: 0.6;
-    margin-right: 20px;
     svg {
-      margin-bottom: -5px;
-      height: 18px;
+      margin-bottom: -6px;
     }
     &:hover {
       opacity: 1;
