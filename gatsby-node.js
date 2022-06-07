@@ -147,7 +147,10 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allWebinars: allDatoCmsWebinar(filter: { locale: { eq: "${locale}" } }) {
+      allWebinars: allDatoCmsWebinar(
+        filter: { locale: { eq: "${locale}" } }
+        sort: {order: DESC, fields: webinaarinAjankohta}
+        ) {
         edges {
           node {
             seoMetaTags {

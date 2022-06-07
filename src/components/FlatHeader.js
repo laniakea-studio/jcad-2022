@@ -123,7 +123,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           }
           a {
             color: #fff;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
             display: inline-flex;

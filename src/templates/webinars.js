@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
@@ -45,6 +45,15 @@ const Page = ({ pageContext }) => {
     ],
   };
 
+  let daysleft = "";
+  useEffect(() => {
+    const oneDay = 24 * 60 * 60 * 1000;
+    const firstDate = new Date(nextWebinar.node.webinaarinAjankohta);
+    const secondDate = new Date();
+
+    daysleft = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+  }, []);
+
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
@@ -70,7 +79,7 @@ const Page = ({ pageContext }) => {
                 <span
                   style={{ fontSize: 200, lineHeight: 0.85, marginTop: 20 }}
                 >
-                  5
+                  {daysleft}
                 </span>
                 <span
                   className="uppercase"
