@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const BurgerIcon = ({ menuOpen, onClick }) => {
   return (
     <MenuIcon
-      id="hamburger-icon"
+      id="BurgerIcon"
       className={menuOpen ? "active" : "null"}
       href="#"
       title="Menu"
@@ -31,7 +31,7 @@ const MenuIcon = styled.a`
   height: ${menuOptions.heightIcon};
   position: relative;
   z-index: 3;
-  display: none;
+
   @media (max-width: 1024px) {
     display: block;
   }

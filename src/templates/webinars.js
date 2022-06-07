@@ -114,7 +114,7 @@ const Page = ({ pageContext }) => {
               </div>
               <aside className="Aside col">
                 <div className="Feedback col">
-                  <h3>Palautetta edellistä webinaareista</h3>
+                  <h3>Palautteita edellisestä webinaareista</h3>
                   {page.palautteita.map((i) => (
                     <div
                       className="item"

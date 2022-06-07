@@ -140,8 +140,6 @@ export const Layout = ({ children }) => {
                 url={booking.calendlyBookingUrl}
                 text={booking.buttonText}
               />
-            </nav>
-            <div className={`burger${menuOpen ? " menuOpen" : ""}`}>
               <BurgerIcon
                 menuOpen={menuOpen}
                 onClick={(e) => {
@@ -149,7 +147,7 @@ export const Layout = ({ children }) => {
                   setMenuOpen(!menuOpen);
                 }}
               />
-            </div>
+            </nav>
           </div>
         </div>
       </Header>
@@ -238,8 +236,8 @@ const Header = styled.header`
     a {
       padding: 5px 10px;
     }
+    display: none;
     @media (max-width: 900px) {
-      display: none;
     }
   }
   nav.Main {
@@ -261,13 +259,12 @@ const Header = styled.header`
       height: 40px;
       border-radius: 4px;
       min-width: 150px;
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
     }
   }
-  .burger {
-    justify-content: flex-end;
-    @media (max-width: 1024px) {
-      display: flex;
-    }
+  #BurgerIcon {
+    margin-left: 30px;
   }
 `;
 
@@ -284,6 +281,7 @@ const MobileMenu = ({
   return (
     <div
       style={{ display: menuOpen ? "flex" : "none" }}
+      className="pagePadding"
       css={`
         position: fixed;
         z-index: 2;
@@ -291,7 +289,7 @@ const MobileMenu = ({
         backdrop-filter: blur(6px);
         width: 100%;
         height: 100vh;
-        padding-top: 80px;
+        padding-top: 94px;
         color: ${color};
         justify-content: center;
         align-items: center;
@@ -299,6 +297,9 @@ const MobileMenu = ({
         flex-direction: column;
         -webkit-overflow-scrolling: touch;
         overflow-scrolling: touch;
+        .container {
+          height: 100%;
+        }
         &.atTop {
           z-index: 1;
           padding-top: 50px;
@@ -311,14 +312,21 @@ const MobileMenu = ({
           }
         }
         a {
-          font-size: 23px;
+          font-size: 22px;
           padding: 20px 10px;
-          font-weight: 700;
+          font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.02em;
-        }
-        a:last-child {
-          font-size: 14px;
+          border-bottom: 0.8px dashed #fff;
+          width: 100%;
+          span {
+            max-width: 600px;
+            width: 100%;
+          }
+          svg {
+            margin-bottom: -3px;
+            margin-left: auto;
+          }
         }
         button {
           margin: 30px auto 30px;
@@ -341,28 +349,45 @@ const MobileMenu = ({
         }
       `}
     >
-      {menu.map((i) => (
-        <Link to={`/${prefix + i.to}`}>{i.title}</Link>
-      ))}
-      <PopupButton
-        className="btn white-outlines"
-        url={bookingUrl}
-        text={text.bookDemo}
-      />
+      <div className="col container align-end">
+        {menu.map((i) => (
+          <Link
+            to={`/${prefix + i.to}`}
+            activeClassName="active"
+            className="row justify-end"
+          >
+            <span className="flex">
+              {i.title}
+              <svg
+                width="21"
+                height="22"
+                viewBox="0 0 21 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.60669 6.10352e-05L8.55975 1.047L17.3448 9.83204L0.691534 9.52946L0.664809 11.0096L17.4108 11.3152L8.55974 20.1663L9.60668 21.2133L20.2133 10.6067L9.60669 6.10352e-05Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+          </Link>
+        ))}
 
-      <a href="https://extra.jcad.fi/" target="_blank" rel="noreferrer">
-        {text.menu.login}
-      </a>
-      <div className="localeLinksMobile">
-        <Link to={localeSlugs.fi} className={locale === "fi" && "thisLocale"}>
-          FI
-        </Link>
-        <Link to={localeSlugs.en} className={locale === "en" && "thisLocale"}>
-          EN
-        </Link>
-        <Link to={localeSlugs.sv} className={locale === "sv" && "thisLocale"}>
-          SV
-        </Link>
+        <a href="https://extra.jcad.fi/" target="_blank" rel="noreferrer">
+          {text.menu.login}
+        </a>
+        <div className="localeLinksMobile">
+          <Link to={localeSlugs.fi} className={locale === "fi" && "thisLocale"}>
+            FI
+          </Link>
+          <Link to={localeSlugs.en} className={locale === "en" && "thisLocale"}>
+            EN
+          </Link>
+          <Link to={localeSlugs.sv} className={locale === "sv" && "thisLocale"}>
+            SV
+          </Link>
+        </div>
       </div>
     </div>
   );

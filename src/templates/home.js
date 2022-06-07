@@ -78,16 +78,18 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   background: ${theme.primary};
+  padding-top: 94px;
   .Hero {
     min-height: 100vh;
     background: ${theme.primary};
     height: 100%;
     color: #fff;
     position: relative;
-    padding-top: 150px;
+    padding-top: 55px;
     @media (max-width: 600px) {
       padding-top: 50px;
     }
+
     .wrap {
       height: 100vh;
       @media (max-width: 1500px) {
@@ -140,6 +142,11 @@ const Main = styled.main`
     border: 0.8px solid #ffffff;
     padding: 30px;
     transition: 1s;
+
+    background-color: rgba(0, 0, 83, 0.2);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+
     span {
       font-size: 20px;
       font-weight: 600;

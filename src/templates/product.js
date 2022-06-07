@@ -30,11 +30,8 @@ const Product = ({ pageContext }) => {
       <HelmetDatoCms seo={data.product.seoMetaTags} />
       <Layout locale={pageContext.locale} transparent={false}>
         <Main>
-          <div className="hero">
+          <div className="Hero pagePadding">
             <div className="container col padding">
-              <div className="leftLine" />
-              <div className="rightLine" />
-
               <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
               <p>{data.product.lead}</p>
               <div className="btns">
@@ -176,14 +173,16 @@ const Main = styled.main`
       left: 0;
     }
   }
-  .hero {
-    min-height: 100vh;
+  .Hero {
     background: ${theme.primary};
     height: 100%;
     color: #fff;
     position: relative;
     @media (max-width: 600px) {
       padding-top: 50px;
+    }
+    .container {
+      min-height: 700px;
     }
     .wrap {
       height: 100vh;
@@ -195,7 +194,7 @@ const Main = styled.main`
       font-size: 52px;
       margin-bottom: 40px;
       font-weight: 400;
-      margin-top: 30vh;
+      margin-top: 200px;
       @media (max-width: 600px) {
         margin-top: 15vh;
       }
@@ -239,7 +238,7 @@ const Main = styled.main`
       bottom: 0;
       left: 0;
       margin-left: -200px;
-      margin-bottom: -600px;
+      margin-bottom: -650px;
       animation: spin 130s infinite;
       animation-direction: reverse;
       @media (max-width: 1100px) {
