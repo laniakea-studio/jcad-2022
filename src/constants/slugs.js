@@ -5,9 +5,9 @@ export const prefix = {
 };
 
 export const order = {
-  fi: { title: "Tilaa JCAD", slug: "/tilaa" },
-  en: { title: "Tilaa JCAD", slug: "/order" },
-  sv: { title: "Tilaa JCAD", slug: "/bestall" },
+  fi: { title: "Tilaa JCAD", slug: "tilaa" },
+  en: { title: "Tilaa JCAD", slug: "order" },
+  sv: { title: "Tilaa JCAD", slug: "bestall" },
 };
 
 // Todo: use this as source for gatsby node
@@ -20,9 +20,8 @@ export const webinar = {
 export const mainMenu = {
   fi: [
     { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
-    { title: "Hinoittelu", slug: "hinta" },
+    { title: "Hinnoittelu", slug: "hinta" },
     { title: "Webinaarit", slug: "webinaarit" },
-
     { title: "Yhteystiedot", slug: "yhteystiedot" },
   ],
   en: [
@@ -44,7 +43,7 @@ export const mainMenu = {
 export const fullMenu = {
   fi: [
     { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
-    { title: "Hinoittelu", slug: "hinta" },
+    { title: "Hinnoittelu", slug: "hinta" },
     { title: "Yhteystiedot", slug: "yhteystiedot" },
     { title: "Webinaarit", slug: "webinaarit" },
     { title: "Meistä", slug: "meista" },

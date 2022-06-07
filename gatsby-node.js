@@ -69,7 +69,11 @@ exports.createPages = async ({ graphql, actions }) => {
           tags 
         }
         title
-        intro        
+        intro
+        cta {
+          text
+          slug
+        } 
       }
       product: datoCmsTuotesivu(locale: { eq: "${locale}" }) {
         seoMetaTags {
@@ -110,6 +114,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       webinaarit: datoCmsWebinarsPage(locale: { eq: "${locale}" }) {
+        seoMetaTags {
+          tags 
+        }
         palautteita {
           content
         }
@@ -117,6 +124,9 @@ exports.createPages = async ({ graphql, actions }) => {
         kuvaajanTeksti
       }
       jobs: datoCmsRekry(locale: { eq: "${locale}" }) {
+        seoMetaTags {
+          tags 
+        }
         title
         intro
         positio {
@@ -140,6 +150,9 @@ exports.createPages = async ({ graphql, actions }) => {
       allWebinars: allDatoCmsWebinar(filter: { locale: { eq: "${locale}" } }) {
         edges {
           node {
+            seoMetaTags {
+              tags 
+            }
             title
             slug
             webinaarinAjankohta
@@ -149,6 +162,12 @@ exports.createPages = async ({ graphql, actions }) => {
             puhuja
           }
         }
+      }
+      order: datoCmsOrder(locale: { eq: "${locale}" })  {
+        seoMetaTags {
+          tags 
+        }
+        content
       }
       booking: datoCmsTilaaDemo(locale: { eq: "${locale}" }) {
         title
@@ -359,7 +378,7 @@ exports.createPages = async ({ graphql, actions }) => {
             sv: `/sv/${slugs.sv.order}`,
           },
           data: {
-            page: {},
+            page: data.order,
           },
         },
       });

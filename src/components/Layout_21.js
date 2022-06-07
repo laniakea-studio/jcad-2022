@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
+import { en, fi, sv } from "../locales";
 import * as snippet from "../locales";
 import GlobalStyle from "../theme/global";
 import "../theme/index.css";
@@ -12,11 +13,30 @@ import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
-import { ctaMenu, fullMenu, mainMenu, prefix, order } from "../constants/slugs";
 
+const menuFi = [
+  { title: fi.menu.product, to: fi.slugs.product },
+  { title: fi.menu.pricing, to: fi.slugs.pricing },
+  { title: fi.menu.contact, to: fi.slugs.contact },
+  { title: fi.menu.about, to: fi.slugs.about },
+];
+const menuEn = [
+  { title: en.menu.product, to: en.slugs.product },
+  { title: en.menu.pricing, to: en.slugs.pricing },
+  { title: en.menu.contact, to: en.slugs.contact },
+  { title: en.menu.about, to: en.slugs.about },
+];
+const menuSv = [
+  { title: sv.menu.product, to: sv.slugs.product },
+  { title: sv.menu.pricing, to: sv.slugs.pricing },
+  { title: sv.menu.contact, to: sv.slugs.contact },
+  { title: sv.menu.about, to: sv.slugs.about },
+];
 export const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { locale, localeSlugs } = useContext(LocaleContext);
+  const menu = locale === "fi" ? menuFi : locale === "en" ? menuEn : menuSv;
+  const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
   const text = snippet[locale];
 
   const [flatHeader, setFlatHeader] = useState(false);
@@ -43,8 +63,8 @@ export const Layout = ({ children }) => {
     }
   `);
 
-  const { site, fi, en, sv } = data;
-  const booking = locale === "fi" ? fi : locale === "en" ? en : sv;
+  const { site } = data;
+  const booking = data[locale];
 
   useEffect(() => {
     const onScroll = () => {
@@ -74,97 +94,86 @@ export const Layout = ({ children }) => {
           content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </HelmetDatoCms>
+
       <FlatHeader
-        menu={mainMenu[locale]}
+        menu={menu}
         booking={booking}
         menuOpen={menuOpen}
         setMenuOpen={() => setMenuOpen(!menuOpen)}
       />
-      <Header className={`pagePadding ${flatHeader ? "flat" : ""}`}>
-        <div className="row align-center container padding">
-          <div className="col justify-center">
-            <Link className="logo" to={`${prefix[locale]}`}>
-              <SvgLogo />
+      <Header className={flatHeader ? "flat" : ""}>
+        <div>
+          <div className="localeLinks">
+            <Link
+              to={localeSlugs.fi}
+              className={locale === "fi" && "thisLocale"}
+            >
+              FI
+            </Link>
+            <Link
+              to={localeSlugs.en}
+              className={locale === "en" && "thisLocale"}
+            >
+              EN
+            </Link>
+            <Link
+              to={localeSlugs.sv}
+              className={locale === "sv" && "thisLocale"}
+            >
+              SV
             </Link>
           </div>
-          <div className="col space-around">
-            <nav className="Top flex justify-end align-center">
-              <div className="secondaryLinks">
-                <Link
-                  to={`${prefix[locale] + order[locale].slug}`}
-                  className="Login"
-                >
-                  {order[locale].title}
-                </Link>
-                <a
-                  className="Login"
-                  href="https://extra.jcad.fi/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {text.menu.login}
-                </a>
-              </div>
-              <div className="localeLinks">
-                <Link
-                  to={localeSlugs.fi}
-                  className={locale === "fi" && "thisLocale"}
-                >
-                  FI
-                </Link>
-                <Link
-                  to={localeSlugs.en}
-                  className={locale === "en" && "thisLocale"}
-                >
-                  EN
-                </Link>
-                <Link
-                  to={localeSlugs.sv}
-                  className={locale === "sv" && "thisLocale"}
-                >
-                  SV
-                </Link>
-              </div>
-            </nav>
-            <nav className="Main flex justify-end align-center">
-              {mainMenu[locale].map((i) => (
-                <Link
-                  to={`${prefix[locale] + i.slug}`}
-                  activeClassName="active"
-                >
-                  {i.title}
-                </Link>
-              ))}
-              <PopupButton
-                className="btn white-outlines"
-                url={booking.calendlyBookingUrl}
-                text={booking.buttonText}
-              />
-            </nav>
-            <div className={`burger${menuOpen ? " menuOpen" : ""}`}>
-              <BurgerIcon
-                menuOpen={menuOpen}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMenuOpen(!menuOpen);
-                }}
-              />
-            </div>
+          <Link className="logo" to={`/${prefix}`}>
+            <SvgLogo />
+          </Link>
+          <nav className="mainNav">
+            {menu.map((i) => (
+              <Link
+                to={`/${prefix + i.to}`}
+                activeClassName="active"
+                style={{ marginTop: 8 }}
+              >
+                {i.title}
+              </Link>
+            ))}
+            <PopupButton
+              className="btn white-outlines"
+              url={booking.calendlyBookingUrl}
+              text={booking.buttonText}
+            />
+          </nav>
+          <div className={`burger${menuOpen ? " menuOpen" : ""}`}>
+            <BurgerIcon
+              menuOpen={menuOpen}
+              onClick={(e) => {
+                e.preventDefault();
+                setMenuOpen(!menuOpen);
+              }}
+            />
           </div>
+          <a
+            className="linkLogin"
+            href="https://extra.jcad.fi/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{text.menu.login}</span>
+            <SvgLogin />
+          </a>
         </div>
       </Header>
       <MobileMenu
         menuOpen={menuOpen}
-        menu={fullMenu[locale]}
+        menu={menu}
         text={text}
         closeMenu={() => setMenuOpen(false)}
         localeSlugs={localeSlugs}
-        prefix={prefix[locale]}
+        prefix={prefix}
         bookingUrl={booking.calendlyBookingUrl}
         locale={locale}
       />
       {children}
-      <Footer menu={fullMenu[locale]} prefix={prefix[locale]} />
+      <Footer menu={menu} prefix={prefix} />
     </>
   );
 };
@@ -174,99 +183,180 @@ const Header = styled.header`
   z-index: 10;
   background: none;
   position: absolute;
-  height: 94px;
+  border-bottom: 1px solid #fff;
+  height: 130px;
   transition: all 0.4s;
-  border-bottom: 0.8px dashed #fff;
-  > div,
-  .col {
-    height: 100%;
-  }
   &.flat {
     height: 70px;
+
     > div {
-      height: 100%;
+      height: 70px;
       transition: all 0.4s;
     }
-    background-color: rgba(0, 0, 83, 0.9);
+    background-color: rgba(0, 0, 83, 0.95);
     backdrop-filter: blur(2px);
-    nav.Top {
+    .localeLinks {
+      display: none;
+    }
+    a.linkLogin {
       display: none;
     }
   }
+
   @media (max-width: 600px) {
     border-bottom: none;
   }
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 130px;
+    padding: 20px 80px 20px;
+    max-width: 1500px;
+    margin: 0 auto;
+    @media (max-width: 600px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  .localeLinks {
+    position: absolute;
+    color: #fff;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+    @media (max-width: 1024px) {
+      display: none;
+    }
+    > a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      opacity: 0.4;
+    }
+    > a.thisLocale {
+      opacity: 1;
+    }
+  }
   a.logo {
     display: flex;
-    max-width: 85px;
+    flex-basis: 160px;
+    @media (max-width: 600px) {
+      flex-basis: 140px;
+    }
     svg {
-      width: 85px;
+      width: 140px;
       path {
         fill: #fff;
       }
     }
   }
-  nav a {
-    color: #fff;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-  .secondaryLinks {
-    a {
-      margin-right: 40px;
-    }
-  }
-  .localeLinks {
-    margin-left: 30px;
-    a {
-      opacity: 0.4;
-    }
-    a:not(:last-child) {
-      margin-right: 5px;
-    }
-    a.thisLocale {
-      opacity: 1;
-    }
-  }
   a.linkLogin {
+    position: absolute;
+    color: #fff;
+    right: -46px;
+    width: 130px;
+    font-weight: 600;
     justify-content: center;
     align-items: center;
-  }
-  nav.Top {
-    margin-bottom: 10px;
-    a {
-      padding: 5px 10px;
-    }
-    @media (max-width: 900px) {
-      display: none;
-    }
-  }
-  nav.Main {
+    height: 30px;
+    font-size: 15px;
+    text-transform: uppercase;
+    display: flex;
+    transform: rotate(270deg);
+    opacity: 1;
     @media (max-width: 1024px) {
       display: none;
     }
+    &:hover {
+      opacity: 0.9;
+      transit: all 0.2s;
+    }
+    svg {
+      width: 20px;
+      margin-top: -3px;
+      margin-left: 6px;
+      transform: rotate(90deg);
+    }
+  }
+
+  nav.mainNav {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    @media (max-width: 1024px) {
+      display: none;
+    }
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     > a {
       color: #fff;
       padding: 10px 30px;
-      font-weight: 600;
+      font-weight: 400;
     }
     a.active {
       text-decoration: line-through;
     }
-    .btn {
-      font-size: 14px !important;
-      font-weight: 600;
-      border: 1px solid #fff !important;
-      height: 40px;
-      border-radius: 4px;
-      min-width: 150px;
+    a.active:after {
+      content: url('data:image/svg+xml; utf8, <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12.0862" y1="2.18557e-08" x2="12.0862" y2="24" stroke="white"/><circle cx="12" cy="12.0002" r="8.18966" stroke="white"/><line y1="11.9136" x2="24" y2="11.9136" stroke="white"/></svg>');
+      display: block;
+      width: 22px;
+      height: 10px;
+      margin: 6px auto 0;
+      transform: scale(1);
+      //animation: pulse 2s infinite;
+    }
+    /* See Glow pulse: https://stackoverflow.com/questions/36707159/how-to-create-a-pulsing-glow-ring-animation-in-css */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+      90% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
     }
   }
   .burger {
-    justify-content: flex-end;
     @media (max-width: 1024px) {
       display: flex;
+    }
+  }
+  .locales {
+    display: none;
+    position: absolute;
+    top: 3px;
+    right: 21px;
+    font-size: 15px;
+    a {
+      padding: 2px 5px;
+      color: #fff;
+    }
+    a.disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.4;
+    }
+    @media (max-width: 600px) {
+      display: none;
     }
   }
 `;

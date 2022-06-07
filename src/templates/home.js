@@ -4,7 +4,7 @@ import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import styled from "styled-components";
-import { Layout } from "../components/Layout2";
+import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { AnimatedBox } from "../components/AnimatedBox";
 import { fullMenu, prefix } from "../constants/slugs";
@@ -28,21 +28,23 @@ const Page = ({ pageContext }) => {
               <div className="col">
                 <p>{page.intro}</p>
                 <div className="row">
-                  <Link className="HeroLink" to={"/maaralaskentaohjelmisto"}>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
-                        fill="#fff"
-                      />
-                    </svg>
-                    Tutustu ohjelmistoon
-                  </Link>
+                  {page.cta.map((i) => (
+                    <Link className="HeroLink" to={i.slug}>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                          fill="#fff"
+                        />
+                      </svg>
+                      {i.text}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
