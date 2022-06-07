@@ -42,7 +42,7 @@ export const Layout = ({ children }) => {
       }
     }
   `);
-  console.log(prefix);
+
   const { site, fi, en, sv } = data;
   const booking = locale === "fi" ? fi : locale === "en" ? en : sv;
 

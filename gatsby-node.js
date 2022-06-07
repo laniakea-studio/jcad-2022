@@ -149,7 +149,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       allWebinars: allDatoCmsWebinar(
         filter: { locale: { eq: "${locale}" } }
-        sort: {order: DESC, fields: webinaarinAjankohta}
+        sort: {order: ASC, fields: webinaarinAjankohta}
         ) {
         edges {
           node {

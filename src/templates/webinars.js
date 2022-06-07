@@ -45,14 +45,11 @@ const Page = ({ pageContext }) => {
     ],
   };
 
-  let daysleft = "";
-  useEffect(() => {
-    const oneDay = 24 * 60 * 60 * 1000;
-    const firstDate = new Date(nextWebinar.node.webinaarinAjankohta);
-    const secondDate = new Date();
-
-    daysleft = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-  }, []);
+  const oneDay = 24 * 60 * 60 * 1000;
+  const firstDate = new Date(nextWebinar.node.webinaarinAjankohta);
+  const secondDate = new Date();
+  const daysleft = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+  console.log(allWebinars);
 
   return (
     <>
@@ -103,6 +100,7 @@ const Page = ({ pageContext }) => {
 
                     return (
                       <Link
+                        key={date}
                         className="Item row"
                         to={`${prefix[locale] + webinar[locale]}/${
                           i.node.slug
@@ -168,6 +166,8 @@ const Main = styled.main`
     .col:last-child {
       width: 38.2%;
       padding-left: 20px;
+      padding-top: 60px;
+      padding-bottom: 60px;
       border-right: none;
     }
   }
