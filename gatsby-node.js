@@ -319,72 +319,74 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
 
-      createPage({
-        path: `/${prefix + slugs[locale].webinars}`,
-        component: path.resolve(`src/templates/webinars.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.webinars}`,
-            en: `/en/${slugs.en.webinars}`,
-            sv: `/sv/${slugs.sv.webinars}`,
-          },
-          data: {
-            page: data.webinaarit,
-            allWebinars: data.allWebinars.edges,
-          },
-        },
-      });
-
-      data.allWebinars.edges.map((i) => {
+      if (locale === "fi") {
         createPage({
-          path: `/${prefix + slugs[locale].webinars}/${i.node.slug}`,
-          component: path.resolve(`src/templates/Webinar.js`),
+          path: `/${prefix + slugs[locale].webinars}`,
+          component: path.resolve(`src/templates/webinars.js`),
           context: {
             locale: locale,
-            data: {
-              page: i.node,
-            },
             localeSlugs: {
-              fi: `/${prefix + slugs.fi.webinars}`,
-              en: `/${prefix + slugs.en.webinars}`,
-              sv: `/${prefix + slugs.sv.webinars}`,
+              fi: `/${slugs.fi.webinars}`,
+              en: `/en/${slugs.en.webinars}`,
+              sv: `/sv/${slugs.sv.webinars}`,
+            },
+            data: {
+              page: data.webinaarit,
+              allWebinars: data.allWebinars.edges,
             },
           },
         });
-      });
 
-      createPage({
-        path: `/${prefix + slugs[locale].jobs}`,
-        component: path.resolve(`src/templates/jobs.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.jobs}`,
-            en: `/en/${slugs.en.jobs}`,
-            sv: `/sv/${slugs.sv.jobs}`,
-          },
-          data: {
-            page: data.jobs,
-          },
-        },
-      });
+        data.allWebinars.edges.map((i) => {
+          createPage({
+            path: `/${prefix + slugs[locale].webinars}/${i.node.slug}`,
+            component: path.resolve(`src/templates/Webinar.js`),
+            context: {
+              locale: locale,
+              data: {
+                page: i.node,
+              },
+              localeSlugs: {
+                fi: `/${prefix + slugs.fi.webinars}`,
+                en: `/${prefix + slugs.en.webinars}`,
+                sv: `/${prefix + slugs.sv.webinars}`,
+              },
+            },
+          });
+        });
 
-      createPage({
-        path: `/${prefix + slugs[locale].order}`,
-        component: path.resolve(`src/templates/order.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.order}`,
-            en: `/en/${slugs.en.order}`,
-            sv: `/sv/${slugs.sv.order}`,
+        createPage({
+          path: `/${prefix + slugs[locale].jobs}`,
+          component: path.resolve(`src/templates/jobs.js`),
+          context: {
+            locale: locale,
+            localeSlugs: {
+              fi: `/${slugs.fi.jobs}`,
+              en: `/en/${slugs.en.jobs}`,
+              sv: `/sv/${slugs.sv.jobs}`,
+            },
+            data: {
+              page: data.jobs,
+            },
           },
-          data: {
-            page: data.order,
+        });
+
+        createPage({
+          path: `/${prefix + slugs[locale].order}`,
+          component: path.resolve(`src/templates/order.js`),
+          context: {
+            locale: locale,
+            localeSlugs: {
+              fi: `/${slugs.fi.order}`,
+              en: `/en/${slugs.en.order}`,
+              sv: `/sv/${slugs.sv.order}`,
+            },
+            data: {
+              page: data.order,
+            },
           },
-        },
-      });
+        });
+      }
     })
   );
 };
