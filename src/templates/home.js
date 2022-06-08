@@ -105,6 +105,9 @@ const Main = styled.main`
       font-size: 64px;
       margin-bottom: 40px;
       font-weight: 600;
+      @media (max-width: 700px) {
+        font-size: 42px;
+      }
     }
     p {
       font-size: 18px;

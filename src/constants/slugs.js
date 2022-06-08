@@ -27,15 +27,13 @@ export const mainMenu = {
   en: [
     { title: "Product", slug: "product" },
     { title: "Pricing", slug: "pricing" },
-    { title: "Webinars", slug: "webinars" },
-
+    //{ title: "Webinars", slug: "webinars" },
     { title: "Contact", slug: "contact" },
   ],
   sv: [
     { title: "Produkten", slug: "produkten" },
     { title: "Prislista", slug: "pris" },
-    { title: "Webinarer", slug: "webinarer" },
-
+    //{ title: "Webinarer", slug: "webinarer" },
     { title: "Kontakter", slug: "kontakter" },
   ],
 };
@@ -53,16 +51,16 @@ export const fullMenu = {
     { title: "Product", slug: "product" },
     { title: "Pricing", slug: "pricing" },
     { title: "Contact", slug: "contact" },
-    { title: "Webinars", slug: "webinars" },
+    //{ title: "Webinars", slug: "webinars" },
     { title: "About us", slug: "about" },
-    { title: "Jobs", slug: "jobs" },
+    //{ title: "Jobs", slug: "jobs" },
   ],
   sv: [
     { title: "Produkten", slug: "produkten" },
     { title: "Prislista", slug: "pris" },
     { title: "Kontakter", slug: "kontakter" },
-    { title: "Webinarer", slug: "webinarer" },
+    //{ title: "Webinarer", slug: "webinarer" },
     { title: "Om oss", slug: "om-oss" },
-    { title: "Jobb", slug: "jobb" },
+    //{ title: "Jobb", slug: "jobb" },
   ],
 };

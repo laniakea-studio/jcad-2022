@@ -24,7 +24,10 @@ const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page, allWebinars } = pageContext.data;
-  const nextWebinar = allWebinars[0];
+  const sortedWebinars = allWebinars.sort((a, b) =>
+    a.node.webinaarinAjankohta.localeCompare(b.node.webinaarinAjankohta)
+  );
+  const nextWebinar = sortedWebinars[0];
   const [nextDate, nextHour] = getFriendlyDateAndHour(
     new Date(nextWebinar.node.webinaarinAjankohta)
   );
@@ -70,6 +73,26 @@ const Page = ({ pageContext }) => {
                 </h1>
 
                 <p>{nextWebinar.node.nosto}</p>
+                <Link
+                  to={`${prefix[locale] + webinar[locale]}/${
+                    nextWebinar.node.slug
+                  }`}
+                  className="btn white-outlines"
+                >
+                  Lue lisää ja ilmoittaudu
+                  <svg
+                    width="17"
+                    height="19"
+                    viewBox="0 0 17 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 0.606445L7.11162 1.49482L14.5661 8.9493L0.435109 8.69255L0.412432 9.94851L14.6222 10.2078L7.11162 17.7184L7.99999 18.6067L17.0001 9.60659L8 0.606445Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </Link>
               </div>
               <div className="col justify-center align-center">
                 <LineSvg />
@@ -93,7 +116,7 @@ const Page = ({ pageContext }) => {
               <div className="Coming col">
                 <h2>Tulevat webinaarit</h2>
                 <div className="List">
-                  {allWebinars.map((i) => {
+                  {sortedWebinars.map((i) => {
                     const [date, hour] = getFriendlyDateAndHour(
                       new Date(i.node.webinaarinAjankohta)
                     );
@@ -113,6 +136,21 @@ const Page = ({ pageContext }) => {
                         <div className="col">
                           <h3>{i.node.title}</h3>
                           <p className="desc">{i.node.nosto}</p>
+                          <button className="btn black-outlines small">
+                            Lue lisää ja ilmoittaudu
+                            <svg
+                              width="17"
+                              height="19"
+                              viewBox="0 0 17 19"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M8 0.606445L7.11162 1.49482L14.5661 8.9493L0.435109 8.69255L0.412432 9.94851L14.6222 10.2078L7.11162 17.7184L7.99999 18.6067L17.0001 9.60659L8 0.606445Z"
+                                fill="black"
+                              />
+                            </svg>
+                          </button>
                         </div>
                       </Link>
                     );
@@ -160,8 +198,15 @@ const Main = styled.main`
       border-right: 0.8px dashed #fff;
       width: 61.8%;
       padding-top: 60px;
-      padding-bottom: 60px;
+      padding-bottom: 100px;
       padding-right: 40px;
+      @media (max-width: 1400px) {
+        width: 50%;
+      }
+      @media (max-width: 700px) {
+        width: 100%;
+        border-right: none;
+      }
     }
     .col:last-child {
       width: 38.2%;
@@ -169,6 +214,17 @@ const Main = styled.main`
       padding-top: 60px;
       padding-bottom: 60px;
       border-right: none;
+      @media (max-width: 1400px) {
+        width: 50%;
+      }
+      @media (max-width: 1000px) {
+        svg {
+          display: none;
+        }
+      }
+      @media (max-width: 700px) {
+        display: none;
+      }
     }
   }
   .Second {
@@ -178,7 +234,18 @@ const Main = styled.main`
     .container {
       border-left: 0.8px dashed #000;
       border-right: 0.8px dashed #000;
+      @media (max-width: 800px) {
+        flex-direction: column;
+        .Coming,
+        .Aside {
+          width: 100%;
+          border-right: none;
+        }
+      }
     }
+  }
+  h2 {
+    font-size: 36px;
   }
   .Coming {
     width: 61.8%;
@@ -188,11 +255,14 @@ const Main = styled.main`
   }
   .List {
     margin-top: 60px;
-    padding-right: 40px;
+
+    @media (min-width: 800px) {
+      padding-right: 40px;
+    }
   }
   .Item {
-    padding-bottom: 30px;
-    margin-bottom: 40px;
+    padding-bottom: 52px;
+    margin-bottom: 52px;
     border-bottom: 0.8px dashed #000;
     > div:first-child {
       flex: 1 1 50px;
@@ -202,19 +272,20 @@ const Main = styled.main`
     }
     .date {
       margin-top: 8px;
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 600;
       text-transform: uppercase;
     }
     .hour {
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 500;
     }
     h3 {
       text-transform: none;
       font-size: 26px;
-      line-height: 1.2;
+      line-height: 1.27;
       margin-bottom: 15px;
+      font-weight: 400;
     }
   }
   .Aside {

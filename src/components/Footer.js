@@ -135,7 +135,7 @@ export const Footer = ({ menu, prefix }) => {
   return (
     <FooterDiv className="pagePadding col">
       <div className="container padding">
-        <div className="row">
+        <div className="ContactsRow row">
           <div className="Logo">
             <SvgLogoFooter />
           </div>
@@ -255,14 +255,21 @@ const FooterDiv = styled.footer`
   .container {
     padding-top: 80px;
   }
+  .ContactsRow {
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
+  }
   .Logo {
     margin-right: 50px;
+    margin-bottom: 50px;
     svg {
       width: 85px;
     }
   }
   .Contact {
     padding-right: 30px;
+    margin-bottom: 30px;
     max-width: 250px;
     width: 100%;
     .name {
@@ -271,7 +278,7 @@ const FooterDiv = styled.footer`
     h3 {
       font-size: 16px;
       font-weight: 600;
-      height: 50px;
+      height: 40px;
     }
   }
   .BigLogo {
@@ -281,11 +288,18 @@ const FooterDiv = styled.footer`
     width: 85%;
     max-width: 900px;
     margin: 120px auto 0;
+    @media (max-width: 800px) {
+      margin-top: 60px;
+    }
   }
   .Copyright {
     margin-left: 80px;
     margin-top: 60px;
     margin-bottom: 30px;
+    @media (max-width: 800px) {
+      margin-left: auto;
+      margin-right: auto;
+    }
     a {
       text-transform: uppercase;
       text-decoration: underline;

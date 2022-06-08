@@ -7,6 +7,12 @@
   border-left: 0.8px dashed #fff;
   border-right: 0.8px dashed #fff;
 }
+@media (max-width: 600px) {
+  .container {
+    border-left: none;
+    border-right: none;
+  }
+}
 .pagePadding {
   padding-left: 0;
   padding-right: 0;

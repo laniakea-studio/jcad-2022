@@ -159,6 +159,9 @@ article h3 {
   border: 1px solid ${theme.primary};
   color: #fff;
 }
+.btn svg {
+  margin-left: 15px;
+}
 .btn.white {
   background: #fff;
   border: 1px solid #fff;
@@ -167,6 +170,16 @@ article h3 {
 .btn.outlines {
   border: 1px solid ${theme.primary};
   color: ${theme.primary};
+}
+.btn.small {
+  height: 44px;
+  font-weight: 600;
+font-size: 15px;
+}
+.btn.black-outlines {
+  background: none;
+  border: 1px solid #000;
+  color: #000;
 }
 .btn.white-outlines {
   background: none;

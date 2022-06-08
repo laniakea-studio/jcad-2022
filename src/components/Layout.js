@@ -131,6 +131,8 @@ export const Layout = ({ children }) => {
                 <Link
                   to={`${prefix[locale] + i.slug}`}
                   activeClassName="active"
+                  className="MainLink"
+                  style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
                 >
                   {i.title}
                 </Link>
@@ -240,10 +242,12 @@ const Header = styled.header`
     @media (max-width: 900px) {
     }
   }
-  nav.Main {
+  .MainLink {
     @media (max-width: 1024px) {
       display: none;
     }
+  }
+  nav.Main {
     > a {
       color: #fff;
       padding: 10px 30px;
@@ -261,10 +265,18 @@ const Header = styled.header`
       min-width: 150px;
       -webkit-backdrop-filter: blur(2px);
       backdrop-filter: blur(2px);
+      @media (max-width: 600px) {
+        padding-left: 15px;
+        padding-right: 15px;
+        min-width: 120px;
+      }
     }
   }
   #BurgerIcon {
     margin-left: 30px;
+    @media (max-width: 800px) {
+      padding-right: 10px;
+    }
   }
 `;
 
@@ -317,15 +329,21 @@ const MobileMenu = ({
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.02em;
-          border-bottom: 0.8px dashed #fff;
+
           width: 100%;
           span {
-            max-width: 600px;
+            max-width: 400px;
             width: 100%;
+          }
+          &.active {
+            text-decoration: line-through;
           }
           svg {
             margin-bottom: -3px;
             margin-left: auto;
+          }
+          &:not(.localeLink) {
+            border-bottom: 0.8px dashed #fff;
           }
         }
         button {
@@ -337,14 +355,13 @@ const MobileMenu = ({
           width: 100%;
           background: ${color};
         }
-        .localeLinksMobile {
+        .localeLinks {
           padding-top: 40px;
+          padding-right: 30px;
           a {
             font-size: 18px;
             font-weight: 500;
-          }
-          a.thisLocale {
-            opacity: 0.4;
+            margin-left: 20px;
           }
         }
       `}
@@ -352,7 +369,7 @@ const MobileMenu = ({
       <div className="col container align-end">
         {menu.map((i) => (
           <Link
-            to={`/${prefix + i.to}`}
+            to={`${prefix + i.slug}`}
             activeClassName="active"
             className="row justify-end"
           >
@@ -373,18 +390,38 @@ const MobileMenu = ({
             </span>
           </Link>
         ))}
+        <a
+          href="https://extra.jcad.fi/"
+          target="_blank"
+          rel="noreferrer"
+          className="row justify-end"
+        >
+          <span className="flex">
+            {text.menu.login}
 
-        <a href="https://extra.jcad.fi/" target="_blank" rel="noreferrer">
-          {text.menu.login}
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ marginTop: 5 }}
+            >
+              <path
+                d="M0.106689 0.106689L0.106689 1.58729L12.5306 1.58729L0.541025 13.149L1.56875 14.2145L13.6261 2.58933V15.1067H15.1067V0.106689L0.106689 0.106689Z"
+                fill="white"
+              />
+            </svg>
+          </span>
         </a>
-        <div className="localeLinksMobile">
-          <Link to={localeSlugs.fi} className={locale === "fi" && "thisLocale"}>
+        <div className="localeLinks">
+          <Link to={localeSlugs.fi} className="localeLink">
             FI
           </Link>
-          <Link to={localeSlugs.en} className={locale === "en" && "thisLocale"}>
+          <Link to={localeSlugs.en} className="localeLink">
             EN
           </Link>
-          <Link to={localeSlugs.sv} className={locale === "sv" && "thisLocale"}>
+          <Link to={localeSlugs.sv} className="localeLink">
             SV
           </Link>
         </div>
