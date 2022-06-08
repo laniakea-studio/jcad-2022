@@ -81,7 +81,7 @@ const Product = ({ pageContext }) => {
               </div>
             </div>
           </div>
-          <div className="sec-2 padding wrap">
+          <div className="sec-2 padding container">
             <div className="Title">
               <SvgHaircross className="leftCircle" />
               <SvgDashedLine className="leftTitleLine" />
