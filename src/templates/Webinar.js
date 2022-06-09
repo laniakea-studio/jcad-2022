@@ -52,9 +52,18 @@ const Page = ({ pageContext }) => {
         <Main className="pagePadding">
           <div className="container padding row">
             <div className="col">
+              <button
+                onClick={() => window.history.back()}
+                className="Back"
+                aria-label={text.gdpr.buttonBack}
+              >
+                <BackSvg />
+                <span>{text.gdpr.buttonBack}</span>
+              </button>
+
               <h1>{page.title}</h1>
               <div
-                className="row align-center"
+                className="row align-center Points"
                 css={`
                   svg {
                     width: 20px;
@@ -92,6 +101,8 @@ const Page = ({ pageContext }) => {
               </div>
             </div>
             <div className="col">
+              <h2>Ilmoittaudu webinaariin</h2>
+              <p>Jätä sähköpostisi ja saat kutsun webinaariin.</p>
               <NetlifyForm data={form} />
             </div>
           </div>
@@ -112,32 +123,55 @@ const Main = styled.main`
   padding-top: 94px;
   padding-left: 40px;
   padding-right: 40px;
+  .Back {
+    color: #fff;
+    width: fit-content;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 19px;
+    svg {
+      width: 15px;
+      margin-right: 10px;
+      margin-bottom: -1px;
+    }
+  }
+  .Points span {
+    font-size: 19px;
+    font-weight: 600;
+  }
   .container {
-    padding-left: 40px;
-    padding-right: 40px;
-    border-left: 0.8px dashed #fff;
-    border-right: 0.8px dashed #fff;
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
     > .col:first-child {
-      width: 61.8%;
+      flex: 1 0 0;
       border-right: 0.8px dashed #fff;
       padding-top: 40px;
       padding-right: 40px;
       padding-bottom: 70px;
+      @media (max-width: 900px) {
+        border-right: none;
+      }
     }
     > .col:last-child {
-      padding-top: 40px;
-      width: 38.2%;
+      padding-top: 70px;
+      flex: 1 0 0;
       padding-bottom: 70px;
       padding-left: 40px;
+      @media (max-width: 900px) {
+        padding-top: 0;
+        padding-left: 0;
+      }
     }
   }
   p {
-    line-height: 21px;
+    font-size: 17px;
+    line-height: 25px;
   }
   h1 {
     font-size: 36px;
     text-transform: none;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
   }
   h2 {
     font-size: 26px;
@@ -150,7 +184,7 @@ const Main = styled.main`
     margin: 30px 0 10px;
   }
   .Content {
-    margin-top: 30px;
+    margin-top: 10px;
     padding-bottom: 40px;
     border-bottom: 0.8px dashed #fff;
   }
@@ -162,6 +196,21 @@ const Main = styled.main`
     }
   }
 `;
+
+const BackSvg = () => (
+  <svg
+    width="17"
+    height="18"
+    viewBox="0 0 17 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9 0L9.88838 0.888376L2.4339 8.34285L16.5649 8.0861L16.5876 9.34207L2.37784 9.60138L9.88838 17.1119L9.00001 18.0003L-0.00014847 9.00015L9 0Z"
+      fill="white"
+    />
+  </svg>
+);
 
 const DateSvg = () => (
   <svg

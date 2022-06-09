@@ -274,10 +274,11 @@ const FooterDiv = styled.footer`
     width: 100%;
     .name {
       text-transform: uppercase;
+      font-weight: 700;
     }
     h3 {
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       height: 40px;
     }
   }
@@ -285,15 +286,10 @@ const FooterDiv = styled.footer`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 85%;
-    max-width: 900px;
-    margin: 120px auto 0;
-    @media (max-width: 800px) {
-      margin-top: 60px;
-    }
+    width: 100%;
+    margin: 60px auto 0;
   }
   .Copyright {
-    margin-left: 80px;
     margin-top: 60px;
     margin-bottom: 30px;
     @media (max-width: 800px) {

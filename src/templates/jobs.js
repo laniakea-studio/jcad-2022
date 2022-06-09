@@ -78,7 +78,7 @@ const Page = ({ pageContext }) => {
                     className="content"
                     dangerouslySetInnerHTML={{ __html: i.content }}
                   />
-                  <button className="btn white-outlines">
+                  <button className="btn white-outlines small">
                     Olen kiinnostunut
                   </button>
                 </div>
@@ -145,13 +145,17 @@ const Main = styled.main`
   color: #fff;
   background: ${theme.primary};
   h1 {
-    font-weight: 700;
-    font-size: 64px;
+    font-weight: 600;
+    font-size: 36px;
     text-transform: none;
     margin-bottom: 30px;
   }
   .Hero .container {
     padding-top: 94px;
+    p {
+      font-size: 19px;
+      line-height: 1.4;
+    }
     > .col:first-child {
       width: 50%;
       border-right: 0.8px dashed #fff;
@@ -174,11 +178,13 @@ const Main = styled.main`
       border-top: 0.8px dashed #fff;
     }
     h4 {
-      font-size: 18px;
+      font-size: 19px;
       margin-bottom: 15px;
+      text-transform: uppercase;
     }
     p {
-      line-height: 1.3;
+      font-size: 17px;
+      line-height: 1.5;
     }
     .grid {
       padding-top: 30px;
@@ -197,6 +203,9 @@ const Main = styled.main`
       &:nth-child(2) {
         border-bottom: 0.8px dashed #fff;
       }
+    }
+    .btn {
+      margin-top: auto;
     }
   }
   .Facts {
@@ -219,6 +228,7 @@ const Main = styled.main`
       font-weight: 600;
       strong {
         font-size: 200px;
+        font-weight: 600;
         line-height: 0.8;
       }
     }
@@ -227,6 +237,14 @@ const Main = styled.main`
     border-bottom: 0.8px dashed #000;
     span strong {
       line-height: 1.1;
+    }
+    svg:last-child {
+      transform: scaleX(-1);
+    }
+  }
+  .Employees {
+    svg:first-child {
+      transform: scaleX(-1);
     }
   }
   .Map {

@@ -45,7 +45,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
 
   return (
     <header
-      className={show ? "show" : "hide"}
+      className={`pagePadding ${show ? " show" : " hide"}`}
       css={`
         height: 70px;
         border-bottom: 0.8px dashed #fff;
@@ -63,23 +63,14 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           transform: translateY(-100%);
           opacity: 0;
         }
-        .mobileRight {
-          display: none;
-          padding-right: 40px;
-          @media (max-width: 900px) {
-            display: flex;
-          }
-          @media (max-width: px) @media (max-width: 600px) {
-            padding-right: 20px;
-          }
-        }
+
         > div {
           display: flex;
           align-items: center;
           justify-content: space-between;
           height: 100%;
           width: 100%;
-          max-width: 1440px;
+
           margin-left: auto;
           margin-right: auto;
           @media (max-width: 1024px) {
@@ -88,8 +79,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           }
         }
         .logo svg {
-          width: 140px;
-          padding-left: 50px;
+          width: 85px;
           display: flex;
           align-items: center;
           path {
@@ -131,7 +121,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
             padding: 10px;
             margin-right: 30px;
             position: relative;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.05em;
             &.active {
               text-decoration: line-through;
             }
@@ -139,7 +129,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
         }
       `}
     >
-      <div className="padding">
+      <div className="container padding">
         <Link className="logo" to={`/${prefix}`}>
           <SvgLogo />
         </Link>
@@ -156,17 +146,13 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           />
         </nav>
 
-        <div className="mobileRight">
-          <div className={`burger${menuOpen ? " menuOpen" : ""}`}>
-            <BurgerIcon
-              menuOpen={menuOpen}
-              onClick={(e) => {
-                e.preventDefault();
-                setMenuOpen(!menuOpen);
-              }}
-            />
-          </div>
-        </div>
+        <BurgerIcon
+          menuOpen={menuOpen}
+          onClick={(e) => {
+            e.preventDefault();
+            setMenuOpen(!menuOpen);
+          }}
+        />
       </div>
     </header>
   );

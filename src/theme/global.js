@@ -144,13 +144,13 @@ article h3 {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;  
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 58px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   font-size: 15px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
   width: fit-content;  
   border-radius: 4px;  
 }

@@ -88,44 +88,6 @@ export const Layout = ({ children }) => {
             </Link>
           </div>
           <div className="col space-around">
-            <nav className="Top flex justify-end align-center">
-              <div className="secondaryLinks">
-                <Link
-                  to={`${prefix[locale] + order[locale].slug}`}
-                  className="Login"
-                >
-                  {order[locale].title}
-                </Link>
-                <a
-                  className="Login"
-                  href="https://extra.jcad.fi/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {text.menu.login}
-                </a>
-              </div>
-              <div className="localeLinks">
-                <Link
-                  to={localeSlugs.fi}
-                  className={locale === "fi" && "thisLocale"}
-                >
-                  FI
-                </Link>
-                <Link
-                  to={localeSlugs.en}
-                  className={locale === "en" && "thisLocale"}
-                >
-                  EN
-                </Link>
-                <Link
-                  to={localeSlugs.sv}
-                  className={locale === "sv" && "thisLocale"}
-                >
-                  SV
-                </Link>
-              </div>
-            </nav>
             <nav className="Main flex justify-end align-center">
               {mainMenu[locale].map((i) => (
                 <Link
@@ -208,39 +170,13 @@ const Header = styled.header`
   }
   nav a {
     color: #fff;
-    font-size: 14px;
+    font-size: 15px;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-  .secondaryLinks {
-    a {
-      margin-right: 40px;
-    }
-  }
-  .localeLinks {
-    margin-left: 30px;
-    a {
-      opacity: 0.4;
-    }
-    a:not(:last-child) {
-      margin-right: 5px;
-    }
-    a.thisLocale {
-      opacity: 1;
-    }
+    letter-spacing: 0.05em;
   }
   a.linkLogin {
     justify-content: center;
     align-items: center;
-  }
-  nav.Top {
-    margin-bottom: 10px;
-    a {
-      padding: 5px 10px;
-    }
-    display: none;
-    @media (max-width: 900px) {
-    }
   }
   .MainLink {
     @media (max-width: 1024px) {
@@ -250,24 +186,25 @@ const Header = styled.header`
   nav.Main {
     > a {
       color: #fff;
-      padding: 10px 30px;
+      padding: 10px 20px;
       font-weight: 600;
     }
     a.active {
       text-decoration: line-through;
     }
     .btn {
-      font-size: 14px !important;
+      font-size: 15px !important;
       font-weight: 600;
       border: 1px solid #fff !important;
       height: 40px;
       border-radius: 4px;
-      min-width: 150px;
+      min-width: 155px;
       -webkit-backdrop-filter: blur(2px);
       backdrop-filter: blur(2px);
+      margin-left: 15px;
       @media (max-width: 600px) {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
         min-width: 120px;
       }
     }
@@ -328,7 +265,7 @@ const MobileMenu = ({
           padding: 20px 10px;
           font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 0.02em;
+          letter-spacing: 0.05em;
 
           width: 100%;
           span {

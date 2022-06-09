@@ -63,16 +63,19 @@ const Page = ({ pageContext }) => {
             <div className="row container padding">
               <div className="col">
                 <span className="uppercase" style={{ fontSize: 22 }}>
-                  Seuraava webinaari
+                  Seuraava webinaari{" "}
+                  <strong>
+                    {nextDate} klo {nextHour}
+                  </strong>
                 </span>
-                <span className="uppercase" style={{ fontSize: 45 }}>
-                  {nextDate} klo {nextHour}
-                </span>
-                <h1 style={{ fontSize: 32, textTransform: "none" }}>
+
+                <h1
+                  style={{ fontSize: 32, textTransform: "none", marginTop: 5 }}
+                >
                   {nextWebinar.node.title}
                 </h1>
 
-                <p>{nextWebinar.node.nosto}</p>
+                <p style={{ marginBottom: 30 }}>{nextWebinar.node.nosto}</p>
                 <Link
                   to={`${prefix[locale] + webinar[locale]}/${
                     nextWebinar.node.slug
@@ -232,8 +235,7 @@ const Main = styled.main`
     color: #000;
     width: 100%;
     .container {
-      border-left: 0.8px dashed #000;
-      border-right: 0.8px dashed #000;
+      border-color: #000;
       @media (max-width: 800px) {
         flex-direction: column;
         .Coming,
@@ -246,12 +248,18 @@ const Main = styled.main`
   }
   h2 {
     font-size: 36px;
+    font-weight: 600;
   }
   .Coming {
     width: 61.8%;
     padding-top: 60px;
     border-right: 0.8px dashed #000;
     padding-bottom: 80px;
+    height: 100%;
+    @media (max-width: 600px) {
+      padding-bottom: 0;
+      border-right: none;
+    }
   }
   .List {
     margin-top: 60px;
@@ -264,8 +272,14 @@ const Main = styled.main`
     padding-bottom: 52px;
     margin-bottom: 52px;
     border-bottom: 0.8px dashed #000;
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
     > div:first-child {
       flex: 1 1 50px;
+      @media (max-width: 600px) {
+        flex-direction: row;
+      }
     }
     > div:last-child {
       flex: 5 1 0;
@@ -275,6 +289,10 @@ const Main = styled.main`
       font-size: 23px;
       font-weight: 600;
       text-transform: uppercase;
+      @media (max-width: 600px) {
+        margin-top: 0;
+        margin-right: 15px;
+      }
     }
     .hour {
       font-size: 23px;
@@ -294,13 +312,17 @@ const Main = styled.main`
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 80px;
+    position: sticky;
+    top: 0;
+    @media (max-width: 600px) {
+      padding: 30px 0 60px;
+    }
     h3 {
       font-size: 24px;
-      line-height: 21px;
+      line-height: 31px;
       margin-bottom: 30px;
     }
     .Feedback {
-      padding-top: 40px;
       padding-bottom: 40px;
       .item {
         margin-top: 10px;

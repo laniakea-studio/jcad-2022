@@ -403,7 +403,7 @@ const MobileMenu = ({
         a {
           font-size: 23px;
           padding: 20px 10px;
-          font-weight: 700;
+          font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.02em;
         }
