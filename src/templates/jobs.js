@@ -78,7 +78,10 @@ const Page = ({ pageContext }) => {
                     className="content"
                     dangerouslySetInnerHTML={{ __html: i.content }}
                   />
-                  <button className="btn white-outlines small">
+                  <button
+                    className="btn white-outlines small"
+                    onClick={() => scrollTo("#customers")}
+                  >
                     Olen kiinnostunut
                   </button>
                 </div>
@@ -87,7 +90,7 @@ const Page = ({ pageContext }) => {
           </section>
 
           <section className="Facts pagePadding">
-            <div className="row container padding">
+            <div className="row container padding col-800">
               <div className="Numbers col justify-center">
                 <div className="Revenue row justify-center align-center">
                   <LineGroupSvg />
@@ -117,8 +120,8 @@ const Page = ({ pageContext }) => {
             </div>
           </section>
 
-          <section className="Apply pagePadding">
-            <div className="row container padding">
+          <section id="hae" className="Apply pagePadding">
+            <div className="row container padding col-800">
               <div className="col">
                 <div
                   className="content"
@@ -162,6 +165,10 @@ const Main = styled.main`
       padding-top: 70px;
       padding-right: 40px;
       padding-bottom: 70px;
+      @media (max-width: 800px) {
+        border-right: none;
+        width: 100%;
+      }
     }
     > .col:last-child {
       width: 50%;
@@ -170,6 +177,9 @@ const Main = styled.main`
       padding-left: 20px;
       svg {
         width: 100%;
+      }
+      @media (max-width: 800px) {
+        display: none;
       }
     }
   }
@@ -203,6 +213,13 @@ const Main = styled.main`
       &:nth-child(2) {
         border-bottom: 0.8px dashed #fff;
       }
+      @media (max-width: 800px) {
+        max-width: 100%;
+        padding: 30px 0;
+        &:not(:last-child) {
+          border-bottom: 0.8px dashed #fff;
+        }
+      }
     }
     .btn {
       margin-top: auto;
@@ -221,6 +238,19 @@ const Main = styled.main`
     padding-right: 20px;
     border-right: 0.8px dashed #000;
     padding-bottom: 80px;
+    @media (max-width: 800px) {
+      border-right: none;
+      width: 100%;
+      padding-bottom: 40px;
+      padding-right: 0;
+    }
+    @media (max-width: 500px) {
+      padding-bottom: 0;
+      border-bottom: 0.8px dashed #000;
+      svg {
+        visibility: hidden;
+      }
+    }
     span {
       text-transform: uppercase;
       font-size: 15px;
@@ -251,6 +281,12 @@ const Main = styled.main`
     width: 50%;
     padding-top: 60px;
     padding-bottom: 80px;
+    @media (max-width: 800px) {
+      border-right: none;
+      width: 100%;
+      padding-top: 0;
+      padding-bottom: 40px;
+    }
     svg {
       width: 100%;
     }
@@ -267,12 +303,21 @@ const Main = styled.main`
         padding-top: 70px;
         padding-right: 40px;
         padding-bottom: 70px;
+        @media (max-width: 800px) {
+          width: 100%;
+          padding-bottom: 40px;
+        }
       }
       > .col:last-child {
         width: 50%;
         padding-top: 70px;
         padding-bottom: 70px;
         padding-left: 20px;
+        @media (max-width: 800px) {
+          padding-left: 0;
+          padding-top: 0;
+          width: 100%;
+        }
         svg {
           width: 100%;
         }

@@ -95,6 +95,36 @@
 .flex-6 {
   flex: 6;
 }
+@media (max-width: 400px) {
+  .col-400 {
+    flex-direction: column;
+  }
+}
+@media (max-width: 500px) {
+  .col-500 {
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .col-600 {
+    flex-direction: column;
+  }
+}
+@media (max-width: 700px) {
+  .col-700 {
+    flex-direction: column;
+  }
+}
+@media (max-width: 800px) {
+  .col-800 {
+    flex-direction: column;
+  }
+}
+@media (max-width: 900px) {
+  .col-800 {
+    flex-direction: column;
+  }
+}
 .space-between {
   justify-content: space-between;
 }

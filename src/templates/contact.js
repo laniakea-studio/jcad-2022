@@ -18,7 +18,7 @@ const Contact = ({ pageContext }) => {
     <>
       <HelmetDatoCms seo={data.yhteystiedot.seoMetaTags} />
       <Layout>
-        <Main>
+        <Main className="pagePadding">
           <section className="First col container padding">
             <div className="leftLine" />
             <div className="rightLine" />

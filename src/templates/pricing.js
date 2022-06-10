@@ -69,20 +69,9 @@ const Pricing = ({ pageContext }) => {
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout>
-        <div
-          css={`
-            background: ${theme.primary};
-            width: 100%;
-            min-height: 100vh;
-          `}
-        >
-          <Main>
-            <div className="leftLine" />
-            <div className="rightLine" />
-            <div className="heading">
-              <SvgHeadingFrame />
-              <h2>{text.menu.pricing}</h2>
-            </div>
+        <Main className="pagePadding">
+          <div className="col container padding">
+            <h1>{text.menu.pricing}</h1>
             <p className="lead">{page.lead}</p>
             <div className="selections">
               <div>
@@ -227,9 +216,9 @@ const Pricing = ({ pageContext }) => {
                 );
               })}
             </div>
-            <Booking />
-          </Main>
-        </div>
+          </div>
+        </Main>
+        <Booking />
       </Layout>
     </>
   );
@@ -238,19 +227,23 @@ const Pricing = ({ pageContext }) => {
 export default Pricing;
 
 const Main = styled.main`
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
   position: relative;
   color: #fff;
-  padding-top: 220px;
-  padding-left: 80px;
-  padding-right: 80px;
-  @media (max-width: 600px) {
-    padding-left: 20px;
-    padding-right: 20px;
+  background: ${theme.primary};
+  > .container {
+    padding-top: 94px;
+  }
+  h1 {
+    margin-top: 50px;
+    font-weight: 600;
+    font-size: 36px;
+    text-transform: none;
+    margin-bottom: 30px;
+  }
+  .lead {
+    font-size: 19px;
+    line-height: 1.4;
+    max-width: 800px;
   }
   .selectBox {
     position: relative;
@@ -438,27 +431,5 @@ const Main = styled.main`
         width: 220px;
       }
     }
-  }
-  .heading {
-    position: relative;
-    height: 93px;
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
-    overflow: hidden;
-    h2 {
-      font-size: 28px;
-      text-transform: uppercase;
-    }
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-  .lead {
-    font-size: 20px;
-    margin-top: 60px;
-    max-width: 800px;
   }
 `;

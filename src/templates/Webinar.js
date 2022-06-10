@@ -127,15 +127,23 @@ const Main = styled.main`
     margin-bottom: 30px;
     font-weight: 600;
     font-size: 19px;
+    @media (max-width: 600px) {
+      font-size: 16px;
+    }
+    @media (max-width: 600px) {
+      font-size: 16px;
+    }
     svg {
       width: 15px;
       margin-right: 10px;
-      margin-bottom: -1px;
     }
   }
   .Points span {
     font-size: 19px;
     font-weight: 600;
+    @media (max-width: 600px) {
+      font-size: 16px;
+    }
   }
   .container {
     @media (max-width: 900px) {

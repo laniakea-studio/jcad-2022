@@ -172,9 +172,10 @@ article h3 {
   color: ${theme.primary};
 }
 .btn.small {
+  min-height: 44px;
   height: 44px;
   font-weight: 600;
-font-size: 15px;
+  font-size: 15px;
 }
 .btn.black-outlines {
   background: none;
@@ -209,8 +210,7 @@ ul, ol {
     font-size: 18px;
     line-height: 1.6;  
 }
-h1,
-h2 {  
+h1 {  
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -218,7 +218,8 @@ h1 {
     font-size: 55px;
 }
 h2 {
-    font-size: 40px;
+  font-weight: 600;
+    font-size: 36px;
 }
 h3 {
   text-transform: uppercase;
