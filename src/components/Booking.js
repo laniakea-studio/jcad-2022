@@ -43,7 +43,7 @@ export const Booking = () => {
       : data.bookingSv;
 
   return (
-    <Div>
+    <Div className="pagePadding">
       <div className="container padding col align-center">
         <h2>{booking.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: booking.content }} />
@@ -62,8 +62,10 @@ export const Booking = () => {
 const Div = styled.div`
   background: ${theme.primary};
   color: #fff;
-  padding-top: 120px;
-  padding-bottom: 120px;
+  .container {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
   .DemoBtn {
     margin-top: 30px;
     button.btn.white-outlines {

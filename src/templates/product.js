@@ -87,66 +87,66 @@ const Product = ({ pageContext }) => {
               </div>
             </div>
           </div>
-          <div className="sec-2 padding container">
-            <div className="Title">
-              <SvgHaircross className="leftCircle" />
-              <SvgDashedLine className="leftTitleLine" />
-              <div className="titleBox">
-                <h2 className="blueBg">{text.product.benefits}</h2>
+          <div className="pagePadding">
+            <div className="sec-2 padding container">
+              <div className="Title">
+                <SvgHaircross className="leftCircle" />
+                <SvgDashedLine className="leftTitleLine" />
+                <div className="titleBox">
+                  <h2 className="blueBg">{text.product.benefits}</h2>
+                </div>
+                <SvgDashedLine className="rightTitleLine" />
+                <SvgHaircross className="rightCircle" />
               </div>
-
-              <SvgDashedLine className="rightTitleLine" />
-              <SvgHaircross className="rightCircle" />
-            </div>
-            <div className="point">
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{
-                  __html: data.product.points[0].content,
-                }}
-              />
-
-              <div className="image">
-                <img src={kuva1} alt="" />
+              <div className="point">
+                <div
+                  className="content"
+                  dangerouslySetInnerHTML={{
+                    __html: data.product.points[0].content,
+                  }}
+                />
+                <div className="image">
+                  <img src={kuva1} alt="" />
+                </div>
               </div>
-            </div>
-            <div className="point">
-              <SvgPoint2Frame />
-              <div className="image">
-                <img src={kuva2} alt="" />
+              <div className="point">
+                <SvgPoint2Frame />
+                <div className="image">
+                  <img src={kuva2} alt="" />
+                </div>
+                <div
+                  className="content"
+                  dangerouslySetInnerHTML={{
+                    __html: data.product.points[1].content,
+                  }}
+                />
               </div>
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{
-                  __html: data.product.points[1].content,
-                }}
-              />
-            </div>
-            <div className="point">
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{
-                  __html: data.product.points[2].content,
-                }}
-              />
-              <div className="image">
-                <img src={kuva3} alt="" />
+              <div className="point">
+                <div
+                  className="content"
+                  dangerouslySetInnerHTML={{
+                    __html: data.product.points[2].content,
+                  }}
+                />
+                <div className="image">
+                  <img src={kuva3} alt="" />
+                </div>
               </div>
             </div>
           </div>
-          <div className="sec-3 padding wrap">
-            <div className="heading">
-              <SvgHeaderFrameWide />
+          <div className="pagePadding">
+            <div className="sec-3 container padding wrap">
               <h2>{text.product.references}</h2>
-            </div>
-            <div className="references">
-              {data.references.map(({ node }) => (
-                <div className="item">
-                  <h4>{node.yritys}</h4>
-                  <p>{node.quote}</p>
-                  <span>{node.nimi}</span>
-                </div>
-              ))}
+
+              <div className="references">
+                {data.references.map(({ node }) => (
+                  <div className="item">
+                    <h4>{node.yritys}</h4>
+                    <p>{node.quote}</p>
+                    <span>{node.nimi}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <Booking />
@@ -436,7 +436,7 @@ const Main = styled.main`
         background: #fff;
         padding: 0 20px;
         z-index: 1;
-        letter-spacing: 1px;
+        letter-spacing: 0.05em;
         color: #000;
       }
     }
@@ -462,15 +462,9 @@ const Main = styled.main`
   .sec-2 {
     display: flex;
     flex-direction: column;
-    &.padding {
-      @media (min-width: 600px) {
-        padding-left: 40px;
-        padding-right: 40px;
-      }
-      @media (min-width: 1100px) {
-        padding-left: 80px;
-        padding-right: 80px;
-      }
+    &.container {
+      border-color: #000;
+      padding-bottom: 50px;
     }
     .point {
       display: flex;
@@ -521,8 +515,17 @@ const Main = styled.main`
   .sec-3 {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
-
+    h2 {
+      font-size: 36px;
+      @media (max-width: 600px) {
+        font-size: 28px;
+      }
+    }
+    &.container {
+      border-color: #000;
+      padding-top: 80px;
+      border-top: 0.8px dashed #000;
+    }
     .references {
       display: flex;
       justify-content: space-between;

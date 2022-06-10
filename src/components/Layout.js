@@ -14,6 +14,8 @@ import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
 import { ctaMenu, fullMenu, mainMenu, prefix, order } from "../constants/slugs";
 
+const isBrowser = typeof window !== "undefined";
+
 export const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { locale, localeSlugs } = useContext(LocaleContext);
@@ -224,7 +226,7 @@ const MobileMenu = ({
         backdrop-filter: blur(6px);
         width: 100%;
         height: 100vh;
-        padding-top: ${window.pageYOffset > 70 ? "70px" : "94px"};
+        padding-top: ${isBrowser && window.pageYOffset > 70 ? "70px" : "94px"};
         color: ${color};
         justify-content: center;
         align-items: center;
