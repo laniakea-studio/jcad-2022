@@ -178,7 +178,6 @@ const Main = styled.main`
   padding-top: 94px;
   .Hero {
     min-height: 100vh;
-
     height: 100%;
     color: #fff;
     position: relative;
