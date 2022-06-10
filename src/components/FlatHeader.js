@@ -70,13 +70,8 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           justify-content: space-between;
           height: 100%;
           width: 100%;
-
           margin-left: auto;
           margin-right: auto;
-          @media (max-width: 1024px) {
-            padding-right: 0;
-            padding-left: 0;
-          }
         }
         .logo svg {
           width: 85px;
@@ -84,12 +79,6 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
           align-items: center;
           path {
             fill: #fff;
-          }
-          @media (max-width: 900px) {
-            padding-left: 40px;
-          }
-          @media (max-width: 600px) {
-            padding-left: 20px;
           }
         }
         nav.mainNav {

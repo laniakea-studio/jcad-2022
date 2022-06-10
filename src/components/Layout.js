@@ -19,8 +19,6 @@ export const Layout = ({ children }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = snippet[locale];
 
-  const [flatHeader, setFlatHeader] = useState(false);
-
   const data = useStaticQuery(graphql`
     query {
       site: datoCmsSite {
@@ -47,17 +45,6 @@ export const Layout = ({ children }) => {
   const booking = locale === "fi" ? fi : locale === "en" ? en : sv;
 
   useEffect(() => {
-    const onScroll = () => {
-      if (window.pageYOffset <= 70 && !flatHeader) return;
-      if (window.pageYOffset > 70 && flatHeader) return;
-    };
-    // clean up code
-    window.removeEventListener("scroll", onScroll);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -80,7 +67,7 @@ export const Layout = ({ children }) => {
         menuOpen={menuOpen}
         setMenuOpen={() => setMenuOpen(!menuOpen)}
       />
-      <Header className={`pagePadding ${flatHeader ? "flat" : ""}`}>
+      <Header className="pagePadding">
         <div className="row align-center container padding">
           <div className="col justify-center">
             <Link className="logo" to={`${prefix[locale]}`}>
@@ -222,9 +209,8 @@ const MobileMenu = ({
   menuOpen,
   text,
   localeSlugs,
-  locale,
+  isFlatHeader,
   prefix,
-  bookingUrl,
 }) => {
   const color = "#fff";
   return (
@@ -238,7 +224,7 @@ const MobileMenu = ({
         backdrop-filter: blur(6px);
         width: 100%;
         height: 100vh;
-        padding-top: 94px;
+        padding-top: ${window.pageYOffset > 70 ? "70px" : "94px"};
         color: ${color};
         justify-content: center;
         align-items: center;

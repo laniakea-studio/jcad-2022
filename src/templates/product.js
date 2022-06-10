@@ -51,33 +51,39 @@ const Product = ({ pageContext }) => {
               <SvgCircle id="circle-2" />
             </div>
           </div>
-          <div id="customers" className="sec-1">
-            <Ticker data={data.product.customers} />
-            <p className="customers padding">{data.product.section1Content}</p>
-            <div className="numberBox">
-              <SvgNumberTopline />
-              <SvgNumberFrame />
+          <div className="pagePadding">
+            <div id="customers" className="sec-1 container">
+              <Ticker data={data.product.customers} />
+              <p className="customers padding">
+                {data.product.section1Content}
+              </p>
+              <div className="numberBox padding">
+                <SvgNumberTopline />
+                <SvgNumberFrame />
 
-              <div className="number-1">
-                <span className="number">{data.product.activeUser}</span>
-                <span className="sub">{text.product.activeUsers}</span>
-              </div>
+                <div className="number-1">
+                  <span className="number">{data.product.activeUser}</span>
+                  <span className="sub">{text.product.activeUsers}</span>
+                </div>
 
-              <div className="number-2">
-                <span className="number">
-                  {data.product.customerHappiness.toLocaleString(locale)}
-                  &nbsp;%
-                </span>
-                <span className="sub">
-                  {text.product.customerHappiness}
-                  <i className="tooltip">
-                    <SvgTooltip />
-                    <p
-                      class="tooltiptext"
-                      dangerouslySetInnerHTML={{ __html: data.product.tooltip }}
-                    />
-                  </i>
-                </span>
+                <div className="number-2">
+                  <span className="number">
+                    {data.product.customerHappiness.toLocaleString(locale)}
+                    &nbsp;%
+                  </span>
+                  <span className="sub">
+                    {text.product.customerHappiness}
+                    <i className="tooltip">
+                      <SvgTooltip />
+                      <p
+                        class="tooltiptext"
+                        dangerouslySetInnerHTML={{
+                          __html: data.product.tooltip,
+                        }}
+                      />
+                    </i>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -267,6 +273,9 @@ const Main = styled.main`
   .sec-1 {
     padding-top: 40px;
     padding-bottom: 40px;
+    &.container {
+      border-color: #000;
+    }
     .customers {
       font-size: 20px;
       max-width: 630px;
@@ -513,16 +522,7 @@ const Main = styled.main`
     display: flex;
     flex-direction: column;
     margin-top: 50px;
-    &.padding {
-      @media (min-width: 600px) {
-        padding-left: 40px;
-        padding-right: 40px;
-      }
-      @media (min-width: 1100px) {
-        padding-left: 80px;
-        padding-right: 80px;
-      }
-    }
+
     .references {
       display: flex;
       justify-content: space-between;
