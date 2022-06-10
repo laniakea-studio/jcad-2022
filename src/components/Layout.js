@@ -16,10 +16,12 @@ import { ctaMenu, fullMenu, mainMenu, prefix, order } from "../constants/slugs";
 
 const isBrowser = typeof window !== "undefined";
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, page }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = snippet[locale];
+
+  console.log(page);
 
   const data = useStaticQuery(graphql`
     query {
@@ -78,16 +80,27 @@ export const Layout = ({ children }) => {
           </div>
           <div className="col space-around">
             <nav className="Main flex justify-end align-center">
-              {mainMenu[locale].map((i) => (
+              {page !== "home" &&
+                mainMenu[locale].map((i) => (
+                  <Link
+                    to={`${prefix[locale] + i.slug}`}
+                    activeClassName="active"
+                    className="MainLink"
+                    style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
+                  >
+                    {i.title}
+                  </Link>
+                ))}
+              {page === "home" && (
                 <Link
-                  to={`${prefix[locale] + i.slug}`}
+                  to={`${prefix[locale] + order[locale].slug}`}
                   activeClassName="active"
                   className="MainLink"
                   style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
                 >
-                  {i.title}
+                  {order[locale].title}
                 </Link>
-              ))}
+              )}
               <PopupButton
                 className="btn white-outlines"
                 url={booking.calendlyBookingUrl}

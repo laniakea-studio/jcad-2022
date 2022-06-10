@@ -18,8 +18,65 @@ const Page = ({ pageContext }) => {
 
   return (
     <>
-      <Layout locale={pageContext.locale} transparent={false}>
+      <Layout locale={pageContext.locale} transparent={false} page="home">
         <Main className="pagePadding">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="2136"
+            height="774"
+            preserveAspectRatio="xMidYMid"
+            viewBox="0 0 2136 774"
+            css={`
+              margin: auto;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              background: rgb(0, 0, 83);
+              display: block;
+
+              shape-rendering: auto;
+            `}
+          >
+            <g transform="translate(1068,387) scale(1,1) translate(-1068,-387)">
+              <g
+                transform="translate(1744.4487044235962,68.68740162595168) scale(100)"
+                opacity="0.4"
+              >
+                <path
+                  d="M7.475999999999999 0 C7.475999999999999 3.289439999999999 7.612315626456905 2.9603449658443517 5.286330296150629 5.286330296150628 S3.2894399999999995 7.475999999999999 4.577729735212805e-16 7.475999999999999 S-2.9603449658443517 7.612315626456905 -5.286330296150628 5.286330296150629 S-7.475999999999999 3.28944 -7.475999999999999 9.15545947042561e-16 S-7.612315626456906 -2.9603449658443513 -5.28633029615063 -5.286330296150628 S-3.2894400000000004 -7.475999999999998 -1.3733189205638417e-15 -7.475999999999999 S2.9603449658443504 -7.612315626456905 5.286330296150627 -5.28633029615063 S7.475999999999998 -3.289440000000001 7.475999999999999 -1.831091894085122e-15"
+                  fill="#222282"
+                  stroke-width="0"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    dur="25s"
+                    repeatCount="indefinite"
+                    values="0;90"
+                  ></animateTransform>
+                </path>
+              </g>
+              <g
+                transform="translate(1879.7384453083152,5.024881951141992) scale(100)"
+                opacity="0.4"
+              >
+                <path
+                  d="M8.9712 0 C8.9712 3.9473279999999993 9.134778751748287 3.552413959013222 6.343596355380756 6.343596355380754 S3.9473279999999997 8.9712 5.493275682255367e-16 8.9712 S-3.552413959013222 9.134778751748287 -6.343596355380754 6.343596355380756 S-8.9712 3.947328 -8.9712 1.0986551364510734e-15 S-9.134778751748287 -3.5524139590132218 -6.343596355380757 -6.343596355380754 S-3.947328000000001 -8.9712 -1.6479827046766101e-15 -8.9712 S3.552413959013221 -9.134778751748287 6.343596355380753 -6.343596355380757 S8.971199999999998 -3.9473280000000015 8.9712 -2.197310272902147e-15"
+                  fill="#11116e"
+                  stroke-width="0"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    dur="12.5s"
+                    repeatCount="indefinite"
+                    values="0;90"
+                  ></animateTransform>
+                </path>
+              </g>
+            </g>
+          </svg>
           <div className="Hero container  col">
             <div className="row padding">
               <div className="col">
@@ -50,19 +107,22 @@ const Page = ({ pageContext }) => {
             </div>
 
             <div className="Grid padding">
-              {fullMenu[locale].map((i, index) => (
-                <Link
-                  id={`Link-${index}`}
-                  className="Link"
-                  to={prefix[locale] + i.slug}
-                >
-                  <header className="row">
-                    <span>{i.title}</span>
-                    <Arrow />
-                  </header>
-                  <AnimatedBox index={index} />
-                </Link>
-              ))}
+              {fullMenu[locale].map((i, index) => {
+                if (index === 6) return;
+                return (
+                  <Link
+                    id={`Link-${index}`}
+                    className="Link"
+                    to={prefix[locale] + i.slug}
+                  >
+                    <header className="row">
+                      <span>{i.title}</span>
+                      <Arrow />
+                    </header>
+                    <AnimatedBox index={index} />
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </Main>
@@ -81,7 +141,7 @@ const Main = styled.main`
   padding-top: 94px;
   .Hero {
     min-height: 100vh;
-    background: ${theme.primary};
+
     height: 100%;
     color: #fff;
     position: relative;

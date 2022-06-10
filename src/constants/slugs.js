@@ -46,6 +46,7 @@ export const fullMenu = {
     { title: "Yhteystiedot", slug: "yhteystiedot" },
     { title: "Meistä", slug: "meista" },
     { title: "Rekry", slug: "rekry" },
+    { title: "Tilaa JCAD", slug: "tilaa" },
   ],
   en: [
     { title: "Product", slug: "product" },
