@@ -10,7 +10,7 @@ const Ticker = ({ data }) => {
   }, []);
 
   return (
-    <Div class="tickerBox">
+    <Div className="tickerBox">
       <div class="img-ticker">
         {logos.length > 1 &&
           logos.map((item) => {
@@ -21,8 +21,6 @@ const Ticker = ({ data }) => {
             );
           })}
       </div>
-      <div className="leftFade" />
-      <div className="rightFade" />
     </Div>
   );
 };
@@ -32,33 +30,6 @@ export default Ticker;
 const Div = styled.div`
   overflow: hidden;
   position: relative;
-  .leftFade,
-  .rightFade {
-    width: 60px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    @media (max-width: 1440px) {
-      display: none;
-    }
-  }
-
-  .leftFade {
-    left: 0;
-    background: linear-gradient(
-      270deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 1) 100%
-    );
-  }
-  .rightFade {
-    right: 0;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 1) 100%
-    );
-  }
 
   .img-ticker {
     display: flex;

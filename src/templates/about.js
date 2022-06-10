@@ -10,6 +10,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useScrollYPosition } from "react-use-scroll-position";
 import svgBg1 from "../assets/svgBg1.svg";
 import svgTriangle from "../assets/svgTriangle.svg";
+import { CompanyFacts } from "../components/CompanyFacts";
 import { Layout } from "../components/Layout";
 import {
   Svg2ndBottomRight,
@@ -361,7 +362,7 @@ const HomePage = ({ pageContext }) => {
                     style={{ display: "none" }}
                   />
                   <h1 id="h1" className="otsikko-1">
-                    Minimoi hukka. Me autamme.
+                    Vältä hukka.
                   </h1>
                 </motion.div>
                 <motion.div
@@ -554,30 +555,6 @@ const HomePage = ({ pageContext }) => {
             >
               <div>
                 <div className="header">
-                  <div className="line" />
-                  <motion.div
-                    style={{
-                      opacity: opacity_4b,
-                    }}
-                  >
-                    <h2 className="--3">{text.home.slide1title}</h2>
-                  </motion.div>
-
-                  <motion.div
-                    style={{
-                      opacity: opacity_5b,
-                    }}
-                  >
-                    <h2 className="--3">{text.home.slide2title}</h2>
-                  </motion.div>
-
-                  <motion.div
-                    style={{
-                      opacity: opacity_6b,
-                    }}
-                  >
-                    <h2 className="--3">{text.home.slide3title}</h2>
-                  </motion.div>
                   <svg className="progressCircle circle-1" viewBox="0 0 60 60">
                     <motion.path
                       fill="none"
@@ -697,6 +674,7 @@ const HomePage = ({ pageContext }) => {
                   }
                   svg.topLine {
                     width: 100%;
+                    visibility: hidden;
                     position: relative;
                     top: 100px;
                     height: 12px;
@@ -706,6 +684,7 @@ const HomePage = ({ pageContext }) => {
                   }
                   svg.bottomLine {
                     position: relative;
+                    visibility: hidden;
                     top: -100px;
                     width: 100%;
                   }
@@ -720,7 +699,6 @@ const HomePage = ({ pageContext }) => {
                   }
                 `}
               >
-                <SvgHorizontal className="topLine" />
                 <div
                   css={`
                     display: flex;
@@ -773,385 +751,17 @@ const HomePage = ({ pageContext }) => {
             </div>
           </section>
 
+          <CompanyFacts />
           <div
+            className="pagePadding"
             css={`
-              ${theme.fullWidth}
+              background: ${theme.indigo};
             `}
           >
-            <section
-              id="asiakaskokemuksia"
-              css={`
-                width: 100%;
-                color: #000;
-                background: #fff;
-                scroll-snap-align: start;
-                display: flex;
-                flex-direction: column;
-                .container {
-                  width: 100%;
-                  display: flex;
-                  flex-direction: column;
-                }
-                @media (max-width: 1500px) {
-                  padding-left: 0;
-                  padding-right: 0;
-                }
-                .titleBox {
-                  margin-top: 140px;
-                  height: 94px;
-                  border: 1px solid #000;
-                  display: flex;
-                  align-items: center;
-                  padding-left: 30px;
-                  padding-right: 30px;
-                  margin-left: 1px;
-                }
-                p.quote {
-                  margin-left: 30px;
-                  font-size: 30px;
-                  font-weight: 600;
-                  line-height: 1.2;
-                  margin-bottom: 128px;
-                  &:first-child {
-                    max-width: 544px;
-                  }
-                }
-                span.quoteName {
-                  position: relative;
-                  margin-left: 30px;
-                  font-size: 19px;
-                  font-weight: 300;
-                  strong {
-                    font-size: 23px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                  }
-                }
-                .lineAfter::after {
-                  content: "";
-                  position: absolute;
-                  bottom: -30px;
-                  left: 0;
-                  right: 0;
-                  height: 2px;
-                  width: 83vw;
-                  border-top: 1px solid black;
-                  z-index: -1;
-                }
-                .first.row {
-                  height: 300px;
-                  position: relative;
-                  svg {
-                    margin-left: auto;
-                  }
-                }
-                .second.row {
-                  position: relative;
-                }
-                .lineTroughTitle {
-                  position: absolute;
-                  bottom: 78px;
-                  width: 95%;
-                  height: 1px;
-                  background: #000;
-                  @media (max-width: 600px) {
-                    display: none;
-                  }
-                }
-                .second.row svg.line {
-                  height: 100%;
-                }
-                .circleBox {
-                  position: relative;
-                  top: -160px;
-                  right: -160px;
-                }
-                .third.row {
-                  margin-top: 30px;
-                  padding-bottom: 180px;
-                }
-                .third.row .column:first-child {
-                  margin-top: auto;
-                  justify-content: flex-end;
-                  overflow-x: hidden;
-                  flex: 1;
-                  svg.triangle {
-                    width: 90%;
-                  }
-                }
-                .third.row .column:nth-child(2) {
-                  position: relative;
-                  padding-left: 50px;
-                  padding-top: 0;
-                  svg.bottomRight {
-                    position: absolute;
-                    top: 0;
-                    left: -60%;
-                  }
-                }
-                svg.circleLeftLine {
-                  display: none;
-                  position: absolute;
-                  height: 400px;
-                  width: auto;
-                  margin-left: 60px;
-                  top: 50px;
-                }
-                @media (max-width: 1024px) {
-                  padding-left: 0 !important;
-                  padding-right: 0 !important;
-                  .titleBox {
-                    margin-top: 70px;
-                  }
-                  .randomSvg {
-                    display: none;
-                  }
-                  .column {
-                    padding-left: 40px;
-                    padding-right: 40px;
-                  }
-                  svg.triangle {
-                    margin-top: 60px;
-                    margin-bottom: 60px;
-                    margin-left: auto;
-                    margin-right: -150px;
-                  }
-                  .second.row {
-                    flex-direction: column;
-                    overflow: hidden;
-                  }
-                  .circleBox {
-                    top: 70px;
-                    margin-bottom: 20px;
-                    left: -100px;
-                  }
-                  .third.row {
-                    flex-direction: column;
-                    position: relative;
-                    padding-bottom: 40px;
-                    .column:nth-child(2) {
-                      border-bottom: 1px solid #000;
-                    }
-                  }
-                  p.quote {
-                    margin-left: 0;
-                    margin-right: 0;
-                    margin-bottom: 60px;
-                  }
-                  span.quoteName {
-                    margin-left: 0;
-                  }
-                }
-                @media (max-width: 600px) {
-                  .first.row {
-                    height: 200px;
-                  }
-                  .third.row .column:first-child {
-                    height: 300px;
-                    svg.triangle {
-                      width: 210% !important;
-                      margin-bottom: 50px;
-                    }
-                  }
-                  .lineAfter::after {
-                    display: none;
-                  }
-                  svg.circleLeftLine {
-                    display: block;
-                  }
-                  p.quote {
-                    font-size: 24px;
-                  }
-                  .column {
-                    padding-left: 20px !important;
-                    padding-right: 20px !important;
-                  }
-                  .titleBox {
-                    margin-left: -1px;
-                  }
-                  .third.row {
-                    .column:nth-child(2) {
-                      border-bottom: none;
-                    }
-                  }
-                  .container {
-                    padding-left: 0;
-                    padding-right: 0;
-                  }
-                  .bottomRight,
-                  .circleLeftLine {
-                    display: none !important;
-                  }
-                }
-              `}
-            >
-              <div className="container">
-                <div className="first row">
-                  <div className="titleBox">
-                    <h2>{text.home.referencesTitle}</h2>
-                  </div>
-                  <div className="lineTroughTitle" />
-                </div>
-                <div className="second row">
-                  <svg
-                    className="randomSvg"
-                    width="8.234"
-                    height="437.637"
-                    viewBox="0 0 8.234 437.637"
-                  >
-                    <g
-                      id="Group_1852"
-                      data-name="Group 1852"
-                      transform="translate(5.059) rotate(90)"
-                    >
-                      <g
-                        id="Group_1851"
-                        data-name="Group 1851"
-                        transform="translate(0 -3.175)"
-                      >
-                        <g
-                          id="Group_1850"
-                          data-name="Group 1850"
-                          transform="translate(0.365 0.369)"
-                        >
-                          <path
-                            id="Path_1697"
-                            data-name="Path 1697"
-                            d="M2.3,2.305h429.4M-1.445,6.053l7.5-7.5m207.525,7.5,7.5-7.5m206.884,7.5,7.5-7.5m0,7.5-7.5-7.5m-206.884,7.5-7.5-7.5M6.055,6.053l-7.5-7.5"
-                            transform="translate(1.445 1.447)"
-                            fill="none"
-                            stroke="#000"
-                            stroke-width="1"
-                          />
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-
-                  <div className="column">
-                    <p className="quote">
-                      {data.referenssit.edges[0].node.sitaatti}
-                    </p>
-                    <span className="quoteName lineAfter">
-                      <strong>{data.referenssit.edges[0].node.nimi}, </strong>{" "}
-                      {data.referenssit.edges[0].node.yritys}
-                    </span>
-                  </div>
-                  <div
-                    className=""
-                    css={`
-                      margin-left: auto;
-                      margin-top: -150px;
-                      height: fit-content;
-                      width: fit-content;
-                      position: relative;
-                      @media (max-width: 600px) {
-                        margin-top: 50px;
-                        margin-left: -120px;
-                        z-index: 1;
-                      }
-                      .circleLine {
-                        display: none;
-                        position: absolute;
-                        height: 100%;
-                        bottom: 0;
-                        right: -50px;
-                        @media (max-width: 600px) {
-                          display: block;
-                        }
-                      }
-                    `}
-                  >
-                    <motion.div style={{ rotate: circleRotateSpring }}>
-                      <SvgCircle className="svgCircle" />
-                    </motion.div>
-                    <SvgVerticalXXX className="circleLine" />
-                  </div>
-                  <div
-                    className="divider"
-                    css={`
-                      position: absolute;
-                      height: 1px;
-                      width: 100%;
-                      margin: 0 auto;
-                      background: #000;
-                      bottom: 50px;
-                      @media (max-width: 600px) {
-                        display: none;
-                      }
-                    `}
-                  />
-                </div>
-
-                <div className="column afterSecondRow">
-                  <p className="quote" style={{ maxWidth: 696, marginTop: 70 }}>
-                    {data.referenssit.edges[1].node.sitaatti}
-                  </p>
-                  <span className="quoteName">
-                    <strong>{data.referenssit.edges[1].node.nimi},</strong>{" "}
-                    {data.referenssit.edges[1].node.yritys}
-                  </span>
-                </div>
-
-                <div
-                  className="third row"
-                  css={`
-                    .triangleLeftLine {
-                      display: none;
-                      position: absolute;
-                      height: 280px;
-                      width: auto;
-                      margin-left: 60px;
-                      top: 0;
-                    }
-                    .column {
-                      overflow: hidden;
-                    }
-                    @media (max-width: 600px) {
-                      .column {
-                        min-height: 250px;
-                      }
-                      .triangleLeftLine {
-                        display: block;
-                      }
-                      #svgTriangle {
-                        overflow: hidden;
-                        top: 0;
-                        position: absolute;
-                        right: -170px;
-                        margin-top: -210px;
-                        transform: scale(1.1);
-                      }
-                    }
-                  `}
-                >
-                  <div className="column">
-                    <SvgVerticalXXX className="triangleLeftLine" />
-                    <div
-                      css={`
-                        position: relative;
-                      `}
-                    ></div>
-                  </div>
-                  <div className="column">
-                    <Svg2ndBottomRight className="bottomRight" />
-                    <p
-                      className="quote"
-                      style={{ maxWidth: 540, marginTop: 70 }}
-                    >
-                      {data.referenssit.edges[2].node.sitaatti}
-                    </p>
-                    <span className="quoteName" style={{ paddingBottom: 100 }}>
-                      <strong>{data.referenssit.edges[2].node.nimi},</strong>{" "}
-                      {data.referenssit.edges[2].node.yritys}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <div className="row container tickernop">
+              <Ticker data={data.home.partners} />
+            </div>
           </div>
-
-          <Ticker data={data.home.partners} />
         </main>
       </Layout>
     </>
