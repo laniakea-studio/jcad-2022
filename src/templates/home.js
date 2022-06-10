@@ -31,10 +31,10 @@ const Page = ({ pageContext }) => {
               background: rgb(0, 0, 83);
               display: block;
               max-width: 100%;
-              min-width: 1200px;
+              //min-width: 1200px;
               shape-rendering: auto;
               @media (max-width: 600px) {
-                left: -400px;
+                //left: -400px;
               }
             `}
             width="1744"
@@ -176,10 +176,13 @@ export default Page;
 
 const Main = styled.main`
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   background: ${theme.primary};
   padding-top: 94px;
+  overflow-y: hidden;
+  position: relative;
   .Hero {
     min-height: 100vh;
     height: 100%;
