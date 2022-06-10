@@ -31,7 +31,11 @@ const Page = ({ pageContext }) => {
               background: rgb(0, 0, 83);
               display: block;
               max-width: 100%;
+              min-width: 1200px;
               shape-rendering: auto;
+              @media (max-width: 600px) {
+                left: -400px;
+              }
             `}
             width="1744"
             height="774"
@@ -245,6 +249,12 @@ const Main = styled.main`
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
     border-radius: 4px;
+    @media (max-width: 600px) {
+      height: auto;
+      > div {
+        display: none;
+      }
+    }
     span {
       font-size: 20px;
       font-weight: 600;
