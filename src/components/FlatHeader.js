@@ -10,12 +10,13 @@ import "../theme-2021/globals.css";
 import theme from "../theme-2021/theme";
 import { BurgerIcon } from "./BurgerIcon";
 import { SvgLogo } from "./SvgCollection.js";
+import { ctaMenu, fullMenu, mainMenu, prefix, order } from "../constants/slugs";
 
 const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
   const [show, setShow] = useState(false);
   const { direction, position } = useScrollData();
   const { locale, localeSlugs } = useContext(LocaleContext);
-  const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
+
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
 
   const path = typeof window !== "undefined" ? window.location.pathname : "";
@@ -124,7 +125,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
         </Link>
         <nav className="mainNav">
           {menu.map((i) => (
-            <Link to={`/${prefix + i.to}`} activeClassName="active">
+            <Link to={`${prefix + i.slug}`} activeClassName="active">
               {i.title}
             </Link>
           ))}
