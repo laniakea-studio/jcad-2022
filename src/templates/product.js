@@ -235,7 +235,8 @@ const Main = styled.main`
       margin-right: -200px;
       margin-bottom: -200px;
       animation: spin 180s infinite;
-      @media (max-width: 600px) {
+      @media (max-width: 800px) {
+        display: none;
         margin-bottom: -600px;
       }
     }
