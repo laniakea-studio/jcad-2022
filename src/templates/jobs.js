@@ -81,7 +81,7 @@ const Page = ({ pageContext }) => {
                   />
                   <button
                     className="btn white-outlines small"
-                    onClick={() => scrollTo("#customers")}
+                    onClick={() => scrollTo("#hae")}
                   >
                     Olen kiinnostunut
                   </button>
