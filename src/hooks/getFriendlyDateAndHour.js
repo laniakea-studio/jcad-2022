@@ -4,8 +4,9 @@ export const getFriendlyDateAndHour = (d) => {
     month: "numeric",
     day: "numeric",
   });
-  const hour = d.toLocaleTimeString("fi-FI", {
+  let hour = d.toLocaleTimeString("fi-FI", {
     timeStyle: "short",
   });
+
   return [date, hour];
 };

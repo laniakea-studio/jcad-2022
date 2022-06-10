@@ -121,8 +121,6 @@ const Main = styled.main`
   color: #fff;
   background: ${theme.primary};
   padding-top: 94px;
-  padding-left: 40px;
-  padding-right: 40px;
   .Back {
     color: #fff;
     width: fit-content;
@@ -151,6 +149,8 @@ const Main = styled.main`
       padding-bottom: 70px;
       @media (max-width: 900px) {
         border-right: none;
+        padding-top: 0;
+        padding-right: 0;
       }
     }
     > .col:last-child {
