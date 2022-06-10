@@ -12,6 +12,7 @@ import { BurgerIcon } from "./BurgerIcon";
 import { SvgLogo } from "./SvgCollection.js";
 import { ctaMenu, fullMenu, mainMenu, prefix, order } from "../constants/slugs";
 
+// TODO: Remove menu from props
 const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
   const [show, setShow] = useState(false);
   const { direction, position } = useScrollData();
@@ -125,7 +126,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
         </Link>
         <nav className="mainNav">
           {menu.map((i) => (
-            <Link to={`${prefix + i.slug}`} activeClassName="active">
+            <Link to={`${prefix[locale] + i.slug}`} activeClassName="active">
               {i.title}
             </Link>
           ))}
