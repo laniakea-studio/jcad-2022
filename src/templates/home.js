@@ -242,10 +242,10 @@ const Main = styled.main`
     border: 0.8px solid #ffffff;
     padding: 30px;
     transition: 1s;
-    background-color: rgba(0, 0, 83, 0.6);
+    background-color: rgba(0, 0, 83, 0.3);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
-
+    border-radius: 4px;
     span {
       font-size: 20px;
       font-weight: 600;
