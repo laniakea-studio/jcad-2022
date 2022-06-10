@@ -249,6 +249,7 @@ const MobileMenu = ({
         overflow-scrolling: touch;
         .container {
           height: 100%;
+          overflow-y: scroll;
         }
         &.atTop {
           z-index: 1;
@@ -262,7 +263,7 @@ const MobileMenu = ({
           }
         }
         a {
-          font-size: 22px;
+          font-size: 17px;
           padding: 20px 10px;
           font-weight: 600;
           text-transform: uppercase;
