@@ -200,6 +200,7 @@ section {
 }
 body {
   font-family: "din-2014", sans-serif;
+  overscroll-behavior-y: none;
 }
 p,
 li {  

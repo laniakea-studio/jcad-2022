@@ -18,156 +18,169 @@ const Page = ({ pageContext }) => {
 
   return (
     <>
-      <Layout locale={pageContext.locale} transparent={false} page="home">
-        <Main className="pagePadding">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            css={`
-              margin: auto;
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              background: rgb(0, 0, 83);
-              display: block;
-              max-width: 100%;
-              //min-width: 1200px;
-              shape-rendering: auto;
-              @media (max-width: 600px) {
-                //left: -400px;
-              }
-            `}
-            width="1744"
-            height="774"
-            preserveAspectRatio="xMidYMid"
-            viewBox="0 0 1744 774"
-          >
-            <g transform="translate(872,387) scale(1,1) translate(-872,-387)">
-              <g
-                transform="translate(1415.8703823645797,109.88419895898068) scale(100)"
-                opacity="0.4"
+      <div
+        css={`
+          height: 100%;
+          background: rgb(0, 0, 83);
+          background: ${theme.primary};
+          overflow: hidden;
+          @media (max-width: 600px) {
+            position: relative;
+          }
+        `}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          css={`
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgb(0, 0, 83);
+            display: block;
+            max-width: 100%;
+            height: 100%;
+            min-width: 1200px;
+            shape-rendering: auto;
+            @media (max-width: 600px) {
+              left: -400px;
+            }
+          `}
+          width="1744"
+          height="1174"
+          preserveAspectRatio="xMidYMid"
+          viewBox="0 0 1744 1174"
+        >
+          <g transform="translate(872,387) scale(1,1) translate(-872,-387)">
+            <g
+              transform="translate(1415.8703823645797,109.88419895898068) scale(100)"
+              opacity="0.4"
+            >
+              <path
+                d="M3.17408 0 C3.17408 0 4.516960000000001 7.8236042157563155 4.516960000000001 7.8236042157563155 S-1.5870399999999993 2.7488339136441113 -1.5870399999999993 2.7488339136441113 S-9.03392 1.1063361211753257e-15 -9.03392 1.1063361211753257e-15 S-1.5870400000000013 -2.7488339136441104 -1.5870400000000013 -2.7488339136441104 S4.516959999999994 -7.82360421575632 4.516959999999994 -7.82360421575632 S3.17408 -7.774253824475262e-16 3.17408 -7.774253824475262e-16"
+                fill="#222282"
+                stroke-width="0"
               >
-                <path
-                  d="M3.17408 0 C3.17408 0 4.516960000000001 7.8236042157563155 4.516960000000001 7.8236042157563155 S-1.5870399999999993 2.7488339136441113 -1.5870399999999993 2.7488339136441113 S-9.03392 1.1063361211753257e-15 -9.03392 1.1063361211753257e-15 S-1.5870400000000013 -2.7488339136441104 -1.5870400000000013 -2.7488339136441104 S4.516959999999994 -7.82360421575632 4.516959999999994 -7.82360421575632 S3.17408 -7.774253824475262e-16 3.17408 -7.774253824475262e-16"
-                  fill="#222282"
-                  stroke-width="0"
-                >
-                  <animateTransform
-                    attributeName="transform"
-                    type="rotate"
-                    dur="100s"
-                    repeatCount="indefinite"
-                    values="0;120"
-                  ></animateTransform>
-                </path>
-              </g>
-              <g
-                transform="translate(1524.6444588374957,54.46103875077682) scale(100)"
-                opacity="0.4"
-              >
-                <path
-                  d="M3.8088959999999994 0 C3.8088959999999994 0 5.420352 9.388325058907578 5.420352 9.388325058907578 S-1.9044479999999988 3.298600696372933 -1.9044479999999988 3.298600696372933 S-10.840703999999999 1.3276033454103908e-15 -10.840703999999999 1.3276033454103908e-15 S-1.9044480000000015 -3.298600696372932 -1.9044480000000015 -3.298600696372932 S5.420351999999992 -9.388325058907583 5.420351999999992 -9.388325058907583 S3.8088959999999994 -9.329104589370314e-16 3.8088959999999994 -9.329104589370314e-16"
-                  fill="#1d1c7b"
-                  stroke-width="0"
-                >
-                  <animateTransform
-                    attributeName="transform"
-                    type="rotate"
-                    dur="50s"
-                    repeatCount="indefinite"
-                    values="0;120"
-                  ></animateTransform>
-                </path>
-              </g>
-              <g
-                transform="translate(1785.7022423724939,-78.55454574891235) scale(100)"
-                opacity="0.4"
-              >
-                <path
-                  d="M5.332454399999999 0 C5.332454399999999 0 7.588492799999999 13.143655082470605 7.588492799999999 13.143655082470605 S-2.666227199999998 4.618040974922105 -2.666227199999998 4.618040974922105 S-15.176985599999995 1.8586446835745466e-15 -15.176985599999995 1.8586446835745466e-15 S-2.6662272000000016 -4.6180409749221045 -2.6662272000000016 -4.6180409749221045 S7.588492799999988 -13.143655082470612 7.588492799999988 -13.143655082470612 S5.332454399999999 -1.3060746425118437e-15 5.332454399999999 -1.3060746425118437e-15"
-                  fill="#171775"
-                  stroke-width="0"
-                >
-                  <animateTransform
-                    attributeName="transform"
-                    type="rotate"
-                    dur="33.333333333333336s"
-                    repeatCount="indefinite"
-                    values="0;120"
-                  ></animateTransform>
-                </path>
-              </g>
-              <g
-                transform="translate(2333.92358779599,-357.8872731982598) scale(100)"
-                opacity="0.4"
-              >
-                <path
-                  d="M8.531927039999998 0 C8.531927039999998 0 12.14158848 21.029848131952967 12.14158848 21.029848131952967 S-4.265963519999997 7.388865559875369 -4.265963519999997 7.388865559875369 S-24.28317695999999 2.9738314937192746e-15 -24.28317695999999 2.9738314937192746e-15 S-4.265963520000002 -7.3888655598753665 -4.265963520000002 -7.3888655598753665 S12.14158847999998 -21.02984813195298 12.14158847999998 -21.02984813195298 S8.531927039999998 -2.08971942801895e-15 8.531927039999998 -2.08971942801895e-15"
-                  fill="#11116e"
-                  stroke-width="0"
-                >
-                  <animateTransform
-                    attributeName="transform"
-                    type="rotate"
-                    dur="25s"
-                    repeatCount="indefinite"
-                    values="0;120"
-                  ></animateTransform>
-                </path>
-              </g>
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  dur="100s"
+                  repeatCount="indefinite"
+                  values="0;120"
+                ></animateTransform>
+              </path>
             </g>
-          </svg>
+            <g
+              transform="translate(1524.6444588374957,54.46103875077682) scale(100)"
+              opacity="0.4"
+            >
+              <path
+                d="M3.8088959999999994 0 C3.8088959999999994 0 5.420352 9.388325058907578 5.420352 9.388325058907578 S-1.9044479999999988 3.298600696372933 -1.9044479999999988 3.298600696372933 S-10.840703999999999 1.3276033454103908e-15 -10.840703999999999 1.3276033454103908e-15 S-1.9044480000000015 -3.298600696372932 -1.9044480000000015 -3.298600696372932 S5.420351999999992 -9.388325058907583 5.420351999999992 -9.388325058907583 S3.8088959999999994 -9.329104589370314e-16 3.8088959999999994 -9.329104589370314e-16"
+                fill="#1d1c7b"
+                stroke-width="0"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  dur="50s"
+                  repeatCount="indefinite"
+                  values="0;120"
+                ></animateTransform>
+              </path>
+            </g>
+            <g
+              transform="translate(1785.7022423724939,-78.55454574891235) scale(100)"
+              opacity="0.4"
+            >
+              <path
+                d="M5.332454399999999 0 C5.332454399999999 0 7.588492799999999 13.143655082470605 7.588492799999999 13.143655082470605 S-2.666227199999998 4.618040974922105 -2.666227199999998 4.618040974922105 S-15.176985599999995 1.8586446835745466e-15 -15.176985599999995 1.8586446835745466e-15 S-2.6662272000000016 -4.6180409749221045 -2.6662272000000016 -4.6180409749221045 S7.588492799999988 -13.143655082470612 7.588492799999988 -13.143655082470612 S5.332454399999999 -1.3060746425118437e-15 5.332454399999999 -1.3060746425118437e-15"
+                fill="#171775"
+                stroke-width="0"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  dur="33.333333333333336s"
+                  repeatCount="indefinite"
+                  values="0;120"
+                ></animateTransform>
+              </path>
+            </g>
+            <g
+              transform="translate(2333.92358779599,-357.8872731982598) scale(100)"
+              opacity="0.4"
+            >
+              <path
+                d="M8.531927039999998 0 C8.531927039999998 0 12.14158848 21.029848131952967 12.14158848 21.029848131952967 S-4.265963519999997 7.388865559875369 -4.265963519999997 7.388865559875369 S-24.28317695999999 2.9738314937192746e-15 -24.28317695999999 2.9738314937192746e-15 S-4.265963520000002 -7.3888655598753665 -4.265963520000002 -7.3888655598753665 S12.14158847999998 -21.02984813195298 12.14158847999998 -21.02984813195298 S8.531927039999998 -2.08971942801895e-15 8.531927039999998 -2.08971942801895e-15"
+                fill="#11116e"
+                stroke-width="0"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  dur="25s"
+                  repeatCount="indefinite"
+                  values="0;120"
+                ></animateTransform>
+              </path>
+            </g>
+          </g>
+        </svg>
 
-          <div className="Hero container  col">
-            <div className="row padding">
-              <div className="col">
-                <h1>{page.title}</h1>
-              </div>
-              <div className="col">
-                <p>{page.intro}</p>
-                <div className="row">
-                  {page.cta.map((i) => (
-                    <Link className="HeroLink" to={i.slug}>
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
-                          fill="#fff"
-                        />
-                      </svg>
-                      {i.text}
-                    </Link>
-                  ))}
+        <Layout locale={pageContext.locale} transparent={false} page="home">
+          <Main className="pagePadding">
+            <div className="Hero container  col">
+              <div className="row padding">
+                <div className="col">
+                  <h1>{page.title}</h1>
+                </div>
+                <div className="col">
+                  <p>{page.intro}</p>
+                  <div className="row">
+                    {page.cta.map((i) => (
+                      <Link className="HeroLink" to={i.slug}>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                            fill="#fff"
+                          />
+                        </svg>
+                        {i.text}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="Grid padding">
-              {fullMenu[locale].map((i, index) => {
-                if (index === 6) return;
-                return (
-                  <Link
-                    id={`Link-${index}`}
-                    className="Link"
-                    to={prefix[locale] + i.slug}
-                  >
-                    <header className="row">
-                      <span>{i.title}</span>
-                      <Arrow />
-                    </header>
-                    <AnimatedBox index={index} />
-                  </Link>
-                );
-              })}
+              <div className="Grid padding">
+                {fullMenu[locale].map((i, index) => {
+                  if (index === 6) return;
+                  return (
+                    <Link
+                      id={`Link-${index}`}
+                      className="Link"
+                      to={prefix[locale] + i.slug}
+                    >
+                      <header className="row">
+                        <span>{i.title}</span>
+                        <Arrow />
+                      </header>
+                      <AnimatedBox index={index} />
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </Main>
-      </Layout>
+          </Main>
+        </Layout>
+      </div>
     </>
   );
 };
@@ -179,9 +192,9 @@ const Main = styled.main`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  background: ${theme.primary};
+  //background: ${theme.primary};
   padding-top: 94px;
-  overflow-y: hidden;
+  overflow-x: hidden;
   position: relative;
   .Hero {
     min-height: 100vh;
@@ -369,7 +382,7 @@ const Main = styled.main`
       }
     }
   }
-  #Link-2 {
+  #Link-3 {
     svg .svg-elem-1 {
       stroke-dashoffset: 246px;
       stroke-dasharray: 246px;
@@ -560,7 +573,7 @@ const Main = styled.main`
       }
     }
   }
-  #Link-3 {
+  #Link-2 {
     svg .svg-elem-1 {
       stroke-dashoffset: 848px;
       stroke-dasharray: 848px;

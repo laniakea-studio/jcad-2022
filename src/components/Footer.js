@@ -252,6 +252,7 @@ const FooterDiv = styled.footer`
   background: ${theme.primary};
   color: #fff;
   border-top: 0.8px dashed #fff;
+  position: relative;
   .container {
     padding-top: 80px;
   }
@@ -292,6 +293,7 @@ const FooterDiv = styled.footer`
   .Copyright {
     margin-top: 60px;
     margin-bottom: 30px;
+    font-size: 14px;
     @media (max-width: 800px) {
       margin-left: auto;
       margin-right: auto;

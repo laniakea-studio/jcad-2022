@@ -143,7 +143,7 @@ export const AnimatedBox = ({ index }) => {
           </svg>
         </>
       )}
-      {index === 2 && (
+      {index === 3 && (
         <svg
           width="267"
           height="142"
@@ -313,7 +313,7 @@ export const AnimatedBox = ({ index }) => {
           ></rect>
         </svg>
       )}
-      {index === 3 && (
+      {index === 2 && (
         <svg
           width="283"
           height="142"
