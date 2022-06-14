@@ -165,6 +165,11 @@ const Page = ({ pageContext }) => {
                 </div>
               </div>
               <aside className="Aside col">
+                <div className="Graph col">
+                  <h3>webinaarien arvosana</h3>
+                  <Bar data={data} options={{ responsive: true }} />
+                  <p>{page.kuvaajanTeksti}</p>
+                </div>
                 <div className="Feedback col">
                   <h3>Palautteita aiemmista webinaareista</h3>
                   {page.palautteita.map((i) => (
@@ -173,11 +178,6 @@ const Page = ({ pageContext }) => {
                       dangerouslySetInnerHTML={{ __html: i.content }}
                     />
                   ))}
-                </div>
-                <div className="Graph col">
-                  <h3>webinaarien arvosana</h3>
-                  <Bar data={data} options={{ responsive: true }} />
-                  <p>{page.kuvaajanTeksti}</p>
                 </div>
               </aside>
             </div>
@@ -334,6 +334,7 @@ const Main = styled.main`
       }
     }
     .Graph {
+      padding-bottom: 40px;
       canvas {
         width: 100%;
       }
