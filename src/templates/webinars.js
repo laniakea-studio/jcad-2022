@@ -24,7 +24,11 @@ const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page, allWebinars } = pageContext.data;
-  const sortedWebinars = allWebinars.sort((a, b) =>
+  const now = new Date();
+  const onlyComingWebinars = allWebinars.filter(
+    (webinar) => new Date(webinar.node.webinaarinAjankohta) > now
+  );
+  const sortedWebinars = onlyComingWebinars.sort((a, b) =>
     a.node.webinaarinAjankohta.localeCompare(b.node.webinaarinAjankohta)
   );
   const nextWebinar = sortedWebinars[0];
@@ -162,7 +166,7 @@ const Page = ({ pageContext }) => {
               </div>
               <aside className="Aside col">
                 <div className="Feedback col">
-                  <h3>Palautteita edellisestä webinaareista</h3>
+                  <h3>Palautteita aiemmista webinaareista</h3>
                   {page.palautteita.map((i) => (
                     <div
                       className="item"
