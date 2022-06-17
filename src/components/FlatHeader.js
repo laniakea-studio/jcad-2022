@@ -121,7 +121,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
       `}
     >
       <div className="container padding">
-        <Link className="logo" to={`/${prefix[locale]}`}>
+        <Link className="logo" to={`${prefix[locale]}`}>
           <SvgLogo />
         </Link>
         <nav className="mainNav">
