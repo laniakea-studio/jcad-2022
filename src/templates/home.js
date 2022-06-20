@@ -18,6 +18,7 @@ const Page = ({ pageContext }) => {
 
   return (
     <>
+      <HelmetDatoCms seo={page.seoMetaTags} />
       <div
         css={`
           height: 100%;
