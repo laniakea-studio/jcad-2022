@@ -91,7 +91,7 @@ export const Layout = ({ children, page }) => {
                     {i.title}
                   </Link>
                 ))}
-              {page === "home" && (
+              {page === "home" && locale === "fi" && (
                 <Link
                   to={`${prefix[locale] + order[locale].slug}`}
                   activeClassName="active"

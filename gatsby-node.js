@@ -390,3 +390,17 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   );
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "@components": path.resolve(__dirname, "src/components"),
+        "@locales": path.resolve(__dirname, "src/locales"),
+        "@hooks": path.resolve(__dirname, "src/hooks"),
+        "@contexts": path.resolve(__dirname, "src/contexts"),
+        "@constants": path.resolve(__dirname, "src/constants"),
+      },
+    },
+  });
+};

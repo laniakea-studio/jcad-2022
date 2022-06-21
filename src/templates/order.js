@@ -7,16 +7,48 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import scrollTo from "gatsby-plugin-smoothscroll";
-import { NetlifyForm } from "../components/NetlifyForm";
+import { NetlifyForm } from "@components/NetlifyForm";
+import { Select } from "@components/NetlifyForm/Select";
 
-const Page = ({ pageContext }) => {
+const Page = ({ pageContext, location }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
 
+  // Check default radio option form url params
+  const params = new URLSearchParams(location.search);
+  const app = params.get("app");
+  let radioValue = "1";
+  if (app === "1") radioValue = "JCAD Määrälaskenta";
+  if (app === "2") radioValue = "JCAD LVI";
+  if (app === "3") radioValue = "JCAD Sähkö";
+
   const form = {
     name: "Tilaus",
     inputs: [
+      {
+        type: "radio",
+        name: "sovellus",
+        label: "Valitse sovellus",
+        value: radioValue,
+        options: [
+          {
+            label: "JCAD Määrälaskenta",
+            desc: "Sopimus 12 kk: 429 €/kk • sopimus 48 kk: 299 €/kk • Aloitus 2490 € • Kustannuslaskenta alk. 179 € • ALV 0 %",
+            value: "JCAD Määrälaskenta",
+          },
+          {
+            label: "JCAD LVI",
+            desc: "Sopimus 12 kk: 429 €/kk • sopimus 48 kk: 299 €/kk • Aloitus 2490 € • ALV 0 %",
+            value: "JCAD LVI",
+          },
+          {
+            label: "JCAD Sähkö",
+            desc: "Sopimus 12 kk: 429 €/kk • sopimus 48 kk: 299 €/kk • Aloitus 2490 € • ALV 0 %",
+            value: "JCAD Sähkö",
+          },
+        ],
+      },
       {
         type: "text",
         name: "yritys",
@@ -43,7 +75,7 @@ const Page = ({ pageContext }) => {
       },
       {
         type: "textarea",
-        name: "phone",
+        name: "message",
         label: text.contact.message,
         placeholder: "",
         isRequired: true,
@@ -51,7 +83,7 @@ const Page = ({ pageContext }) => {
       { type: "submit", text: text.contact.send },
     ],
     messages: {
-      submitSucces: "Kiitos hakemuksestasi!",
+      submitSucces: "Kiitos tilauksestasi!",
       fillAllInputs: text.contact.fillRequiredInputs,
     },
   };
@@ -94,6 +126,13 @@ const Main = styled.main`
     border-right: 0.8px dashed #fff;
     max-width: 750px;
     padding: 70px 40px;
+    @media (max-width: 1000px) {
+      border-left: none;
+      border-right: none;
+    }
+    @media (max-width: 600px) {
+      padding: 70px 0;
+    }
     .content {
       max-width: 540px;
     }

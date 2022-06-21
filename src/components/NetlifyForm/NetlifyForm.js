@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-import { theme } from "../theme/theme";
-import { LocaleContext } from "../contexts/LocaleContext";
-import * as snippet from "../locales";
+import { theme } from "../../theme/theme";
+import { LocaleContext } from "../../contexts/LocaleContext";
+import * as snippet from "../../locales";
+import { Switch } from "./Switch";
+import { Radio } from "./Radio";
 
 /* E.g. data 
  const form = {
@@ -37,6 +39,12 @@ const stylesDarkBg = {
   buttonBorder: "#fff",
   buttonColor: theme.primary,
   placeholder: "rgba(255,255,255,0.3)",
+  switch: "rgba(255,255,255,0.7)",
+  switchColor: "rgba(255,255,255,0.8)",
+  switchBg: "#333274",
+  switchActive: "rgba(255,255,255,1)",
+  switchBgActive: "rgba(255,255,255,0.5)",
+  switchBorderFocus: "rgba(255,255,255,0.5)",
   messageColor: "#fff",
 };
 const stylesLightBg = {
@@ -51,6 +59,11 @@ const stylesLightBg = {
   buttonBorder: "#000",
   buttonColor: "#000",
   placeholder: "rgba(0,0,0,0.3)",
+  switch: "rgba(255,255,255,0.5)",
+  switchBg: "rgba(28, 28, 102, 0.4)",
+  switchActive: "rgba(255,255,255,1)",
+  switchBgActive: "rgba(28, 28, 102, 1)",
+  switchBorderFocus: "rgba(255,255,255,0.5)",
   messageColor: "#000",
 };
 
@@ -71,13 +84,21 @@ export const NetlifyForm = ({ data, isLightBg }) => {
   const [formData, setFormData] = useState(schema);
   const [showMessage, setShowMessage] = useState(null);
 
-  console.log(formData);
+  console.log({ formData });
   const onInputChange = (e) => {
     const key = e.target.name;
     const value = e.target.value;
     setFormData({ ...formData, [key]: value });
   };
 
+  const onSwitchChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: !formData[e.target.name] });
+  };
+
+  const onRadioChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(e);
+  };
   const submitForm = (e) => {
     e.preventDefault();
     if (isFormValid()) {
@@ -226,6 +247,22 @@ export const NetlifyForm = ({ data, isLightBg }) => {
                   rows="6"
                 />
               </div>
+            )}
+            {input.type === "switch" && (
+              <Switch
+                data={input}
+                styles={isLightBg ? stylesLightBg : stylesDarkBg}
+                onChange={onSwitchChange}
+                value={formData[input.name]}
+              />
+            )}
+            {input.type === "radio" && (
+              <Radio
+                data={input}
+                styles={isLightBg ? stylesLightBg : stylesDarkBg}
+                onChange={onRadioChange}
+                value={formData[input.name]}
+              />
             )}
             {input.type === "hidden" && (
               <input type="hidden" name={input.name} />

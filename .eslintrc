@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["@components", "./src/components"],
+        ["@locales", "./src/locales"],
+        ["@hooks", "./src/hooks"],
+        ["@contexts", "./src/contexts"],
+        ["@constants", "./src/constants"]
+      ]
+    }
+  }
+}

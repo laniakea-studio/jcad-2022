@@ -1,0 +1,1 @@
+export { NetlifyForm } from "./NetlifyForm";

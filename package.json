@@ -40,5 +40,8 @@
     "styled-components": "^5.3.3",
     "vivus": "^0.4.6",
     "yaml-loader": "^0.6.0"
+  },
+  "devDependencies": {
+    "eslint-import-resolver-alias": "^1.1.2"
   }
 }
