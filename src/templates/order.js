@@ -34,17 +34,17 @@ const Page = ({ pageContext, location }) => {
         options: [
           {
             label: "JCAD Määrälaskenta",
-            desc: "Sopimus 12 kk: 429 €/kk • sopimus 48 kk: 299 €/kk • Aloitus 2490 € • Kustannuslaskenta alk. 179 € • ALV 0 %",
+            desc: "Sopimus 12 kk: 429 €/kk • Sopimus 48 kk: 299 €/kk • Aloitus 2490 € • Kustannuslaskenta alk. 179 €/kk • ALV 0 %",
             value: "JCAD Määrälaskenta",
           },
           {
             label: "JCAD LVI",
-            desc: "Sopimus 12 kk: 429 €/kk • sopimus 48 kk: 299 €/kk • Aloitus 2490 € • ALV 0 %",
+            desc: "Sopimus 12 kk: 429 €/kk • Sopimus 48 kk: 299 €/kk • Aloitus 2490 € • ALV 0 %",
             value: "JCAD LVI",
           },
           {
             label: "JCAD Sähkö",
-            desc: "Sopimus 12 kk: 429 €/kk • sopimus 48 kk: 299 €/kk • Aloitus 2490 € • ALV 0 %",
+            desc: "Sopimus 12 kk: 429 €/kk • Sopimus 48 kk: 299 €/kk • Aloitus 2490 € • ALV 0 %",
             value: "JCAD Sähkö",
           },
         ],
