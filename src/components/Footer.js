@@ -157,13 +157,19 @@ export const Footer = ({ menu, prefix }) => {
                   )}
                   {i.data.puhelin && (
                     <>
-                      <a href={`tel:${i.data.puhelin.replace(/\s+/g, "")}`}>
+                      <a
+                        href={`tel:${i.data.puhelin.replace(/\s+/g, "")}`}
+                        className="ga-contact-phone"
+                      >
                         {i.data.puhelin}
                       </a>
                       <br />
                     </>
                   )}
-                  <a href={`mailto:${i.data.email.replace(/\s+/g, "")}`}>
+                  <a
+                    href={`mailto:${i.data.email.replace(/\s+/g, "")}`}
+                    className="ga-contact-mail"
+                  >
                     {i.data.email}
                   </a>
                 </p>

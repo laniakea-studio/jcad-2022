@@ -163,11 +163,21 @@ const ContactItem = ({ i }) => (
       )}
       {i.puhelin && (
         <>
-          <a href={`tel:${i.puhelin.replace(/\s+/g, "")}`}>{i.puhelin}</a>
+          <a
+            href={`tel:${i.puhelin.replace(/\s+/g, "")}`}
+            className="ga-contact-phone"
+          >
+            {i.puhelin}
+          </a>
           <br />
         </>
       )}
-      <a href={`mailto:${i.email.replace(/\s+/g, "")}`}>{i.email}</a>
+      <a
+        href={`mailto:${i.email.replace(/\s+/g, "")}`}
+        className="ga-contact-mail"
+      >
+        {i.email}
+      </a>
     </p>
   </div>
 );
