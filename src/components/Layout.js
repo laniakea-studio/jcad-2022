@@ -92,14 +92,25 @@ export const Layout = ({ children, page }) => {
                   </Link>
                 ))}
               {page === "home" && locale === "fi" && (
-                <Link
-                  to={`${prefix[locale] + order[locale].slug}`}
-                  activeClassName="active"
-                  className="MainLink"
-                  style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
-                >
-                  {order[locale].title}
-                </Link>
+                <>
+                  <a
+                    className="MainLink"
+                    href="https://extra.jcad.fi/"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
+                  >
+                    {text.menu.login}
+                  </a>
+                  <Link
+                    to={`${prefix[locale] + order[locale].slug}`}
+                    activeClassName="active"
+                    className="MainLink"
+                    style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
+                  >
+                    {order[locale].title}
+                  </Link>
+                </>
               )}
               <PopupButton
                 className="btn white-outlines"
@@ -265,6 +276,7 @@ const MobileMenu = ({
         a {
           font-size: 17px;
           padding: 20px 10px;
+          padding-right: 30px;
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.05em;
