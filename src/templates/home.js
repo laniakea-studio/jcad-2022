@@ -259,7 +259,7 @@ const Main = styled.main`
   }
   .Link {
     height: 240px;
-    border: 0.8px solid #ffffff;
+    border: 1px solid #ffffff;
     padding: 30px;
     transition: 1s;
     background-color: rgba(0, 0, 83, 0.3);
