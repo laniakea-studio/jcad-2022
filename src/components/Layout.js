@@ -96,7 +96,6 @@ export const Layout = ({ children, page }) => {
                   <a
                     className="MainLink"
                     href="https://extra.jcad.fi/"
-                    target="_blank"
                     rel="noreferrer"
                     style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
                   >
