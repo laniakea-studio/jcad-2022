@@ -3,6 +3,10 @@ import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 
+.onetrust-close-btn-handler {
+  display: none !important;
+}
+
 @-webkit-keyframes pulse {
   0% {
     transform: scale(1);
