@@ -3,6 +3,10 @@ import { theme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 
+#CybotCookiebotDialogBodyButtonDecline {
+  display: none !important;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
