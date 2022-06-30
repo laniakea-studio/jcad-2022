@@ -259,7 +259,7 @@ const MobileMenu = ({
         overflow-scrolling: touch;
         .container {
           height: 100%;
-          overflow-y: scroll;
+          overflow-y: auto;
         }
         &.atTop {
           z-index: 1;
