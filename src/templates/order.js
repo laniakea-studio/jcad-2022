@@ -115,7 +115,7 @@ const Page = ({ pageContext, location }) => {
         name: "message",
         label: text.contact.message,
         placeholder: "",
-        isRequired: true,
+        isRequired: false,
       },
       { type: "submit", text: text.contact.send },
     ],
