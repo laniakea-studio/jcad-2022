@@ -35,13 +35,13 @@ const Page = ({ pageContext }) => {
         name: "phone",
         label: text.contact.phone,
         isRequired: false,
-      },
+      } /*
       {
         type: "file",
         name: "liite",
         label: "Lisää ansioluettelo tai muu liite",
         isRequired: false,
-      },
+      },*/,
       {
         type: "textarea",
         name: "phone",

@@ -277,8 +277,12 @@ const MobileMenu = ({
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-
           width: 100%;
+          transition: all 0.2s;
+          &:hover,
+          &:focus {
+            background: rgba(255, 255, 255, 0.1);
+          }
           span {
             max-width: 400px;
             width: 100%;

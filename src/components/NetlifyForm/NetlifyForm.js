@@ -5,6 +5,7 @@ import { LocaleContext } from "../../contexts/LocaleContext";
 import * as snippet from "../../locales";
 import { Switch } from "./Switch";
 import { Radio } from "./Radio";
+import { DragDropFile } from "./DragDropFile";
 
 /* E.g. data 
  const form = {
@@ -265,10 +266,13 @@ export const NetlifyForm = ({ data, isLightBg }) => {
               />
             )}
             {input.type === "file" && (
-              <label>
-                <span>{input.label}</span>
-                <input name={input.name} type="file" />
-              </label>
+              <div className="col">
+                <label>{input.label}</label>
+                <DragDropFile
+                  name={input.name}
+                  styles={isLightBg ? stylesLightBg : stylesDarkBg}
+                />
+              </div>
             )}
             {input.type === "hidden" && (
               <input type="hidden" name={input.name} />
