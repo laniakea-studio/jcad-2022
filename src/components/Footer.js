@@ -8,6 +8,7 @@ import { theme } from "../theme/theme";
 import { SvgLogoFooter } from "./SvgCollection.js";
 import { useIntersection } from "../hooks/useIntersection";
 import { NetlifyForm } from "./NetlifyForm";
+import figbc from "../assets/figbc-white.png";
 
 export const Footer = ({ menu, prefix }) => {
   const { locale } = useContext(LocaleContext);
@@ -135,7 +136,7 @@ export const Footer = ({ menu, prefix }) => {
   return (
     <FooterDiv className="pagePadding col">
       <div className="container padding">
-        <div className="ContactsRow row">
+        <div className="ContactsRow row space-between">
           <div className="Logo">
             <SvgLogoFooter />
           </div>
@@ -175,6 +176,26 @@ export const Footer = ({ menu, prefix }) => {
                 </p>
               </div>
             ))}
+          <div
+            className="col"
+            css={`
+              margin-left: auto;
+              width: auto;
+              min-width: 120px;
+              @media (max-width: 900px) {
+                margin-left: 0;
+              }
+            `}
+          >
+            <img
+              src={figbc}
+              alt="Green building council Finland"
+              css={`
+                width: 100%;
+                max-width: 180px;
+              `}
+            />
+          </div>
         </div>
 
         <div className="BigLogo row">
@@ -263,7 +284,7 @@ const FooterDiv = styled.footer`
     padding-top: 80px;
   }
   .ContactsRow {
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
       flex-direction: column;
     }
   }
@@ -300,7 +321,7 @@ const FooterDiv = styled.footer`
     margin-top: 60px;
     margin-bottom: 30px;
     font-size: 14px;
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
       margin-left: auto;
       margin-right: auto;
     }

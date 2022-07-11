@@ -342,7 +342,6 @@ const MobileMenu = ({
         ))}
         <a
           href="https://extra.jcad.fi/"
-          target="_blank"
           rel="noreferrer"
           className="row justify-end"
         >

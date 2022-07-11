@@ -164,7 +164,7 @@ const Main = styled.main`
   overflow-x: hidden;
   position: relative;
   .Hero {
-    min-height: 100vh;
+    padding-bottom: 50px;
     height: 100%;
     color: #fff;
     position: relative;

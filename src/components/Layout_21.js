@@ -124,7 +124,7 @@ export const Layout = ({ children }) => {
             </Link>
           </div>
           <Link className="logo" to={`/${prefix}`}>
-            <SvgLogo />
+            <Arrow />
           </Link>
           <nav className="mainNav">
             {menu.map((i) => (
@@ -440,7 +440,7 @@ const MobileMenu = ({
         text={text.bookDemo}
       />
 
-      <a href="https://extra.jcad.fi/" target="_blank" rel="noreferrer">
+      <a href="https://extra.jcad.fi/" rel="noreferrer">
         {text.menu.login}
       </a>
       <div className="localeLinksMobile">

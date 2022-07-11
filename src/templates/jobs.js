@@ -37,6 +37,12 @@ const Page = ({ pageContext }) => {
         isRequired: false,
       },
       {
+        type: "file",
+        name: "liite",
+        label: "Lisää ansioluettelo tai muu liite",
+        isRequired: false,
+      },
+      {
         type: "textarea",
         name: "phone",
         label: text.contact.message,

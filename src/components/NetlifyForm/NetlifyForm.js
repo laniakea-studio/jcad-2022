@@ -264,6 +264,12 @@ export const NetlifyForm = ({ data, isLightBg }) => {
                 value={formData[input.name]}
               />
             )}
+            {input.type === "file" && (
+              <label>
+                <span>{input.label}</span>
+                <input name={input.name} type="file" />
+              </label>
+            )}
             {input.type === "hidden" && (
               <input type="hidden" name={input.name} />
             )}
