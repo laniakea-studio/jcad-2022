@@ -21,8 +21,6 @@ export const Layout = ({ children, page }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = snippet[locale];
 
-  console.log(page);
-
   const data = useStaticQuery(graphql`
     query {
       site: datoCmsSite {

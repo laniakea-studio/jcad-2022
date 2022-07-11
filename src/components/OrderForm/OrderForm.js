@@ -292,7 +292,7 @@ export const OrderForm = ({ data, prices, isLightBg }) => {
               >
                 <h4>Alustava hinta:</h4>
                 <div className="col">
-                  <span className="onboarding">Aloitusmaksu 2 490 € +</span>
+                  <span className="onboarding">Aloitusmaksu 2490 € +</span>
                   <span className="total">{price} €/kk</span>
                   <span className="vat">+ alv. 24 %</span>
                 </div>

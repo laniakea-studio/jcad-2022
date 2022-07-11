@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import React, { useContext, useEffect, useState } from "react";
 import { PopupButton } from "react-calendly";
@@ -12,9 +12,11 @@ import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 import { valikkoSopimuskausi, extraHinnasto } from "@constants/pricing";
 
+// Warning: Changing order of card items will break to url parameters generation
 const Pricing = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
+  const isFinnish = locale === "fi";
 
   const { page, booking } = pageContext.data;
 
@@ -27,6 +29,7 @@ const Pricing = ({ pageContext }) => {
 
   const [price, setPrice] = useState([null, null, null]);
 
+  console.log(priceSelections);
   useEffect(() => {
     const { ohjelmisto, lisenssi, sopimuskausi, kustannuslaskenta } =
       priceSelections;
@@ -157,12 +160,22 @@ const Pricing = ({ pageContext }) => {
             <h3 className="selectHeading">3. {text.pricing.selectProduct} </h3>
             <div className="plans">
               {page.tuotteet.map((i, index) => {
+                const appParameterTable = [1, 3, 4];
+                let app = appParameterTable[index];
+                if (index === 0 && priceSelections.kustannuslaskenta) {
+                  app = 2;
+                }
+                const period = `&period=${priceSelections.sopimuskausi.label}%20kk`;
+                const users = `&users=${priceSelections.lisenssi}`;
+                const urlParameters = `?app=${app + period + users}`;
+                console.log(app);
+
                 return (
                   <div className="item">
                     <h3>{i.title}</h3>
                     <img src={i.icon.url} alt={i.icon.alt} />
                     <div className="priceContent">
-                      <span className="startPrive">{i.startprice}</span>
+                      <span>{i.startprice}</span>
                       <span className="price">{price[index]}</span>
                       <span className="vat">{text.pricing.vat}</span>
                     </div>
@@ -187,11 +200,22 @@ const Pricing = ({ pageContext }) => {
                       </div>
                     )}
 
-                    <PopupButton
-                      className="btn white-outlines"
-                      url={booking.calendlyBookingUrl}
-                      text={booking.buttonText}
-                    />
+                    {isFinnish && (
+                      <Link
+                        to={`/tilaa${urlParameters}`}
+                        className="btn white-outlines"
+                      >
+                        Tilaa JCAD
+                      </Link>
+                    )}
+                    {!isFinnish && (
+                      <PopupButton
+                        className="btn white-outlines"
+                        url={booking.calendlyBookingUrl}
+                        text={booking.buttonText}
+                      />
+                    )}
+
                     <div className="footerContent">
                       <p>
                         {text.pricing.period}:{" "}
@@ -331,6 +355,7 @@ const Main = styled.main`
       font-weight: 500;
       width: 104px;
       height: 48px;
+      border-radius: 4px;
       &.active {
         background: rgba(255, 255, 255, 1);
         color: ${theme.primary};
