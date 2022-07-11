@@ -7,22 +7,26 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import scrollTo from "gatsby-plugin-smoothscroll";
-import { NetlifyForm } from "@components/NetlifyForm";
-import { Select } from "@components/NetlifyForm/Select";
+import { OrderForm } from "@components/OrderForm";
+import { valikkoSopimuskausi, extraHinnasto } from "@constants/pricing";
 
 const Page = ({ pageContext, location }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
-  const { page } = pageContext.data;
+  const { page, pricing } = pageContext.data;
 
   // Check default radio option form url params
   const params = new URLSearchParams(location.search);
-  const app = params.get("app");
-  let radioValue = "1";
+  const app = params.get("app") || "1";
+  const period = params.get("period") || "12 kk";
+  const users = params.get("users") || "1";
+  let radioValue;
   if (app === "1") radioValue = "JCAD Määrälaskenta";
-  if (app === "2") radioValue = "JCAD LVI";
-  if (app === "3") radioValue = "JCAD Sähkö";
+  if (app === "2") radioValue = "JCAD Määrälaskenta + kustannuslaskenta";
+  if (app === "3") radioValue = "JCAD LVI";
+  if (app === "4") radioValue = "JCAD Sähkö";
 
+  // Warning: Changing sovellus options values breaks price calculation
   const form = {
     name: "Tilaus",
     inputs: [
@@ -34,20 +38,53 @@ const Page = ({ pageContext, location }) => {
         options: [
           {
             label: "JCAD Määrälaskenta",
-            desc: "Sopimus 12 kk: 429 €/kk • Sopimus 48 kk: 299 €/kk • Aloitus 2490 € • Kustannuslaskenta alk. 179 €/kk • ALV 0 %",
+            desc: "",
             value: "JCAD Määrälaskenta",
           },
           {
+            label: "JCAD Määrälaskenta + kustannuslaskenta",
+            desc: "",
+            value: "JCAD Määrälaskenta + kustannuslaskenta",
+          },
+          {
             label: "JCAD LVI",
-            desc: "Sopimus 12 kk: 429 €/kk • Sopimus 48 kk: 299 €/kk • Aloitus 2490 € • ALV 0 %",
+            desc: "",
             value: "JCAD LVI",
           },
           {
             label: "JCAD Sähkö",
-            desc: "Sopimus 12 kk: 429 €/kk • Sopimus 48 kk: 299 €/kk • Aloitus 2490 € • ALV 0 %",
+            desc: "",
             value: "JCAD Sähkö",
           },
         ],
+      },
+      {
+        type: "radio",
+        name: "sopimuskausi",
+        label: "Sopimuskauden pituus",
+        value: period,
+        options: [
+          {
+            label: "12 kk",
+            desc: "",
+            value: "12 kk",
+          },
+          {
+            label: "48 kk",
+            desc: "",
+            value: "48 kk",
+          },
+        ],
+      },
+      {
+        type: "number",
+        name: "kayttajia",
+        label: "Käyttäjiä",
+        value: users,
+        isRequired: true,
+      },
+      {
+        type: "alustava",
       },
       {
         type: "text",
@@ -100,7 +137,14 @@ const Page = ({ pageContext, location }) => {
                 dangerouslySetInnerHTML={{ __html: page.content }}
               />
               <div className="fields">
-                <NetlifyForm data={form} />
+                <OrderForm
+                  data={form}
+                  prices={{
+                    tuotteet: pricing.valikkoOhjelmisto,
+                    valikkoSopimuskausi,
+                    extraHinnasto,
+                  }}
+                />
               </div>
             </div>
           </div>

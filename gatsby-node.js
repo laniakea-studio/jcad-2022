@@ -383,6 +383,7 @@ exports.createPages = async ({ graphql, actions }) => {
             },
             data: {
               page: data.order,
+              pricing: data.pricing,
             },
           },
         });

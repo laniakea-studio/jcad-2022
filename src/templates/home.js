@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
@@ -6,8 +6,9 @@ import { HelmetDatoCms } from "gatsby-source-datocms";
 import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
-import { AnimatedBox } from "../components/AnimatedBox";
+import { AnimatedBoxLink } from "../components/AnimatedBoxLink";
 import { fullMenu, prefix } from "../constants/slugs";
+import { useHover } from "../hooks/useHover";
 
 // TODO: Magnetic button https://codesandbox.io/s/tgowd?file=/src/components/Button.js
 
@@ -15,7 +16,7 @@ const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
-
+  const [hoverRef] = useHover();
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
@@ -40,95 +41,66 @@ const Page = ({ pageContext }) => {
             right: 0;
             background: rgb(0, 0, 83);
             display: block;
-            max-width: 100%;
-            height: 100%;
-            min-width: 1200px;
+            min-width: 100vw;
             shape-rendering: auto;
             @media (max-width: 600px) {
               left: -400px;
             }
           `}
-          width="1744"
-          height="1174"
+          width="2879"
+          height="993"
           preserveAspectRatio="xMidYMid"
-          viewBox="0 0 1744 1174"
+          viewBox="0 0 2879 993"
         >
-          <g transform="translate(872,387) scale(1,1) translate(-872,-387)">
-            <g
-              transform="translate(1415.8703823645797,109.88419895898068) scale(100)"
-              opacity="0.4"
+          <g transform="translate(1439.5,496.5) scale(1,1) translate(-1439.5,-496.5)">
+            <linearGradient
+              id="lg-0.2510863810006023"
+              x1="0"
+              x2="1"
+              y1="0"
+              y2="0"
             >
-              <path
-                d="M3.17408 0 C3.17408 0 4.516960000000001 7.8236042157563155 4.516960000000001 7.8236042157563155 S-1.5870399999999993 2.7488339136441113 -1.5870399999999993 2.7488339136441113 S-9.03392 1.1063361211753257e-15 -9.03392 1.1063361211753257e-15 S-1.5870400000000013 -2.7488339136441104 -1.5870400000000013 -2.7488339136441104 S4.516959999999994 -7.82360421575632 4.516959999999994 -7.82360421575632 S3.17408 -7.774253824475262e-16 3.17408 -7.774253824475262e-16"
-                fill="#222282"
-                stroke-width="0"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  type="rotate"
-                  dur="100s"
-                  repeatCount="indefinite"
-                  values="0;120"
-                ></animateTransform>
-              </path>
-            </g>
-            <g
-              transform="translate(1524.6444588374957,54.46103875077682) scale(100)"
-              opacity="0.4"
-            >
-              <path
-                d="M3.8088959999999994 0 C3.8088959999999994 0 5.420352 9.388325058907578 5.420352 9.388325058907578 S-1.9044479999999988 3.298600696372933 -1.9044479999999988 3.298600696372933 S-10.840703999999999 1.3276033454103908e-15 -10.840703999999999 1.3276033454103908e-15 S-1.9044480000000015 -3.298600696372932 -1.9044480000000015 -3.298600696372932 S5.420351999999992 -9.388325058907583 5.420351999999992 -9.388325058907583 S3.8088959999999994 -9.329104589370314e-16 3.8088959999999994 -9.329104589370314e-16"
-                fill="#1d1c7b"
-                stroke-width="0"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  type="rotate"
-                  dur="50s"
-                  repeatCount="indefinite"
-                  values="0;120"
-                ></animateTransform>
-              </path>
-            </g>
-            <g
-              transform="translate(1785.7022423724939,-78.55454574891235) scale(100)"
-              opacity="0.4"
-            >
-              <path
-                d="M5.332454399999999 0 C5.332454399999999 0 7.588492799999999 13.143655082470605 7.588492799999999 13.143655082470605 S-2.666227199999998 4.618040974922105 -2.666227199999998 4.618040974922105 S-15.176985599999995 1.8586446835745466e-15 -15.176985599999995 1.8586446835745466e-15 S-2.6662272000000016 -4.6180409749221045 -2.6662272000000016 -4.6180409749221045 S7.588492799999988 -13.143655082470612 7.588492799999988 -13.143655082470612 S5.332454399999999 -1.3060746425118437e-15 5.332454399999999 -1.3060746425118437e-15"
-                fill="#171775"
-                stroke-width="0"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  type="rotate"
-                  dur="33.333333333333336s"
-                  repeatCount="indefinite"
-                  values="0;120"
-                ></animateTransform>
-              </path>
-            </g>
-            <g
-              transform="translate(2333.92358779599,-357.8872731982598) scale(100)"
-              opacity="0.4"
-            >
-              <path
-                d="M8.531927039999998 0 C8.531927039999998 0 12.14158848 21.029848131952967 12.14158848 21.029848131952967 S-4.265963519999997 7.388865559875369 -4.265963519999997 7.388865559875369 S-24.28317695999999 2.9738314937192746e-15 -24.28317695999999 2.9738314937192746e-15 S-4.265963520000002 -7.3888655598753665 -4.265963520000002 -7.3888655598753665 S12.14158847999998 -21.02984813195298 12.14158847999998 -21.02984813195298 S8.531927039999998 -2.08971942801895e-15 8.531927039999998 -2.08971942801895e-15"
-                fill="#11116e"
-                stroke-width="0"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  type="rotate"
-                  dur="25s"
-                  repeatCount="indefinite"
-                  values="0;120"
-                ></animateTransform>
-              </path>
-            </g>
+              <stop stop-color="#0b0b73" offset="0"></stop>
+              <stop stop-color="#161660" offset="1"></stop>
+            </linearGradient>
+            <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
+              <animate
+                attributeName="d"
+                dur="14.285714285714286s"
+                repeatCount="indefinite"
+                keyTimes="0;0.333;0.667;1"
+                calcMode="spline"
+                keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
+                begin="0s"
+                values="M0 0L 0 330.75163812426746Q 479.8333333333333 181.77149861291295  959.6666666666666 157.46535139885233T 1919.3333333333333 135.97171369763038T 2879 -21.518601780996164L 2879 0 Z;M0 0L 0 495.2785027836816Q 479.8333333333333 239.3811209137978  959.6666666666666 214.56633158881T 1919.3333333333333 -1.7300965622308127T 2879 -127.63558841892831L 2879 0 Z;M0 0L 0 369.4262371599777Q 479.8333333333333 272.16451219348227  959.6666666666666 248.02571969871758T 1919.3333333333333 95.10629663772534T 2879 -231.23754229829126L 2879 0 Z;M0 0L 0 330.75163812426746Q 479.8333333333333 181.77149861291295  959.6666666666666 157.46535139885233T 1919.3333333333333 135.97171369763038T 2879 -21.518601780996164L 2879 0 Z"
+              ></animate>
+            </path>
+            <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
+              <animate
+                attributeName="d"
+                dur="14.285714285714286s"
+                repeatCount="indefinite"
+                keyTimes="0;0.333;0.667;1"
+                calcMode="spline"
+                keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
+                begin="-4.761904761904762s"
+                values="M0 0L 0 476.3698688355545Q 479.8333333333333 237.83709995497324  959.6666666666666 210.77828043315546T 1919.3333333333333 109.272024280435T 2879 -204.30408117450685L 2879 0 Z;M0 0L 0 490.27939888235187Q 479.8333333333333 232.47573026976067  959.6666666666666 213.30960777731207T 1919.3333333333333 149.1919411473708T 2879 -166.7263792026784L 2879 0 Z;M0 0L 0 321.13633121046075Q 479.8333333333333 259.92285425806756  959.6666666666666 232.92038920234225T 1919.3333333333333 10.73061713261825T 2879 8.503078880735018L 2879 0 Z;M0 0L 0 476.3698688355545Q 479.8333333333333 237.83709995497324  959.6666666666666 210.77828043315546T 1919.3333333333333 109.272024280435T 2879 -204.30408117450685L 2879 0 Z"
+              ></animate>
+            </path>
+            <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
+              <animate
+                attributeName="d"
+                dur="14.285714285714286s"
+                repeatCount="indefinite"
+                keyTimes="0;0.333;0.667;1"
+                calcMode="spline"
+                keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
+                begin="-9.523809523809524s"
+                values="M0 0L 0 423.72199918448564Q 479.8333333333333 247.72761128281175  959.6666666666666 220.41664569209203T 1919.3333333333333 74.32871994367997T 2879 -93.67572590383526L 2879 0 Z;M0 0L 0 367.08675436013266Q 479.8333333333333 263.0400424962019  959.6666666666666 233.23045889402985T 1919.3333333333333 102.14817430143279T 2879 -36.923321323595644L 2879 0 Z;M0 0L 0 452.1977713828769Q 479.8333333333333 297.6305887992976  959.6666666666666 282.7922093099801T 1919.3333333333333 136.09715821609677T 2879 -128.78467924213055L 2879 0 Z;M0 0L 0 423.72199918448564Q 479.8333333333333 247.72761128281175  959.6666666666666 220.41664569209203T 1919.3333333333333 74.32871994367997T 2879 -93.67572590383526L 2879 0 Z"
+              ></animate>
+            </path>
           </g>
         </svg>
-
         <Layout locale={pageContext.locale} transparent={false} page="home">
           <Main className="pagePadding">
             <div className="Hero container  col">
@@ -164,17 +136,11 @@ const Page = ({ pageContext }) => {
                 {fullMenu[locale].map((i, index) => {
                   if (index === 6) return;
                   return (
-                    <Link
-                      id={`Link-${index}`}
-                      className="Link"
-                      to={prefix[locale] + i.slug}
-                    >
-                      <header className="row">
-                        <span>{i.title}</span>
-                        <Arrow />
-                      </header>
-                      <AnimatedBox index={index} />
-                    </Link>
+                    <AnimatedBoxLink
+                      index={index}
+                      title={i.title}
+                      path={prefix[locale] + i.slug}
+                    />
                   );
                 })}
               </div>
@@ -776,18 +742,3 @@ const Main = styled.main`
     }
   }
 `;
-
-const Arrow = () => (
-  <svg
-    width="20"
-    height="22"
-    viewBox="0 0 20 22"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M9 0L7.95306 1.04694L16.7381 9.83198L0.0848444 9.5294L0.05812 11.0095L16.8042 11.3151L7.95305 20.1663L8.99999 21.2132L19.6066 10.6066L9 0Z"
-      fill="white"
-    />
-  </svg>
-);

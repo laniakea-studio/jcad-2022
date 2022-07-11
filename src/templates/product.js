@@ -19,11 +19,14 @@ import fi from "../locales/fi.yml";
 import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import { MagneticButton } from "../components/MagneticButton";
+import { useHover } from "../hooks/useHover";
 
 const Product = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
+  const [hoverRef] = useHover();
 
   return (
     <>
@@ -36,11 +39,13 @@ const Product = ({ pageContext }) => {
               <p>{data.product.lead}</p>
               <div className="btns">
                 <button
+                  ref={hoverRef}
                   className="btn white"
                   onClick={() => scrollTo("#customers")}
                 >
                   {text.seeMore}
                 </button>
+
                 <PopupButton
                   className="btn white-outlines"
                   url={data.booking.calendlyBookingUrl}
@@ -201,6 +206,7 @@ const Main = styled.main`
       margin-bottom: 40px;
       font-weight: 400;
       margin-top: 200px;
+      max-width: 600px;
       @media (max-width: 600px) {
         margin-top: 15vh;
       }

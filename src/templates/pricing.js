@@ -10,16 +10,7 @@ import { SvgHeadingFrame } from "../components/SvgCollection";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import { theme } from "../theme/theme";
-
-const valikkoSopimuskausi = [
-  { value: 0, label: 12 },
-  { value: -130, label: 48 },
-];
-
-const extraHinnasto = {
-  12: 249,
-  48: 179,
-};
+import { valikkoSopimuskausi, extraHinnasto } from "@constants/pricing";
 
 const Pricing = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -392,6 +383,7 @@ const Main = styled.main`
       display: flex;
       flex-direction: column;
       border: 1px solid #fff;
+      border-radius: 4px;
       align-items: center;
       padding: 50px 30px 30px;
       img {
