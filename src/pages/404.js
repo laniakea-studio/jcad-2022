@@ -1,53 +1,65 @@
 import { Link } from "gatsby";
-import * as React from "react";
+import React, { useContext, useRef } from "react";
+import { HelmetDatoCms } from "gatsby-source-datocms";
+import { theme } from "../theme/theme";
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-};
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-};
-
-const paragraphStyles = {
-  marginBottom: 48,
-};
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-};
-
-// markup
 const NotFoundPage = () => {
+  const seoMetaTags = {
+    tags: [
+      {
+        tagName: "title",
+        content: "Äh! Sivu hukassa • 404",
+      },
+    ],
+  };
   return (
-    <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{" "}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{" "}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <>
+      <HelmetDatoCms seo={seoMetaTags} />
+      <div
+        className="col all-center"
+        css={`
+          height: 100vh;
+          background: #000053;
+          color: #fff;
+          h2 {
+            margin-bottom: 20px;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding-left: 20px;
+            padding-right: 20px;
+            height: 58px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 15px;
+            letter-spacing: 0.05em;
+            width: fit-content;
+            border-radius: 4px;
+          }
+          .btn svg {
+            margin-left: 15px;
+          }
+          .btn.white {
+            background: #fff;
+            border: 1px solid #fff;
+            color: ${theme.primary};
+          }
+          .btn.white-outlines {
+            background: none;
+            border: 1px solid #fff;
+            color: #fff;
+          }
+        `}
+      >
+        <h2>Äh! Se on 404. Sivua ei löytynyt.</h2>
+        <Link className="btn white" to="/">
+          Palaa etusivulle
+        </Link>
+      </div>
+    </>
   );
 };
 
