@@ -112,9 +112,10 @@ export const NetlifyForm = ({ data, isLightBg }) => {
 
     if (isFormValid()) {
       const data = new FormData();
-      data.append("file", file);
+      data.append("liite", file);
       console.log(file);
       Object.keys(formData).forEach((i) => {
+        if (i === "liite") return;
         data.append(i, formData[i]);
       });
 
