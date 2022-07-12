@@ -22,7 +22,6 @@ export const OrderForm = ({ data, prices, isLightBg }) => {
 
   const [formData, setFormData] = useState(schema);
   const [showMessage, setShowMessage] = useState(null);
-  const [price, setPrice] = useState(null);
 
   // Price calculation
   const priceTable = {
@@ -35,32 +34,28 @@ export const OrderForm = ({ data, prices, isLightBg }) => {
     },
   };
 
-  useEffect(() => {
-    let newPrice = priceTable.base[formData.sovellus];
-    if (
-      formData.sopimuskausi === "48 kk" &&
-      formData.sovellus !== "JCAD Määrälaskenta + kustannuslaskenta"
-    ) {
-      newPrice = newPrice + prices.valikkoSopimuskausi[1].value; // -130
-    }
-    if (
-      formData.sopimuskausi === "48 kk" &&
-      formData.sovellus === "JCAD Määrälaskenta + kustannuslaskenta"
-    ) {
-      newPrice =
-        newPrice -
-        prices.extraHinnasto[12] +
-        prices.valikkoSopimuskausi[1].value +
-        prices.extraHinnasto[48];
-    }
+  let price = priceTable.base[formData.sovellus];
+  if (
+    formData.sopimuskausi === "48 kk" &&
+    formData.sovellus !== "JCAD Määrälaskenta + kustannuslaskenta"
+  ) {
+    price = price + prices.valikkoSopimuskausi[1].value; // -130
+  }
+  if (
+    formData.sopimuskausi === "48 kk" &&
+    formData.sovellus === "JCAD Määrälaskenta + kustannuslaskenta"
+  ) {
+    price =
+      price -
+      prices.extraHinnasto[12] +
+      prices.valikkoSopimuskausi[1].value +
+      prices.extraHinnasto[48];
+  }
 
-    let kayttajiaNumber = parseInt(formData.kayttajia);
-    if (kayttajiaNumber > 0) {
-      newPrice = newPrice * kayttajiaNumber;
-    }
-
-    setPrice(newPrice);
-  }, [formData]);
+  let kayttajiaNumber = parseInt(formData.kayttajia);
+  if (kayttajiaNumber > 0) {
+    price = price * kayttajiaNumber;
+  }
 
   console.log({ formData });
 

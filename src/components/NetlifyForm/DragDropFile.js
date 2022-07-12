@@ -21,7 +21,6 @@ export const DragDropFile = ({ name, styles, handleFile }) => {
     e.stopPropagation();
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      console.log(e.dataTransfer.files);
       handleFile(e.dataTransfer.files);
     }
   };
@@ -79,6 +78,7 @@ export const DragDropFile = ({ name, styles, handleFile }) => {
         type="file"
         id="input-file-upload"
         multiple={true}
+        name={name}
         onChange={handleChange}
       />
       <label

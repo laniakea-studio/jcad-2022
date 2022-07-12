@@ -113,6 +113,7 @@ export const NetlifyForm = ({ data, isLightBg }) => {
     if (isFormValid()) {
       const data = new FormData();
       data.append("file", file);
+      console.log(file);
       Object.keys(formData).forEach((i) => {
         data.append(i, formData[i]);
       });
@@ -146,6 +147,7 @@ export const NetlifyForm = ({ data, isLightBg }) => {
       name={schema["form-name"]}
       method="POST"
       data-netlify="true"
+      enctype="multipart/form-data"
       css={`
         font-weight: 400;
         height: 100%;
