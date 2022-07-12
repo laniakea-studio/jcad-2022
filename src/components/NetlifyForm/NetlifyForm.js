@@ -72,6 +72,8 @@ export const NetlifyForm = ({ data, isLightBg }) => {
   const { name, inputs, messages } = data;
   const styles = isLightBg ? stylesLightBg : stylesDarkBg;
 
+  const [file, setFile] = useState(null);
+
   let schema = {
     "form-name": name,
   };
@@ -100,13 +102,25 @@ export const NetlifyForm = ({ data, isLightBg }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(e);
   };
+
+  const handleFile = (files) => {
+    setFile(files[0]);
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
+
     if (isFormValid()) {
+      const data = new FormData();
+      data.append("file", file);
+      Object.keys(formData).forEach((i) => {
+        data.append(i, formData[i]);
+      });
+
       fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode(formData),
+
+        body: data,
       })
         .then(() => {
           setShowMessage(messages.submitSucces);
@@ -271,6 +285,7 @@ export const NetlifyForm = ({ data, isLightBg }) => {
                 <DragDropFile
                   name={input.name}
                   styles={isLightBg ? stylesLightBg : stylesDarkBg}
+                  handleFile={handleFile}
                 />
               </div>
             )}

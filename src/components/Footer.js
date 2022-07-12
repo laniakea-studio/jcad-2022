@@ -179,8 +179,8 @@ export const Footer = ({ menu, prefix }) => {
           <div
             className="col"
             css={`
-              margin-left: auto;
-              width: auto;
+              justify-self: end;
+              width: fit-content;
               min-width: 120px;
               @media (max-width: 900px) {
                 margin-left: 0;

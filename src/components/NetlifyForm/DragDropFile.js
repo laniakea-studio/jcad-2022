@@ -2,12 +2,7 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 
-function handleFile(files) {
-  alert("Number of files: " + files.length);
-}
-
-// drag drop file component
-export const DragDropFile = ({ name, styles }) => {
+export const DragDropFile = ({ name, styles, handleFile }) => {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef(null);
 
