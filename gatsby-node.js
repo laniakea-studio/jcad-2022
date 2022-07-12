@@ -319,6 +319,7 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
 
+      // Only Finnish pages
       if (locale === "fi") {
         createPage({
           path: `/${prefix + slugs[locale].webinars}`,
@@ -327,8 +328,8 @@ exports.createPages = async ({ graphql, actions }) => {
             locale: locale,
             localeSlugs: {
               fi: `/${slugs.fi.webinars}`,
-              en: `/en/${slugs.en.webinars}`,
-              sv: `/sv/${slugs.sv.webinars}`,
+              en: null,
+              sv: null,
             },
             data: {
               page: data.webinaarit,
@@ -348,8 +349,8 @@ exports.createPages = async ({ graphql, actions }) => {
               },
               localeSlugs: {
                 fi: `/${prefix + slugs.fi.webinars}`,
-                en: `/${prefix + slugs.en.webinars}`,
-                sv: `/${prefix + slugs.sv.webinars}`,
+                en: null,
+                sv: null,
               },
             },
           });
@@ -362,8 +363,8 @@ exports.createPages = async ({ graphql, actions }) => {
             locale: locale,
             localeSlugs: {
               fi: `/${slugs.fi.jobs}`,
-              en: `/en/${slugs.en.jobs}`,
-              sv: `/sv/${slugs.sv.jobs}`,
+              en: null,
+              sv: null,
             },
             data: {
               page: data.jobs,
@@ -378,8 +379,8 @@ exports.createPages = async ({ graphql, actions }) => {
             locale: locale,
             localeSlugs: {
               fi: `/${slugs.fi.order}`,
-              en: `/en/${slugs.en.order}`,
-              sv: `/sv/${slugs.sv.order}`,
+              en: null,
+              sv: null,
             },
             data: {
               page: data.order,

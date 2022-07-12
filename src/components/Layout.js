@@ -369,12 +369,16 @@ const MobileMenu = ({
           <Link to={localeSlugs.fi} className="localeLink">
             FI
           </Link>
-          <Link to={localeSlugs.en} className="localeLink">
-            EN
-          </Link>
-          <Link to={localeSlugs.sv} className="localeLink">
-            SV
-          </Link>
+          {localeSlugs.en && (
+            <Link to={localeSlugs.en} className="localeLink">
+              EN
+            </Link>
+          )}
+          {localeSlugs.sv && (
+            <Link to={localeSlugs.sv} className="localeLink">
+              SV
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 
+// Credits: https://www.codemzy.com/blog/react-drag-drop-file-upload
 const options = {
   maxFiles: 1,
   maxSize: 8_000_000,

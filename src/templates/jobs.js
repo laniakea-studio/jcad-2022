@@ -18,6 +18,35 @@ const Page = ({ pageContext }) => {
   const form = {
     name: "Työhakemus",
     inputs: [
+      /*
+      {
+        type: "radio",
+        name: "kiinnostus",
+        label: "Minua kiinnostaa",
+        value: "Ohjelmistokehitys",
+        options: [
+          {
+            label: "Ohjelmistokehitys",
+            desc: "",
+            value: "Ohjelmistokehitys",
+          },
+          {
+            label: "B2B-myynti",
+            desc: "",
+            value: "B2B-myynti",
+          },
+          {
+            label: "Asiantuntijatehtävät",
+            desc: "",
+            value: "Asiantuntijatehtävät",
+          },
+          {
+            label: "Asiakaspalvelu",
+            desc: "",
+            value: "Asiakaspalvelu",
+          },
+        ],
+      },*/
       {
         type: "text",
         name: "name",

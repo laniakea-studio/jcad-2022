@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../theme/theme";
 
 // TODO: Not ready. Add key down nav, eg.g https://codepen.io/CrocoDillon/pen/MpMoZe. This source: https://codepen.io/Chineze/pen/MqvadV
-
+// TODO: Styles and colors for white bg
 export const Radio = ({ data, styles, onChange, value }) => {
   return (
     <div

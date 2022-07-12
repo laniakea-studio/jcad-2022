@@ -111,9 +111,8 @@ export const NetlifyForm = ({ data, isLightBg }) => {
 
     if (isFormValid()) {
       const data = new FormData();
-      data.append("liite", file);
+
       Object.keys(formData).forEach((i) => {
-        if (i === "liite") return;
         data.append(i, formData[i]);
       });
 
@@ -320,9 +319,3 @@ export const NetlifyForm = ({ data, isLightBg }) => {
     </form>
   );
 };
-
-function encode(data) {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-}
