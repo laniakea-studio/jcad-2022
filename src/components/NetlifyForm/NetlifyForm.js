@@ -59,7 +59,7 @@ const stylesLightBg = {
   buttonBackground: "none",
   buttonBorder: "#000",
   buttonColor: "#000",
-  placeholder: "rgba(0,0,0,0.3)",
+  placeholder: "rgba(0,0,0,0.5)",
   switch: "rgba(255,255,255,0.5)",
   switchBg: "rgba(28, 28, 102, 0.4)",
   switchActive: "rgba(255,255,255,1)",
@@ -100,11 +100,10 @@ export const NetlifyForm = ({ data, isLightBg }) => {
 
   const onRadioChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(e);
   };
 
-  const handleFile = (files) => {
-    setFile(files[0]);
+  const handleFile = (name, value) => {
+    setFormData({ ...formData, [name]: value });
   };
 
   const submitForm = (e) => {
@@ -113,7 +112,6 @@ export const NetlifyForm = ({ data, isLightBg }) => {
     if (isFormValid()) {
       const data = new FormData();
       data.append("liite", file);
-      console.log(file);
       Object.keys(formData).forEach((i) => {
         if (i === "liite") return;
         data.append(i, formData[i]);
@@ -284,8 +282,17 @@ export const NetlifyForm = ({ data, isLightBg }) => {
             )}
             {input.type === "file" && (
               <div className="col">
-                <label>{input.label}</label>
+                <label
+                  css={`
+                    &:hover {
+                      cursor: default;
+                    }
+                  `}
+                >
+                  {input.label}
+                </label>
                 <DragDropFile
+                  value={formData[input.name]}
                   name={input.name}
                   styles={isLightBg ? stylesLightBg : stylesDarkBg}
                   handleFile={handleFile}

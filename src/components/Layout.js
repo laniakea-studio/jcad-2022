@@ -325,7 +325,7 @@ const MobileMenu = ({
             activeClassName="active"
             className="row justify-end"
           >
-            <span className="flex">
+            <span className="row">
               {i.title}
               <svg
                 width="21"
@@ -347,7 +347,7 @@ const MobileMenu = ({
           rel="noreferrer"
           className="row justify-end"
         >
-          <span className="flex">
+          <span className="row">
             {text.menu.login}
 
             <svg

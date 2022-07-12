@@ -38,15 +38,16 @@ const Page = ({ pageContext }) => {
       },
       {
         type: "file",
-        name: "liite",
+        name: "kuva",
         label: "Lisää ansioluettelo tai muu liite",
         isRequired: false,
       },
       {
         type: "textarea",
-        name: "phone",
+        name: "viesti",
         label: text.contact.message,
-        placeholder: "",
+        placeholder:
+          "Sano meille moi! Jos sinulta löytyy Linkedin, voit lisätä linkin tähän.",
         isRequired: true,
       },
       { type: "submit", text: text.contact.send },
@@ -209,7 +210,7 @@ const Main = styled.main`
     h2 {
       margin-bottom: 20px;
     }
-    .container {
+    > .container {
       border-color: #000;
       border-top: 0.8px dashed #000;
       > .col:first-child {
@@ -231,9 +232,6 @@ const Main = styled.main`
         @media (max-width: 800px) {
           padding-left: 0;
           padding-top: 0;
-          width: 100%;
-        }
-        svg {
           width: 100%;
         }
       }

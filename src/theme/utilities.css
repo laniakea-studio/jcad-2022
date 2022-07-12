@@ -50,7 +50,6 @@
 /* Pure Utility Classes */
 .flex {
   display: flex;
-  width: 100%;
 }
 .col {
   display: flex;
@@ -59,7 +58,6 @@
 }
 .row {
   display: flex;
-  flex-direction: row;
   width: 100%;
 }
 .inline-flex {
@@ -68,10 +66,6 @@
 .col {
   display: flex;
   flex-direction: column;
-}
-.row {
-  display: flex;
-  flex-direction: row;
 }
 .mx-auto {
   margin-left: auto;
