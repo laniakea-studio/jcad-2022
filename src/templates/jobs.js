@@ -35,7 +35,7 @@ const Page = ({ pageContext }) => {
         name: "phone",
         label: text.contact.phone,
         isRequired: false,
-      } 
+      },
       {
         type: "file",
         name: "liite",
