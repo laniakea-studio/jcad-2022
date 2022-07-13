@@ -404,6 +404,21 @@ const FooterDiv = styled.footer`
       stroke-dasharray: 1268.3271484375px;
       transition: stroke-dashoffset 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0.36s;
     }
+    // Show without animation on mobile
+    @media (max-width: 600px) {
+      .svg-elem-1 {
+        stroke-dashoffset: 0 !important;
+      }
+      .svg-elem-2 {
+        stroke-dashoffset: 0 !important;
+      }
+      .svg-elem-3 {
+        stroke-dashoffset: 0 !important;
+      }
+      .svg-elem-4 {
+        stroke-dashoffset: 0 !important;
+      }
+    }
   }
   .active .MediumLogo {
     .svg-elem-1 {
