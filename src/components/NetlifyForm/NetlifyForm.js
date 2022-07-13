@@ -198,6 +198,8 @@ export const NetlifyForm = ({ data, isLightBg }) => {
           border: 1px solid ${styles.buttonBorder};
           height: 50px;
           text-transform: uppercase;
+          font-weight: 600;
+          letter-spacing: 0.05em;
         }
         .messageBox {
           padding: 12px;

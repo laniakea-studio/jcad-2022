@@ -40,8 +40,9 @@ const Page = ({ pageContext }) => {
       { type: "submit", text: "Ilmoittaudu" },
     ],
     messages: {
-      submitSucces: "Kiitos ilmoittautumisesta!",
-      fillAllInputs: text.contact.fillAllInputs,
+      submitSucces:
+        "Kiitos ilmoittautumisesta! Saat lisätietoja sähköpostiisi myöhemmin.",
+      fillAllInputs: "Anna sähköpostiosoitteesi.",
     },
   };
 
@@ -100,7 +101,16 @@ const Page = ({ pageContext }) => {
                 />
               </div>
             </div>
-            <div className="col">
+            <div
+              className="col"
+              css={`
+                h2 {
+                  text-transform: uppercase;
+                  font-weight: 600;
+                  font-size: 19px;
+                }
+              `}
+            >
               <h2>Ilmoittaudu webinaariin</h2>
               <p>Jätä sähköpostisi ja saat kutsun webinaariin.</p>
               <NetlifyForm data={form} />
@@ -137,6 +147,9 @@ const Main = styled.main`
       width: 15px;
       margin-right: 10px;
     }
+  }
+  .Points {
+    margin-bottom: 20px;
   }
   .Points span {
     font-size: 19px;
