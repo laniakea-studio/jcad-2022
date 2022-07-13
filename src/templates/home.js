@@ -8,15 +8,12 @@ import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { AnimatedBoxLink } from "../components/AnimatedBoxLink";
 import { fullMenu, prefix } from "../constants/slugs";
-import { useHover } from "../hooks/useHover";
-
-// TODO: Magnetic button https://codesandbox.io/s/tgowd?file=/src/components/Button.js
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
-  const [hoverRef] = useHover();
+
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
@@ -110,6 +107,7 @@ const Page = ({ pageContext }) => {
                 </div>
                 <div className="col">
                   <p>{page.intro}</p>
+
                   <div className="row">
                     {page.cta.map((i) => (
                       <Link className="HeroLink" to={i.slug}>

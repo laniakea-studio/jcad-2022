@@ -38,13 +38,12 @@ const Product = ({ pageContext }) => {
               <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
               <p>{data.product.lead}</p>
               <div className="btns">
-                <button
+                <MagneticButton
                   ref={hoverRef}
                   className="btn white"
                   onClick={() => scrollTo("#customers")}
-                >
-                  {text.seeMore}
-                </button>
+                  text={text.seeMore}
+                />
 
                 <PopupButton
                   className="btn white-outlines"

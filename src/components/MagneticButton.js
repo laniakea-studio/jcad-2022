@@ -1,9 +1,15 @@
 import React, { useRef, forwardRef, useEffect } from "react";
 import styled from "styled-components";
 import { useMousePosition } from "../hooks/useMousePosition";
+// Author: Magnetic button https://codesandbox.io/s/tgowd?file=/src/components/Button.js
 
 export const MagneticButton = forwardRef((props, ref) => {
   const { mouseX, mouseY } = useMousePosition();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    props.onClick();
+  };
 
   useEffect(() => {
     let x = 0;
@@ -14,7 +20,7 @@ export const MagneticButton = forwardRef((props, ref) => {
 
       // New values for the translations
       const rect = node.getBoundingClientRect();
-      const distanceToTrigger = rect.width * 0.7;
+      const distanceToTrigger = rect.width * 0.45;
       const distanceMouseButton = distance(
         mouseX + window.scrollX,
         mouseY + window.scrollY,
@@ -36,19 +42,27 @@ export const MagneticButton = forwardRef((props, ref) => {
   }, [mouseX, mouseY, ref]);
 
   return (
-    <Button ref={ref} href={props.href} className={props.className}>
-      Hei
-    </Button>
+    <Style
+      ref={ref}
+      href={props.href}
+      className={props.className}
+      onClick={(e) => handleClick(e)}
+    >
+      {props.text}
+    </Style>
   );
 });
 
-const Button = styled.a`
+const Style = styled.a`
   position: relative;
+  display: inline-flex;
+  min-width: 160px;
+  margin-right: 30px;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
 `;
-
-// Linear interpolation
-const lerp = (a, b, n) => (1 - n) * a + n * b;
-
 const distance = (x1, y1, x2, y2) => {
   var a = x1 - x2;
   var b = y1 - y2;
