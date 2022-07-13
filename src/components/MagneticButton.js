@@ -61,6 +61,7 @@ const Style = styled.a`
   user-select: none;
   cursor: pointer;
   overflow: hidden;
+  z-index: 1;
   transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
 `;
 const distance = (x1, y1, x2, y2) => {
