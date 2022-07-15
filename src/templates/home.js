@@ -8,6 +8,8 @@ import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { AnimatedBoxLink } from "../components/AnimatedBoxLink";
 import { fullMenu, prefix } from "../constants/slugs";
+import { MagneticLinkBox } from "@components/MagneticLinkBox";
+import { useHover } from "../hooks/useHover";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -100,7 +102,7 @@ const Page = ({ pageContext }) => {
         </svg>
         <Layout locale={pageContext.locale} transparent={false} page="home">
           <Main className="pagePadding">
-            <div className="Hero container  col">
+            <div className="Hero container col">
               <div className="row padding">
                 <div className="col">
                   <h1>{page.title}</h1>
@@ -132,13 +134,19 @@ const Page = ({ pageContext }) => {
 
               <div className="Grid padding">
                 {fullMenu[locale].map((i, index) => {
+                  const [hoverRef] = useHover();
                   if (index === 6) return;
                   return (
-                    <AnimatedBoxLink
-                      index={index}
-                      title={i.title}
+                    <MagneticLinkBox
+                      ref={hoverRef}
                       path={prefix[locale] + i.slug}
-                    />
+                    >
+                      <AnimatedBoxLink
+                        index={index}
+                        title={i.title}
+                        path={prefix[locale] + i.slug}
+                      />
+                    </MagneticLinkBox>
                   );
                 })}
               </div>

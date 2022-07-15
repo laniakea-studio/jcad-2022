@@ -6,7 +6,7 @@ export const AnimatedBoxLink = (props) => {
   const { index, path, title } = props;
 
   return (
-    <Link id={`Link-${index}`} className="Link" to={path}>
+    <div id={`Link-${index}`} className="Link">
       <header className="row">
         <span>{title}</span>
         <Arrow />
@@ -492,7 +492,7 @@ export const AnimatedBoxLink = (props) => {
           </svg>
         )}
       </AnimatedBox>
-    </Link>
+    </div>
   );
 };
 
