@@ -21,10 +21,10 @@ const Page = ({ pageContext, location }) => {
   const period = params.get("period") || "12 kk";
   const users = params.get("users") || "1";
   let radioValue;
-  if (app === "1") radioValue = "JCAD Määrälaskenta";
-  if (app === "2") radioValue = "JCAD Määrälaskenta + kustannuslaskenta";
-  if (app === "3") radioValue = "JCAD LVI";
-  if (app === "4") radioValue = "JCAD Sähkö";
+  if (app === "1") radioValue = "JCAD MÄÄRÄT";
+  if (app === "2") radioValue = "JCAD MÄÄRÄT + kustannuslaskenta";
+  if (app === "3") radioValue = "LVI – MÄÄRÄT";
+  if (app === "4") radioValue = "SÄHKÖ – MÄÄRÄT";
 
   // Warning: Changing sovellus options values breaks price calculation
   const form = {
