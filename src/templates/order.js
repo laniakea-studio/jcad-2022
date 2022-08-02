@@ -37,22 +37,22 @@ const Page = ({ pageContext, location }) => {
         value: radioValue,
         options: [
           {
-            label: "JCAD Määrälaskenta",
+            label: "JCAD MÄÄRÄT",
             desc: "",
             value: "JCAD Määrälaskenta",
           },
           {
-            label: "JCAD Määrälaskenta + kustannuslaskenta",
+            label: "JCAD MÄÄRÄT + kustannuslaskenta",
             desc: "",
             value: "JCAD Määrälaskenta + kustannuslaskenta",
           },
           {
-            label: "JCAD LVI",
+            label: "LVI – MÄÄRÄT",
             desc: "",
             value: "JCAD LVI",
           },
           {
-            label: "JCAD Sähkö",
+            label: "SÄHKÄ – MÄÄRÄT",
             desc: "",
             value: "JCAD Sähkö",
           },
