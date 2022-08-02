@@ -39,22 +39,22 @@ const Page = ({ pageContext, location }) => {
           {
             label: "JCAD MÄÄRÄT",
             desc: "",
-            value: "JCAD Määrälaskenta",
+            value: "JCAD MÄÄRÄT",
           },
           {
             label: "JCAD MÄÄRÄT + kustannuslaskenta",
             desc: "",
-            value: "JCAD Määrälaskenta + kustannuslaskenta",
+            value: "JCAD MÄÄRÄT + kustannuslaskenta",
           },
           {
             label: "LVI – MÄÄRÄT",
             desc: "",
-            value: "JCAD LVI",
+            value: "LVI – MÄÄRÄT",
           },
           {
-            label: "SÄHKÄ – MÄÄRÄT",
+            label: "SÄHKÖ – MÄÄRÄT",
             desc: "",
-            value: "JCAD Sähkö",
+            value: "SÄHKÖ – MÄÄRÄT",
           },
         ],
       },

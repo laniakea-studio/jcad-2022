@@ -37,13 +37,13 @@ export const OrderForm = ({ data, prices, isLightBg }) => {
   let price = priceTable.base[formData.sovellus];
   if (
     formData.sopimuskausi === "48 kk" &&
-    formData.sovellus !== "JCAD Määrälaskenta + kustannuslaskenta"
+    formData.sovellus !== "JCAD MÄÄRÄT + kustannuslaskenta"
   ) {
     price = price + prices.valikkoSopimuskausi[1].value; // -130
   }
   if (
     formData.sopimuskausi === "48 kk" &&
-    formData.sovellus === "JCAD Määrälaskenta + kustannuslaskenta"
+    formData.sovellus === "JCAD MÄÄRÄT + kustannuslaskenta"
   ) {
     price =
       price -
