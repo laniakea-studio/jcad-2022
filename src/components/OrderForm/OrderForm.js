@@ -26,11 +26,11 @@ export const OrderForm = ({ data, prices, isLightBg }) => {
   // Price calculation
   const priceTable = {
     base: {
-      "JCAD Määrälaskenta": prices.tuotteet[0].value,
-      "JCAD Määrälaskenta + kustannuslaskenta":
+      "JCAD MÄÄRÄT": prices.tuotteet[0].value,
+      "JCAD MÄÄRÄT + kustannuslaskenta":
         prices.tuotteet[0].value + prices.extraHinnasto[12],
-      "JCAD LVI": prices.tuotteet[1].value,
-      "JCAD Sähkö": prices.tuotteet[2].value,
+      "LVI – MÄÄRÄT": prices.tuotteet[1].value,
+      "SÄHKÖ – MÄÄRÄT": prices.tuotteet[2].value,
     },
   };
 
