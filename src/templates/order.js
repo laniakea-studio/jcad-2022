@@ -23,8 +23,8 @@ const Page = ({ pageContext, location }) => {
   let radioValue;
   if (app === "1") radioValue = "JCAD MÄÄRÄT";
   if (app === "2") radioValue = "JCAD MÄÄRÄT + kustannuslaskenta";
-  if (app === "3") radioValue = "LVI – MÄÄRÄT";
-  if (app === "4") radioValue = "SÄHKÖ – MÄÄRÄT";
+  if (app === "3") radioValue = "SÄHKÖ – MÄÄRÄT";
+  if (app === "4") radioValue = "LVI – MÄÄRÄT";
 
   // Warning: Changing sovellus options values breaks price calculation
   const form = {
