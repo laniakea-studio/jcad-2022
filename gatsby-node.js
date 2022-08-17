@@ -81,6 +81,13 @@ exports.createPages = async ({ graphql, actions }) => {
         }
         title
         lead
+        video {
+          video {
+          streamingUrl
+          mp4Url
+          }
+        }
+        videoteksti
         customers {
           url
           alt
@@ -385,6 +392,22 @@ exports.createPages = async ({ graphql, actions }) => {
             data: {
               page: data.order,
               pricing: data.pricing,
+            },
+          },
+        });
+
+        createPage({
+          path: `/restream`,
+          component: path.resolve(`src/templates/restream.js`),
+          context: {
+            locale: locale,
+            localeSlugs: {
+              fi: `/restream`,
+              en: null,
+              sv: null,
+            },
+            data: {
+              page: "",
             },
           },
         });

@@ -21,6 +21,7 @@ import { theme } from "../theme/theme";
 import scrollTo from "gatsby-plugin-smoothscroll";
 import { MagneticButton } from "../components/MagneticButton";
 import { useHover } from "../hooks/useHover";
+import { Video } from "../components/Video";
 
 const Product = ({ pageContext }) => {
   const { locale, localeSlugs } = useContext(LocaleContext);
@@ -33,26 +34,32 @@ const Product = ({ pageContext }) => {
       <HelmetDatoCms seo={data.product.seoMetaTags} />
       <Layout locale={pageContext.locale} transparent={false}>
         <Main>
-          <div className="Hero pagePadding">
-            <div className="container col padding">
-              <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
-              <p>{data.product.lead}</p>
-              <div className="btns">
-                <MagneticButton
-                  ref={hoverRef}
-                  className="btn white"
-                  onClick={() => scrollTo("#customers")}
-                  text={text.seeMore}
-                />
+          <div className="Hero pagePadding row">
+            <div className="container row padding">
+              <div className="col">
+                <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
+                <p className="Lead">{data.product.lead}</p>
+                <div className="btns">
+                  <MagneticButton
+                    ref={hoverRef}
+                    className="btn white"
+                    onClick={() => scrollTo("#customers")}
+                    text={text.seeMore}
+                  />
 
-                <PopupButton
-                  className="btn white-outlines"
-                  url={data.booking.calendlyBookingUrl}
-                  text={data.booking.buttonText}
-                />
+                  <PopupButton
+                    className="btn white-outlines"
+                    url={data.booking.calendlyBookingUrl}
+                    text={data.booking.buttonText}
+                  />
+                </div>
+
+                <SvgCircle id="circle-2" />
               </div>
-              <SvgCircle id="circle-1" />
-              <SvgCircle id="circle-2" />
+              <div className="col justify-center VideoCol">
+                {data.product.video && <Video data={data.product.video} />}
+                <p className="Videoteksti">{data.product.videoteksti}</p>
+              </div>
             </div>
           </div>
           <div className="pagePadding">
@@ -191,8 +198,25 @@ const Main = styled.main`
     @media (max-width: 600px) {
       padding-top: 50px;
     }
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
+
     .container {
       min-height: 700px;
+      @media (max-width: 900px) {
+        flex-direction: column;
+        min-height: auto;
+      }
+    }
+    .VideoCol {
+      padding-right: 20px;
+      padding-left: 20px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      @media (max-width: 900px) {
+        padding-left: 20px;
+      }
     }
     .wrap {
       height: 100vh;
@@ -210,14 +234,21 @@ const Main = styled.main`
         margin-top: 15vh;
       }
     }
-    p {
+    p.Lead {
       font-size: 22px;
       line-height: 1.6;
       max-width: 720px;
       margin-bottom: 40px;
     }
+    p.Videoteksti {
+      font-size: 15px;
+      text-align: center;
+      margin: 0;
+      padding: 5px 10px 0;
+    }
     .btns {
       display: flex;
+      margin-bottom: 40px;
       > button {
         width: 200px;
         z-index: 1;
