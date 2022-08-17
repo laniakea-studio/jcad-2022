@@ -57,7 +57,12 @@ const Product = ({ pageContext }) => {
                 <SvgCircle id="circle-2" />
               </div>
               <div className="col justify-center VideoCol">
-                {data.product.video && <Video data={data.product.video} />}
+                {data.product.video && (
+                  <Video
+                    data={data.product.video}
+                    poster={data.product.videoPoster.url}
+                  />
+                )}
                 <p className="Videoteksti">{data.product.videoteksti}</p>
               </div>
             </div>

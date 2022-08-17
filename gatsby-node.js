@@ -88,6 +88,9 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
         videoteksti
+        videoPoster {
+          url
+        }
         customers {
           url
           alt
