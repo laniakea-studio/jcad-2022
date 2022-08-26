@@ -31,8 +31,8 @@ export const MagneticLinkBox = forwardRef((props, ref) => {
       // Handle magnetic effect
       if (distanceMouseButton < distanceToTrigger) {
         // Translate button position on hover
-        x = (mouseX + window.scrollX - (rect.left + rect.width / 2)) * 0.09;
-        y = (mouseY + window.scrollY - (rect.top + rect.height / 2)) * 0.09;
+        x = (mouseX + window.scrollX - (rect.left + rect.width / 2)) * 0.05;
+        y = (mouseY + window.scrollY - (rect.top + rect.height / 2)) * 0.05;
         node.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       } else {
         // Restore initial position

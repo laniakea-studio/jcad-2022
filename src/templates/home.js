@@ -10,6 +10,7 @@ import { AnimatedBoxLink } from "../components/AnimatedBoxLink";
 import { fullMenu, prefix } from "../constants/slugs";
 import { MagneticLinkBox } from "@components/MagneticLinkBox";
 import { useHover } from "../hooks/useHover";
+import { DownloadPDF } from "../components/DowloadPDF";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -151,6 +152,7 @@ const Page = ({ pageContext }) => {
                 })}
               </div>
             </div>
+            <DownloadPDF />
           </Main>
         </Layout>
       </div>
