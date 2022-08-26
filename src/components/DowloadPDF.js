@@ -14,7 +14,7 @@ export const DownloadPDF = ({ menu, prefix }) => {
   const text = snippet[locale];
 
   // Only Finnish
-  if (locale !== "fi") return;
+  if (locale !== "fi") return <></>;
 
   const { globalFi } = useStaticQuery(graphql`
     query {
