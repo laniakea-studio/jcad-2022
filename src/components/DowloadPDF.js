@@ -36,7 +36,7 @@ export const DownloadPDF = ({ menu, prefix }) => {
         label: text.contact.email,
         isRequired: true,
       },
-      { type: "submit", text: "Näytä kyselyn tulokset (PDF)" },
+      { type: "submit", text: "Avaa kyselytutkimus (PDF)" },
     ],
     messages: {
       submitSucces: "",
@@ -70,6 +70,7 @@ export const DownloadPDF = ({ menu, prefix }) => {
           max-width: 620px;
           h2 {
             margin-bottom: 20px;
+            max-width: 520px;
           }
           @media (max-width: 1100px) {
             padding-left: 0;
