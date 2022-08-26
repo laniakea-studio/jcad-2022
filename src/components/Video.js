@@ -22,7 +22,7 @@ export const Video = ({ data, autoplay, poster }) => {
   };
 
   return (
-    <VideoBox>
+    <VideoBox className="VideoBox">
       <video
         ref={videoRef}
         poster={poster && poster}
@@ -58,7 +58,6 @@ export const Video = ({ data, autoplay, poster }) => {
 
 const VideoBox = styled.div`
   width: 100%;
-
   position: relative;
   display: flex;
   flex-direction: column;

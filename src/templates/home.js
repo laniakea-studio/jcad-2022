@@ -7,15 +7,16 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { AnimatedBoxLink } from "../components/AnimatedBoxLink";
-import { fullMenu, prefix } from "../constants/slugs";
+import { fullMenu, prefix, ctaProduct } from "../constants/slugs";
 import { MagneticLinkBox } from "@components/MagneticLinkBox";
 import { useHover } from "../hooks/useHover";
 import { DownloadPDF } from "../components/DowloadPDF";
+import { Video } from "@components/Video";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
-  const { page } = pageContext.data;
+  const { page, video } = pageContext.data;
 
   return (
     <>
@@ -152,6 +153,55 @@ const Page = ({ pageContext }) => {
                 })}
               </div>
             </div>
+            {video.video && (
+              <section
+                className="col container padding align-center"
+                css={`
+                  color: #fff;
+                  padding-top: 80px;
+                  padding-bottom: 140px;
+                  .VideoBox {
+                    max-width: 920px;
+                    margin: 0 auto;
+                  }
+                  h3 {
+                    text-transform: none;
+                    max-width: 700px;
+                    text-align: center;
+                    margin-bottom: 30px;
+                  }
+                `}
+              >
+                <h3>
+                  Katso, miten talotekniikka- ja pintaurakoitsijat sekä
+                  rakennusliikkeet hyödyntävät JCAD-määrälaskentaohjelmistoa.
+                </h3>
+
+                <Video data={video.video} poster={video.videoPoster.url} />
+                <Link
+                  className="HeroLink"
+                  to={ctaProduct[locale].slug}
+                  css={`
+                    margin-top: 20px;
+                  `}
+                >
+                  {" "}
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                  {ctaProduct[locale].title}
+                </Link>
+              </section>
+            )}
             <DownloadPDF />
           </Main>
         </Layout>

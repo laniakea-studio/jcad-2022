@@ -7,9 +7,8 @@ import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 import { SvgLogoFooter } from "./SvgCollection.js";
 import { useIntersection } from "../hooks/useIntersection";
-import { NetlifyForm } from "./NetlifyForm";
 import figbc from "../assets/figbc-white.png";
-import { DownloadPDF } from "./DowloadPDF";
+import { contact } from "../constants/slugs";
 
 export const Footer = ({ menu, prefix }) => {
   const { locale } = useContext(LocaleContext);
@@ -178,27 +177,54 @@ export const Footer = ({ menu, prefix }) => {
                   </p>
                 </div>
               ))}
-            <div
-              className="col"
-              css={`
-                justify-self: end;
-                width: fit-content;
-                min-width: 120px;
-                @media (max-width: 900px) {
-                  margin-left: 0;
-                }
-              `}
-            >
-              <img
-                src={figbc}
-                alt="Green building council Finland"
+            {!isContactPage && (
+              <div
+                className="col"
                 css={`
-                  width: 100%;
-                  max-width: 180px;
+                  justify-self: end;
+                  width: fit-content;
+                  min-width: 120px;
+                  @media (max-width: 900px) {
+                    margin-left: 0;
+                  }
                 `}
-              />
-            </div>
+              >
+                <div
+                  className="row"
+                  css={`
+                    .HeroLink {
+                      font-size: 18px;
+                      font-weight: 600;
+                      opacity: 0.6;
+                      svg {
+                        margin-bottom: -6px;
+                      }
+                      &:hover {
+                        opacity: 1;
+                      }
+                    }
+                  `}
+                >
+                  <Link className="HeroLink" to={contact[locale].slug}>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                        fill="#fff"
+                      />
+                    </svg>
+                    {contact[locale].title}
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
+
           <div ref={ref}>
             <div className="BigLogo row">
               <svg
@@ -272,8 +298,21 @@ export const Footer = ({ menu, prefix }) => {
               </svg>
             </div>
           </div>
-          <div className="row">
-            <p className="Copyright">
+
+          <div
+            className="row"
+            css={`
+              @media (max-width: 600px) {
+                flex-direction: column-reverse;
+              }
+            `}
+          >
+            <p
+              className="Copyright"
+              css={`
+                align-self: flex-end;
+              `}
+            >
               © {new Date().getFullYear()} {text.footer.companyName}.{" "}
               <Link
                 to={
@@ -288,6 +327,20 @@ export const Footer = ({ menu, prefix }) => {
               </Link>
               . {yhteystiedot.ytunnus}
             </p>
+            <img
+              src={figbc}
+              alt="Green building council Finland"
+              css={`
+                width: 100%;
+                max-width: 180px;
+                margin-left: auto;
+                margin-top: 40px;
+                margin-bottom: 30px;
+                @media (max-width: 600px) {
+                  margin-right: auto;
+                }
+              `}
+            />
           </div>
         </div>
       </FooterDiv>

@@ -217,10 +217,11 @@ const Main = styled.main`
     .VideoCol {
       padding-right: 20px;
       padding-left: 20px;
-      padding-top: 40px;
+      padding-top: 140px;
       padding-bottom: 40px;
       @media (max-width: 900px) {
         padding-left: 20px;
+        padding-top: 40px;
       }
     }
     .wrap {

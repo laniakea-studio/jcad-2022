@@ -49,6 +49,7 @@ export const DownloadPDF = ({ menu, prefix }) => {
     <section
       className="row container padding"
       css={`
+        border-top: 0.9px dashed;
         color: #fff;
         padding-top: 60px;
         padding-bottom: 60px;

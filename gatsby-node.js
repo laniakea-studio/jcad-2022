@@ -248,6 +248,11 @@ exports.createPages = async ({ graphql, actions }) => {
           },
           data: {
             page: data.home,
+            video: {
+              video: data.product.video,
+              videoteksti: data.product.videoTeksti,
+              videoPoster: data.product.videoPoster,
+            },
           },
         },
       });

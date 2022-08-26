@@ -10,6 +10,22 @@ export const order = {
   sv: { title: "Tilaa JCAD", slug: "bestall" },
 };
 
+export const contact = {
+  fi: { title: "Kaikki yhteystiedot", slug: "yhteystiedot" },
+  en: { title: "All contacts", slug: "contact" },
+  sv: { title: "Alla kontakter", slug: "kontakter" },
+};
+
+// On home page after video
+export const ctaProduct = {
+  fi: {
+    title: "Tutustu määrälaskentaohjelmiston hyötyihin",
+    slug: "maaralaskentaohjelmisto",
+  },
+  en: { title: "Read more", slug: "product" },
+  sv: { title: "Läs mera", slug: "produkten" },
+};
+
 // Todo: use this as source for gatsby node
 export const webinar = {
   fi: "webinaarit",
