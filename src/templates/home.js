@@ -160,6 +160,10 @@ const Page = ({ pageContext }) => {
                   color: #fff;
                   padding-top: 80px;
                   padding-bottom: 140px;
+                  @media (max-width: 600px) {
+                    padding-top: 0;
+                    padding-bottom: 60px;
+                  }
                   .VideoBox {
                     max-width: 920px;
                     margin: 0 auto;
@@ -169,6 +173,14 @@ const Page = ({ pageContext }) => {
                     max-width: 700px;
                     text-align: center;
                     margin-bottom: 30px;
+                    @media (max-width: 600px) {
+                      font-size: 20px;
+                    }
+                  }
+                  .HeroLink {
+                    @media (max-width: 600px) {
+                      font-size: 16px;
+                    }
                   }
                 `}
               >
