@@ -39,7 +39,7 @@ export const DownloadPDF = ({ menu, prefix }) => {
       { type: "submit", text: "Avaa kyselytutkimus (PDF)" },
     ],
     messages: {
-      submitSucces: "",
+      submitSucces: `<a href=${globalFi.pdf.url} target="_blank">Avaa kyselytutkimus tästä</a>`,
       fillAllInputs: text.contact.fillEmail,
     },
     url: globalFi.pdf.url,

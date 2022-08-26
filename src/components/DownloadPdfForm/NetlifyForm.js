@@ -124,6 +124,7 @@ export const NetlifyForm = ({ data, isLightBg }) => {
           // Open PDF in new Tab
 
           window.open(url, "_blank");
+          setShowMessage(messages.submitSucces);
           setFormData(schema);
         })
         .catch((error) => alert(error));
@@ -316,6 +317,21 @@ export const NetlifyForm = ({ data, isLightBg }) => {
           </>
         );
       })}
+
+      <div
+        className="messageBox"
+        css={`
+          a {
+            font-size: 18px;
+            text-decoration: underline;
+            font-weight: 500;
+          }
+        `}
+      >
+        {showMessage && (
+          <span dangerouslySetInnerHTML={{ __html: showMessage }} />
+        )}
+      </div>
       <p
         css={`
           font-size: 15px;
@@ -330,9 +346,6 @@ export const NetlifyForm = ({ data, isLightBg }) => {
         Huom! Annat samalla luvan sähköpostimarkkinointiin ja hyväksyt{" "}
         <a href="/tietosuojaseloste">tietosuojaselosteen</a>.
       </p>
-      <div className="messageBox">
-        {showMessage && <span>{showMessage}</span>}
-      </div>
     </form>
   );
 };
