@@ -15,6 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
       webinars: "webinaarit",
       jobs: "rekry",
       order: "tilaa",
+      thanksDemoBooking: "kiitos-demon-varauksesta",
     },
     en: {
       product: "product",
@@ -25,6 +26,7 @@ exports.createPages = async ({ graphql, actions }) => {
       webinars: "webinars",
       jobs: "jobs",
       order: "order",
+      thanksDemoBooking: "thanks-demo-booking",
     },
     sv: {
       product: "produkten",
@@ -35,6 +37,7 @@ exports.createPages = async ({ graphql, actions }) => {
       webinars: "webinarer",
       jobs: "jobb",
       order: "bestall",
+      thanksDemoBooking: "tack-demo-bokning",
     },
   };
 
@@ -330,6 +333,23 @@ exports.createPages = async ({ graphql, actions }) => {
           data: {
             home: data.about,
             referenssit: data.allReferences,
+          },
+        },
+      });
+
+      // THANK YOU PAGES
+      createPage({
+        path: `/${prefix + slugs[locale].thanksDemoBooking}`,
+        component: path.resolve(`src/templates/thanks-demo-booking.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/thanks-demo-booking`,
+            en: null,
+            sv: null,
+          },
+          data: {
+            page: "",
           },
         },
       });
