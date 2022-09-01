@@ -105,7 +105,7 @@ const Page = ({ pageContext }) => {
           <div className="col">
             <div
               className="calendly-inline-widget"
-              data-url="https://calendly.com/jcad-booking/tilaa-demo?hide_event_type_details=1&hide_gdpr_banner=1&background_color=000053&text_color=ffffff&primary_color=ffffff"
+              data-url={`${page.calendlyLink}?hide_event_type_details=1&hide_gdpr_banner=1&background_color=000053&text_color=ffffff&primary_color=ffffff`}
             />
             <script
               type="text/javascript"

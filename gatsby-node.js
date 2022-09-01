@@ -350,8 +350,8 @@ exports.createPages = async ({ graphql, actions }) => {
           locale: locale,
           localeSlugs: {
             fi: `/${slugs.fi.bookDemo}`,
-            en: `/${slugs.en.bookDemo}`,
-            sv: `/${slugs.sv.bookDemo}`,
+            en: `/en/${slugs.en.bookDemo}`,
+            sv: `/sv/${slugs.sv.bookDemo}`,
           },
           data: {
             page: data.booking,
