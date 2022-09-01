@@ -15,6 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
       webinars: "webinaarit",
       jobs: "rekry",
       order: "tilaa",
+      bookDemo: "varaa-demo",
       thanksDemoBooking: "kiitos-demon-varauksesta",
     },
     en: {
@@ -26,6 +27,7 @@ exports.createPages = async ({ graphql, actions }) => {
       webinars: "webinars",
       jobs: "jobs",
       order: "order",
+      bookDemo: "book-demo",
       thanksDemoBooking: "thanks-demo-booking",
     },
     sv: {
@@ -37,6 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
       webinars: "webinarer",
       jobs: "jobb",
       order: "bestall",
+      bookDemo: "boka-demo",
       thanksDemoBooking: "tack-demo-bokning",
     },
   };
@@ -190,6 +193,8 @@ exports.createPages = async ({ graphql, actions }) => {
         content
         calendlyBookingUrl
         buttonText
+        pageContent
+        calendlyLink
       }
       yhteystiedot: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {
         seoMetaTags {
@@ -337,14 +342,30 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
 
-      // THANK YOU PAGES
+      // BOOK DEMO AND THANK YOU PAGES
+      createPage({
+        path: `/${prefix + slugs[locale].bookDemo}`,
+        component: path.resolve(`src/templates/book-demo.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.bookDemo}`,
+            en: `/${slugs.en.bookDemo}`,
+            sv: `/${slugs.sv.bookDemo}`,
+          },
+          data: {
+            page: data.booking,
+          },
+        },
+      });
+
       createPage({
         path: `/${prefix + slugs[locale].thanksDemoBooking}`,
         component: path.resolve(`src/templates/thanks-demo-booking.js`),
         context: {
           locale: locale,
           localeSlugs: {
-            fi: `/thanks-demo-booking`,
+            fi: `/${slugs.fi.thanksDemoBooking}`,
             en: null,
             sv: null,
           },
