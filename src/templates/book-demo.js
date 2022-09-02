@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { StaticImage } from "gatsby-plugin-image";
+import { InlineWidget } from "react-calendly";
 
 const content = {
   fi: {
@@ -75,7 +76,7 @@ const Page = ({ pageContext }) => {
                 margin-bottom: 20px;
                 opacity: 0.65;
                 span {
-                  font-size: 19px;
+                  font-size: 17px;
                   font-weight: 600;
                   @media (max-width: 600px) {
                     font-size: 16px;
@@ -103,14 +104,8 @@ const Page = ({ pageContext }) => {
             <div dangerouslySetInnerHTML={{ __html: page.pageContent }} />
           </div>
           <div className="col">
-            <div
-              className="calendly-inline-widget"
-              data-url={`${page.calendlyLink}?hide_event_type_details=1&hide_gdpr_banner=1&background_color=000053&text_color=ffffff&primary_color=ffffff`}
-            />
-            <script
-              type="text/javascript"
-              src="https://assets.calendly.com/assets/external/widget.js"
-              async
+            <InlineWidget
+              url={`${page.calendlyLink}?hide_event_type_details=1&hide_gdpr_banner=1&background_color=000053&text_color=ffffff&primary_color=ffffff`}
             />
           </div>
         </div>

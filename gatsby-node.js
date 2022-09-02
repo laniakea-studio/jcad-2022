@@ -137,7 +137,7 @@ exports.createPages = async ({ graphql, actions }) => {
           content
         }
         arvosanat
-        kuvaajanTeksti
+        kuvaajanTeksti        
       }
       jobs: datoCmsRekry(locale: { eq: "${locale}" }) {
         seoMetaTags {
@@ -179,6 +179,8 @@ exports.createPages = async ({ graphql, actions }) => {
             nosto
             kuvaus
             puhuja
+            isRestream
+            restreamCode
           }
         }
       }
@@ -410,6 +412,27 @@ exports.createPages = async ({ graphql, actions }) => {
               },
             },
           });
+
+          if (i.node.isRestream) {
+            createPage({
+              path: `/live/${i.node.slug}-${i.node.webinaarinAjankohta.slice(
+                0,
+                10
+              )}`,
+              component: path.resolve(`src/templates/RestreamLive.js`),
+              context: {
+                locale: locale,
+                data: {
+                  page: i.node,
+                },
+                localeSlugs: {
+                  fi: `/`,
+                  en: null,
+                  sv: null,
+                },
+              },
+            });
+          }
         });
 
         createPage({
@@ -441,22 +464,6 @@ exports.createPages = async ({ graphql, actions }) => {
             data: {
               page: data.order,
               pricing: data.pricing,
-            },
-          },
-        });
-
-        createPage({
-          path: `/restream`,
-          component: path.resolve(`src/templates/restream.js`),
-          context: {
-            locale: locale,
-            localeSlugs: {
-              fi: `/restream`,
-              en: null,
-              sv: null,
-            },
-            data: {
-              page: "",
             },
           },
         });
