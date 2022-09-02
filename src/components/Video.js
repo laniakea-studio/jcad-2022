@@ -22,6 +22,7 @@ export const Video = ({ data, autoplay, poster }) => {
     }
   };
 
+  /*
   useEffect(() => {
     // Video and seekbar
     const video = videoRef.current;
@@ -50,7 +51,7 @@ export const Video = ({ data, autoplay, poster }) => {
       });
     });
   });
-
+*/
   return (
     <VideoBox
       className="VideoBox"
