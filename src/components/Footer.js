@@ -8,9 +8,9 @@ import { theme } from "../theme/theme";
 import { SvgLogoFooter } from "./SvgCollection.js";
 import { useIntersection } from "../hooks/useIntersection";
 import figbc from "../assets/figbc-white.png";
-import { contact } from "../constants/slugs";
+import { contact, prefix } from "../constants/slugs";
 
-export const Footer = ({ menu, prefix }) => {
+export const Footer = ({ menu }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const path = typeof window !== "undefined" ? window.location.pathname : "";
@@ -205,7 +205,10 @@ export const Footer = ({ menu, prefix }) => {
                     }
                   `}
                 >
-                  <Link className="HeroLink" to={contact[locale].slug}>
+                  <Link
+                    className="HeroLink"
+                    to={`${prefix[locale] + contact[locale].slug}`}
+                  >
                     <svg
                       width="24"
                       height="24"
