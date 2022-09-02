@@ -307,15 +307,6 @@ const MobileMenu = ({
           width: 100%;
           background: ${color};
         }
-        .localeLinks {
-          padding-top: 40px;
-          padding-right: 30px;
-          a {
-            font-size: 18px;
-            font-weight: 500;
-            margin-left: 20px;
-          }
-        }
       `}
     >
       <div className="col container align-end">
@@ -365,10 +356,30 @@ const MobileMenu = ({
             </svg>
           </span>
         </a>
-        <div className="localeLinks">
-          <Link to={localeSlugs.fi} className="localeLink">
-            FI
-          </Link>
+        <div
+          className="localeLinks row justify-end"
+          css={`
+            margin-top: 20px;
+            a {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 50px;
+              height: 50px;
+              padding: 10px;
+              border-radius: 50%;
+              font-size: 18px;
+              font-weight: 500;
+              margin-left: 10px;
+              margin-right: 10px;
+            }
+          `}
+        >
+          {localeSlugs.fi && (
+            <Link to={localeSlugs.fi} className="localeLink">
+              FI
+            </Link>
+          )}
           {localeSlugs.en && (
             <Link to={localeSlugs.en} className="localeLink">
               EN
