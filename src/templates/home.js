@@ -173,6 +173,7 @@ const Page = ({ pageContext }) => {
                     max-width: 700px;
                     text-align: center;
                     margin-bottom: 30px;
+                    font-weight: 400;
                     @media (max-width: 600px) {
                       font-size: 20px;
                     }
@@ -189,7 +190,15 @@ const Page = ({ pageContext }) => {
                   rakennusliikkeet hyödyntävät JCAD-määrälaskentaohjelmistoa.
                 </h3>
 
-                <Video data={video.video} poster={video.videoPoster.url} />
+                <Video
+                  data={video.video}
+                  poster={video.videoPoster.url}
+                  markers={[
+                    { position: 0, text: "Mikä JCAD?" },
+                    { position: 35, text: "Mittaus pohjapiirustuksesta" },
+                    { position: 82, text: "Piha-alueiden määrälaskenta" },
+                  ]}
+                />
                 <Link
                   className="HeroLink"
                   to={ctaProduct[locale].slug}

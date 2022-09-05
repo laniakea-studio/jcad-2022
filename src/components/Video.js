@@ -2,13 +2,25 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../theme/theme";
 
-export const Video = ({ data, autoplay, poster }) => {
+/*
+const markerks = [
+  {position: 3, text: "Hei"},
+  {position: 3, text: "Hei"},
+]
+*/
+
+export const Video = ({ data, autoplay, poster, markers }) => {
   const [showPlayButton, setShowPlayButton] = useState(true);
   const [showControls, setShowControls] = useState(false);
+  const [videoDuration, setVideoDuration] = useState(null);
   const videoRef = useRef(null);
-  const seekBarRef = useRef(null);
 
   const handlePlayVideo = () => {
+    videoRef.current.play();
+  };
+
+  const seekTo = (timeToStart) => {
+    videoRef.current.currentTime = timeToStart;
     videoRef.current.play();
   };
 
@@ -22,53 +34,48 @@ export const Video = ({ data, autoplay, poster }) => {
     }
   };
 
-  /*
-  useEffect(() => {
-    // Video and seekbar
-    const video = videoRef.current;
-    const seekBar = seekBarRef.current;
+  const handleLoadedMetadata = (e) => {
+    setVideoDuration(e.target.duration);
+  };
 
-    // Positions of markers in seconds.
-    const positions = [3, 6.5, 7];
-
-    // Set the markers when we CAN know the duration of the video.
-    video.addEventListener("loadedmetadata", () => {
-      // Add each marker to the #seekbar element.
-      positions.forEach(function (position) {
-        // Is position within range of the duration?
-        if (position <= video.duration) {
-          // Calculate position in percentage..
-          const left = (position / video.duration) * 100 + "%";
-
-          // ..create marker and give it the left value..
-          const marker = document.createElement("div");
-          marker.classList.add("bubles");
-          marker.style.left = left;
-
-          // ..and add the marker to the #seekbar.
-          seekBar.appendChild(marker);
-        }
-      });
-    });
-  });
-*/
   return (
     <VideoBox
       className="VideoBox"
       css={`
         .seek-bar {
           position: relative;
+          display: flex;
+          margin-top: -19px;
+          margin-left: 19px;
+          @media (max-width: 600px) {
+            display: none;
+          }
         }
         .bubles {
-          width: 8px;
-          height: 8px;
-          background: #fff;
-          border-radius: 50%;
+          position: absolute;
+          border-left: 2px solid rgba(255, 255, 255, 0.5);
+          cursor: pointer;
+          :hover span {
+            opacity: 1;
+          }
+          span {
+            white-space: nowrap;
+            font-size: 14px;
+            margin-left: 4px;
+            opacity: 0.8;
+          }
+          :hover {
+            border-left: 2px solid rgba(255, 255, 255, 0.9);
+          }
+          :hover span {
+            opacity: 1;
+          }
         }
       `}
     >
       <video
         ref={videoRef}
+        onLoadedMetadata={handleLoadedMetadata}
         poster={poster && poster}
         width="100%"
         height="auto"
@@ -80,7 +87,21 @@ export const Video = ({ data, autoplay, poster }) => {
       </video>
       <div id="video-controls">
         <div id="seek-bar-container">
-          <div className="seek-bar" ref={seekBarRef}>
+          <div className="seek-bar">
+            {videoDuration &&
+              markers.map((marker) => {
+                const left = (marker.position / videoDuration) * 100 + "%";
+
+                return (
+                  <div
+                    className="bubles"
+                    onClick={() => seekTo(marker.position)}
+                    style={{ left }}
+                  >
+                    <span>{marker.text}</span>
+                  </div>
+                );
+              })}
             <div id="current-time"></div>
           </div>
         </div>
