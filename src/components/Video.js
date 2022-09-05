@@ -46,7 +46,7 @@ export const Video = ({ data, autoplay, poster, markers }) => {
           position: relative;
           display: flex;
           margin-top: -19px;
-          margin-left: 19px;
+          margin-left: 16px;
           @media (max-width: 600px) {
             display: none;
           }
@@ -54,6 +54,7 @@ export const Video = ({ data, autoplay, poster, markers }) => {
         .bubles {
           position: absolute;
           border-left: 2px solid rgba(255, 255, 255, 0.5);
+          border-radius: 2px;
           cursor: pointer;
           :hover span {
             opacity: 1;
