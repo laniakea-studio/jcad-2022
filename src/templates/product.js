@@ -63,8 +63,8 @@ const Product = ({ pageContext }) => {
                     poster={data.product.videoPoster.url}
                     markers={[
                       { position: 0, text: "Mikä JCAD?" },
-                      { position: 35, text: "Mittaus pohjapiirustuksesta" },
-                      { position: 82, text: "Piha-alueiden määrälaskenta" },
+                      { position: 35, text: "Pohjapiirustus" },
+                      { position: 82, text: "Piha-alueet" },
                     ]}
                   />
                 )}
