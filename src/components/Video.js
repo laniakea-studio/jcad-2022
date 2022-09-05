@@ -89,7 +89,7 @@ export const Video = ({ data, autoplay, poster, markers }) => {
         <div id="seek-bar-container">
           <div className="seek-bar">
             {videoDuration &&
-              markers &&
+              markers !== typeof "undefined" &&
               markers.map((marker) => {
                 const left = (marker.position / videoDuration) * 100 + "%";
 
