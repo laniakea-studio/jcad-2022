@@ -61,6 +61,11 @@ const Product = ({ pageContext }) => {
                   <Video
                     data={data.product.video}
                     poster={data.product.videoPoster.url}
+                    markers={[
+                      { position: 0, text: "Mikä JCAD?" },
+                      { position: 35, text: "Mittaus pohjapiirustuksesta" },
+                      { position: 82, text: "Piha-alueiden määrälaskenta" },
+                    ]}
                   />
                 )}
                 <p className="Videoteksti">{data.product.videoteksti}</p>
