@@ -57,8 +57,6 @@ export const OrderForm = ({ data, prices, isLightBg, redirectOnSuccess }) => {
     price = price * kayttajiaNumber;
   }
 
-  console.log({ formData });
-
   const onInputChange = (e) => {
     const key = e.target.name;
     const value = e.target.value;

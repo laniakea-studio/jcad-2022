@@ -87,7 +87,6 @@ export const NetlifyForm = ({ data, isLightBg, redirectOnSuccess }) => {
   const [formData, setFormData] = useState(schema);
   const [showMessage, setShowMessage] = useState(null);
 
-  console.log({ formData });
   const onInputChange = (e) => {
     const key = e.target.name;
     const value = e.target.value;
@@ -148,7 +147,6 @@ export const NetlifyForm = ({ data, isLightBg, redirectOnSuccess }) => {
       method="POST"
       data-netlify="true"
       enctype="multipart/form-data"
-      action={redirectOnSuccess}
       css={`
         font-weight: 400;
         height: 100%;
