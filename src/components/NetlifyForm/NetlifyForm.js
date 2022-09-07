@@ -121,8 +121,11 @@ export const NetlifyForm = ({ data, isLightBg, redirectOnSuccess }) => {
         body: data,
       })
         .then(() => {
-          setShowMessage(messages.submitSucces);
-          setFormData(schema);
+          if (redirectOnSuccess) {
+            window.location.href = redirectOnSuccess;
+          } else {
+            setShowMessage(messages.submitSucces);
+          }
         })
         .catch((error) => alert(error));
     } else {

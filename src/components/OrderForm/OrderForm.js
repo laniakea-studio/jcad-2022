@@ -6,7 +6,7 @@ import * as snippet from "../../locales";
 import { Switch } from "./Switch";
 import { Radio } from "./Radio";
 
-export const OrderForm = ({ data, prices, isLightBg }) => {
+export const OrderForm = ({ data, prices, isLightBg, redirectOnSuccess }) => {
   const { name, inputs, messages } = data;
   const styles = isLightBg ? stylesLightBg : stylesDarkBg;
 
@@ -81,8 +81,11 @@ export const OrderForm = ({ data, prices, isLightBg }) => {
         body: encode(formData),
       })
         .then(() => {
-          setShowMessage(messages.submitSucces);
-          setFormData(schema);
+          if (redirectOnSuccess) {
+            window.location.href = redirectOnSuccess;
+          } else {
+            setShowMessage(messages.submitSucces);
+          }
         })
         .catch((error) => alert(error));
     } else {

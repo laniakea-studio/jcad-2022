@@ -144,6 +144,7 @@ const Page = ({ pageContext, location }) => {
                     valikkoSopimuskausi,
                     extraHinnasto,
                   }}
+                  redirectOnSuccess="/kiitos-tilauksesta"
                 />
               </div>
             </div>
