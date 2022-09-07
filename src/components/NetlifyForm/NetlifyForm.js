@@ -147,6 +147,7 @@ export const NetlifyForm = ({ data, isLightBg, redirectOnSuccess }) => {
       method="POST"
       data-netlify="true"
       enctype="multipart/form-data"
+      action={redirectOnSuccess}
       css={`
         font-weight: 400;
         height: 100%;
