@@ -111,7 +111,6 @@ const Page = ({ pageContext }) => {
               css={`
                 margin-top: 30px;
                 width: 100%;
-                max-width: 1100px;
               `}
             />
             <p className="AskSomething">Lähetä kysymys webinaarin puhujalle</p>
