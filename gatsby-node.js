@@ -17,6 +17,8 @@ exports.createPages = async ({ graphql, actions }) => {
       order: "tilaa",
       bookDemo: "varaa-demo",
       thanksDemoBooking: "kiitos-demon-varauksesta",
+      thanksWebinarBooking: "kiitos-webinaariin-ilmoittautumisesta",
+      thanksOrder: "kiitos-tilauksesta",
     },
     en: {
       product: "product",
@@ -29,6 +31,8 @@ exports.createPages = async ({ graphql, actions }) => {
       order: "order",
       bookDemo: "book-demo",
       thanksDemoBooking: "thanks-demo-booking",
+      thanksWebinarBooking: "kiitos-webinar-booking",
+      thanksOrder: "thanks-order",
     },
     sv: {
       product: "produkten",
@@ -41,6 +45,8 @@ exports.createPages = async ({ graphql, actions }) => {
       order: "bestall",
       bookDemo: "boka-demo",
       thanksDemoBooking: "tack-demo-bokning",
+      thanksWebinarBooking: "tack-webinar-bokning",
+      thanksOrder: "tack-bestallning",
     },
   };
 
@@ -368,6 +374,38 @@ exports.createPages = async ({ graphql, actions }) => {
           locale: locale,
           localeSlugs: {
             fi: `/${slugs.fi.thanksDemoBooking}`,
+            en: null,
+            sv: null,
+          },
+          data: {
+            page: "",
+          },
+        },
+      });
+
+      createPage({
+        path: `/${prefix + slugs[locale].thanksWebinarBooking}`,
+        component: path.resolve(`src/templates/thanks-webinar-booking.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.thanksWebinarBooking}`,
+            en: null,
+            sv: null,
+          },
+          data: {
+            page: "",
+          },
+        },
+      });
+
+      createPage({
+        path: `/${prefix + slugs[locale].thanksOrder}`,
+        component: path.resolve(`src/templates/thanks-order.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.thanksOrder}`,
             en: null,
             sv: null,
           },

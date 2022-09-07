@@ -10,15 +10,15 @@ import { StaticImage } from "gatsby-plugin-image";
 
 const content = {
   fi: {
-    h1: "Kiitos varauksesta!",
-    p: "Nähdään pian. Lähetimme kalenterivarauksen sähköpostiisi. Jos et saanut varausta tai sinulla on kysyttävää, ota yhteyttä lauri.pasma@jcad.fi.",
+    h1: "Kiitos tilauksesta!",
+    p: "Olemme sinuun pian yhteydessä.",
   },
   en: {
-    h1: "Thanks for booking!",
+    h1: "Thanks!",
     p: "See you soon.",
   },
   sv: {
-    h1: "Tack för bokingen!",
+    h1: "Tack!",
     p: "Vi ses snart.",
   },
 };
