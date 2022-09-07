@@ -68,7 +68,7 @@ const stylesLightBg = {
   messageColor: "#000",
 };
 
-export const NetlifyForm = ({ data, isLightBg }) => {
+export const NetlifyForm = ({ data, isLightBg, redirectOnSuccess }) => {
   const { name, inputs, messages } = data;
   const styles = isLightBg ? stylesLightBg : stylesDarkBg;
 
@@ -118,7 +118,6 @@ export const NetlifyForm = ({ data, isLightBg }) => {
 
       fetch("/", {
         method: "POST",
-
         body: data,
       })
         .then(() => {
@@ -146,6 +145,7 @@ export const NetlifyForm = ({ data, isLightBg }) => {
       method="POST"
       data-netlify="true"
       enctype="multipart/form-data"
+      action={redirectOnSuccess}
       css={`
         font-weight: 400;
         height: 100%;
