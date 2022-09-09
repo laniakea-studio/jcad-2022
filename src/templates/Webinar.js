@@ -25,6 +25,14 @@ const Page = ({ pageContext }) => {
     timeStyle: "short",
   });
 
+  const dateLong = d.toLocaleDateString("fi-FI", {
+    weekday: "long",
+    month: "numeric",
+    day: "numeric",
+  });
+
+  const dateAndTime = `${dateLong} klo ${hour}`;
+
   // Form
   const form = {
     name: "Webinaari",
@@ -37,6 +45,7 @@ const Page = ({ pageContext }) => {
       },
       { type: "hidden", name: "webinarName", value: page.title },
       { type: "hidden", name: "webinarDate", value: date },
+      { type: "hidden", name: "webinarDateAndTime", value: dateAndTime },
       { type: "submit", text: "Ilmoittaudu" },
     ],
     messages: {
