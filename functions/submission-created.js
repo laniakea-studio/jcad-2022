@@ -4,16 +4,20 @@ const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const { SENDINBLUE_API_KEY } = process.env;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications["api-key"];
+const apiKey = defaultClient.authentications["api-key"];
 apiKey.apiKey = SENDINBLUE_API_KEY;
 
-var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-
-var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
-
 exports.handler = async (event) => {
-  const { email } = JSON.parse(event.body).payload;
-  console.log(`Recieved a submission: ${email}`);
+  const { email, webinarName, webinarDateAndTime } = JSON.parse(
+    event.body
+  ).payload;
+  console.log(
+    `Recieved a submission: ${(email, webinarName, webinarDateAndTime)}`
+  );
+
+  const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+  const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
 
   sendSmtpEmail = {
     to: [
@@ -38,7 +42,7 @@ exports.handler = async (event) => {
       console.log("API called successfully. Returned data: " + data);
     },
     function (error) {
-      console.error(error);
+      console.error("Error", error);
     }
   );
 
