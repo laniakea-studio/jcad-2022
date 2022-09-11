@@ -14,9 +14,7 @@ exports.handler = async (event) => {
     event.body
   ).payload;
 
-  console.log(
-    `Recieved a submission: ${(email, webinarName, webinarDateAndTime)}`
-  );
+  console.log(`Recieved a submission: ${(email, webinarName)}`);
   console.log(`Recieved a webinar: ${webinarName}`);
   console.log(`Recieved a webinar date and time: ${webinar_date_and_time}`);
 
