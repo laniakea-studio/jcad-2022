@@ -14,7 +14,7 @@ exports.handler = async (event) => {
 
   //console.log(`Recieved a submission: ${email}`);
   console.log(
-    `DATA: ${(data.email, data.webinarName, data.webinarDateAndTime)}`
+    `DATA: ${data.email + data.webinarName + data.webinarDateAndTime}`
   );
 
   return fetch("https://api.buttondown.email/v1/subscribers", {
@@ -34,8 +34,8 @@ exports.handler = async (event) => {
       ],
       templateId: 1,
       params: {
-        webinar_name: "Saneeraus- ja purkukohteiden laskenta",
-        webinar_date_and_time: "keskiviikkona 14.9. klo 9.00",
+        webinar_name: data.webinarName,
+        webinar_date_and_time: data.webinarDateAndTime,
       },
       headers: {
         "X-Mailin-custom":
