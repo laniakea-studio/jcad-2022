@@ -17,7 +17,7 @@ exports.handler = async (event) => {
     `DATA: ${data.email + data.webinarName + data.webinarDateAndTime}`
   );
 
-  return fetch("https://api.buttondown.email/v1/subscribers", {
+  return fetch("https://api.sendinblue.com/v3/smtp/email", {
     method: "POST",
     url: "https://api.sendinblue.com/v3/smtp/email",
     headers: {
@@ -46,7 +46,7 @@ exports.handler = async (event) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(`Submitted to SendinBlue: ${data}`);
+      console.log(`Submitted to SendinBlue, email: ${data.email}`);
     })
     .catch((error) => ({ statusCode: 422, body: String(error) }));
 
