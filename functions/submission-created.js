@@ -10,7 +10,7 @@ apiKey.apiKey = SENDINBLUE_API_KEY;
 console.log(`Starts, key`, SENDINBLUE_API_KEY);
 
 exports.handler = async (event) => {
-  const { email, webinarName, webinarDateAndTime } = JSON.parse(
+  const { email, webinarName, webinar_date_and_time } = JSON.parse(
     event.body
   ).payload;
 
@@ -18,6 +18,7 @@ exports.handler = async (event) => {
     `Recieved a submission: ${(email, webinarName, webinarDateAndTime)}`
   );
   console.log(`Recieved a webinar: ${webinarName}`);
+  console.log(`Recieved a webinar date and time: ${webinar_date_and_time}`);
 
   var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
