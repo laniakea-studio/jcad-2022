@@ -20,8 +20,8 @@ exports.handler = async (event) => {
   sendSmtpEmail = {
     to: [
       {
-        email: "aleksi@laniakea.fi",
-        name: "John Doe",
+        email: data.email,
+        //name: "",
       },
     ],
     templateId: 1,
