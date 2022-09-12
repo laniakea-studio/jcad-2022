@@ -7,7 +7,9 @@ var apiKey = defaultClient.authentications["api-key"];
 apiKey.apiKey = SENDINBLUE_API_KEY;
 
 exports.handler = async (event) => {
-  const { data } = JSON.parse(event.body).payload;
+  const { data, form_name } = JSON.parse(event.body).payload;
+
+  if (form_name !== "Webinaari") return console.log("Form name is not Webinar");
 
   console.log(
     `DATA: ${data.email + data.webinarName + data.webinarDateAndTime}`
