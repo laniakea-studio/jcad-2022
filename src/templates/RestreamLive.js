@@ -113,8 +113,6 @@ const Page = ({ pageContext }) => {
                 width: 100%;
               `}
             />
-            <p className="AskSomething">Lähetä kysymys webinaarin puhujalle</p>
-            <NetlifyForm data={form} />
           </section>
         </main>
       </Layout>
