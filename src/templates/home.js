@@ -12,6 +12,7 @@ import { MagneticLinkBox } from "@components/MagneticLinkBox";
 import { useHover } from "../hooks/useHover";
 import { DownloadPDF } from "../components/DowloadPDF";
 import { Video } from "@components/Video";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -112,7 +113,7 @@ const Page = ({ pageContext }) => {
                 <div className="col">
                   <p>{page.intro}</p>
 
-                  <div className="row">
+                  <div className="col">
                     {page.cta.map((i) => (
                       <Link className="HeroLink" to={i.slug}>
                         <svg
@@ -130,6 +131,29 @@ const Page = ({ pageContext }) => {
                         {i.text}
                       </Link>
                     ))}
+                    {/* CTA scroll to Rakennusalan hukka PDF */}
+                    <button
+                      className="HeroLink"
+                      onClick={() => scrollTo("#DownloadPDF")}
+                      css={`
+                        margin-top: 10px;
+                        padding-left: 0;
+                      `}
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                          fill="#fff"
+                        />
+                      </svg>
+                      Hukka rakennusalalla 2022 -kyselytutkimus
+                    </button>
                   </div>
                 </div>
               </div>
@@ -285,6 +309,8 @@ const Main = styled.main`
     font-size: 18px;
     font-weight: 600;
     opacity: 0.6;
+    color: #fff;
+    text-align: left;
     svg {
       margin-bottom: -6px;
     }

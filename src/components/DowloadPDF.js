@@ -47,6 +47,7 @@ export const DownloadPDF = ({ menu, prefix }) => {
 
   return (
     <section
+      id="DownloadPDF"
       className="row container padding"
       css={`
         border-top: 0.9px dashed;
