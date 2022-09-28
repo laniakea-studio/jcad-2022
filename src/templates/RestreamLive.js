@@ -7,13 +7,21 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
+import { useLocalStorage } from "@hooks/useLocaleStorage";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
 
-  const [hasJoined, setHasJoined] = useState(false);
+  const [hasJoinedStorage, setHasJoinedStorage] = useLocalStorage(
+    "hasJoined",
+    "0"
+  );
+
+  const handleHasJoined = () => {
+    setHasJoinedStorage("1");
+  };
 
   // Date Format
   let d = new Date(page.webinaarinAjankohta);
@@ -112,7 +120,9 @@ const Page = ({ pageContext }) => {
               `}
             >
               <div
-                style={{ visibility: hasJoined ? "visible" : "hidden" }}
+                style={{
+                  visibility: hasJoinedStorage === "1" ? "visible" : "hidden",
+                }}
                 dangerouslySetInnerHTML={{ __html: page.restreamCode }}
                 css={`
                   margin-top: 30px;
@@ -120,7 +130,7 @@ const Page = ({ pageContext }) => {
                 `}
               />
               <div
-                style={{ display: hasJoined ? "none" : "flex" }}
+                style={{ display: hasJoinedStorage === "1" ? "none" : "flex" }}
                 css={`
                   height: 100%;
                   position: absolute;
@@ -135,10 +145,7 @@ const Page = ({ pageContext }) => {
                 className="col align-center"
               >
                 <p>Liity webinaariin syöttämällä sähköpostisi.</p>
-                <NetlifyForm
-                  data={form}
-                  handleHasJoined={() => setHasJoined(true)}
-                />
+                <NetlifyForm data={form} handleHasJoined={handleHasJoined} />
               </div>
             </div>
           </section>
