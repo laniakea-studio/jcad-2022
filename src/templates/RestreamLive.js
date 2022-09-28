@@ -21,6 +21,8 @@ const Page = ({ pageContext }) => {
 
   console.log("LS", hasJoinedStorage);
 
+  const showPlayer = hasJoinedStorage === "1";
+
   const handleHasJoined = () => {
     setHasJoinedStorage("1");
   };
@@ -123,7 +125,7 @@ const Page = ({ pageContext }) => {
             >
               <div
                 style={{
-                  visibility: hasJoinedStorage === "1" ? "visible" : "hidden",
+                  visibility: showPlayer ? "visible" : "hidden",
                 }}
                 dangerouslySetInnerHTML={{ __html: page.restreamCode }}
                 css={`
@@ -132,7 +134,7 @@ const Page = ({ pageContext }) => {
                 `}
               />
               <div
-                style={{ display: hasJoinedStorage === "1" ? "none" : "flex" }}
+                style={{ display: showPlayer ? "none" : "flex" }}
                 css={`
                   height: 100%;
                   position: absolute;
