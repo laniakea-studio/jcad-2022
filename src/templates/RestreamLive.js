@@ -19,6 +19,8 @@ const Page = ({ pageContext }) => {
     "0"
   );
 
+  console.log("LS", hasJoinedStorage);
+
   const handleHasJoined = () => {
     setHasJoinedStorage("1");
   };
