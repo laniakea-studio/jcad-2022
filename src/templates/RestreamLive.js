@@ -14,7 +14,7 @@ const Page = ({ pageContext }) => {
   const text = snippet[locale];
   const { page } = pageContext.data;
 
-  const [showPlayer, setShowPlayer] = useLocalStorage("hasJoined", "0");
+  const [showPlayer, setShowPlayer] = useLocalStorage("hasJoined", null);
 
   const handleHasJoined = () => {
     setShowPlayer("1");
