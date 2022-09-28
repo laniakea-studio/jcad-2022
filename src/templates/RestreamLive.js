@@ -7,12 +7,22 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
+import { useLocalStorage } from "@hooks/useLocaleStorage";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
 
+  const [showPlayer, setShowPlayer] = useLocalStorage("hasJoined", "0");
+
+  const handleHasJoined = () => {
+    setShowPlayer("1");
+  };
+
+  console.log("SHOW PLAYER", showPlayer);
+
+  /*
   let initShowPlayer = false;
   if (typeof window !== "undefined") {
     initShowPlayer = JSON.parse(localStorage.getItem("hasJoined")) || false;
@@ -27,6 +37,9 @@ const Page = ({ pageContext }) => {
   useEffect(() => {
     localStorage.setItem("hasJoined", JSON.stringify(showPlayer));
   }, [showPlayer]);
+
+  console.log("SHOW PLAYER: ", showPlayer);
+  */
 
   // Date Format
   let d = new Date(page.webinaarinAjankohta);
@@ -126,7 +139,7 @@ const Page = ({ pageContext }) => {
             >
               <div
                 style={{
-                  visibility: showPlayer ? "visible" : "hidden",
+                  visibility: showPlayer === "1" ? "visible" : "hidden",
                 }}
                 dangerouslySetInnerHTML={{ __html: page.restreamCode }}
                 css={`
@@ -135,7 +148,7 @@ const Page = ({ pageContext }) => {
                 `}
               />
               <div
-                style={{ display: showPlayer ? "none" : "flex" }}
+                style={{ display: showPlayer === "1" ? "none" : "flex" }}
                 css={`
                   height: 100%;
                   position: absolute;
