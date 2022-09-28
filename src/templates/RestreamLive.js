@@ -8,13 +8,15 @@ import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
 
+const isBrowser = () => typeof window !== "undefined";
+
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
 
   let initShowPlayer = false;
-  if (window !== "undefined") {
+  if (isBrowser) {
     initShowPlayer = JSON.parse(localStorage.getItem("hasJoined")) || false;
   }
 
