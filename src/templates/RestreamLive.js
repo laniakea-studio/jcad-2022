@@ -120,7 +120,7 @@ const Page = ({ pageContext }) => {
             >
               <div
                 style={{
-                  visibility: showPlayer === "1" ? "visible" : "hidden",
+                  visibility: showPlayer ? "visible" : "hidden",
                 }}
                 dangerouslySetInnerHTML={{ __html: page.restreamCode }}
                 css={`
@@ -129,7 +129,7 @@ const Page = ({ pageContext }) => {
                 `}
               />
               <div
-                style={{ display: showPlayer === "1" ? "none" : "flex" }}
+                style={{ display: showPlayer ? "none" : "flex" }}
                 css={`
                   height: 100%;
                   position: absolute;
