@@ -8,7 +8,7 @@ import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
 
-const isBrowser = () => typeof window !== "undefined";
+const isBrowser = typeof window !== "undefined";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -147,11 +147,20 @@ const Page = ({ pageContext }) => {
                   padding-top: 50px;
                   p {
                     font-size: 18px;
+                    margin-bottom: 4px;
+                  }
+                  span {
+                    font-size: 15px;
+                    opacity: 0.7;
+                    margin-bottom: 20px;
                   }
                 `}
                 className="col align-center"
               >
                 <p>Liity webinaariin syöttämällä sähköpostisi.</p>
+                <span>
+                  Sähköpostin ei tarvitse olla sama, jolla ilmoittauduit.
+                </span>
                 <NetlifyForm data={form} handleHasJoined={handleHasJoined} />
               </div>
             </div>
