@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
@@ -6,12 +6,14 @@ import { HelmetDatoCms } from "gatsby-source-datocms";
 import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
-import { NetlifyForm } from "@components/NetlifyForm";
+import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
+
+  const [hasJoined, setHasJoined] = useState(false);
 
   // Date Format
   let d = new Date(page.webinaarinAjankohta);
@@ -26,21 +28,19 @@ const Page = ({ pageContext }) => {
 
   // Form data
   const form = {
-    name: "Webinaari-kysymys",
+    name: "Webinaariin osallistuneet",
     inputs: [
       {
-        type: "textarea",
-        name: "message",
-        label: "",
+        type: "email",
+        name: "email",
+        label: "Sähköposti",
         isRequired: true,
       },
-      { type: "hidden", name: "webinarName", value: page.title },
-      { type: "hidden", name: "webinarDate", value: date },
-      { type: "submit", text: "Lähetä kysymys" },
+      { type: "submit", text: "Liity webinaariin" },
     ],
     messages: {
-      submitSucces: "Kiitos, kysymyksesi on vastaanotettu!",
-      fillAllInputs: "Viestikenttä on tyhjä.",
+      submitSucces: ``,
+      fillAllInputs: "Anna sähköpostiosoitteesi.",
     },
   };
 
@@ -63,6 +63,7 @@ const Page = ({ pageContext }) => {
             css={`
               padding-top: 60px;
               padding-bottom: 160px;
+              min-height: 100vh;
               .SubTitle {
                 text-transform: uppercase;
                 font-weight: 500;
@@ -71,9 +72,6 @@ const Page = ({ pageContext }) => {
                 text-transform: none;
                 font-size: 36px;
                 margin: 5px auto 15px;
-              }
-              form label {
-                display: none;
               }
               p.AskSomething {
                 margin-top: 20px;
@@ -105,14 +103,42 @@ const Page = ({ pageContext }) => {
                 {hour}
               </span>
             </div>
-
             <div
-              dangerouslySetInnerHTML={{ __html: page.restreamCode }}
               css={`
-                margin-top: 30px;
+                position: relative;
                 width: 100%;
               `}
-            />
+            >
+              <div
+                style={{ visibility: hasJoined ? "visible" : "hidden" }}
+                dangerouslySetInnerHTML={{ __html: page.restreamCode }}
+                css={`
+                  margin-top: 30px;
+                  width: 100%;
+                `}
+              />
+              <div
+                style={{ display: hasJoined ? "none" : "flex" }}
+                css={`
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  padding-top: 50px;
+                  p {
+                    font-size: 18px;
+                  }
+                `}
+                className="col align-center"
+              >
+                <p>Liity webinaariin syöttämällä sähköpostisi.</p>
+                <NetlifyForm
+                  data={form}
+                  handleHasJoined={() => setHasJoined(true)}
+                />
+              </div>
+            </div>
           </section>
         </main>
       </Layout>
