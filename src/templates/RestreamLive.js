@@ -36,6 +36,8 @@ const Page = ({ pageContext }) => {
         label: "Sähköposti",
         isRequired: true,
       },
+      { type: "hidden", name: "webinarName", value: page.title },
+      { type: "hidden", name: "webinarDate", value: date },
       { type: "submit", text: "Liity webinaariin" },
     ],
     messages: {
