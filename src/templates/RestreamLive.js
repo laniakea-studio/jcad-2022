@@ -7,24 +7,21 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
-import { useLocalStorage } from "@hooks/useLocaleStorage";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page } = pageContext.data;
 
-  const [hasJoinedStorage, setHasJoinedStorage] = useLocalStorage(
-    "hasJoined",
-    "0"
+  const [showPlayer, setShowPlayer] = useState(
+    JSON.parse(localStorage.getItem("hasJoined")) || false
   );
 
-  console.log("LS", hasJoinedStorage);
-
-  const showPlayer = hasJoinedStorage === "1";
+  console.log("LS", showPlayer);
 
   const handleHasJoined = () => {
-    setHasJoinedStorage("1");
+    localStorage.setItem("hasJoined", JSON.stringify(true));
+    setShowPlayer(true);
   };
 
   // Date Format
