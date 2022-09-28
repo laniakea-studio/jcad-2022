@@ -14,32 +14,13 @@ const Page = ({ pageContext }) => {
   const text = snippet[locale];
   const { page } = pageContext.data;
 
-  const [showPlayer, setShowPlayer] = useLocalStorage("hasJoined", null);
-
-  const handleHasJoined = () => {
-    setShowPlayer("1");
-  };
-
-  console.log("SHOW PLAYER", showPlayer);
-
-  /*
-  let initShowPlayer = false;
-  if (typeof window !== "undefined") {
-    initShowPlayer = JSON.parse(localStorage.getItem("hasJoined")) || false;
-  }
-
-  const [showPlayer, setShowPlayer] = useState(initShowPlayer);
+  const [showPlayer, setShowPlayer] = useState(false);
 
   const handleHasJoined = () => {
     setShowPlayer(true);
   };
 
-  useEffect(() => {
-    localStorage.setItem("hasJoined", JSON.stringify(showPlayer));
-  }, [showPlayer]);
-
-  console.log("SHOW PLAYER: ", showPlayer);
-  */
+  console.log("SHOW PLAYER", showPlayer);
 
   // Date Format
   let d = new Date(page.webinaarinAjankohta);
