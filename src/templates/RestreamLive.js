@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
@@ -13,16 +13,20 @@ const Page = ({ pageContext }) => {
   const text = snippet[locale];
   const { page } = pageContext.data;
 
-  const [showPlayer, setShowPlayer] = useState(
-    JSON.parse(localStorage.getItem("hasJoined")) || false
-  );
+  let initShowPlayer = false;
+  if (window !== "undefined") {
+    initShowPlayer = JSON.parse(localStorage.getItem("hasJoined")) || false;
+  }
 
-  console.log("LS", showPlayer);
+  const [showPlayer, setShowPlayer] = useState(initShowPlayer);
 
   const handleHasJoined = () => {
-    localStorage.setItem("hasJoined", JSON.stringify(true));
     setShowPlayer(true);
   };
+
+  useEffect(() => {
+    localStorage.setItem("hasJoined", JSON.stringify(showPlayer));
+  }, [showPlayer]);
 
   // Date Format
   let d = new Date(page.webinaarinAjankohta);
