@@ -1,4 +1,5 @@
 /* Configure */
+
 .container {
   width: 100%;
   max-width: 1500px;
@@ -7,6 +8,7 @@
   border-left: 0.8px dashed #fff;
   border-right: 0.8px dashed #fff;
 }
+
 @media (max-width: 600px) {
   .container {
     border-left: none;
@@ -33,24 +35,30 @@
   padding-left: 20px;
   padding-right: 20px;
 }
-/*
-@media (min-width: 600px) {
-  .padding {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
+
+/* Utilities */
+
+.relative {
+  position: relative;
 }
-@media (min-width: 1200px) {
-  .padding {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
+
+.inline-flex {
+  display: inline-flex;
 }
-*/
-/* Pure Utility Classes */
+
 .flex {
   display: flex;
 }
+
+/* MARGIN */
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* FLEX */
+
 .col {
   display: flex;
   flex-direction: column;
@@ -60,17 +68,39 @@
   display: flex;
   width: 100%;
 }
-.inline-flex {
-  display: inline-flex;
+.space-between {
+  justify-content: space-between;
 }
-.col {
-  display: flex;
-  flex-direction: column;
+.space-around {
+  justify-content: space-around;
 }
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+.space-evenly {
+  justify-content: space-evenly;
 }
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: flex-end;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+
+.all-center {
+  justify-content: center;
+  align-items: center;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -89,6 +119,22 @@
 .flex-6 {
   flex: 6;
 }
+
+/* TEXT */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* MEDIA */
 @media (max-width: 400px) {
   .col-400 {
     flex-direction: column;
@@ -115,47 +161,7 @@
   }
 }
 @media (max-width: 900px) {
-  .col-800 {
+  .col-900 {
     flex-direction: column;
   }
-}
-.space-between {
-  justify-content: space-between;
-}
-.space-around {
-  justify-content: space-around;
-}
-.space-evenly {
-  justify-content: space-evenly;
-}
-.justify-center {
-  justify-content: center;
-}
-.justify-end {
-  justify-content: flex-end;
-}
-.align-center {
-  align-items: center;
-}
-.align-end {
-  align-items: flex-end;
-}
-.wrap {
-  flex-wrap: wrap;
-}
-.text-center {
-  text-align: center;
-}
-.all-center {
-  justify-content: center;
-  align-items: center;
-}
-
-.relative {
-  position: relative;
-}
-
-/* TEXT */
-.uppercase {
-  text-transform: uppercase;
 }
