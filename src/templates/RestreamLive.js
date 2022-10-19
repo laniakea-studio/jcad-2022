@@ -20,8 +20,6 @@ const Page = ({ pageContext }) => {
     setShowPlayer(true);
   };
 
-  console.log("SHOW PLAYER", showPlayer);
-
   // Date Format
   let d = new Date(page.webinaarinAjankohta);
   const date = d.toLocaleDateString("fi-FI", {

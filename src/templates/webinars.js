@@ -56,7 +56,6 @@ const Page = ({ pageContext }) => {
   const firstDate = new Date(nextWebinar.node.webinaarinAjankohta);
   const secondDate = new Date();
   const daysleft = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-  console.log(allWebinars);
 
   return (
     <>

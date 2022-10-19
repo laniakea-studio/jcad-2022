@@ -7,7 +7,6 @@ import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 import { SvgLogoFooter } from "./SvgCollection.js";
 import { useIntersection } from "../hooks/useIntersection";
-import figbc from "../assets/figbc-white.png";
 import { contact, prefix } from "../constants/slugs";
 
 export const Footer = ({ menu }) => {
@@ -330,20 +329,6 @@ export const Footer = ({ menu }) => {
               </Link>
               . {yhteystiedot.ytunnus}
             </p>
-            <img
-              src={figbc}
-              alt="Green building council Finland"
-              css={`
-                width: 100%;
-                max-width: 180px;
-                margin-left: auto;
-                margin-top: 40px;
-                margin-bottom: 30px;
-                @media (max-width: 600px) {
-                  margin-right: auto;
-                }
-              `}
-            />
           </div>
         </div>
       </FooterDiv>

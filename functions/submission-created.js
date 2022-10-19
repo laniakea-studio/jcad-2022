@@ -11,10 +11,6 @@ exports.handler = async (event) => {
 
   if (form_name !== "Webinaari") return console.log("Form name is not Webinar");
 
-  console.log(
-    `DATA: ${data.email + data.webinarName + data.webinarDateAndTime}`
-  );
-
   var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
   var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
