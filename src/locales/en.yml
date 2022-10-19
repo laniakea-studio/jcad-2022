@@ -28,7 +28,7 @@ footer:
   admin: Admin
   sales: Sales
   accounts: Accounts
-  support: Customer service and support
+  support: Customer service
   buttonBackToTop: Back to top
   companyName: JCAD
   linkGdpr: GDPR
@@ -59,7 +59,7 @@ product:
 contactPage:
   title: Contacts
   sales: Orders
-  support: Customer Service & Support
+  support: Customer Service
   accounts: Account Management
   experts: Specialists
   locations: Offices

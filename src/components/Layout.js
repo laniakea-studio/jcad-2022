@@ -71,7 +71,7 @@ export const Layout = ({ children, page }) => {
       />
       <Header className="pagePadding">
         <div className="row align-center container padding">
-          <div className="col justify-center">
+          <div>
             <Link className="logo" to={`${prefix[locale]}`}>
               <SvgLogo />
             </Link>
@@ -89,24 +89,62 @@ export const Layout = ({ children, page }) => {
                     {i.title}
                   </Link>
                 ))}
-              {page === "home" && locale === "fi" && (
+              {page === "home" && (
                 <>
+                  <div
+                    className="row"
+                    css={`
+                      margin-left: 40px;
+                      a {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 10px;
+                        font-weight: 600;
+                      }
+                    `}
+                  >
+                    {localeSlugs.fi && (
+                      <Link to={localeSlugs.fi} className="localeLink">
+                        FI
+                      </Link>
+                    )}
+                    {localeSlugs.en && (
+                      <Link to={localeSlugs.en} className="localeLink">
+                        EN
+                      </Link>
+                    )}
+                    {localeSlugs.sv && (
+                      <Link to={localeSlugs.sv} className="localeLink">
+                        SV
+                      </Link>
+                    )}
+                  </div>
                   <a
                     className="MainLink"
                     href="https://extra.jcad.fi/"
                     rel="noreferrer"
-                    style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
+                    style={{
+                      transition: "0.1s",
+                      opacity: menuOpen ? 0 : 1,
+                    }}
                   >
                     {text.menu.login}
                   </a>
-                  <Link
-                    to={`${prefix[locale] + order[locale].slug}`}
-                    activeClassName="active"
-                    className="MainLink"
-                    style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
-                  >
-                    {order[locale].title}
-                  </Link>
+                  {locale === "fi" && (
+                    <Link
+                      to={`${prefix[locale] + order[locale].slug}`}
+                      activeClassName="active"
+                      className="MainLink"
+                      style={{
+                        transition: "0.1s",
+                        opacity: menuOpen ? 0 : 1,
+                        minWidth: "130px",
+                      }}
+                    >
+                      {order[locale].title}
+                    </Link>
+                  )}
                 </>
               )}
               <PopupButton

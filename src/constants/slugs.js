@@ -69,7 +69,7 @@ export const fullMenu = {
     { title: "Pricing", slug: "pricing" },
     //{ title: "Webinars", slug: "webinars" },
     { title: "Contact", slug: "contact" },
-    { title: "About us", slug: "about" },
+    //{ title: "About us", slug: "about" },
     //{ title: "Jobs", slug: "jobs" },
   ],
   sv: [
@@ -77,7 +77,7 @@ export const fullMenu = {
     { title: "Prislista", slug: "pris" },
     //{ title: "Webinarer", slug: "webinarer" },
     { title: "Kontakter", slug: "kontakter" },
-    { title: "Om oss", slug: "om-oss" },
+    //{ title: "Om oss", slug: "om-oss" },
     //{ title: "Jobb", slug: "jobb" },
   ],
 };
