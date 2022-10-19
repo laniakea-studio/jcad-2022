@@ -210,8 +210,8 @@ const Page = ({ pageContext }) => {
                 `}
               >
                 <h3>
-                  Katso, miten talotekniikka- ja pintaurakoitsijat sekä
-                  rakennusliikkeet hyödyntävät JCAD-määrälaskentaohjelmistoa.
+                  Katso, miten rakennusalan urakoitsijat hyödyntävät
+                  JCAD-määrälaskentaohjelmistoa.
                 </h3>
 
                 <Video
