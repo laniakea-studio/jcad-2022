@@ -95,6 +95,9 @@ export const Layout = ({ children, page }) => {
                     className="row"
                     css={`
                       margin-left: 40px;
+                      @media (max-width: 500px) {
+                        display: none;
+                      }
                       a {
                         display: flex;
                         justify-content: center;
