@@ -68,7 +68,12 @@ const stylesLightBg = {
   messageColor: "#000",
 };
 
-export const NetlifyForm = ({ data, isLightBg, redirectOnSuccess }) => {
+export const NetlifyForm = ({
+  data,
+  isLightBg,
+  redirectOnSuccess,
+  plausibleGoal,
+}) => {
   const { name, inputs, messages } = data;
   const styles = isLightBg ? stylesLightBg : stylesDarkBg;
 
@@ -121,6 +126,7 @@ export const NetlifyForm = ({ data, isLightBg, redirectOnSuccess }) => {
       })
         .then(() => {
           if (redirectOnSuccess) {
+            window.plausible(plausibleGoal);
             window.location.href = redirectOnSuccess;
           } else {
             setShowMessage(messages.submitSucces);

@@ -80,6 +80,7 @@ export const OrderForm = ({ data, prices, isLightBg, redirectOnSuccess }) => {
       })
         .then(() => {
           if (redirectOnSuccess) {
+            window.plausible("Teki tilauksen");
             window.location.href = redirectOnSuccess;
           } else {
             setShowMessage(messages.submitSucces);

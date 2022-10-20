@@ -124,6 +124,7 @@ const Page = ({ pageContext }) => {
               <p>Jätä sähköpostisi ja saat kutsun webinaariin.</p>
               <NetlifyForm
                 data={form}
+                plausibleGoal="Ilmoittautui webinaariin"
                 redirectOnSuccess="/kiitos-webinaariin-ilmoittautumisesta"
               />
             </div>

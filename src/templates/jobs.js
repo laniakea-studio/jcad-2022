@@ -137,7 +137,11 @@ const Page = ({ pageContext }) => {
                 />
               </div>
               <div className="col">
-                <NetlifyForm data={form} isLightBg />
+                <NetlifyForm
+                  data={form}
+                  plausibleGoal="Lähetti rekryhakemuksen"
+                  isLightBg
+                />
               </div>
             </div>
           </section>

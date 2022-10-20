@@ -121,8 +121,8 @@ export const NetlifyForm = ({ data, isLightBg }) => {
         body: data,
       })
         .then(() => {
+          window.plausible("Latasi PDF-oppaan");
           // Open PDF in new Tab
-
           window.open(url, "_blank");
           setShowMessage(messages.submitSucces);
           setFormData(schema);
