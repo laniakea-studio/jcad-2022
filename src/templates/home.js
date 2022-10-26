@@ -218,9 +218,9 @@ const Page = ({ pageContext }) => {
                   data={video.video}
                   poster={video.videoPoster.url}
                   markers={[
-                    { position: 0, text: "Mikä JCAD?" },
-                    { position: 35, text: "Mittaus pohjapiirustuksesta" },
-                    { position: 82, text: "Piha-alueiden määrälaskenta" },
+                    { positionSec: 0, text: "Mikä JCAD?" },
+                    { positionSec: 35, text: "Mittaus pohjapiirustuksesta" },
+                    { positionSec: 82, text: "Piha-alueiden määrälaskenta" },
                   ]}
                 />
                 <Link

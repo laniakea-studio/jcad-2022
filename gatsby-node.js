@@ -245,6 +245,65 @@ exports.createPages = async ({ graphql, actions }) => {
       gdpr: datoCmsTietosuoja(locale: { eq: "${locale}" }) {        
         tietosuojaseloste
       }
+      allCampaigns: allDatoCmsCampaign(
+        filter: { locale: { eq: "${locale}" } }
+        ) {
+        edges {
+          node {       
+            seoMetaTags {
+              tags           
+            }   
+            supTitle
+            heading
+            slug
+            videoText
+            video {
+              video {
+              streamingUrl
+              mp4Url
+              }
+            }
+            videoPoster {
+              url
+            }
+            asiakkaidenKommentteja {
+              content
+            }
+            aloitaKokeilujakso
+          }
+        }
+      }
+      allTutorials: allDatoCmsTutoriaalit(
+        filter: { locale: { eq: "${locale}" } }
+        ) {
+        edges {
+          node {       
+            seoMetaTags {
+              tags           
+            }   
+            title
+            kuvaus
+            slug
+            videot {
+              otsikko
+              kuvaus
+              video {
+                video {
+                streamingUrl
+                mp4Url
+                }
+              }
+              videoPoster {
+                url
+              }
+              osiot {
+                text
+                positionSec
+              }
+            }            
+          }
+        }
+      }
     }
   `);
 
@@ -417,6 +476,42 @@ exports.createPages = async ({ graphql, actions }) => {
 
       // Only Finnish pages
       if (locale === "fi") {
+        data.allTutorials.edges.map((i) => {
+          createPage({
+            path: `/tutoriaalit/${i.node.slug}`,
+            component: path.resolve(`src/templates/Tutorial.js`),
+            context: {
+              locale: locale,
+              localeSlugs: {
+                fi: `/${i.node.slug}`,
+                en: null,
+                sv: null,
+              },
+              data: {
+                page: i.node,
+              },
+            },
+          });
+        });
+
+        data.allCampaigns.edges.map((i) => {
+          createPage({
+            path: `/${i.node.slug}`,
+            component: path.resolve(`src/templates/Campaign.js`),
+            context: {
+              locale: locale,
+              localeSlugs: {
+                fi: `/${i.node.slug}`,
+                en: null,
+                sv: null,
+              },
+              data: {
+                page: i.node,
+              },
+            },
+          });
+        });
+
         createPage({
           path: `/${prefix + slugs[locale].webinars}`,
           component: path.resolve(`src/templates/webinars.js`),

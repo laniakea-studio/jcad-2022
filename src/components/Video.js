@@ -15,6 +15,8 @@ export const Video = ({ data, autoplay, poster, markers }) => {
   const [videoDuration, setVideoDuration] = useState(null);
   const videoRef = useRef(null);
 
+  console.log("M", markers);
+
   const handlePlayVideo = () => {
     videoRef.current.play();
   };
@@ -90,14 +92,17 @@ export const Video = ({ data, autoplay, poster, markers }) => {
         <div id="seek-bar-container">
           <div className="seek-bar">
             {videoDuration &&
-              markers !== typeof "undefined" &&
+              markers &&
               markers.map((marker) => {
-                const left = (marker.position / videoDuration) * 100 + "%";
+                const left = (marker.positionSec / videoDuration) * 100 + "%";
 
                 return (
                   <div
                     className="bubles"
-                    onClick={() => seekTo(marker.position)}
+                    onClick={() => {
+                      seekTo(marker.positionSec);
+                      setShowPlayButton(false);
+                    }}
                     style={{ left }}
                   >
                     <span>{marker.text}</span>

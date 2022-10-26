@@ -149,6 +149,7 @@ export const NetlifyForm = ({
 
   return (
     <form
+      className="NetlifyForm"
       name={schema["form-name"]}
       method="POST"
       data-netlify="true"

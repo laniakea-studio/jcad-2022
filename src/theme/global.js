@@ -97,6 +97,11 @@ input[type=number] {
   }
     
 /* New style */
+ul li,
+ol li {
+  margin-bottom: 20px;
+}
+
 section {
   display: flex;
 }
@@ -111,11 +116,6 @@ article h1 {
 article p {
   font-size: 16px;
   margin-bottom: 20px;
-}
-article ul li,
-article ol li {
-  font-size: 16px;
-  margin-bottom: 10px;
 }
 article h2 {
   font-size: 32px;
