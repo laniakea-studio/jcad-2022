@@ -72,7 +72,7 @@ const Page = ({ pageContext }) => {
 
               {page.videot.map((item) => (
                 <div
-                  id={`#${item.linkId}`}
+                  id={item.linkId}
                   className="col"
                   css={`
                     padding-bottom: 80px;

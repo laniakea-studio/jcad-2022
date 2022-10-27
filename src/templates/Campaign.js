@@ -93,7 +93,7 @@ const Page = ({ pageContext }) => {
                 margin-bottom: 50px;
               `}
             >
-              Aktvoi kokeilu
+              Aktivoi kokeilu
             </button>
 
             <div
