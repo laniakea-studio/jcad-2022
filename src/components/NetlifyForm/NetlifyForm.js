@@ -125,8 +125,10 @@ export const NetlifyForm = ({
         body: data,
       })
         .then(() => {
-          if (redirectOnSuccess) {
+          if (plausibleGoal && process.env.NODE_ENV !== "development") {
             window.plausible(plausibleGoal);
+          }
+          if (redirectOnSuccess) {
             window.location.href = redirectOnSuccess;
           } else {
             setShowMessage(messages.submitSucces);
@@ -142,6 +144,7 @@ export const NetlifyForm = ({
     let formIsValid = false;
 
     const requiredFields = inputs.filter((input) => input.isRequired);
+
     formIsValid = requiredFields.every((field) => formData[field.name]);
 
     return formIsValid;

@@ -99,7 +99,7 @@ input[type=number] {
 /* New style */
 ul li,
 ol li {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 section {

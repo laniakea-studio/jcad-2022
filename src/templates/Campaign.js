@@ -6,9 +6,10 @@ import styled from "styled-components";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
-import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
+import { NetlifyForm } from "@components/NetlifyForm";
 import { useLocalStorage } from "@hooks/useLocaleStorage";
 import { Video } from "@components/Video";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -37,12 +38,11 @@ const Page = ({ pageContext }) => {
         label: "Sähköposti",
         isRequired: true,
       },
-      { type: "submit", text: "Aloita kokeilu" },
+      { type: "submit", text: "Lähetä aktivointipyyntö" },
     ],
     messages: {
-      submitSucces:
-        "Kiitos ilmoittautumisesta! Saat lisätietoja sähköpostiisi myöhemmin.",
-      fillAllInputs: "Anna sähköpostiosoitteesi.",
+      submitSucces: "Kiitos! Katso sähköpostisi.",
+      fillAllInputs: "Täytä kaikki kentät.",
     },
   };
 
@@ -64,7 +64,7 @@ const Page = ({ pageContext }) => {
           <section
             className="col padding container align-center"
             css={`
-              padding-top: 80px;
+              padding-top: 60px;
               padding-bottom: 160px;
               min-height: 100vh;
               .SubTitle {
@@ -74,7 +74,8 @@ const Page = ({ pageContext }) => {
               h1 {
                 text-transform: none;
                 font-size: 36px;
-                margin: 5px auto 120px;
+                margin: 5px auto 30px;
+                text-align: center;
               }
               h3 {
                 font-size: 20px;
@@ -85,6 +86,15 @@ const Page = ({ pageContext }) => {
           >
             <span className="SubTitle">{page.supTitle}</span>
             <h1>{page.heading}</h1>
+            <button
+              className="btn white"
+              onClick={() => scrollTo("#aloita")}
+              css={`
+                margin-bottom: 50px;
+              `}
+            >
+              Aktvoi kokeilu
+            </button>
 
             <div
               className="row col-1000"
@@ -93,14 +103,17 @@ const Page = ({ pageContext }) => {
                 margin-bottom: 120px;
               `}
             >
+              <Video data={page.video} poster={page.videoPoster.url} />
               <div
                 css={`
                   padding-top: 30px;
-                  padding-right: 50px;
+                  padding-left: 50px;
+                  @media (max-width: 1000px) {
+                    padding-left: 0;
+                  }
                 `}
                 dangerouslySetInnerHTML={{ __html: page.videoText }}
               />
-              <Video data={page.video} poster={page.videoPoster.url} />
             </div>
             <h3>Asiakkaiden kommentteja</h3>
             <div
@@ -118,8 +131,10 @@ const Page = ({ pageContext }) => {
               ))}
             </div>
             <div
+              id="aloita"
               className="row col-900"
               css={`
+                padding-top: 20px;
                 max-width: 1150px;
                 form {
                   max-width: 400px;
@@ -140,7 +155,7 @@ const Page = ({ pageContext }) => {
               <NetlifyForm
                 data={form}
                 plausibleGoal="Kokeilee kustannuslaskentalisäosaa"
-                redirectOnSuccess="/kiitos-webinaariin-ilmoittautumisesta"
+                redirectOnSuccess={null}
               />
             </div>
           </section>

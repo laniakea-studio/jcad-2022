@@ -2,24 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../theme/theme";
 
-/*
-const markerks = [
-  {position: 3, text: "Hei"},
-  {position: 3, text: "Hei"},
-]
-*/
-
 export const Video = ({ data, autoplay, poster, markers }) => {
   const [showPlayButton, setShowPlayButton] = useState(true);
-  const [showControls, setShowControls] = useState(false);
   const [videoDuration, setVideoDuration] = useState(null);
   const videoRef = useRef(null);
-
-  console.log("M", markers);
-
-  const handlePlayVideo = () => {
-    videoRef.current.play();
-  };
 
   const seekTo = (timeToStart) => {
     videoRef.current.currentTime = timeToStart;
@@ -27,7 +13,6 @@ export const Video = ({ data, autoplay, poster, markers }) => {
   };
 
   const togglePlay = () => {
-    setShowControls(true);
     setShowPlayButton(false);
     if (videoRef.current.paused || videoRef.current.ended) {
       videoRef.current.play();
@@ -80,6 +65,7 @@ export const Video = ({ data, autoplay, poster, markers }) => {
         ref={videoRef}
         onLoadedMetadata={handleLoadedMetadata}
         poster={poster && poster}
+        onPlay={() => setShowPlayButton(false)}
         width="100%"
         height="auto"
         controls
@@ -154,13 +140,13 @@ const VideoBox = styled.div`
   video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 2px;
   }
   video[poster] {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 2px;
   }
   .play-button-wrapper {
