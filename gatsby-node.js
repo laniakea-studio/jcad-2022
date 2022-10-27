@@ -273,7 +273,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allTutorials: allDatoCmsTutoriaalit(
+      allTutorials: allDatoCmsTutoriaali(
         filter: { locale: { eq: "${locale}" } }
         ) {
         edges {
@@ -286,6 +286,7 @@ exports.createPages = async ({ graphql, actions }) => {
             slug
             videot {
               otsikko
+              linkId
               kuvaus
               video {
                 video {
