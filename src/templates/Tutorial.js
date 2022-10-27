@@ -75,6 +75,7 @@ const Page = ({ pageContext }) => {
                   id={item.linkId}
                   className="col"
                   css={`
+                    padding-top: 20px;
                     padding-bottom: 80px;
                     justify-content: flex-end;
                     h3 {
@@ -83,6 +84,11 @@ const Page = ({ pageContext }) => {
                       text-transform: none;
                       margin-right: auto;
                       margin-bottom: 30px;
+                      line-height: 1.1;
+                      @media (max-width: 600px) {
+                        padding-top: 4px;
+                        font-size: 18px;
+                      }
                     }
                   `}
                 >
@@ -95,6 +101,7 @@ const Page = ({ pageContext }) => {
                           color: rgba(255, 255, 255, 0.8);
                           font-size: 14px;
                           margin-top: 7px;
+                          width: 100px;
                         `}
                       >
                         Linkki kopioitu!
