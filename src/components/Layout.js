@@ -77,7 +77,51 @@ export const Layout = ({ children, page }) => {
             </Link>
           </div>
           <div className="col space-around">
-            <nav className="Main flex justify-end align-center">
+            <nav
+              className="Main flex justify-end align-center"
+              css={`
+                a.MainLink {
+                  position: relative;
+                  &:before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    width: 50px;
+                    height: 1px;
+                    bottom: 0;
+                    left: calc(50% - 25px);
+                    right: 0;
+                    background-color: #fff;
+                    transform: scaleX(0);
+                    transition: transform 0.3s ease;
+                  }
+                  &:hover::before,
+                  &.active::before {
+                    transform: scaleX(1);
+                  }
+                }
+                a.localeLink {
+                  position: relative;
+                  &:before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    width: 30px;
+                    height: 1px;
+                    bottom: 0;
+                    left: calc(50% - 15px);
+                    right: 0;
+                    background-color: #fff;
+                    transform: scaleX(0);
+                    transition: transform 0.3s ease;
+                  }
+                  &:hover::before,
+                  &.active::before {
+                    transform: scaleX(1);
+                  }
+                }
+              `}
+            >
               {page !== "home" &&
                 mainMenu[locale].map((i) => (
                   <Link
@@ -240,9 +284,6 @@ const Header = styled.header`
       padding: 10px 20px;
       font-weight: 600;
     }
-    a.active {
-      text-decoration: line-through;
-    }
     .btn {
       font-size: 15px !important;
       font-weight: 600;
@@ -320,6 +361,7 @@ const MobileMenu = ({
           letter-spacing: 0.05em;
           width: 100%;
           transition: all 0.2s;
+          &.active,
           &:hover,
           &:focus {
             background: rgba(255, 255, 255, 0.1);
@@ -327,9 +369,6 @@ const MobileMenu = ({
           span {
             max-width: 400px;
             width: 100%;
-          }
-          &.active {
-            text-decoration: line-through;
           }
           svg {
             margin-bottom: -3px;

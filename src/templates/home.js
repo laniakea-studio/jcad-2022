@@ -194,7 +194,7 @@ const Page = ({ pageContext }) => {
                   }
                   h3 {
                     text-transform: none;
-                    max-width: 700px;
+                    max-width: 500px;
                     text-align: center;
                     margin-bottom: 30px;
                     font-weight: 400;
