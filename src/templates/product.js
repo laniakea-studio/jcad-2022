@@ -36,7 +36,12 @@ const Product = ({ pageContext }) => {
         <Main>
           <div className="Hero pagePadding row">
             <div className="container row padding">
-              <div className="col">
+              <div
+                className="col"
+                css={`
+                  padding-right: 40px;
+                `}
+              >
                 <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
                 <p className="Lead">{data.product.lead}</p>
                 <div className="btns">
