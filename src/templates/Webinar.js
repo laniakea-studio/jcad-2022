@@ -82,6 +82,9 @@ const Page = ({ pageContext }) => {
                   }
                   span:not(:last-child) {
                     margin-right: 40px;
+                    @media (max-width: 600px) {
+                      margin-right: 20px;
+                    }
                   }
                 `}
               >
