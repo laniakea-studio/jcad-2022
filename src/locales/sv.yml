@@ -36,7 +36,7 @@ pricing:
   vat: + moms 24 %
   selectPeriod: Avtalstid
   selectLicense: Licenser
-  selectProduct: Välj programmet
+  selectProduct: Välj program
   mo: mån.
   license: Licens
   period: Avtalstid
