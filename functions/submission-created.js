@@ -20,7 +20,7 @@ exports.handler = async (event) => {
 
   var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
-  if (form_name !== "Webinaari") {
+  if (form_name === "Webinaari") {
     sendSmtpEmail = {
       to: [
         {
@@ -40,7 +40,7 @@ exports.handler = async (event) => {
     };
   }
 
-  if (form_name !== "Kustannuslaskenta-kampanja") {
+  if (form_name === "Kustannuslaskenta-kampanja") {
     sendSmtpEmail = {
       to: [
         {
