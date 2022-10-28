@@ -40,6 +40,9 @@ const Product = ({ pageContext }) => {
                 className="col"
                 css={`
                   padding-right: 40px;
+                  @media (max-width: 600px) {
+                    padding-right: 0;
+                  }
                 `}
               >
                 <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
