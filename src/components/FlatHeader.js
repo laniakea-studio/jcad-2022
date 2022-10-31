@@ -113,8 +113,22 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
             margin-right: 30px;
             position: relative;
             letter-spacing: 0.05em;
-            &.active {
-              text-decoration: line-through;
+            &:before {
+              content: "";
+              position: absolute;
+              display: block;
+              width: 50px;
+              height: 1px;
+              bottom: 0;
+              left: calc(50% - 25px);
+              right: 0;
+              background-color: #fff;
+              transform: scaleX(0);
+              transition: transform 0.3s ease;
+            }
+            &:hover::before,
+            &.active::before {
+              transform: scaleX(1);
             }
           }
         }
