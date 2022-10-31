@@ -275,12 +275,14 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       allTutorials: allDatoCmsTutoriaali(
         filter: { locale: { eq: "${locale}" } }
+        sort: { order: ASC, fields: position }
         ) {
         edges {
           node {       
             seoMetaTags {
               tags           
-            }   
+            }
+            kategoria
             title
             kuvaus
             slug
@@ -304,6 +306,12 @@ exports.createPages = async ({ graphql, actions }) => {
             }            
           }
         }
+      }
+      tutoriaalit: datoCmsTutoriaalit(locale: { eq: "${locale}" }) {       
+        seoMetaTags {
+          tags           
+        } 
+        content
       }
     }
   `);
@@ -493,6 +501,22 @@ exports.createPages = async ({ graphql, actions }) => {
               },
             },
           });
+        });
+
+        createPage({
+          path: `/tutoriaalit`,
+          component: path.resolve(`src/templates/tutoriaalit.js`),
+          context: {
+            locale: locale,
+            localeSlugs: {
+              fi: `/tutoriaalit`,
+              en: null,
+              sv: null,
+            },
+            data: {
+              page: data.tutoriaalit,
+            },
+          },
         });
 
         data.allCampaigns.edges.map((i) => {

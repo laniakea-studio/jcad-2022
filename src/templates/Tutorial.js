@@ -6,9 +6,8 @@ import styled from "styled-components";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
-import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
-import { useLocalStorage } from "@hooks/useLocaleStorage";
 import { Video } from "@components/Video";
+import { TutorialNavigation } from "@components/TutorialNavigation";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -34,20 +33,15 @@ const Page = ({ pageContext }) => {
             color: #fff;
             padding-top: 94px;
             background: ${theme.primary};
-            min-height: 100vh;
-            display: flex;
+            height: 100%;
             flex-direction: column;
           `}
         >
           <section
-            className="col padding container align-center"
+            className="row padding container col-800"
             css={`
               padding-top: 60px;
               padding-bottom: 160px;
-              min-height: 100vh;
-              .TempWrapper {
-                max-width: 900px;
-              }
               .SubTitle {
                 text-transform: uppercase;
                 font-weight: 500;
@@ -55,14 +49,16 @@ const Page = ({ pageContext }) => {
               h1 {
                 text-transform: none;
                 font-size: 36px;
-                margin: 5px auto 30px;
+                margin: 5px 0 30px;
               }
               .Kuvaus {
                 margin-bottom: 50px;
               }
             `}
           >
-            <div className="TempWrapper">
+            <TutorialNavigation />
+
+            <div className="col">
               <span className="SubTitle">Tutoriaali</span>
               <h1>{page.title}</h1>
               <div

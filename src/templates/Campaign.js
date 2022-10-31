@@ -38,10 +38,10 @@ const Page = ({ pageContext }) => {
         label: "Sähköposti",
         isRequired: true,
       },
-      { type: "submit", text: "Lähetä aktivointipyyntö" },
+      { type: "submit", text: "Aloita kokeilujakso" },
     ],
     messages: {
-      submitSucces: "Kiitos! Katso sähköpostisi.",
+      submitSucces: "Kiitos! Kurkkaa sähköpostisi.",
       fillAllInputs: "Täytä kaikki kentät.",
     },
   };

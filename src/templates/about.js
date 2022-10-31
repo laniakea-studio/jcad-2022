@@ -299,7 +299,7 @@ const HomePage = ({ pageContext }) => {
                 left: 20px;
               }
               h1 {
-                font-size: 65px;
+                font-size: 55px;
               }
               h2 {
                 font-size: 42px;
@@ -307,7 +307,7 @@ const HomePage = ({ pageContext }) => {
             }
             @media (max-width: 400px) {
               h1 {
-                font-size: 55px;
+                font-size: 45px;
               }
             }
           `}
