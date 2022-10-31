@@ -70,7 +70,11 @@ export const Layout = ({ children, page }) => {
         setMenuOpen={() => setMenuOpen(!menuOpen)}
       />
       <Header className="pagePadding">
-        <div className="row align-center container padding">
+        <div
+          className={`row align-center container padding${
+            page === "about" ? " hideSideBorders" : ""
+          }`}
+        >
           <div>
             <Link className="logo" to={`${prefix[locale]}`}>
               <SvgLogo />
@@ -249,6 +253,10 @@ const Header = styled.header`
     nav.Top {
       display: none;
     }
+  }
+  .container.hideSideBorders {
+    border-left: none;
+    border-right: none;
   }
   @media (max-width: 600px) {
     border-bottom: none;
