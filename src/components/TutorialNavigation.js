@@ -9,6 +9,8 @@ import { SvgLogoFooter } from "./SvgCollection.js";
 import { useIntersection } from "../hooks/useIntersection";
 import { DownloadPdfForm } from "./DownloadPdfForm";
 
+const isBrowser = typeof window !== "undefined";
+
 export const TutorialNavigation = ({ menu, prefix }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
@@ -39,8 +41,6 @@ export const TutorialNavigation = ({ menu, prefix }) => {
     "JCAD Sähkö",
     "JCAD LVI",
   ];
-
-  console.log("Aside All Tutorials: ", allTutorials.edges);
 
   return (
     <>
@@ -146,8 +146,12 @@ export const TutorialNavigation = ({ menu, prefix }) => {
                   {allTutorials.edges
                     .filter((i) => i.node.kategoria === kategoria)
                     .map((i, index) => {
-                      const isActive =
-                        window.location.href.indexOf(i.node.slug) > -1;
+                      let isActive = false;
+                      if (isBrowser) {
+                        isActive =
+                          window.location.href.indexOf(i.node.slug) > -1;
+                      }
+
                       return (
                         <>
                           <li className={isActive ? "active" : ""}>
