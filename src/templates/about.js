@@ -181,7 +181,7 @@ const HomePage = ({ pageContext }) => {
   return (
     <>
       <HelmetDatoCms seo={data.home.seoMetaTags} />
-      <Layout>
+      <Layout page="about">
         <main className="homePage">
           <div
             id="intro"
@@ -236,8 +236,8 @@ const HomePage = ({ pageContext }) => {
               font-weight: 600;
             }
             h1 {
-              font-size: 120px;
-              max-width: 900px;
+              font-size: 100px;
+              max-width: 1100px;
             }
             h2 {
               font-size: 75px;
@@ -273,7 +273,7 @@ const HomePage = ({ pageContext }) => {
                 left: 100px;
               }
               h1 {
-                font-size: 120px;
+                font-size: 100px;
               }
             }
             @media (max-width: 900px),
@@ -362,7 +362,7 @@ const HomePage = ({ pageContext }) => {
                     style={{ display: "none" }}
                   />
                   <h1 id="h1" className="otsikko-1">
-                    Vältä hukka.
+                    {data.home.otsikko1}
                   </h1>
                 </motion.div>
                 <motion.div
