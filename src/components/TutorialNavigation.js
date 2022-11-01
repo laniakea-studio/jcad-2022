@@ -69,8 +69,6 @@ export const TutorialNavigation = ({ menu, prefix }) => {
           min-width: 360px;
           padding-right: 30px;
           padding-bottom: 40px;
-          position: sticky;
-          top: 0px;
           &.hideNav {
             @media (max-width: 800px) {
               display: none;
@@ -137,76 +135,85 @@ export const TutorialNavigation = ({ menu, prefix }) => {
           }
         `}
       >
-        {kategoriat.map((kategoria) => (
-          <>
-            {allTutorials.edges.some((i) => i.node.kategoria === kategoria) && (
-              <>
-                <h3>{kategoria}</h3>
-                <ul className="Group">
-                  {allTutorials.edges
-                    .filter((i) => i.node.kategoria === kategoria)
-                    .map((i, index) => {
-                      let isActive = false;
-                      if (isBrowser) {
-                        isActive =
-                          window.location.href.indexOf(i.node.slug) > -1;
-                      }
+        <div
+          css={`
+            position: sticky;
+            top: 30px;
+          `}
+        >
+          {kategoriat.map((kategoria) => (
+            <>
+              {allTutorials.edges.some(
+                (i) => i.node.kategoria === kategoria
+              ) && (
+                <>
+                  <h3>{kategoria}</h3>
+                  <ul className="Group">
+                    {allTutorials.edges
+                      .filter((i) => i.node.kategoria === kategoria)
+                      .map((i, index) => {
+                        let isActive = false;
+                        if (isBrowser) {
+                          isActive =
+                            window.location.href.indexOf(i.node.slug) > -1;
+                        }
 
-                      return (
-                        <>
-                          <li className={isActive ? "active" : ""}>
-                            {index > 0 && <div className="Line" />}
-                            <span className="Dot" />
-                            <Link to={`/tutoriaalit/${i.node.slug}`}>
-                              {i.node.title}
-                            </Link>
-                          </li>
+                        return (
+                          <>
+                            <li className={isActive ? "active" : ""}>
+                              {index > 0 && <div className="Line" />}
+                              <span className="Dot" />
+                              <Link to={`/tutoriaalit/${i.node.slug}`}>
+                                {i.node.title}
+                              </Link>
+                            </li>
 
-                          {isActive && i.node.videot.length > 0 && (
-                            <ul
-                              css={`
-                                margin: 0;
-                                a {
-                                  padding-left: 30px;
-                                  font-size: 16px;
-                                  font-size: 400;
-                                  opacity: 1;
-                                  &:hover {
-                                    opacity: 0.8;
+                            {isActive && i.node.videot.length > 0 && (
+                              <ul
+                                css={`
+                                  margin: 0;
+                                  a {
+                                    padding-left: 30px;
+                                    font-size: 16px;
+                                    font-size: 400;
+                                    opacity: 1;
+                                    &:hover {
+                                      opacity: 0.8;
+                                    }
                                   }
-                                }
-                                .SubListLine {
-                                  width: 2px;
-                                  height: 20px;
-                                  left: 4px;
-                                  border-radius: 1px;
-                                  height: calc(100% + 24px);
-                                  background: #54548c;
-                                  position: absolute;
-                                  bottom: 8px;
-                                }
-                              `}
-                            >
-                              <div className="SubListLine" />
-                              {i.node.videot.map((video) => (
-                                <li>
-                                  <Link
-                                    to={`/tutoriaalit/${i.node.slug}#${video.linkId}`}
-                                  >
-                                    {video.otsikko}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </>
-                      );
-                    })}
-                </ul>
-              </>
-            )}
-          </>
-        ))}
+                                  .SubListLine {
+                                    width: 2px;
+                                    height: 20px;
+                                    left: 4px;
+                                    border-radius: 1px;
+                                    height: calc(100% + 24px);
+                                    background: #54548c;
+                                    position: absolute;
+                                    bottom: 8px;
+                                  }
+                                `}
+                              >
+                                <div className="SubListLine" />
+                                {i.node.videot.map((video) => (
+                                  <li>
+                                    <Link
+                                      to={`/tutoriaalit/${i.node.slug}#${video.linkId}`}
+                                    >
+                                      {video.otsikko}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </>
+                        );
+                      })}
+                  </ul>
+                </>
+              )}
+            </>
+          ))}
+        </div>
       </nav>
     </>
   );
