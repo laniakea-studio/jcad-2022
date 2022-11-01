@@ -12,7 +12,7 @@ import { TutorialNavigation } from "@components/TutorialNavigation";
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const { page } = pageContext.data;
-
+  console.log(page);
   const [linkCopied, setLinkCopied] = useState(null);
 
   function handleLinkCopy(e, link) {
@@ -66,7 +66,7 @@ const Page = ({ pageContext }) => {
                 dangerouslySetInnerHTML={{ __html: page.kuvaus }}
               />
 
-              {page.videot.map((item) => (
+              {page.videot.map((item, index) => (
                 <div
                   id={item.linkId}
                   className="col"
@@ -89,7 +89,9 @@ const Page = ({ pageContext }) => {
                   `}
                 >
                   <div className="row">
-                    <h3>{item.otsikko}</h3>
+                    <h3>
+                      {index + 1}. {item.otsikko}
+                    </h3>
                     {linkCopied === item.linkId && (
                       <span
                         css={`
@@ -138,12 +140,29 @@ const Page = ({ pageContext }) => {
                       </svg>
                     </button>
                   </div>
-                  <Video
-                    data={item.video}
-                    poster={item.videoPoster?.url}
-                    markers={item.osiot}
-                  />
                   <div dangerouslySetInnerHTML={{ __html: item.kuvaus }} />
+                  {item.videot.length === 1 && (
+                    <Video
+                      data={item.videot[0]}
+                      poster={item.videot[0].video.thumbnailUrl}
+                    />
+                  )}
+                  {item.videot.length > 1 &&
+                    item.videot.map((video, childIndex) => (
+                      <>
+                        <h4
+                          css={`
+                            font-size: 18px;
+                            font-weight: 400;
+                            margin-top: 60px;
+                            margin-bottom: 20px;
+                          `}
+                        >
+                          {index + 1}.{childIndex + 1}. {video.title}
+                        </h4>
+                        <Video data={video} poster={video.video.thumbnailUrl} />
+                      </>
+                    ))}
                 </div>
               ))}
             </div>

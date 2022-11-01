@@ -290,19 +290,15 @@ exports.createPages = async ({ graphql, actions }) => {
               otsikko
               linkId
               kuvaus
-              video {
+              videot {
+                title
+                alt
                 video {
                 streamingUrl
                 mp4Url
+                thumbnailUrl
                 }
-              }
-              videoPoster {
-                url
-              }
-              osiot {
-                text
-                positionSec
-              }
+              }              
             }            
           }
         }
