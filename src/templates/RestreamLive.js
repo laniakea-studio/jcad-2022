@@ -8,6 +8,7 @@ import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
 import { useLocalStorage } from "@hooks/useLocaleStorage";
+import { Booking } from "../components/Booking";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -152,6 +153,19 @@ const Page = ({ pageContext }) => {
                   Sähköpostin ei tarvitse olla sama, jolla ilmoittauduit.
                 </span>
                 <NetlifyForm data={form} handleHasJoined={handleHasJoined} />
+              </div>
+              <div
+                style={{
+                  visibility: showPlayer ? "visible" : "hidden",
+                }}
+                css={`
+                  .container {
+                    border-left: none;
+                    border-right: none;
+                  }
+                `}
+              >
+                <Booking />
               </div>
             </div>
           </section>
