@@ -52,8 +52,18 @@ const Page = ({ pageContext }) => {
     },
   };
 
+  const seoMetaTags = {
+    tags: [
+      {
+        tagName: "title",
+        content: `LIVE: ${page.title}`,
+      },
+    ],
+  };
+
   return (
     <>
+      <HelmetDatoCms seo={seoMetaTags} />
       <Layout locale={locale} transparent={false}>
         <main
           className="pagePadding flex"
