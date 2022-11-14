@@ -59,6 +59,7 @@ export const fullMenu = {
     { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
     { title: "Hinnoittelu", slug: "hinta" },
     { title: "Webinaarit", slug: "webinaarit" },
+    { title: "Tutoriaalit", slug: "tutoriaalit" },
     { title: "Yhteystiedot", slug: "yhteystiedot" },
     { title: "Meistä", slug: "meista" },
     { title: "Rekry", slug: "rekry" },
