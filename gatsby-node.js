@@ -12,6 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
       contact: "yhteystiedot",
       gdpr: "tietosuojaseloste",
       about: "meista",
+      references: "referenssit",
       webinars: "webinaarit",
       jobs: "rekry",
       order: "tilaa",
@@ -26,6 +27,7 @@ exports.createPages = async ({ graphql, actions }) => {
       contact: "contact",
       gdpr: "gdpr",
       about: "about",
+      references: "references",
       webinars: "webinars",
       jobs: "jobs",
       order: "order",
@@ -40,6 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
       contact: "kontakter",
       gdpr: "gdpr",
       about: "om-oss",
+      references: "referenser",
       webinars: "webinarer",
       jobs: "jobb",
       order: "bestall",
@@ -158,12 +161,39 @@ exports.createPages = async ({ graphql, actions }) => {
         employees
         askMore
       }
+      referenssit: datoCmsReferenssit(locale: { eq: "${locale}" }) {
+        seoMetaTags {
+          tags 
+        }        
+        otsikko
+        kuvaus
+      }
       allReferences: allDatoCmsReferenssi(filter: { locale: { eq: "${locale}" } }) {
         edges {
           node {
             slug
             yritys
-            sitaatti
+            artikkeli
+            toimiala
+            alue
+            otsikko
+            ingressi            
+            video {
+              video {
+              streamingUrl
+              mp4Url
+              }
+            }
+            kuva {
+              url
+              alt
+              gatsbyImageData(
+                width: 1600
+                placeholder: BLURRED
+                forceBlurhash: false
+              )
+            }
+            naytaSitaattiTuotesivulla            
             quote
             nimi
           }
@@ -413,6 +443,43 @@ exports.createPages = async ({ graphql, actions }) => {
           },
         },
       });
+
+      createPage({
+        path: `/${prefix + slugs[locale].references}`,
+        component: path.resolve(`src/templates/referenssit.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.references}`,
+            en: `/en/${slugs.en.references}`,
+            sv: `/sv/${slugs.sv.references}`,
+          },
+          data: {
+            page: data.referenssit,
+            allReferences: data.allReferences.edges,
+          },
+        },
+      });
+
+      data.allReferences.edges
+        .filter((i) => i.node.artikkeli)
+        .map((i) => {
+          createPage({
+            path: `/${i.node.slug}`,
+            component: path.resolve(`src/templates/Referenssi.js`),
+            context: {
+              locale: locale,
+              localeSlugs: {
+                fi: `/${i.node.slug}`,
+                en: null,
+                sv: null,
+              },
+              data: {
+                page: i.node,
+              },
+            },
+          });
+        });
 
       // BOOK DEMO AND THANK YOU PAGES
       createPage({

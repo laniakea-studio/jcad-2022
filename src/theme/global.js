@@ -218,9 +218,7 @@ ul, ol {
 h1 {  
   font-weight: 400;
   text-transform: uppercase;
-}
-h1 {
-    font-size: 55px;
+  font-size: 55px;
 }
 h2 {
   font-weight: 600;

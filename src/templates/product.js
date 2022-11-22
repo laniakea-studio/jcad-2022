@@ -28,7 +28,7 @@ const Product = ({ pageContext }) => {
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
   const [hoverRef] = useHover();
-
+  console.log(data.references);
   return (
     <>
       <HelmetDatoCms seo={data.product.seoMetaTags} />
@@ -168,13 +168,15 @@ const Product = ({ pageContext }) => {
               <h2>{text.product.references}</h2>
 
               <div className="references">
-                {data.references.map(({ node }) => (
-                  <div className="item">
-                    <h4>{node.yritys}</h4>
-                    <p>{node.quote}</p>
-                    <span>{node.nimi}</span>
-                  </div>
-                ))}
+                {data.references
+                  .filter((item) => item.node.naytaSitaattiTuotesivulla)
+                  .map(({ node }) => (
+                    <div className="item" key={node.yritys}>
+                      <h4>{node.yritys}</h4>
+                      <p>{node.quote}</p>
+                      <span>{node.nimi}</span>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>

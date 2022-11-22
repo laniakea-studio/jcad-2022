@@ -43,6 +43,10 @@
     "yaml-loader": "^0.6.0"
   },
   "devDependencies": {
-    "eslint-import-resolver-alias": "^1.1.2"
+    "autoprefixer": "^10.4.13",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "gatsby-plugin-postcss": "^6.1.0",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4"
   }
 }
