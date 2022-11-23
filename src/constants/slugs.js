@@ -32,6 +32,11 @@ export const webinar = {
   en: "webinars",
   sv: "webinarer",
 };
+export const references = {
+  fi: "referenssit/",
+  en: "references/",
+  sv: "referenser/",
+};
 
 export const mainMenu = {
   fi: [

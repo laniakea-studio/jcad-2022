@@ -203,6 +203,7 @@ const Page = ({ pageContext }) => {
                     }
                   }
                   .HeroLink {
+                    display: inline-flex;
                     @media (max-width: 600px) {
                       font-size: 16px;
                     }
@@ -307,6 +308,7 @@ const Main = styled.main`
     }
   }
   .HeroLink {
+    display: inline-flex;
     font-size: 18px;
     font-weight: 600;
     opacity: 0.6;

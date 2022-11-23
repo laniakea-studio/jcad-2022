@@ -192,6 +192,7 @@ export const Footer = ({ menu }) => {
                   className="row"
                   css={`
                     .HeroLink {
+                      display: inline-flex;
                       font-size: 18px;
                       font-weight: 600;
                       opacity: 0.6;

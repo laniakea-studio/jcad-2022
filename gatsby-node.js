@@ -177,7 +177,8 @@ exports.createPages = async ({ graphql, actions }) => {
             toimiala
             alue
             otsikko
-            ingressi            
+            ingressi          
+            sisalto  
             video {
               video {
               streamingUrl
@@ -456,7 +457,9 @@ exports.createPages = async ({ graphql, actions }) => {
           },
           data: {
             page: data.referenssit,
-            allReferences: data.allReferences.edges,
+            allReferences: data.allReferences.edges.filter(
+              (i) => i.node.artikkeli
+            ),
           },
         },
       });
@@ -465,7 +468,7 @@ exports.createPages = async ({ graphql, actions }) => {
         .filter((i) => i.node.artikkeli)
         .map((i) => {
           createPage({
-            path: `/${i.node.slug}`,
+            path: `/${prefix + slugs[locale].references}/${i.node.slug}`,
             component: path.resolve(`src/templates/Referenssi.js`),
             context: {
               locale: locale,
@@ -476,6 +479,9 @@ exports.createPages = async ({ graphql, actions }) => {
               },
               data: {
                 page: i.node,
+                allReferences: data.allReferences.edges.filter(
+                  (i) => i.node.artikkeli
+                ),
               },
             },
           });

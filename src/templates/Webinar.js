@@ -98,7 +98,7 @@ const Page = ({ pageContext }) => {
                 </span>
                 <span>
                   <PlaceSvg />
-                  Verkko, Teams
+                  Verkko
                 </span>
               </div>
               <div
@@ -148,11 +148,14 @@ const Main = styled.main`
   background: ${theme.primary};
   padding-top: 94px;
   .Back {
+    display: inline-flex;
+    align-items: center;
     color: #fff;
     width: fit-content;
     margin-bottom: 30px;
     font-weight: 600;
-    font-size: 19px;
+    font-size: 17px;
+    opacity: 0.7;
     @media (max-width: 600px) {
       font-size: 16px;
     }
