@@ -59,6 +59,37 @@ export const mainMenu = {
   ],
 };
 
+export const homeMenu = {
+  fi: [
+    {
+      title: "Määrälaskenta",
+      slug: "maaralaskentaohjelmisto",
+      animation: "product",
+    },
+    { title: "Hinnoittelu", slug: "hinta", animation: "crosshair" },
+    { title: "Referenssit", slug: "referenssit", animation: "columns" },
+    { title: "Webinaarit", slug: "webinaarit", animation: "video" },
+    { title: "Tutoriaalit", slug: "tutoriaalit", animation: "bullseye" },
+    { title: "Yhteystiedot", slug: "yhteystiedot", animation: "jcad" },
+  ],
+  en: [
+    { title: "Product", slug: "product" },
+    { title: "Pricing", slug: "pricing" },
+    //{ title: "Webinars", slug: "webinars" },
+    { title: "Contact", slug: "contact" },
+    //{ title: "About us", slug: "about" },
+    //{ title: "Jobs", slug: "jobs" },
+  ],
+  sv: [
+    { title: "Produkten", slug: "produkten" },
+    { title: "Prislista", slug: "pris" },
+    //{ title: "Webinarer", slug: "webinarer" },
+    { title: "Kontakter", slug: "kontakter" },
+    //{ title: "Om oss", slug: "om-oss" },
+    //{ title: "Jobb", slug: "jobb" },
+  ],
+};
+
 export const fullMenu = {
   fi: [
     { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
@@ -67,8 +98,8 @@ export const fullMenu = {
     { title: "Tutoriaalit", slug: "tutoriaalit" },
     { title: "Yhteystiedot", slug: "yhteystiedot" },
     { title: "Meistä", slug: "meista" },
-    { title: "Rekry", slug: "rekry" },
     { title: "Tilaa JCAD", slug: "tilaa" },
+    { title: "Rekry", slug: "rekry" },
   ],
   en: [
     { title: "Product", slug: "product" },

@@ -1,18 +1,18 @@
 import React, { useState, useRef, forwardRef, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
-
+//Fix: Thumbup animation not working. Generate new: https://svgartista.net/
 export const AnimatedBoxLink = (props) => {
-  const { index, path, title } = props;
+  const { animation, title } = props;
 
   return (
-    <div id={`Link-${index}`} className="Link">
+    <div id={`Link-${animation}`} className="Link">
       <header className="row">
         <span>{title}</span>
         <Arrow />
       </header>
       <AnimatedBox className="AnimatedBox">
-        {index === 0 && (
+        {animation === "product" && (
           <>
             <svg
               className="Sleep"
@@ -98,7 +98,7 @@ export const AnimatedBoxLink = (props) => {
             </svg>
           </>
         )}
-        {index === 1 && (
+        {animation === "crosshair" && (
           <>
             <svg
               className="Animate"
@@ -151,7 +151,58 @@ export const AnimatedBoxLink = (props) => {
             </svg>
           </>
         )}
-        {index === 3 && (
+        {animation === "video" && (
+          <svg
+            width="283"
+            height="142"
+            viewBox="0 0 283 142"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="282.5"
+              y="0.5"
+              width="141"
+              height="282"
+              transform="rotate(90 282.5 0.5)"
+              stroke="white"
+              class="svg-elem-1"
+            ></rect>
+            <rect
+              x="91.5"
+              y="23.5"
+              width="95"
+              height="72"
+              transform="rotate(90 91.5 23.5)"
+              stroke="white"
+              class="svg-elem-2"
+            ></rect>
+            <rect
+              x="265.5"
+              y="23.5"
+              width="19"
+              height="165"
+              transform="rotate(90 265.5 23.5)"
+              stroke="white"
+              class="svg-elem-3"
+            ></rect>
+            <rect
+              x="265.5"
+              y="99.5"
+              width="19"
+              height="165"
+              transform="rotate(90 265.5 99.5)"
+              stroke="white"
+              class="svg-elem-4"
+            ></rect>
+            <path
+              d="M175 55.1436L199 69L175 82.8564L175 55.1436Z"
+              stroke="white"
+              class="svg-elem-5"
+            ></path>
+          </svg>
+        )}
+        {animation === "columns" && (
           <svg
             width="267"
             height="142"
@@ -321,58 +372,7 @@ export const AnimatedBoxLink = (props) => {
             ></rect>
           </svg>
         )}
-        {index === 2 && (
-          <svg
-            width="283"
-            height="142"
-            viewBox="0 0 283 142"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              x="282.5"
-              y="0.5"
-              width="141"
-              height="282"
-              transform="rotate(90 282.5 0.5)"
-              stroke="white"
-              class="svg-elem-1"
-            ></rect>
-            <rect
-              x="91.5"
-              y="23.5"
-              width="95"
-              height="72"
-              transform="rotate(90 91.5 23.5)"
-              stroke="white"
-              class="svg-elem-2"
-            ></rect>
-            <rect
-              x="265.5"
-              y="23.5"
-              width="19"
-              height="165"
-              transform="rotate(90 265.5 23.5)"
-              stroke="white"
-              class="svg-elem-3"
-            ></rect>
-            <rect
-              x="265.5"
-              y="99.5"
-              width="19"
-              height="165"
-              transform="rotate(90 265.5 99.5)"
-              stroke="white"
-              class="svg-elem-4"
-            ></rect>
-            <path
-              d="M175 55.1436L199 69L175 82.8564L175 55.1436Z"
-              stroke="white"
-              class="svg-elem-5"
-            ></path>
-          </svg>
-        )}
-        {index === 4 && (
+        {animation === "jcad" && (
           <svg
             width="287"
             height="142"
@@ -425,7 +425,7 @@ export const AnimatedBoxLink = (props) => {
             ></path>
           </svg>
         )}
-        {index === 5 && (
+        {animation === "bullseye" && (
           <svg
             width="278"
             height="119"
@@ -489,6 +489,99 @@ export const AnimatedBoxLink = (props) => {
               stroke="white"
               class="svg-elem-7"
             ></circle>
+          </svg>
+        )}
+        {animation === "thumbup" && (
+          <svg
+            width="267"
+            height="147"
+            viewBox="0 0 571 288"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M60.3495 240.317C60.3495 224.906 49.9837 212.417 34.5529 212.417C19.122 212.417 4.49609 224.906 4.49609 240.317C4.49609 255.728 17.0017 268.217 32.4326 268.217C47.8634 268.217 60.3691 255.728 60.3691 240.317H60.3495Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-1"
+            ></path>
+            <path
+              d="M140.33 189.673C140.33 181.321 134.716 174.557 126.352 174.557C117.989 174.557 110.058 181.321 110.058 189.673C110.058 198.026 116.831 204.79 125.194 204.79C133.557 204.79 140.33 198.026 140.33 189.673Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-2"
+            ></path>
+            <path
+              d="M423.975 79.0926C423.975 71.9951 419.204 66.2504 412.097 66.2504C404.991 66.2504 398.257 71.9951 398.257 79.0926C398.257 86.1902 404.009 91.9349 411.116 91.9349C418.223 91.9349 423.975 86.1902 423.975 79.0926Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-3"
+            ></path>
+            <path
+              d="M462.67 140.971C462.67 133.873 457.9 128.129 450.793 128.129C443.686 128.129 436.952 133.873 436.952 140.971C436.952 148.068 442.704 153.813 449.811 153.813C456.918 153.813 462.67 148.068 462.67 140.971Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-4"
+            ></path>
+            <path
+              d="M554.391 59.4077C554.391 48.8398 547.284 40.2718 536.703 40.2718C526.121 40.2718 516.089 48.8398 516.089 59.4077C516.089 69.9756 524.668 78.5437 535.25 78.5437C545.832 78.5437 554.411 69.9756 554.411 59.4077H554.391Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-5"
+            ></path>
+            <path
+              d="M228.243 222.514H208.081V119.639H228.243V222.514V222.514ZM360.544 187.419C352.279 211.672 342.973 222.514 338.32 222.514H241.672V118.776C247.365 114.639 259.242 104.326 266.487 92.974C270.806 86.0137 274.045 77.3673 276.362 70.0148C278.344 63.7211 284.155 59.4273 290.772 59.4273V116.718H368.299C372.441 119.815 372.441 151.303 360.544 187.438V187.419Z"
+              stroke="white"
+              stroke-miterlimit="10"
+              class="svg-elem-6"
+            ></path>
+            <path
+              d="M122.917 101.875H122.996C125.744 101.522 127.982 99.5226 128.63 96.8365C129.278 94.1504 128.178 91.3467 125.882 89.7978C110.215 79.2887 109.214 67.1327 112.002 57.7215H133.636C137.131 57.7215 139.958 54.8982 139.958 51.4082V7.09754C139.958 3.60758 137.131 0.784241 133.636 0.784241H83.0246C79.5301 0.784241 76.7031 3.60758 76.7031 7.09754V63.3878C76.5853 71.3677 79.1571 79.1514 84.0062 85.4843C89.7192 92.7976 101.106 101.581 122.917 101.875V101.875Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-7"
+            ></path>
+            <path
+              d="M47.0776 101.875C49.8458 101.875 52.2802 100.091 53.1047 97.4443C53.9292 94.8171 52.9476 91.9545 50.69 90.3664C50.4544 90.1507 50.2188 89.9742 49.9636 89.7978C34.2971 79.2887 33.2959 67.1327 36.0837 57.7215H57.7182C61.2128 57.7215 64.0398 54.8982 64.0398 51.4082V7.09754C64.0398 3.60758 61.2128 0.784241 57.7182 0.784241H7.10666C3.61215 0.784241 0.785123 3.60758 0.785123 7.09754V63.3878C0.667331 71.3677 3.23914 79.1514 8.08827 85.4843C13.8012 92.7976 25.1878 101.581 46.9991 101.875H47.0776V101.875Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-8"
+            ></path>
+            <path
+              d="M448.084 186.125H448.005C445.257 186.477 443.019 188.477 442.371 191.163C441.723 193.85 442.822 196.653 445.119 198.202C460.786 208.711 461.787 220.867 458.999 230.278H437.365C433.87 230.278 431.043 233.102 431.043 236.592V280.902C431.043 284.392 433.87 287.216 437.365 287.216H487.976C491.471 287.216 494.298 284.392 494.298 280.902V224.612C494.415 216.632 491.844 208.849 486.994 202.516C481.282 195.202 469.895 186.419 448.084 186.125Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-9"
+            ></path>
+            <path
+              d="M523.922 186.125C521.154 186.125 518.72 187.909 517.895 190.556C517.07 193.183 518.052 196.045 520.31 197.634C520.545 197.849 520.781 198.026 521.036 198.202C536.703 208.711 537.704 220.867 534.916 230.278H513.282C509.787 230.278 506.96 233.102 506.96 236.592V280.902C506.96 284.392 509.787 287.216 513.282 287.216H563.893C567.388 287.216 570.215 284.392 570.215 280.902V224.612C570.332 216.632 567.761 208.849 562.911 202.516C557.199 195.202 545.812 186.419 524.001 186.125H523.922Z"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-10"
+            ></path>
+            <path
+              d="M165.243 38.4875H494.297V144.186"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-11"
+            ></path>
+            <path
+              d="M405.757 254.708H76.7031V149.009"
+              stroke="white"
+              stroke-width="0.8"
+              stroke-miterlimit="10"
+              class="svg-elem-12"
+            ></path>
           </svg>
         )}
       </AnimatedBox>

@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { AnimatedBoxLink } from "../components/AnimatedBoxLink";
-import { fullMenu, prefix, ctaProduct } from "../constants/slugs";
+import { homeMenu, prefix, ctaProduct } from "../constants/slugs";
 import { MagneticLinkBox } from "@components/MagneticLinkBox";
 import { useHover } from "../hooks/useHover";
 import { DownloadPDF } from "../components/DowloadPDF";
@@ -136,9 +136,9 @@ const Page = ({ pageContext }) => {
               </div>
 
               <div className="Grid padding">
-                {fullMenu[locale].map((i, index) => {
+                {homeMenu[locale].map((i, index) => {
                   const [hoverRef] = useHover();
-                  if (index === 6) return;
+
                   return (
                     <MagneticLinkBox
                       ref={hoverRef}
@@ -146,15 +146,15 @@ const Page = ({ pageContext }) => {
                     >
                       <AnimatedBoxLink
                         index={index}
+                        animation={i.animation}
                         title={i.title}
-                        path={prefix[locale] + i.slug}
                       />
                     </MagneticLinkBox>
                   );
                 })}
               </div>
             </div>
-            {video.video && (
+            {video.video && locale === "fi" && (
               <section
                 className="col container padding align-center"
                 css={`
@@ -197,8 +197,14 @@ const Page = ({ pageContext }) => {
                   poster={video.videoPoster.url}
                   markers={[
                     { positionSec: 0, text: "Mikä JCAD?" },
-                    { positionSec: 35, text: "Mittaus pohjapiirustuksesta" },
-                    { positionSec: 82, text: "Piha-alueiden määrälaskenta" },
+                    {
+                      positionSec: 35,
+                      text: "Mittaus pohjapiirustuksesta",
+                    },
+                    {
+                      positionSec: 82,
+                      text: "Piha-alueiden määrälaskenta",
+                    },
                   ]}
                 />
                 <Link
@@ -269,7 +275,7 @@ const Main = styled.main`
       font-size: 64px;
       margin-bottom: 40px;
       font-weight: 600;
-      padding-right: 20px;
+      padding-right: 60px;
       @media (max-width: 1380px) {
         font-size: 56px;
       }
@@ -341,7 +347,7 @@ const Main = styled.main`
  * MIT license (https://opensource.org/licenses/MIT)
  * W. https://svgartista.net
  **************************************************/
-  #Link-0 {
+  #Link-product {
     svg.Sleep {
       display: none;
       position: absolute;
@@ -389,7 +395,7 @@ const Main = styled.main`
       }
     }
   }
-  #Link-1 {
+  #Link-crosshair {
     svg .svg-elem-1 {
       stroke-dashoffset: 83.27300194836795px;
       stroke-dasharray: 83.27300194836795px;
@@ -437,7 +443,7 @@ const Main = styled.main`
       }
     }
   }
-  #Link-3 {
+  #Link-columns {
     svg .svg-elem-1 {
       stroke-dashoffset: 246px;
       stroke-dasharray: 246px;
@@ -628,7 +634,7 @@ const Main = styled.main`
       }
     }
   }
-  #Link-2 {
+  #Link-video {
     svg .svg-elem-1 {
       stroke-dashoffset: 848px;
       stroke-dasharray: 848px;
@@ -677,7 +683,7 @@ const Main = styled.main`
       }
     }
   }
-  #Link-4 {
+  #Link-jcad {
     svg .svg-elem-1 {
       stroke-dashoffset: 856px;
       stroke-dasharray: 856px;
@@ -758,7 +764,7 @@ const Main = styled.main`
       }
     }
   }
-  #Link-5 {
+  #Link-bullseye {
     svg .svg-elem-1 {
       stroke-dashoffset: 83.27300194836795px;
       stroke-dasharray: 83.27300194836795px;
@@ -825,6 +831,140 @@ const Main = styled.main`
         stroke-dashoffset: 0;
       }
       svg .svg-elem-7 {
+        stroke-dashoffset: 0;
+      }
+    }
+  }
+  #Link-thumbup {
+    svg .svg-elem-1 {
+      stroke-dashoffset: 177.513671875px;
+      stroke-dasharray: 177.513671875px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-2 {
+      stroke-dashoffset: 97.09561157226562px;
+      stroke-dasharray: 97.09561157226562px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-3 {
+      stroke-dashoffset: 82.7922134399414px;
+      stroke-dasharray: 82.7922134399414px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-4 {
+      stroke-dashoffset: 82.79185485839844px;
+      stroke-dasharray: 82.79185485839844px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-5 {
+      stroke-dashoffset: 122.37962341308594px;
+      stroke-dasharray: 122.37962341308594px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-6 {
+      stroke-dashoffset: 778.5726928710938px;
+      stroke-dasharray: 778.5726928710938px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-7 {
+      stroke-dashoffset: 325.9791259765625px;
+      stroke-dasharray: 325.9791259765625px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-8 {
+      stroke-dashoffset: 326.8302917480469px;
+      stroke-dasharray: 326.8302917480469px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-9 {
+      stroke-dashoffset: 325.9797058105469px;
+      stroke-dasharray: 325.9797058105469px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-10 {
+      stroke-dashoffset: 326.8308410644531px;
+      stroke-dasharray: 326.8308410644531px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-11 {
+      stroke-dashoffset: 436.75250244140625px;
+      stroke-dasharray: 436.75250244140625px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-12 {
+      stroke-dashoffset: 436.75286865234375px;
+      stroke-dasharray: 436.75286865234375px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    svg .svg-elem-13 {
+      stroke-dashoffset: 1720px;
+      stroke-dasharray: 1720px;
+      -webkit-transition: stroke-dashoffset 0.2s
+        cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+    }
+    &:hover {
+      svg.active .svg-elem-1 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-2 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-3 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-4 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-6 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-5 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-7 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-8 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-9 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-11 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-10 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-12 {
+        stroke-dashoffset: 0;
+      }
+      svg.active .svg-elem-13 {
         stroke-dashoffset: 0;
       }
     }

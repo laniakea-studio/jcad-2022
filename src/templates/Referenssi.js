@@ -35,40 +35,39 @@ const Page = ({ pageContext }) => {
             .Back {
               display: inline-flex;
               align-items: center;
-              font-size: 17px;
-              opacity: 0.7;
               color: #fff;
               width: fit-content;
+              text-transform: uppercase;
               margin-bottom: 30px;
               font-weight: 600;
-              font-size: 16px;
-              transition: 0.2s;
+              font-size: 13px;
+              opacity: 0.5;
               &:hover {
-                opacity: 1;
+                opacity: 0.8;
               }
             }
           `}
         >
           <section className="container padding flex">
-            <div className="flex flex-col flex-3 px-[30px] py-[60px]">
+            <div className="flex flex-col flex-3 px-[30px] pb-[60px] relative">
               <button
                 onClick={() => window.history.back()}
-                className="Back"
+                className="Back absolute top-[60px] left-[40px]"
                 aria-label={text.gdpr.buttonBack}
               >
                 <span>{text.gdpr.buttonBack}</span>
               </button>
-              <div className="IntroCol flex flex-col py-[30px] border-y-[0.8px] border-dashed border-[#fff]">
+              <div className="IntroCol flex flex-col pb-[30px] border-b-[0.8px] border-dashed border-[#fff]">
                 <div className="Tags text-[15px]">
                   <span className="pr-[15px] opacity-[0.6] uppercase">
                     {page.toimiala}
                   </span>
-                  <span>{page.yritys}</span>
+                  <span className="text-[22px]">{page.yritys}</span>
                 </div>
-                <h1 className="text-[30px] py-[15px] normal-case">
+                <h1 className="text-[42px] pt-[25px] pb-[40px] normal-case">
                   {page.otsikko}
                 </h1>
-                <p>{page.ingressi}</p>
+                <p className="text-[22px]">{page.ingressi}</p>
               </div>
             </div>
             <div className="MediaCol flex flex-col flex-2 justify-center">

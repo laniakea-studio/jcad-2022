@@ -21,7 +21,9 @@ const Page = ({ pageContext }) => {
               <h1 className="text-[52px] pt-[50px] pb-[20px] font-normal">
                 {page.otsikko}
               </h1>
-              <p className="max-w-[600px] pb-[60px]">{page.kuvaus}</p>
+              <p className="max-w-[600px] pb-[60px] text-[18px]">
+                {page.kuvaus}
+              </p>
             </div>
 
             <div className="flex max-h-[300px] justify-center flex-1">
@@ -59,7 +61,7 @@ const Page = ({ pageContext }) => {
                   <h2 className="text-[25px] normal-case pt-[5px] pb-[20px]">
                     {node.otsikko}
                   </h2>
-                  <p className="text-[17px]">{node.ingressi}</p>
+                  <p className="text-[18px]">{node.ingressi}</p>
                   <SvgArrowRight className="Arrow w-[26px] pt-[15px] opacity-[0.6]" />
                 </div>
               </Link>
