@@ -153,7 +153,7 @@ const Page = ({ pageContext }) => {
 
                   <div className="col">
                     {page.cta.map((i) => (
-                      <Link className="HeroLink" to={i.slug}>
+                      <Link className="HeroLink" to={prefix[locale] + i.slug}>
                         <svg
                           width="24"
                           height="24"

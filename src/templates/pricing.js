@@ -185,7 +185,7 @@ const Pricing = ({ pageContext }) => {
                     />
                     {index === 0 && (
                       <div className="addons">
-                        <p>{text.pricing.addons}</p>
+                        <p className="py-[10px]">{text.pricing.addons}</p>
                         <Switch
                           handleSwitch={() =>
                             setPriceSelections({
@@ -418,8 +418,9 @@ const Main = styled.main`
       .mainContent,
       .footerContent {
         p {
-          color: rgba(255, 255, 255, 0.5);
+          color: rgba(255, 255, 255, 0.9);
           text-align: center;
+          margin-bottom: 15px;
         }
       }
       .mainContent {

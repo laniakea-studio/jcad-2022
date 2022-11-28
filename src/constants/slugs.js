@@ -89,6 +89,7 @@ export const fullMenu = {
   fi: [
     { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
     { title: "Hinnoittelu", slug: "hinta" },
+    { title: "Referenssit", slug: "referenssit" },
     { title: "Webinaarit", slug: "webinaarit" },
     { title: "Tutoriaalit", slug: "tutoriaalit" },
     { title: "Yhteystiedot", slug: "yhteystiedot" },
