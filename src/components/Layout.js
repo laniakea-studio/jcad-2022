@@ -178,6 +178,7 @@ export const Layout = ({ children, page }) => {
                     style={{
                       transition: "0.1s",
                       opacity: menuOpen ? 0 : 1,
+                      minWidth: 110,
                     }}
                   >
                     {text.menu.login}
