@@ -82,7 +82,7 @@ const Page = ({ pageContext }) => {
                 <Link
                   to={`${prefix[locale] + webinar[locale]}/${
                     nextWebinar.node.slug
-                  }`}
+                  }-${nextWebinar.node.webinaarinAjankohta.slice(0, 10)}`}
                   className="btn white-outlines"
                 >
                   Lue lisää ja ilmoittaudu
@@ -133,7 +133,7 @@ const Page = ({ pageContext }) => {
                         className="Item row"
                         to={`${prefix[locale] + webinar[locale]}/${
                           i.node.slug
-                        }`}
+                        }-${i.node.webinaarinAjankohta.slice(0, 10)}`}
                       >
                         <div className="col">
                           <span className="date">{date}</span>
@@ -142,7 +142,7 @@ const Page = ({ pageContext }) => {
                         <div className="col">
                           <h3>{i.node.title}</h3>
                           <p className="desc">{i.node.nosto}</p>
-                          <button className="btn black-outlines small">
+                          <button className="mt-[20px] btn black-outlines small">
                             Lue lisää ja ilmoittaudu
                             <svg
                               width="17"
@@ -288,7 +288,6 @@ const Main = styled.main`
       flex: 5 1 0;
     }
     .date {
-      margin-top: 8px;
       font-size: 23px;
       font-weight: 600;
       text-transform: uppercase;
@@ -298,7 +297,7 @@ const Main = styled.main`
       }
     }
     .hour {
-      font-size: 23px;
+      font-size: 16px;
       font-weight: 500;
     }
     h3 {

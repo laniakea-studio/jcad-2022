@@ -109,8 +109,9 @@ const Page = ({ pageContext }) => {
                       className="flex jsutify-center align-center"
                       onClick={(e) => handleLinkCopy(e, item.linkId)}
                       css={`
-                        width: 30px;
-                        height: 30px;
+                        width: 40px;
+                        height: 40px;
+                        padding: 10px;
                         margin-left: 10px;
                         border-radius: 5px;
                         &:hover {

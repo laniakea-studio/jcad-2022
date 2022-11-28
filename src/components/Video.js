@@ -44,6 +44,7 @@ export const Video = ({ data, autoplay, poster, markers }) => {
           position: absolute;
           border-left: 2px solid rgba(255, 255, 255, 0.5);
           border-radius: 2px;
+
           cursor: pointer;
           :hover span {
             opacity: 1;
@@ -53,6 +54,7 @@ export const Video = ({ data, autoplay, poster, markers }) => {
             font-size: 14px;
             margin-left: 4px;
             opacity: 0.8;
+            vertical-align: 100%;
           }
           :hover {
             border-left: 2px solid rgba(255, 255, 255, 0.9);

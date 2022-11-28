@@ -69,11 +69,7 @@ const Product = ({ pageContext }) => {
                   <Video
                     data={data.product.video}
                     poster={data.product.videoPoster.url}
-                    markers={[
-                      { positionSec: 0, text: "Mikä JCAD?" },
-                      { positionSec: 35, text: "Pohjapiirustus" },
-                      { positionSec: 82, text: "Piha-alueet" },
-                    ]}
+                    markers={data.product.videoMarkers}
                   />
                 )}
                 <p className="Videoteksti">{data.product.videoteksti}</p>
@@ -127,6 +123,7 @@ const Product = ({ pageContext }) => {
                 <SvgDashedLine className="rightTitleLine" />
                 <SvgHaircross className="rightCircle" />
               </div>
+
               <div className="point">
                 <div
                   className="content"
@@ -234,6 +231,9 @@ const Main = styled.main`
       padding-left: 20px;
       padding-top: 140px;
       padding-bottom: 40px;
+      @media (max-width: 1300px) {
+        padding-top: 80px;
+      }
       @media (max-width: 900px) {
         padding-left: 20px;
         padding-top: 40px;
@@ -246,26 +246,33 @@ const Main = styled.main`
       }
     }
     h1 {
-      font-size: 52px;
+      font-size: 46px;
       margin-bottom: 40px;
       font-weight: 400;
       margin-top: 200px;
-      max-width: 600px;
+      max-width: 540px;
+      @media (max-width: 1300px) {
+        font-size: 40px;
+      }
       @media (max-width: 600px) {
-        margin-top: 15vh;
+        margin-top: 100px;
       }
     }
     p.Lead {
-      font-size: 22px;
+      font-size: 17px;
       line-height: 1.6;
-      max-width: 720px;
+      max-width: 520px;
       margin-bottom: 40px;
     }
     p.Videoteksti {
-      font-size: 15px;
+      font-size: 16px;
       text-align: center;
       margin: 0;
-      padding: 5px 10px 0;
+      font-weight: 600;
+      padding: 10px 10px 0;
+      @media (max-width: 1000px) {
+        font-size: 14px;
+      }
     }
     .btns {
       display: flex;
@@ -335,12 +342,12 @@ const Main = styled.main`
       border-color: #000;
     }
     .customers {
-      font-size: 20px;
-      max-width: 630px;
+      font-size: 18px;
+      max-width: 720px;
       margin: 50px auto 80px;
       text-align: center;
       @media (max-width: 600px) {
-        font-size: 16px;
+        font-size: 18px;
       }
     }
     .SvgNumberFrame,
@@ -529,10 +536,26 @@ const Main = styled.main`
       min-height: 340px;
       align-items: center;
       position: relative;
+      padding-left: 160px;
+      padding-right: 160px;
+      @media (max-width: 1300px) {
+        padding-left: 100px;
+        padding-right: 100px;
+      }
+      @media (max-width: 1000px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      h3 {
+        font-size: 20px;
+      }
       @media (max-width: 700px) {
         padding-top: 40px;
         padding-bottom: 40px;
         flex-direction: column;
+        img {
+          padding-top: 20px;
+        }
         &:nth-child(odd) {
           flex-direction: column-reverse;
         }
@@ -553,8 +576,11 @@ const Main = styled.main`
       }
       p {
         margin-top: 15px;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 400;
+        @media (max-width: 600px) {
+          font-size: 18px;
+        }
       }
       .image {
         display: flex;
@@ -575,6 +601,7 @@ const Main = styled.main`
     flex-direction: column;
     h2 {
       font-size: 36px;
+      text-align: center;
       @media (max-width: 600px) {
         font-size: 28px;
       }
@@ -586,7 +613,7 @@ const Main = styled.main`
     }
     .references {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       padding-top: 60px;
       padding-bottom: 120px;
       @media (max-width: 700px) {
@@ -596,12 +623,12 @@ const Main = styled.main`
     .item {
       display: flex;
       flex-direction: column;
-      padding-right: 30px;
+      padding-right: 40px;
       padding-bottom: 60px;
       h4,
       p,
       span {
-        max-width: 350px;
+        max-width: 420px;
       }
       h4 {
         font-weight: 700;
@@ -609,16 +636,17 @@ const Main = styled.main`
         margin-bottom: 24px;
       }
       p {
-        font-size: 17px;
+        font-size: 18px;
       }
       span {
-        font-size: 17px;
+        margin-top: 10px;
+        font-size: 15px;
         text-transform: uppercase;
       }
     }
   }
 `;
-
+5;
 const SvgTooltip = () => (
   <svg
     width="9"

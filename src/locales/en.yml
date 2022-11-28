@@ -14,7 +14,7 @@ menu:
   product: Product
   pricing: Pricing
   contact: Contact
-  booking: Book demo
+  booking: Free trial
   login: Login
   about: About us
   rekry: Jobs
@@ -23,7 +23,7 @@ menu:
   references: References
 btnContact: Contact us
 seeMore: See more
-bookDemo: Book demo
+bookDemo: Free trial
 footer:
   admin: Admin
   sales: Sales

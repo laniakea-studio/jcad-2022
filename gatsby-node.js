@@ -102,6 +102,10 @@ exports.createPages = async ({ graphql, actions }) => {
           mp4Url
           }
         }
+        videoMarkers {
+          positionSec
+          text
+        }
         videoteksti
         videoPoster {
           url
@@ -363,6 +367,7 @@ exports.createPages = async ({ graphql, actions }) => {
               video: data.product.video,
               videoteksti: data.product.videoTeksti,
               videoPoster: data.product.videoPoster,
+              videoMarkers: data.product.videoMarkers,
             },
           },
         },
@@ -625,7 +630,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
         data.allWebinars.edges.map((i) => {
           createPage({
-            path: `/${prefix + slugs[locale].webinars}/${i.node.slug}`,
+            path: `/${prefix + slugs[locale].webinars}/${
+              i.node.slug
+            }-${i.node.webinaarinAjankohta.slice(0, 10)}`,
             component: path.resolve(`src/templates/Webinar.js`),
             context: {
               locale: locale,

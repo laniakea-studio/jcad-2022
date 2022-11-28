@@ -59,7 +59,14 @@ const Page = ({ pageContext }) => {
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout locale={pageContext.locale} transparent={false}>
-        <Main className="pagePadding">
+        <Main
+          className="pagePadding"
+          css={`
+            p {
+              margin-bottom: 14px;
+            }
+          `}
+        >
           <div className="container padding row">
             <div className="col">
               <button
@@ -67,7 +74,6 @@ const Page = ({ pageContext }) => {
                 className="Back"
                 aria-label={text.gdpr.buttonBack}
               >
-                <BackSvg />
                 <span>{text.gdpr.buttonBack}</span>
               </button>
 
@@ -105,8 +111,8 @@ const Page = ({ pageContext }) => {
                 className="Content"
                 dangerouslySetInnerHTML={{ __html: page.kuvaus }}
               />
-              <div className="Speaker row">
-                <h4>Puhuja</h4>
+              <div className="Speaker flex flex-col">
+                <h4 className="pb-[10px]">Puhuja</h4>
                 <div
                   className="content"
                   dangerouslySetInnerHTML={{ __html: page.puhuja }}
@@ -152,27 +158,22 @@ const Main = styled.main`
     align-items: center;
     color: #fff;
     width: fit-content;
+    text-transform: uppercase;
     margin-bottom: 30px;
     font-weight: 600;
-    font-size: 17px;
-    opacity: 0.7;
-    @media (max-width: 600px) {
-      font-size: 16px;
-    }
-    @media (max-width: 600px) {
-      font-size: 16px;
-    }
-    svg {
-      width: 15px;
-      margin-right: 10px;
+    font-size: 13px;
+    opacity: 0.5;
+    &:hover {
+      opacity: 0.8;
     }
   }
   .Points {
     margin-bottom: 20px;
   }
   .Points span {
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 600;
+    display: inline-flex;
     @media (max-width: 600px) {
       font-size: 16px;
     }
@@ -211,6 +212,7 @@ const Main = styled.main`
   h1 {
     font-size: 36px;
     text-transform: none;
+    font-weight: 400;
     margin-bottom: 35px;
   }
   h2 {
@@ -236,21 +238,6 @@ const Main = styled.main`
     }
   }
 `;
-
-const BackSvg = () => (
-  <svg
-    width="17"
-    height="18"
-    viewBox="0 0 17 18"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M9 0L9.88838 0.888376L2.4339 8.34285L16.5649 8.0861L16.5876 9.34207L2.37784 9.60138L9.88838 17.1119L9.00001 18.0003L-0.00014847 9.00015L9 0Z"
-      fill="white"
-    />
-  </svg>
-);
 
 const DateSvg = () => (
   <svg

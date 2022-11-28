@@ -235,6 +235,7 @@ const Main = styled.main`
     }
     .Item {
       margin-bottom: 40px;
+      padding-right: 15px;
       p {
         font-size: 18px;
         strong {

@@ -17,6 +17,10 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
+  border: 1px solid #333375;
+  background: #333375;
+  border-radius: 4px;
 }
 
 @keyframes ticker-kf {
