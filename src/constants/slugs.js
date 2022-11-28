@@ -67,10 +67,11 @@ export const homeMenu = {
       animation: "product",
     },
     { title: "Hinnoittelu", slug: "hinta", animation: "crosshair" },
-    { title: "Referenssit", slug: "referenssit", animation: "columns" },
+    //{ title: "Referenssit", slug: "referenssit", animation: "columns" },
     { title: "Webinaarit", slug: "webinaarit", animation: "video" },
     { title: "Tutoriaalit", slug: "tutoriaalit", animation: "bullseye" },
     { title: "Yhteystiedot", slug: "yhteystiedot", animation: "jcad" },
+    { title: "Tilaa JCAD", slug: "tilaa", animation: "columns" },
   ],
   en: [
     { title: "Product", slug: "product", animation: "product" },
