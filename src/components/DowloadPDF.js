@@ -73,9 +73,15 @@ export const DownloadPDF = ({ menu, prefix }) => {
           h2 {
             margin-bottom: 20px;
             max-width: 520px;
+            line-height: 1.1;
+            font-weight: 400;
+            font-size: 32px;
           }
           @media (max-width: 1100px) {
             padding-left: 0;
+          }
+          p {
+            margin-bottom: 20px;
           }
         }
       `}

@@ -144,7 +144,7 @@ export const Layout = ({ children, page }) => {
                     css={`
                       margin-left: 40px;
                       @media (max-width: 500px) {
-                        display: none;
+                        display: none !important;
                       }
                       a {
                         display: flex;

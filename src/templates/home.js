@@ -105,7 +105,45 @@ const Page = ({ pageContext }) => {
         </svg>
         <Layout locale={pageContext.locale} transparent={false} page="home">
           <Main className="pagePadding">
-            <div className="Hero container col">
+            <div className="Hero container col relative">
+              <div
+                className="flex absolute"
+                css={`
+                  top: 0;
+                  right: 10px;
+                  position: absolute;
+                  margin: 5px 0;
+                  @media (min-width: 501px) {
+                    display: none;
+                  }
+                  a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 20px;
+                    height: 20px;
+                    padding: 10px;
+                    border-radius: 4px;
+                    font-size: 11px;
+                    font-weight: 400;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    &.active {
+                      background: rgba(255, 255, 255, 0.15);
+                    }
+                  }
+                `}
+              >
+                <Link to="/" className={locale === "fi" ? "active" : ""}>
+                  FI
+                </Link>
+                <Link to="/en" className={locale === "en" ? "active" : ""}>
+                  EN
+                </Link>
+                <Link to="/sv" className={locale === "sv" ? "active" : ""}>
+                  SV
+                </Link>
+              </div>
               <div className="row padding">
                 <div className="col">
                   <h1>{page.title}</h1>
