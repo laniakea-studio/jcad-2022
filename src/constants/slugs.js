@@ -73,20 +73,14 @@ export const homeMenu = {
     { title: "Yhteystiedot", slug: "yhteystiedot", animation: "jcad" },
   ],
   en: [
-    { title: "Product", slug: "product" },
-    { title: "Pricing", slug: "pricing" },
-    //{ title: "Webinars", slug: "webinars" },
-    { title: "Contact", slug: "contact" },
-    //{ title: "About us", slug: "about" },
-    //{ title: "Jobs", slug: "jobs" },
+    { title: "Product", slug: "product", animation: "product" },
+    { title: "Pricing", slug: "pricing", animation: "crosshair" },
+    { title: "Contact", slug: "contact", animation: "jcad" },
   ],
   sv: [
-    { title: "Produkten", slug: "produkten" },
-    { title: "Prislista", slug: "pris" },
-    //{ title: "Webinarer", slug: "webinarer" },
-    { title: "Kontakter", slug: "kontakter" },
-    //{ title: "Om oss", slug: "om-oss" },
-    //{ title: "Jobb", slug: "jobb" },
+    { title: "Produkten", slug: "produkten", animation: "product" },
+    { title: "Prislista", slug: "pris", animation: "crosshair" },
+    { title: "Kontakter", slug: "kontakter", animation: "jcad" },
   ],
 };
 
