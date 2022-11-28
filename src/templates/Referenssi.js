@@ -45,11 +45,25 @@ const Page = ({ pageContext }) => {
               &:hover {
                 opacity: 0.8;
               }
+              @media (max-width: 600px) {
+                right: 0;
+                left: 0;
+                top: 0;
+              }
+            }
+            @media (max-width: 600px) {
+              .Article {
+                padding-left: 0;
+                padding-right: 0;
+                h1 {
+                  font-size: 32px;
+                }
+              }
             }
           `}
         >
           <section className="container padding flex">
-            <div className="flex flex-col flex-3 px-[30px] pb-[60px] relative">
+            <div className="Article flex flex-col flex-3 px-[30px] pb-[60px] relative">
               <button
                 onClick={() => window.history.back()}
                 className="Back absolute top-[60px] left-[40px]"
@@ -67,7 +81,9 @@ const Page = ({ pageContext }) => {
                 <h1 className="text-[42px] pt-[25px] pb-[40px] normal-case">
                   {page.otsikko}
                 </h1>
-                <p className="text-[22px]">{page.ingressi}</p>
+                <p className="text-[22px] max-[600px]:text-[20px]">
+                  {page.ingressi}
+                </p>
               </div>
             </div>
             <div className="MediaCol flex flex-col flex-2 justify-center">

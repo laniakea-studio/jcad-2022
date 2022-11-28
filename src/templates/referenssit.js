@@ -15,7 +15,29 @@ const Page = ({ pageContext }) => {
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout locale={locale} transparent={false}>
-        <main className="pagePadding flex flex-col bg-[#000053] text-[#fff] pt-[94px]">
+        <main
+          className="pagePadding flex flex-col bg-[#000053] text-[#fff] pt-[94px]"
+          css={`
+            @media (max-width: 600px) {
+              .Hero {
+                border: none;
+              }
+              .ColMap {
+                display: none;
+              }
+              .AllReferences {
+                padding-top: 0;
+              }
+              .Reference {
+                flex-direction: column;
+                > div {
+                  padding-left: 0;
+                  padding-right: 0;
+                }
+              }
+            }
+          `}
+        >
           <section className="Hero container padding flex border-b-[0.8px] border-dashed border-white overflow-hidden">
             <div className="flex flex-col">
               <h1 className="text-[52px] pt-[50px] pb-[20px] font-normal">
@@ -26,15 +48,15 @@ const Page = ({ pageContext }) => {
               </p>
             </div>
 
-            <div className="flex max-h-[300px] justify-center flex-1">
+            <div className="ColMap flex max-h-[300px] justify-center flex-1">
               <SvgMap />
             </div>
           </section>
-          <section className="container padding flex flex-col items-center pt-[80px] pb-[80px]">
+          <section className="AllReferences container padding flex flex-col items-center pt-[80px] pb-[80px]">
             {allReferences.map(({ node }) => (
               <Link
                 to={`${prefix[locale] + references[locale] + node.slug}`}
-                className="flex max-w-[1100px] py-[20px] border-b-[0.8px] border-dashed"
+                className="Reference flex max-w-[1100px] py-[20px] border-b-[0.8px] border-dashed"
                 key={node.slug}
                 css={`
                   &:hover {
