@@ -363,7 +363,7 @@ const MobileMenu = ({
         }
         a {
           font-size: 14px;
-          padding: 15px 10px;
+          padding: 12px 20px;
           padding-right: 30px;
           font-weight: 600;
           text-transform: uppercase;
