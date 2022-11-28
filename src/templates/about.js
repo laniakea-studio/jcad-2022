@@ -610,6 +610,7 @@ const HomePage = ({ pageContext }) => {
                     max-width: 580px;
                     font-size: 34px;
                     line-height: 1.2;
+                    margin-bottom: 36px;
                   }
                   > div {
                     position: absolute;
