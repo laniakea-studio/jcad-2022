@@ -42,7 +42,7 @@ export const mainMenu = {
   fi: [
     { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
     { title: "Hinnoittelu", slug: "hinta" },
-    { title: "Webinaarit", slug: "webinaarit" },
+    { title: "Referenssit", slug: "referenssit" },
     { title: "Yhteystiedot", slug: "yhteystiedot" },
   ],
   en: [
