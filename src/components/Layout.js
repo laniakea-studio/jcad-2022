@@ -363,7 +363,7 @@ const MobileMenu = ({
         }
         a {
           font-size: 14px;
-          padding: 12px 20px;
+          padding: 11px 20px;
           padding-right: 30px;
           font-weight: 600;
           text-transform: uppercase;
@@ -446,9 +446,9 @@ const MobileMenu = ({
           </span>
         </a>
         <div
-          className="localeLinks row justify-end"
+          className="localeLinks row"
           css={`
-            margin-top: 20px;
+            margin-top: 10px;
             a {
               display: flex;
               justify-content: center;
