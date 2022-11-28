@@ -235,8 +235,9 @@ const Main = styled.main`
         padding-top: 80px;
       }
       @media (max-width: 900px) {
-        padding-left: 20px;
         padding-top: 40px;
+        padding-right: 0;
+        padding-left: 0;
       }
     }
     .wrap {
