@@ -390,16 +390,23 @@ const Main = styled.main`
           > span.sub {
             padding-left: 0;
             margin-top: 4px;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
+            @media (max-width: 600px) {
+              text-align: center;
+            }
           }
         }
       }
     }
     span.number {
       font-size: 150px;
+      line-height: 1;
       letter-spacing: -0.05em;
       @media (max-width: 1000px) {
         font-size: 100px;
+      }
+      @media (max-width: 600px) {
+        text-align: center;
       }
     }
     span.sub {

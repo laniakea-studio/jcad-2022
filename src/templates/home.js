@@ -192,83 +192,87 @@ const Page = ({ pageContext }) => {
                 })}
               </div>
             </div>
-            {video.video && locale === "fi" && (
-              <section
-                className="col container padding align-center"
-                css={`
-                  color: #fff;
-                  padding-top: 80px;
-                  padding-bottom: 140px;
-                  @media (max-width: 600px) {
-                    padding-top: 0;
-                    padding-bottom: 60px;
-                  }
-                  .VideoBox {
-                    max-width: 920px;
-                    margin: 0 auto;
-                  }
-                  h3 {
-                    text-transform: none;
-                    max-width: 500px;
-                    text-align: center;
-                    margin-bottom: 30px;
-                    font-weight: 400;
-                    @media (max-width: 600px) {
-                      font-size: 20px;
-                    }
-                  }
-                  .HeroLink {
-                    display: inline-flex;
-                    @media (max-width: 600px) {
-                      font-size: 16px;
-                    }
-                  }
-                `}
-              >
-                <h3>
-                  Katso, miten rakennusalan urakoitsijat hyödyntävät
-                  JCAD-määrälaskentaohjelmistoa.
-                </h3>
-
-                <Video
-                  data={video.video}
-                  poster={video.videoPoster.url}
-                  markers={[
-                    { positionSec: 0, text: "Mikä JCAD?" },
-                    {
-                      positionSec: 35,
-                      text: "Mittaus pohjapiirustuksesta",
-                    },
-                    {
-                      positionSec: 82,
-                      text: "Piha-alueiden määrälaskenta",
-                    },
-                  ]}
-                />
-                <Link
-                  className="HeroLink"
-                  to={ctaProduct[locale].slug}
+            {(video.video && locale === "fi") ||
+              (locale === "en" && (
+                <section
+                  className="col container padding align-center"
                   css={`
-                    margin-top: 20px;
+                    color: #fff;
+                    padding-top: 80px;
+                    padding-bottom: 140px;
+                    @media (max-width: 600px) {
+                      padding-top: 0;
+                      padding-bottom: 60px;
+                    }
+                    .VideoBox {
+                      max-width: 920px;
+                      margin: 0 auto;
+                    }
+                    h3 {
+                      text-transform: none;
+                      max-width: 500px;
+                      text-align: center;
+                      margin-bottom: 30px;
+                      font-weight: 400;
+                      @media (max-width: 600px) {
+                        font-size: 20px;
+                      }
+                    }
+                    .HeroLink {
+                      display: inline-flex;
+                      @media (max-width: 600px) {
+                        font-size: 16px;
+                      }
+                    }
                   `}
                 >
-                  {" "}
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                  {locale === "fi" && (
+                    <h3>
+                      Katso, miten rakennusalan urakoitsijat hyödyntävät
+                      JCAD-määrälaskentaohjelmistoa.
+                    </h3>
+                  )}
+                  {locale === "en" && <h3>Watch JCAD Features in Action</h3>}
+
+                  <Video
+                    data={video.video}
+                    poster={video.videoPoster.url}
+                    markers={[
+                      { positionSec: 0, text: "Mikä JCAD?" },
+                      {
+                        positionSec: 35,
+                        text: "Mittaus pohjapiirustuksesta",
+                      },
+                      {
+                        positionSec: 82,
+                        text: "Piha-alueiden määrälaskenta",
+                      },
+                    ]}
+                  />
+                  <Link
+                    className="HeroLink"
+                    to={ctaProduct[locale].slug}
+                    css={`
+                      margin-top: 20px;
+                    `}
                   >
-                    <path
-                      d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
-                      fill="#fff"
-                    />
-                  </svg>
-                  {ctaProduct[locale].title}
-                </Link>
-              </section>
-            )}
+                    {" "}
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                        fill="#fff"
+                      />
+                    </svg>
+                    {ctaProduct[locale].title}
+                  </Link>
+                </section>
+              ))}
             <DownloadPDF />
           </Main>
         </Layout>
