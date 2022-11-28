@@ -74,9 +74,12 @@ const Page = ({ pageContext }) => {
           <section className="Hero pagePadding">
             <div className="row container padding">
               <div className="col">
-                <span className="uppercase" style={{ fontSize: 22 }}>
+                <span
+                  className="uppercase"
+                  style={{ fontSize: 18, fontWeight: 200 }}
+                >
                   Seuraava webinaari{" "}
-                  <strong>
+                  <strong style={{ fontWeight: 600 }}>
                     {nextDate} klo {nextHour}
                   </strong>
                 </span>
