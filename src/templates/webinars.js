@@ -61,7 +61,16 @@ const Page = ({ pageContext }) => {
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout locale={pageContext.locale} transparent={false}>
-        <Main>
+        <Main
+          css={`
+            a:hover {
+              svg {
+                translate: 5px;
+                transition: 0.2s;
+              }
+            }
+          `}
+        >
           <section className="Hero pagePadding">
             <div className="row container padding">
               <div className="col">
