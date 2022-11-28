@@ -446,21 +446,21 @@ const MobileMenu = ({
           </span>
         </a>
         <div
-          className="localeLinks row"
+          className="localeLinks row justify-center"
           css={`
             margin-top: 10px;
             a {
               display: flex;
               justify-content: center;
               align-items: center;
-              width: 50px;
-              height: 50px;
+              width: 40px;
+              height: 40px;
               padding: 10px;
               border-radius: 50%;
               font-size: 15px;
               font-weight: 500;
-              margin-left: 10px;
-              margin-right: 10px;
+              margin-left: 5px;
+              margin-right: 5px;
             }
           `}
         >
