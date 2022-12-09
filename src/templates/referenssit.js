@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { Layout } from "../components/Layout";
 import { LocaleContext } from "../contexts/LocaleContext";
 import { prefix, references } from "../constants/slugs";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -73,7 +74,17 @@ const Page = ({ pageContext }) => {
                 `}
               >
                 <div className="flex flex-col flex-2 px-[20px] justify-center">
-                  <SvgLike className="w-full" />
+                  {console.log(node)}
+                  {!node.kuva && <SvgLike className="w-full" />}
+                  {node.kuva && (
+                    <div className="w-full">
+                      <GatsbyImage
+                        className="imgHero"
+                        image={node.kuva.gatsbyImageData}
+                        alt={node.kuva?.url}
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="flex flex-col flex-2 px-[20px] py-[40px]">
                   <div className="Tags opacity-[0.6] text-[15px]">
