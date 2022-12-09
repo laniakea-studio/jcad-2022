@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
