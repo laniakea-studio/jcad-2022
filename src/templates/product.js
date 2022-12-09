@@ -1,6 +1,6 @@
 import { HelmetDatoCms } from "gatsby-source-datocms";
+import { Link } from "gatsby";
 import React, { useContext } from "react";
-import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import kuva1 from "../assets/kuva1.jpg";
 import kuva2 from "../assets/kuva2.jpg";
@@ -22,9 +22,10 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 import { MagneticButton } from "../components/MagneticButton";
 import { useHover } from "../hooks/useHover";
 import { Video } from "../components/Video";
+import { bookDemo, prefix } from "../constants/slugs";
 
 const Product = ({ pageContext }) => {
-  const { locale, localeSlugs } = useContext(LocaleContext);
+  const { locale } = useContext(LocaleContext);
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
   const [hoverRef] = useHover();
@@ -54,12 +55,12 @@ const Product = ({ pageContext }) => {
                     onClick={() => scrollTo("#customers")}
                     text={text.seeMore}
                   />
-
-                  <PopupButton
+                  <Link
                     className="btn white-outlines"
-                    url={data.booking.calendlyBookingUrl}
-                    text={data.booking.buttonText}
-                  />
+                    to={`${prefix[locale] + bookDemo[locale].slug}`}
+                  >
+                    {text.bookDemo}
+                  </Link>
                 </div>
 
                 <SvgCircle id="circle-2" />

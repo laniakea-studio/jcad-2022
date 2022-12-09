@@ -136,11 +136,12 @@ export const Layout = ({ children }) => {
                 {i.title}
               </Link>
             ))}
-            <PopupButton
+            <Link
               className="btn white-outlines"
-              url={booking.calendlyBookingUrl}
-              text={booking.buttonText}
-            />
+              to={`${prefix[locale] + bookDemo[locale].slug}`}
+            >
+              {text.bookDemo}
+            </Link>
           </nav>
           <div className={`burger${menuOpen ? " menuOpen" : ""}`}>
             <BurgerIcon

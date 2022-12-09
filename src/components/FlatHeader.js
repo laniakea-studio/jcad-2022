@@ -1,22 +1,20 @@
 import { Link } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
-import { PopupButton } from "react-calendly";
 import { useScrollData } from "scroll-data-hook";
+import { bookDemo, prefix } from "../constants/slugs";
 import { LocaleContext } from "../contexts/LocaleContext";
 import en from "../locales/en.yml";
 import fi from "../locales/fi.yml";
 import sv from "../locales/sv.yml";
 import "../theme-2021/globals.css";
-import theme from "../theme-2021/theme";
 import { BurgerIcon } from "./BurgerIcon";
 import { SvgLogo } from "./SvgCollection.js";
-import { ctaMenu, fullMenu, mainMenu, prefix, order } from "../constants/slugs";
 
 // TODO: Remove menu from props
 const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
   const [show, setShow] = useState(false);
   const { direction, position } = useScrollData();
-  const { locale, localeSlugs } = useContext(LocaleContext);
+  const { locale } = useContext(LocaleContext);
 
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
 
@@ -144,11 +142,12 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
               {i.title}
             </Link>
           ))}
-          <PopupButton
+          <Link
             className="btn white-outlines"
-            url={booking.calendlyBookingUrl}
-            text={booking.buttonText}
-          />
+            to={`${prefix[locale] + bookDemo[locale].slug}`}
+          >
+            {text.bookDemo}
+          </Link>
         </nav>
 
         <BurgerIcon

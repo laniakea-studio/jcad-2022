@@ -209,11 +209,12 @@ const Pricing = ({ pageContext }) => {
                       </Link>
                     )}
                     {!isFinnish && (
-                      <PopupButton
+                      <Link
                         className="btn white-outlines"
-                        url={booking.calendlyBookingUrl}
-                        text={booking.buttonText}
-                      />
+                        to={`${prefix[locale] + bookDemo[locale].slug}`}
+                      >
+                        {text.bookDemo}
+                      </Link>
                     )}
 
                     <div className="footerContent">

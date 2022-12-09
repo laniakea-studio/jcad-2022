@@ -31,7 +31,7 @@ exports.createPages = async ({ graphql, actions }) => {
       webinars: "webinars",
       jobs: "jobs",
       order: "order",
-      bookDemo: "book-demo",
+      bookDemo: "free-trial",
       thanksDemoBooking: "thanks-demo-booking",
       thanksWebinarBooking: "kiitos-webinar-booking",
       thanksOrder: "thanks-order",

@@ -10,6 +10,12 @@ export const order = {
   sv: { title: "Tilaa JCAD", slug: "bestall" },
 };
 
+export const bookDemo = {
+  fi: { title: "Varaa demo", slug: "varaa-demo" },
+  en: { title: "Free trial", slug: "free-trial" },
+  sv: { title: "Boka demo", slug: "boka-demo" },
+};
+
 export const contact = {
   fi: { title: "Kaikki yhteystiedot", slug: "yhteystiedot" },
   en: { title: "All contacts", slug: "contact" },

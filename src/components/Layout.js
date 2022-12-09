@@ -1,7 +1,6 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import React, { useContext, useEffect, useState } from "react";
-import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
@@ -12,7 +11,13 @@ import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
-import { ctaMenu, fullMenu, mainMenu, prefix, order } from "../constants/slugs";
+import {
+  fullMenu,
+  mainMenu,
+  prefix,
+  order,
+  bookDemo,
+} from "../constants/slugs";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -199,11 +204,12 @@ export const Layout = ({ children, page }) => {
                   )}
                 </>
               )}
-              <PopupButton
+              <Link
                 className="btn white-outlines"
-                url={booking.calendlyBookingUrl}
-                text={booking.buttonText}
-              />
+                to={`${prefix[locale] + bookDemo[locale].slug}`}
+              >
+                {text.bookDemo}
+              </Link>
               <BurgerIcon
                 menuOpen={menuOpen}
                 onClick={(e) => {

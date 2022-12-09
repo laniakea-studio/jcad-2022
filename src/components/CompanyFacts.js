@@ -1,10 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
-import React, { useContext } from "react";
-import { PopupButton } from "react-calendly";
+import { useContext } from "react";
 import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
-import { theme } from "../theme/theme";
 
 export const CompanyFacts = () => {
   const { locale } = useContext(LocaleContext);
