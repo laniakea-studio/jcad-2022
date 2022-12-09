@@ -6,7 +6,6 @@ import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import GlobalStyle from "../theme/global";
 import "../theme/index.css";
-import { theme } from "../theme/theme";
 import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";

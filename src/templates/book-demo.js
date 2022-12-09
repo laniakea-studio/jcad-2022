@@ -36,7 +36,6 @@ const Page = ({ pageContext }) => {
         className="pagePadding"
         css={`
           padding-top: 94px;
-          min-height: 100vh;
           background: ${theme.primary};
         `}
       >
