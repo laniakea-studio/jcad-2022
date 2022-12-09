@@ -1,16 +1,15 @@
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { Link } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import React, { useContext, useEffect, useState } from "react";
-import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { Booking } from "../components/Booking";
 import { Layout } from "../components/Layout";
 import { Switch } from "../components/Switch";
-import { SvgHeadingFrame } from "../components/SvgCollection";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 import { valikkoSopimuskausi, extraHinnasto } from "@constants/pricing";
+import { bookDemo, prefix } from "../constants/slugs";
 
 // Warning: Changing order of card items will break to url parameters generation
 const Pricing = ({ pageContext }) => {
@@ -18,7 +17,7 @@ const Pricing = ({ pageContext }) => {
   const text = snippet[locale];
   const isFinnish = locale === "fi";
 
-  const { page, booking } = pageContext.data;
+  const { page } = pageContext.data;
 
   const [priceSelections, setPriceSelections] = useState({
     ohjelmisto: page.valikkoOhjelmisto[0],
