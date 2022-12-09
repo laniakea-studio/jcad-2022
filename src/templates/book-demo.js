@@ -75,6 +75,7 @@ const Page = ({ pageContext }) => {
               css={`
                 margin-bottom: 20px;
                 opacity: 0.65;
+
                 span {
                   font-size: 17px;
                   font-weight: 600;
@@ -92,16 +93,23 @@ const Page = ({ pageContext }) => {
                 }
               `}
             >
-              <span>
+              <span className="inline-flex">
                 <HourSvg />
                 15-60 min.
               </span>
-              <span>
+              <span className="inline-flex">
                 <PlaceSvg />
                 Teams
               </span>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: page.pageContent }} />
+            <div
+              css={`
+                p {
+                  margin-bottom: 15px;
+                }
+              `}
+              dangerouslySetInnerHTML={{ __html: page.pageContent }}
+            />
           </div>
           <div className="col">
             <InlineWidget

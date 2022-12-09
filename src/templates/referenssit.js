@@ -74,7 +74,6 @@ const Page = ({ pageContext }) => {
                 `}
               >
                 <div className="flex flex-col flex-2 px-[20px] justify-center">
-                  {console.log(node)}
                   {!node.kuva && <SvgLike className="w-full" />}
                   {node.kuva && (
                     <div className="w-full">
