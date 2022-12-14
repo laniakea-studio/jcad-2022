@@ -8,9 +8,9 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
-  const { page, allReferences } = pageContext.data;
+  const { page, allReferences, googleSheets } = pageContext.data;
 
-  console.log({ page, allReferences });
+  console.log(googleSheets);
 
   return (
     <>
@@ -97,6 +97,20 @@ const Page = ({ pageContext }) => {
                   <SvgArrowRight className="Arrow w-[26px] pt-[15px] opacity-[0.6]" />
                 </div>
               </Link>
+            ))}
+            {googleSheets.slice(0, 50).map(({ node }) => (
+              <div className="flex w-full max-w-[1100px] justify-between items-center py-[50px] border-b-[0.8px] border-dashed">
+                <h4 className="text-[20px] flex-[2]">{node.Yritys}</h4>
+                <span className="text-[11px] uppercase flex-[1]">
+                  {node.Toimiala}
+                </span>
+                <span className="text-[11px] uppercase flex-[1]">
+                  {node.Alue}
+                </span>
+                <span className="text-[11px] uppercase flex-[1]">
+                  {node.Liikevaihto && <>Liikevaihto {node.Liikevaihto}</>}
+                </span>
+              </div>
             ))}
           </section>
         </main>

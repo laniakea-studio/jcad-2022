@@ -17,6 +17,7 @@
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.2",
     "chart.js": "^3.8.0",
+    "csvtojson": "^2.0.10",
     "dotenv": "^16.0.2",
     "framer-motion": "^5.5.6",
     "gatsby": "^4.2.0",
@@ -29,7 +30,9 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-datocms": "^3.0.11",
     "gatsby-source-filesystem": "^4.3.0",
+    "gatsby-source-google-spreadsheets": "^3.0.8",
     "gatsby-transformer-sharp": "^4.3.0",
+    "node-fetch": "^2.6.7",
     "react": "^17.0.1",
     "react-calendly": "^2.2.2",
     "react-chartjs-2": "^4.1.0",

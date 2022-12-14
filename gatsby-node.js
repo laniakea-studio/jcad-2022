@@ -1,4 +1,72 @@
 const path = require(`path`);
+const csv2json = require("csvtojson");
+const fetch = require("node-fetch");
+
+const isDebug = false; //process.env.NODE_ENV !== "production";
+
+const createPublishedGoogleSpreadsheetNode = async (
+  {
+    actions: { createNode, createNodeField },
+    createNodeId,
+    createContentDigest,
+  },
+  publishedURL,
+  type,
+  { skipFirstLine = true, alwaysEnabled = false, subtype = null }
+) => {
+  // All table has first row reserved
+  const result = await fetch(
+    `${publishedURL}&single=true&output=csv&headers=1${
+      skipFirstLine ? "&range=A2:ZZ" : ""
+    }`
+  );
+  const data = await result.text();
+  const records = await csv2json().fromString(data);
+  console.log(records);
+  const recordsStringified = JSON.stringify(records);
+
+  records.forEach((p, i) => {
+    // create node for build time data example in the docs
+    const meta = {
+      // required fields
+      id: createNodeId(`${type.toLowerCase()}-${i}`),
+      parent: null,
+      children: [],
+      internal: {
+        type,
+        contentDigest: createContentDigest(p),
+      },
+    };
+    const node = { ...p, subtype, ...meta };
+    createNode(node);
+  });
+
+  /*
+  createNode({
+    // Data for the node.
+    items: JSON.stringify(recordsStringified),
+
+    // Required fields.
+    id: "a-node-id",
+    parent: null, // or null if it's a source node without a parent
+    children: [],
+    internal: {
+      type,
+      contentDigest: createContentDigest(recordsStringified),
+    },
+  });*/
+};
+
+exports.sourceNodes = async (props) => {
+  await Promise.all([
+    createPublishedGoogleSpreadsheetNode(
+      props,
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRCII9xH2qdCuC7XYtbyDK_ALkIkorYyANK3HTD2D_T4hNSyLm9kUnVuY5bstHB7SewL-xWYBblW_cr/pub?gid=0",
+      "ReferenssitGoogleSheets",
+      { skipFirstLine: false, alwaysEnabled: true }
+    ),
+  ]);
+};
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -344,6 +412,17 @@ exports.createPages = async ({ graphql, actions }) => {
         } 
         content
       }
+      allReferenssitGoogleSheets {
+        edges {
+          node {
+            Alue
+            Kunta
+            Liikevaihto
+            Toimiala
+            Yritys
+          }
+        }
+      }
     }
   `);
 
@@ -462,6 +541,7 @@ exports.createPages = async ({ graphql, actions }) => {
           },
           data: {
             page: data.referenssit,
+            googleSheets: data.allReferenssitGoogleSheets.edges,
             allReferences: data.allReferences.edges.filter(
               (i) => i.node.artikkeli
             ),

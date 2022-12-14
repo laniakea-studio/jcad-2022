@@ -4,6 +4,16 @@ module.exports = {
     title: "JCAD",
   },
   plugins: [
+    /*
+    {
+      resolve: "gatsby-source-google-spreadsheets",
+      options: {
+        spreadsheetId:
+          "https://docs.google.com/spreadsheets/d/13KZKESZTIA3Ma2ZlITZn5LBMh6hxy1MpcJE45eraTBo/edit?usp=sharing",
+        apiKey: "AIzaSyCChx9tTyahkEK4yAbAkr1RgW37sZPMExs",
+        //credentials: require("./jcad-371504-0cdeaef4ddfd.json"),
+      },
+    },*/
     {
       resolve: "gatsby-source-datocms",
       options: {
