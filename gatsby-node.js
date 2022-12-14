@@ -306,6 +306,15 @@ exports.createPages = async ({ graphql, actions }) => {
         buttonText
         pageContent
         calendlyLink
+        video {
+          video {
+          streamingUrl
+          mp4Url
+          }
+        }
+        videoPoster {
+          url
+        }
       }
       yhteystiedot: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {
         seoMetaTags {

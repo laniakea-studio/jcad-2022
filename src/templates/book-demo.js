@@ -1,28 +1,10 @@
 import React, { useContext } from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { InlineWidget } from "react-calendly";
+import { Layout } from "../components/Layout";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
-import { HelmetDatoCms } from "gatsby-source-datocms";
-import styled from "styled-components";
-import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
-import { StaticImage } from "gatsby-plugin-image";
-import { InlineWidget } from "react-calendly";
-
-const content = {
-  fi: {
-    h1: "Varaa demo",
-    p: "Nähdään pian. Lähetimme kalenterivarauksen sähköpostiisi. Jos et saanut varausta tai sinulla on kysyttävää, ota yhteyttä lauri.pasma@jcad.fi.",
-  },
-  en: {
-    h1: "Thanks for booking!",
-    p: "See you soon.",
-  },
-  sv: {
-    h1: "Tack för bokingen!",
-    p: "Vi ses snart.",
-  },
-};
+import { Video } from "../components/Video";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
@@ -44,6 +26,7 @@ const Page = ({ pageContext }) => {
           css={`
             color: #fff;
             padding-top: 70px;
+            padding-bottom: 70px;
             @media (max-width: 700px) {
               padding-top: 30px;
               flex-direction: column;
@@ -68,7 +51,7 @@ const Page = ({ pageContext }) => {
             }
           `}
         >
-          <div className="col">
+          <div className="flex flex-col pb-[20px] w-full">
             <div
               className="row align-center Points"
               css={`
@@ -109,6 +92,15 @@ const Page = ({ pageContext }) => {
               `}
               dangerouslySetInnerHTML={{ __html: page.pageContent }}
             />
+            {page.video && (
+              <div className="flex py-[20px] pr-[60px]">
+                <Video
+                  data={page.video}
+                  poster={page.videoPoster.url}
+                  markers={[]}
+                />
+              </div>
+            )}
           </div>
           <div className="col">
             <InlineWidget
