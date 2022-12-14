@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Layout } from "../components/Layout";
 import { LocaleContext } from "../contexts/LocaleContext";
 import { prefix, references } from "../constants/slugs";
@@ -9,6 +9,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const { page, allReferences, googleSheets } = pageContext.data;
+  const [showCases, setShowCases] = useState(30);
 
   console.log(googleSheets);
 
@@ -98,7 +99,7 @@ const Page = ({ pageContext }) => {
                 </div>
               </Link>
             ))}
-            {googleSheets.slice(0, 50).map(({ node }) => (
+            {googleSheets.slice(0, showCases).map(({ node }) => (
               <div
                 className="flex w-full max-w-[1100px] justify-between items-center py-[50px] border-b-[0.8px] border-dashed max-[600]:flex-col"
                 css={`
@@ -108,17 +109,25 @@ const Page = ({ pageContext }) => {
                 `}
               >
                 <h4 className="text-[20px] flex-[2]">{node.Yritys}</h4>
-                <span className="text-[11px] uppercase flex-[1]">
+                <span className="text-[12px] uppercase flex-[1]">
                   {node.Toimiala}
                 </span>
-                <span className="text-[11px] uppercase flex-[1]">
+                <span className="text-[12px] uppercase flex-[1]">
                   {node.Alue}
                 </span>
-                <span className="text-[11px] uppercase flex-[1]">
+                <span className="text-[12px] uppercase flex-[1]">
                   {node.Liikevaihto && <>Liikevaihto {node.Liikevaihto}</>}
                 </span>
               </div>
             ))}
+            {!setShowCases === googleSheets.length && (
+              <button
+                className="mx-auto mt-[50px] btn white-outlines"
+                onClick={() => setShowCases(googleSheets.length)}
+              >
+                Näytä kaikki {googleSheets.length}
+              </button>
+            )}
           </section>
         </main>
       </Layout>
