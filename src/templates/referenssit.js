@@ -125,7 +125,7 @@ const Page = ({ pageContext }) => {
                 className="mx-auto mt-[50px] btn white-outlines"
                 onClick={() => setShowCases(googleSheets.length)}
               >
-                Näytä kaikki {googleSheets.length}
+                Näytä kaikki
               </button>
             )}
           </section>
