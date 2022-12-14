@@ -99,7 +99,14 @@ const Page = ({ pageContext }) => {
               </Link>
             ))}
             {googleSheets.slice(0, 50).map(({ node }) => (
-              <div className="flex w-full max-w-[1100px] justify-between items-center py-[50px] border-b-[0.8px] border-dashed">
+              <div
+                className="flex w-full max-w-[1100px] justify-between items-center py-[50px] border-b-[0.8px] border-dashed max-[600]:flex-col"
+                css={`
+                  @media (max-width: 600px) {
+                    flex-direction: column;
+                  }
+                `}
+              >
                 <h4 className="text-[20px] flex-[2]">{node.Yritys}</h4>
                 <span className="text-[11px] uppercase flex-[1]">
                   {node.Toimiala}
