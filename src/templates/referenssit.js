@@ -11,7 +11,7 @@ const Page = ({ pageContext }) => {
   const { page, allReferences, googleSheets } = pageContext.data;
   const [showCases, setShowCases] = useState(30);
 
-  console.log(googleSheets);
+  console.log(googleSheets.lengthh);
 
   return (
     <>
@@ -120,7 +120,7 @@ const Page = ({ pageContext }) => {
                 </span>
               </div>
             ))}
-            {!setShowCases === googleSheets.length && (
+            {setShowCases !== googleSheets.length && (
               <button
                 className="mx-auto mt-[50px] btn white-outlines"
                 onClick={() => setShowCases(googleSheets.length)}
