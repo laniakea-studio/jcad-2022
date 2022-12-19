@@ -103,7 +103,10 @@ const Page = ({ pageContext }) => {
                 margin-bottom: 120px;
               `}
             >
-              <Video data={page.video} poster={page.videoPoster.url} />
+              {page.video && (
+                <Video data={page.video} poster={page.videoPoster.url} />
+              )}
+
               <div
                 css={`
                   padding-top: 30px;

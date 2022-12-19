@@ -22,7 +22,7 @@ const createPublishedGoogleSpreadsheetNode = async (
   );
   const data = await result.text();
   const records = await csv2json().fromString(data);
-  console.log(records);
+
   const recordsStringified = JSON.stringify(records);
 
   records.forEach((p, i) => {
