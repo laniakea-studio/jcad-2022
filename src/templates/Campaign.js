@@ -18,7 +18,7 @@ const Page = ({ pageContext }) => {
 
   // Form
   const form = {
-    name: "Kustannuslaskenta-kampanja",
+    name: page.lomakkeenNimi,
     inputs: [
       {
         type: "text",
@@ -157,7 +157,7 @@ const Page = ({ pageContext }) => {
               </div>
               <NetlifyForm
                 data={form}
-                plausibleGoal="Kokeilee kustannuslaskentalisäosaa"
+                plausibleGoal={plausibleGoal}
                 redirectOnSuccess={null}
               />
             </div>

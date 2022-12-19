@@ -382,6 +382,8 @@ exports.createPages = async ({ graphql, actions }) => {
               content
             }
             aloitaKokeilujakso
+            lomakkeenNimi
+            plausibleGoal
           }
         }
       }
