@@ -97,9 +97,9 @@ const Page = ({ pageContext }) => {
             </button>
 
             <div
-              className="row col-1000"
+              className="row col-1000 mx-auto"
               css={`
-                max-width: 1150px;
+                max-width: ${page.video ? "1150px" : "600px"};
                 margin-bottom: 120px;
               `}
             >
