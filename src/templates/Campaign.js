@@ -46,6 +46,41 @@ const Page = ({ pageContext }) => {
     },
   };
 
+  const formIlmainenKokeilu = {
+    name: page.lomakkeenNimi,
+    inputs: [
+      {
+        type: "text",
+        name: "yritys",
+        label: "Yritys",
+        isRequired: true,
+      },
+      {
+        type: "text",
+        name: "nimi",
+        label: "Nimi",
+        isRequired: true,
+      },
+      {
+        type: "email",
+        name: "email",
+        label: "Sähköposti",
+        isRequired: true,
+      },
+      {
+        type: "textarea",
+        name: "tuotteet",
+        label: "Mistä tuotteista olet kinnostunut?",
+        isRequired: true,
+      },
+      { type: "submit", text: "Aloita kokeilujakso" },
+    ],
+    messages: {
+      submitSucces: "Kiitos! Olemme yhteydessä.",
+      fillAllInputs: "Täytä kaikki kentät.",
+    },
+  };
+
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
@@ -161,7 +196,11 @@ const Page = ({ pageContext }) => {
                 />
               </div>
               <NetlifyForm
-                data={form}
+                data={
+                  page.lomakkeenNimi === "Ilmainen-kokeilujakso"
+                    ? formIlmainenKokeilu
+                    : form
+                }
                 plausibleGoal={page.plausibleGoal}
                 redirectOnSuccess={null}
               />
