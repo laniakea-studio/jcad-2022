@@ -117,6 +117,9 @@ const Page = ({ pageContext }) => {
                 opacity: 1;
                 margin-bottom: 20px;
               }
+              p {
+                margin-bottom: 16px;
+              }
             `}
           >
             <span className="SubTitle">{page.supTitle}</span>
