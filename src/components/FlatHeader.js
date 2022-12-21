@@ -111,7 +111,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
             margin-right: 30px;
             position: relative;
             letter-spacing: 0.05em;
-            &:before {
+            &:before:not(.BookDemo) {
               content: "";
               position: absolute;
               display: block;
@@ -143,7 +143,7 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
             </Link>
           ))}
           <Link
-            className="btn white-outlines"
+            className="BookDemo btn white-outlines"
             to={`${prefix[locale] + bookDemo[locale].slug}`}
           >
             {text.bookDemo}
