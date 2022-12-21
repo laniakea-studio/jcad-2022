@@ -41,7 +41,7 @@ const Page = ({ pageContext }) => {
       { type: "submit", text: "Aloita kokeilujakso" },
     ],
     messages: {
-      submitSucces: "Kiitos! Kurkkaa sähköpostisi.",
+      submitSucces: "Kiitos! Olemme yhteydessä.",
       fillAllInputs: "Täytä kaikki kentät.",
     },
   };
@@ -118,21 +118,26 @@ const Page = ({ pageContext }) => {
                 dangerouslySetInnerHTML={{ __html: page.videoText }}
               />
             </div>
-            <h3>Asiakkaiden kommentteja</h3>
-            <div
-              className="row col-600"
-              css={`
-                margin-bottom: 120px;
-                max-width: 960px;
-                > div {
-                  padding-right: 50px;
-                }
-              `}
-            >
-              {page.asiakkaidenKommentteja.map((item) => (
-                <div dangerouslySetInnerHTML={{ __html: item.content }} />
-              ))}
-            </div>
+            {page.asiakkaidenKommentteja.length > 0 && (
+              <>
+                <h3>Asiakkaiden kommentteja</h3>
+                <div
+                  className="row col-600"
+                  css={`
+                    margin-bottom: 120px;
+                    max-width: 960px;
+                    > div {
+                      padding-right: 50px;
+                    }
+                  `}
+                >
+                  {page.asiakkaidenKommentteja.map((item) => (
+                    <div dangerouslySetInnerHTML={{ __html: item.content }} />
+                  ))}
+                </div>
+              </>
+            )}
+
             <div
               id="aloita"
               className="row col-900"
@@ -157,7 +162,7 @@ const Page = ({ pageContext }) => {
               </div>
               <NetlifyForm
                 data={form}
-                plausibleGoal={plausibleGoal}
+                plausibleGoal={page.plausibleGoal}
                 redirectOnSuccess={null}
               />
             </div>

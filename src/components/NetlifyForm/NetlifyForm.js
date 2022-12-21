@@ -77,8 +77,6 @@ export const NetlifyForm = ({
   const { name, inputs, messages } = data;
   const styles = isLightBg ? stylesLightBg : stylesDarkBg;
 
-  const [file, setFile] = useState(null);
-
   let schema = {
     "form-name": name,
   };
