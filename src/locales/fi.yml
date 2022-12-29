@@ -27,7 +27,6 @@ bookDemo: Varaa demo
 footer:
   admin: Hallinto
   sales: Tilaukset
-  team: Tiimi
   accounts: Asiakkuudet
   support: Asiakaspalvelu ja tuki
   buttonBackToTop: Takaisin ylös
@@ -60,6 +59,7 @@ product:
 contactPage:
   title: Yhteystiedot
   sales: Tilaukset
+  team: Tiimi
   support: Asiakaspalvelu ja tuki
   accounts: Asiakkuudet
   experts: Asiantuntijat
