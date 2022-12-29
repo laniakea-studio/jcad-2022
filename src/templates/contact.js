@@ -39,7 +39,7 @@ const Contact = ({ pageContext }) => {
                 <a href={`tel:${asiakaspalvelu[0].puhelin}`}>
                   {asiakaspalvelu[0].puhelin}
                 </a>
-                <a href={`mail:${asiakaspalvelu[0].email}`}>
+                <a href={`mailto:${asiakaspalvelu[0].email}`}>
                   {asiakaspalvelu[0].email}
                 </a>
               </div>
@@ -126,7 +126,7 @@ const Person = ({ data }) => {
       <p className="mt-[15px]">{data.nimi}</p>
       <p>{data.titteli}</p>
       <a href={`tel:${data.puhelin}`}>{data.puhelin}</a>
-      <a href={`mail:${data.email}`}>{data.email}</a>
+      <a href={`mailto:${data.email}`}>{data.email}</a>
     </div>
   );
 };
