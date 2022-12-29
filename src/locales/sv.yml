@@ -27,6 +27,7 @@ bookDemo: Boka demo
 footer:
   admin: Administration
   sales: Försäljning
+  team: Team
   accounts: Kontohantering
   support: Kundtjänst
   buttonBackToTop: Tillbaka upp

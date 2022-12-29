@@ -59,6 +59,7 @@ product:
 contactPage:
   title: Contacts
   sales: Orders
+  team: Team
   support: Customer Service
   accounts: Account Management
   experts: Specialists

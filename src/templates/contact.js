@@ -71,7 +71,7 @@ const Contact = ({ pageContext }) => {
             {tilaukset.length > 0 && (
               <div className="flex flex-[1] flex-col">
                 <h2 className="normal-case text-[32px] font-normal mb-[40px]">
-                  Tilaukset
+                  {snippet[locale].contactPage.sales}
                 </h2>
                 <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
                   {tilaukset.map((i) => (
@@ -83,7 +83,7 @@ const Contact = ({ pageContext }) => {
             {asiakkuudet.length > 0 && (
               <div className="flex flex-[1] flex-col">
                 <h2 className="normal-case text-[32px] font-normal mb-[40px]">
-                  Asiakkuudet
+                  {snippet[locale].contactPage.accounts}
                 </h2>
                 <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
                   {asiakkuudet.map((i) => (
@@ -97,7 +97,7 @@ const Contact = ({ pageContext }) => {
             <div className="container px-[100px] max-[1100px]:px-[40px] max-[600px]:px-[20px] border-black pb-[100px]">
               <div className="flex flex-[1] flex-col">
                 <h2 className="normal-case text-[32px] font-normal mb-[40px]">
-                  Tiimi
+                  {snippet[locale].contactPage.team}
                 </h2>
                 <div className="grid grid-cols-4 max-[1100px]:grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
                   {tiimi.map((i) => (
