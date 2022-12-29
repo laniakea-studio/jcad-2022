@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
-import styled from "styled-components";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
@@ -11,8 +10,6 @@ import { TutorialNavigation } from "@components/TutorialNavigation";
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const { page } = pageContext.data;
-
-  console.log({ page });
 
   return (
     <>

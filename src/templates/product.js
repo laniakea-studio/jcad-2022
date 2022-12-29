@@ -29,7 +29,7 @@ const Product = ({ pageContext }) => {
   const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
   const [hoverRef] = useHover();
-  console.log(data.references);
+
   return (
     <>
       <HelmetDatoCms seo={data.product.seoMetaTags} />

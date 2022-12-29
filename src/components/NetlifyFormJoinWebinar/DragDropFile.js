@@ -51,7 +51,7 @@ export const DragDropFile = ({ name, styles, handleFile, value }) => {
   const validateFile = (files) => {
     let isValid = true;
     setErrors([]);
-    console.log("validate: ", files);
+
     if (files.length > options.maxFiles) {
       isValid = false;
       setErrors([

@@ -320,6 +320,22 @@ exports.createPages = async ({ graphql, actions }) => {
         seoMetaTags {
           tags           
         }     
+        ihmiset {
+          ryhma
+          nimi
+          titteli
+          puhelin
+          email
+          kuva {
+            url
+            alt
+            gatsbyImageData(
+              width: 800
+              placeholder: BLURRED
+              forceBlurhash: false
+            )
+          }
+        }
         myyntiJaTilaukset {
           nimi
           titteli

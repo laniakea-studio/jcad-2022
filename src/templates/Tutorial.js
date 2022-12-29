@@ -12,7 +12,7 @@ import { TutorialNavigation } from "@components/TutorialNavigation";
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const { page } = pageContext.data;
-  console.log(page);
+
   const [linkCopied, setLinkCopied] = useState(null);
 
   function handleLinkCopy(e, link) {

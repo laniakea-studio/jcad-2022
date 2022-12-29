@@ -28,7 +28,6 @@ const Pricing = ({ pageContext }) => {
 
   const [price, setPrice] = useState([null, null, null]);
 
-  console.log(priceSelections);
   useEffect(() => {
     const { ohjelmisto, lisenssi, sopimuskausi, kustannuslaskenta } =
       priceSelections;
@@ -167,7 +166,6 @@ const Pricing = ({ pageContext }) => {
                 const period = `&period=${priceSelections.sopimuskausi.label}%20kk`;
                 const users = `&users=${priceSelections.lisenssi}`;
                 const urlParameters = `?app=${app + period + users}`;
-                console.log(app);
 
                 return (
                   <div className="item">

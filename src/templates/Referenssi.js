@@ -10,8 +10,6 @@ const Page = ({ pageContext }) => {
   const { page } = pageContext.data;
   const text = snippet[locale];
 
-  console.log({ page });
-
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />

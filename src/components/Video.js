@@ -7,8 +7,6 @@ export const Video = ({ data, autoplay, poster, markers }) => {
   const [videoDuration, setVideoDuration] = useState(null);
   const videoRef = useRef(null);
 
-  console.log(poster);
-
   const seekTo = (timeToStart) => {
     videoRef.current.currentTime = timeToStart;
     videoRef.current.play();

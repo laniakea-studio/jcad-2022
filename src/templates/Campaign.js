@@ -14,7 +14,6 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const { page } = pageContext.data;
-  console.log(page);
 
   // Form
   const form = {
