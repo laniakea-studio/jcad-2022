@@ -31,7 +31,7 @@ const Contact = ({ pageContext }) => {
             <h1 className="text-[32px] text-white normal-case mb-[70px] font-normal">
               {snippet[locale].contactPage.title}
             </h1>
-            <div className="grid grid-cols-4 gap-[50px] max-[900px]:grid-cols-2 max-[420px]:grid-cols-2">
+            <div className="grid grid-cols-4 gap-[50px] max-[900px]:grid-cols-2 max-[420px]:grid-cols-1">
               <div className="flex flex-col">
                 <h3 className="uppercase text-[16px]">
                   {asiakaspalvelu[0].nimi}
@@ -39,8 +39,8 @@ const Contact = ({ pageContext }) => {
                 <a href={`tel:${asiakaspalvelu[0].puhelin}`}>
                   {asiakaspalvelu[0].puhelin}
                 </a>
-                <a href={`mail:${asiakaspalvelu[0].mail}`}>
-                  {asiakaspalvelu[0].mail}
+                <a href={`mail:${asiakaspalvelu[0].email}`}>
+                  {asiakaspalvelu[0].email}
                 </a>
               </div>
               <div className="flex flex-col">
@@ -67,40 +67,46 @@ const Contact = ({ pageContext }) => {
           </div>
         </section>
         <main className="pagePadding flex flex-col w-full mx-auto">
-          <div className="container px-[100px] max-[1100px]:px-[40px] max-[600px]:px-[20px] border-black grid grid-cols-2 max-[1100px]:grid-cols-1 gap-[50px] pt-[100px] ">
-            <div className="flex flex-[1] flex-col">
-              <h2 className="normal-case text-[32px] font-normal mb-[40px]">
-                Tilaukset
-              </h2>
-              <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
-                {tilaukset.map((i) => (
-                  <Person data={i} />
-                ))}
+          <div className="container px-[100px] max-[1100px]:px-[40px] max-[600px]:px-[20px] border-black grid grid-cols-2 max-[1100px]:grid-cols-1 gap-[50px] pt-[100px] pb-[100px]">
+            {tilaukset.length > 0 && (
+              <div className="flex flex-[1] flex-col">
+                <h2 className="normal-case text-[32px] font-normal mb-[40px]">
+                  Tilaukset
+                </h2>
+                <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
+                  {tilaukset.map((i) => (
+                    <Person data={i} />
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="flex flex-[1] flex-col">
-              <h2 className="normal-case text-[32px] font-normal mb-[40px]">
-                Asiakkuudet
-              </h2>
-              <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
-                {asiakkuudet.map((i) => (
-                  <Person data={i} />
-                ))}
+            )}
+            {asiakkuudet.length > 0 && (
+              <div className="flex flex-[1] flex-col">
+                <h2 className="normal-case text-[32px] font-normal mb-[40px]">
+                  Asiakkuudet
+                </h2>
+                <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
+                  {asiakkuudet.map((i) => (
+                    <Person data={i} />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
-          <div className="container px-[100px] max-[1100px]:px-[40px] max-[600px]:px-[20px] border-black pt-[100px] pb-[100px]">
-            <div className="flex flex-[1] flex-col">
-              <h2 className="normal-case text-[32px] font-normal mb-[40px]">
-                Tiimi
-              </h2>
-              <div className="grid grid-cols-4 max-[1100px]:grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
-                {tiimi.map((i) => (
-                  <Person data={i} />
-                ))}
+          {tiimi.length > 0 && (
+            <div className="container px-[100px] max-[1100px]:px-[40px] max-[600px]:px-[20px] border-black pb-[100px]">
+              <div className="flex flex-[1] flex-col">
+                <h2 className="normal-case text-[32px] font-normal mb-[40px]">
+                  Tiimi
+                </h2>
+                <div className="grid grid-cols-4 max-[1100px]:grid-cols-2 max-[600px]:grid-cols-1 gap-[50px]">
+                  {tiimi.map((i) => (
+                    <Person data={i} />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </main>
       </Layout>
     </>
