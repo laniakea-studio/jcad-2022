@@ -1,23 +1,25 @@
 import React, { useContext, useState, useEffect } from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
-import * as snippet from "../locales";
-import styled from "styled-components";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { Video } from "@components/Video";
+import * as snippet from "../locales";
 import { TutorialNavigation } from "@components/TutorialNavigation";
+import { tutorials } from "../constants/slugs";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const { page } = pageContext.data;
-
+  const text = snippet[locale];
   const [linkCopied, setLinkCopied] = useState(null);
 
   function handleLinkCopy(e, link) {
     navigator.clipboard.writeText(
-      `https://www.jcad.fi/tutoriaalit/${page.slug}#${link}`
+      `https://www.jcad.fi${
+        text.prefix + tutorials[locale] + page.slug
+      }#${link}`
     );
     setLinkCopied(link);
     e.preventDefault();
@@ -102,11 +104,11 @@ const Page = ({ pageContext }) => {
                           width: 100px;
                         `}
                       >
-                        Linkki kopioitu!
+                        {text.linkCopied}
                       </span>
                     )}
                     <button
-                      className="flex jsutify-center align-center"
+                      className="flex justify-center align-center"
                       onClick={(e) => handleLinkCopy(e, item.linkId)}
                       css={`
                         width: 40px;

@@ -32,6 +32,10 @@ footer:
   buttonBackToTop: Back to top
   companyName: JCAD
   linkGdpr: GDPR
+tutorials:
+  showMenu: Show Menu
+  hideMenu: Hide Menu
+  linkCopied: Link copied!
 pricing:
   vat: + VAT 24 %
   selectPeriod: Contract period

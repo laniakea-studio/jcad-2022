@@ -1,25 +1,33 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
-import svgJcadLogo from "../assets/svgJcad.svg";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
-import { theme } from "../theme/theme";
-import { SvgLogoFooter } from "./SvgCollection.js";
-import { useIntersection } from "../hooks/useIntersection";
-import { DownloadPdfForm } from "./DownloadPdfForm";
+import { tutorials } from "../constants/slugs";
 
 const isBrowser = typeof window !== "undefined";
 
-export const TutorialNavigation = ({ menu, prefix }) => {
+export const TutorialNavigation = () => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
 
   const [isHidden, setIsHidden] = useState(false);
 
-  const { allTutorials } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query {
-      allTutorials: allDatoCmsTutoriaali(filter: { locale: { eq: "fi" } }) {
+      allTutorialsFi: allDatoCmsTutoriaali(filter: { locale: { eq: "fi" } }) {
+        edges {
+          node {
+            kategoria
+            title
+            slug
+            videot {
+              otsikko
+              linkId
+            }
+          }
+        }
+      }
+      allTutorialsEn: allDatoCmsTutoriaali(filter: { locale: { eq: "en" } }) {
         edges {
           node {
             kategoria
@@ -35,13 +43,19 @@ export const TutorialNavigation = ({ menu, prefix }) => {
     }
   `);
 
+  const allTutorials =
+    locale === "fi"
+      ? data.allTutorialsFi.edges.filter((i) => i.node.slug)
+      : data.allTutorialsEn.edges.filter((i) => i.node.slug);
+
   const kategoriat = [
-    "Uusi JCAD-käyttäjä",
-    "JCAD Määrät",
-    "JCAD Sähkö",
-    "JCAD LVI",
+    { fi: "Uusi JCAD-käyttäjä", en: "New to JCAD" },
+    { fi: "JCAD Määrät", en: "JCAD" },
+    { fi: "JCAD Sähkö", en: "JCAD" },
+    { fi: "JCAD LVI", en: "JCAD" },
   ];
 
+  console.log(allTutorials);
   return (
     <>
       <button
@@ -58,7 +72,7 @@ export const TutorialNavigation = ({ menu, prefix }) => {
           }
         `}
       >
-        {isHidden ? "Näytä tutoriaali-valikko" : "Piilota tutoriaali-valikko"}
+        {isHidden ? text.tutorials.showMenu : text.tutorials.hideMenu}
       </button>
 
       <nav
@@ -92,11 +106,6 @@ export const TutorialNavigation = ({ menu, prefix }) => {
             font-weight: 600;
             padding-top: 9px;
             padding-bottom: 9px;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-            &:hover {
-              opacity: 0.9;
-            }
           }
           ul {
             position: relative;
@@ -143,14 +152,12 @@ export const TutorialNavigation = ({ menu, prefix }) => {
         >
           {kategoriat.map((kategoria) => (
             <>
-              {allTutorials.edges.some(
-                (i) => i.node.kategoria === kategoria
-              ) && (
+              {allTutorials.some((i) => i.node.kategoria === kategoria.fi) && (
                 <>
-                  <h3>{kategoria}</h3>
+                  <h3>{kategoria[locale]}</h3>
                   <ul className="Group">
-                    {allTutorials.edges
-                      .filter((i) => i.node.kategoria === kategoria)
+                    {allTutorials
+                      .filter((i) => i.node.kategoria === kategoria.fi)
                       .map((i, index) => {
                         let isActive = false;
                         if (isBrowser) {
@@ -163,7 +170,11 @@ export const TutorialNavigation = ({ menu, prefix }) => {
                             <li className={isActive ? "active" : ""}>
                               {index > 0 && <div className="Line" />}
                               <span className="Dot" />
-                              <Link to={`/tutoriaalit/${i.node.slug}`}>
+                              <Link
+                                to={`${
+                                  text.prefix + tutorials[locale] + i.node.slug
+                                }`}
+                              >
                                 {i.node.title}
                               </Link>
                             </li>
@@ -197,7 +208,14 @@ export const TutorialNavigation = ({ menu, prefix }) => {
                                 {i.node.videot.map((video) => (
                                   <li>
                                     <Link
-                                      to={`/tutoriaalit/${i.node.slug}#${video.linkId}`}
+                                      className="opacity-50 hover:opacity-90 transition"
+                                      to={`${
+                                        text.prefix +
+                                        tutorials[locale] +
+                                        i.node.slug +
+                                        "#" +
+                                        video.linkId
+                                      }`}
                                     >
                                       {video.otsikko}
                                     </Link>

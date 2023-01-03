@@ -40,21 +40,6 @@ const createPublishedGoogleSpreadsheetNode = async (
     const node = { ...p, subtype, ...meta };
     createNode(node);
   });
-
-  /*
-  createNode({
-    // Data for the node.
-    items: JSON.stringify(recordsStringified),
-
-    // Required fields.
-    id: "a-node-id",
-    parent: null, // or null if it's a source node without a parent
-    children: [],
-    internal: {
-      type,
-      contentDigest: createContentDigest(recordsStringified),
-    },
-  });*/
 };
 
 exports.sourceNodes = async (props) => {
@@ -82,6 +67,7 @@ exports.createPages = async ({ graphql, actions }) => {
       about: "meista",
       references: "referenssit",
       webinars: "webinaarit",
+      tutoriaalit: "tutoriaalit",
       jobs: "rekry",
       order: "tilaa",
       bookDemo: "varaa-demo",
@@ -97,6 +83,7 @@ exports.createPages = async ({ graphql, actions }) => {
       about: "about",
       references: "references",
       webinars: "webinars",
+      tutoriaalit: "tutorials",
       jobs: "jobs",
       order: "order",
       bookDemo: "free-trial",
@@ -112,6 +99,7 @@ exports.createPages = async ({ graphql, actions }) => {
       about: "om-oss",
       references: "referenser",
       webinars: "webinarer",
+      tutoriaalit: "tutorialer",
       jobs: "jobb",
       order: "bestall",
       bookDemo: "boka-demo",
@@ -664,42 +652,42 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
 
-      // Only Finnish pages
-      if (locale === "fi") {
-        data.allTutorials.edges.map((i) => {
-          createPage({
-            path: `/tutoriaalit/${i.node.slug}`,
-            component: path.resolve(`src/templates/Tutorial.js`),
-            context: {
-              locale: locale,
-              localeSlugs: {
-                fi: `/${i.node.slug}`,
-                en: null,
-                sv: null,
-              },
-              data: {
-                page: i.node,
-              },
-            },
-          });
-        });
+      createPage({
+        path: `/${prefix + slugs[locale].tutoriaalit}`,
+        component: path.resolve(`src/templates/tutoriaalit.js`),
+        context: {
+          locale: locale,
+          localeSlugs: {
+            fi: `/${slugs.fi.tutoriaalit}`,
+            en: `/en/${slugs.en.tutoriaalit}`,
+            sv: null,
+          },
+          data: {
+            page: data.tutoriaalit,
+          },
+        },
+      });
 
+      data.allTutorials.edges.map((i) => {
         createPage({
-          path: `/tutoriaalit`,
-          component: path.resolve(`src/templates/tutoriaalit.js`),
+          path: `/${prefix + slugs[locale].tutoriaalit}/${i.node.slug}`,
+          component: path.resolve(`src/templates/Tutorial.js`),
           context: {
             locale: locale,
             localeSlugs: {
-              fi: `/tutoriaalit`,
+              fi: null,
               en: null,
               sv: null,
             },
             data: {
-              page: data.tutoriaalit,
+              page: i.node,
             },
           },
         });
+      });
 
+      // Only Finnish pages
+      if (locale === "fi") {
         data.allCampaigns.edges.map((i) => {
           createPage({
             path: `/${i.node.slug}`,

@@ -32,6 +32,10 @@ footer:
   buttonBackToTop: Takaisin ylös
   companyName: JCAD
   linkGdpr: Tietosuojaseloste
+tutorials:
+  showMenu: Näytä tutoriaali-valikko
+  hideMenu: Piilota tutoriaali-valikko
+  linkCopied: Linkki kopioitu!
 pricing:
   vat: + alv 24 %
   selectPeriod: Valitse sopimuskausi

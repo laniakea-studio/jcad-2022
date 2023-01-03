@@ -44,6 +44,12 @@ export const references = {
   sv: "referenser/",
 };
 
+export const tutorials = {
+  fi: "tutoriaalit/",
+  en: "tutorials/",
+  sv: "tutorialer/",
+};
+
 export const mainMenu = {
   fi: [
     { title: "Määrälaskenta", slug: "maaralaskentaohjelmisto" },
@@ -54,6 +60,7 @@ export const mainMenu = {
   en: [
     { title: "Product", slug: "product" },
     { title: "Pricing", slug: "pricing" },
+    { title: "Tutorials", slug: "tutorials" },
     //{ title: "Webinars", slug: "webinars" },
     { title: "Contact", slug: "contact" },
   ],
@@ -82,6 +89,7 @@ export const homeMenu = {
   en: [
     { title: "Product", slug: "product", animation: "product" },
     { title: "Pricing", slug: "pricing", animation: "crosshair" },
+    { title: "Tutorials", slug: "tutorials", animation: "video" },
     { title: "Contact", slug: "contact", animation: "jcad" },
   ],
   sv: [
@@ -106,6 +114,7 @@ export const fullMenu = {
   en: [
     { title: "Product", slug: "product" },
     { title: "Pricing", slug: "pricing" },
+    { title: "Tutorials", slug: "tutorials" },
     //{ title: "Webinars", slug: "webinars" },
     { title: "Contact", slug: "contact" },
     //{ title: "About us", slug: "about" },
