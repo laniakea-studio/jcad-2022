@@ -903,7 +903,7 @@ exports.createPages = async ({ graphql, actions }) => {
             data: {
               page: data.order,
               pricing: data.pricing,
-              redirectTo: `/${prefix + data.webinaarit.slug + thanks[locale]}`,
+              redirectTo: `/${prefix + data.order.slug + thanks[locale]}`,
             },
           },
         });
