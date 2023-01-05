@@ -248,7 +248,7 @@ const Main = styled.main`
   }
   h1 {
     margin-top: 50px;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 36px;
     text-transform: none;
     margin-bottom: 30px;

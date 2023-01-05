@@ -40,7 +40,7 @@ const Page = ({ pageContext }) => {
         >
           <section className="Hero container padding flex border-b-[0.8px] border-dashed border-white overflow-hidden">
             <div className="flex flex-col">
-              <h1 className="text-[42px] pt-[50px] pb-[20px] font-normal">
+              <h1 className="text-[42px] pt-[50px] pb-[20px] font-normal !normal-case">
                 {page.title}
               </h1>
               <p className="max-w-[600px] pb-[60px] text-[18px]">

@@ -131,7 +131,7 @@ const Main = styled.main`
   color: #fff;
   background: ${theme.primary};
   h1 {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 36px;
     text-transform: none;
     margin-bottom: 30px;
@@ -178,6 +178,7 @@ const Main = styled.main`
     p {
       font-size: 17px;
       line-height: 1.5;
+      margin-bottom: 20px;
     }
     .grid {
       padding-top: 30px;
