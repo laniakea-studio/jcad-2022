@@ -23,8 +23,6 @@ const createPublishedGoogleSpreadsheetNode = async (
   const data = await result.text();
   const records = await csv2json().fromString(data);
 
-  const recordsStringified = JSON.stringify(records);
-
   records.forEach((p, i) => {
     // create node for build time data example in the docs
     const meta = {
@@ -56,7 +54,7 @@ exports.sourceNodes = async (props) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const locales = ["fi", "en", "sv"];
+  const locales = ["fi", "en" /*"sv"*/];
 
   const prefixes = {
     fi: "",
@@ -557,14 +555,22 @@ exports.createPages = async ({ graphql, actions }) => {
           );
         }
 
-        const parsed = Object.assign(
+        let parsed = Object.assign(
           {},
           ...allLocales.map(({ locale, value }) => ({
             [locale]: "/" + prefixes[locale] + parsedPath[locale] + value,
           }))
         );
 
-        return parsed;
+        // Filter out Swedish localization
+        const parsedWithoutSv = Object.keys(parsed)
+          .filter((key) => key !== "sv")
+          .reduce((obj, key) => {
+            obj[key] = parsed[key];
+            return obj;
+          }, {});
+
+        return parsedWithoutSv;
       };
 
       createPage({
