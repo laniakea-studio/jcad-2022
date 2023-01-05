@@ -259,6 +259,12 @@ exports.createPages = async ({ graphql, actions }) => {
         }
         arvosanat
         kuvaajanTeksti        
+        kiitosTitle
+        kiitosContent
+        kiitosCta {
+          text
+          slug
+        }
       }
       allWebinars: allDatoCmsWebinar(
         filter: { locale: { eq: "${locale}" } }
@@ -756,6 +762,25 @@ exports.createPages = async ({ graphql, actions }) => {
             },
           },
         });
+        createPage({
+          path: `/${prefix + data.webinaarit.slug + thanks[locale]}`,
+          component: path.resolve(`src/templates/Thanks.js`),
+          context: {
+            locale: locale,
+            localeSlugs: {
+              fi: null,
+              en: null,
+              sv: null,
+            },
+            data: {
+              page: {
+                title: data.webinaarit.kiitosTitle,
+                content: data.webinaarit.kiitosContent,
+                cta: data.webinaarit.kiitosCta[0],
+              },
+            },
+          },
+        });
       }
 
       if (data.allWebinars.edges.length > 0) {
@@ -776,6 +801,9 @@ exports.createPages = async ({ graphql, actions }) => {
                 },
                 data: {
                   page: i.node,
+                  redirectTo: `/${
+                    prefix + data.webinaarit.slug + thanks[locale]
+                  }`,
                 },
               },
             });
@@ -800,24 +828,6 @@ exports.createPages = async ({ graphql, actions }) => {
                 },
               });
             }
-
-            createPage({
-              path: `/${prefix + "kiitos-webinaariin-ilmoittautumisesta"}`,
-              component: path.resolve(
-                `src/templates/thanks-webinar-booking.js`
-              ),
-              context: {
-                locale: locale,
-                localeSlugs: {
-                  fi: null,
-                  en: null,
-                  sv: null,
-                },
-                data: {
-                  page: "",
-                },
-              },
-            });
           });
       }
 
@@ -893,13 +903,14 @@ exports.createPages = async ({ graphql, actions }) => {
             data: {
               page: data.order,
               pricing: data.pricing,
+              redirectTo: `/${prefix + data.webinaarit.slug + thanks[locale]}`,
             },
           },
         });
 
         createPage({
           path: `/${prefix + data.order.slug + thanks[locale]}`,
-          component: path.resolve(`src/templates/thanks-order.js`),
+          component: path.resolve(`src/templates/Thanks.js`),
           context: {
             locale: locale,
             localeSlugs: {

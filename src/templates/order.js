@@ -13,7 +13,7 @@ import { valikkoSopimuskausi, extraHinnasto } from "@constants/pricing";
 const Page = ({ pageContext, location }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
-  const { page, pricing } = pageContext.data;
+  const { page, pricing, redirectTo } = pageContext.data;
 
   // Check default radio option form url params
   const params = new URLSearchParams(location.search);
@@ -144,7 +144,7 @@ const Page = ({ pageContext, location }) => {
                     valikkoSopimuskausi,
                     extraHinnasto,
                   }}
-                  redirectOnSuccess="/kiitos-tilauksesta"
+                  redirectOnSuccess={redirectTo}
                 />
               </div>
             </div>

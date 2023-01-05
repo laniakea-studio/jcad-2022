@@ -1,31 +1,15 @@
-import React, { useContext } from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import React from "react";
+import { Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
+import { useContext } from "react";
+import { Layout } from "../components/Layout";
+import { prefix } from "../constants/slugs";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
-import { HelmetDatoCms } from "gatsby-source-datocms";
-import styled from "styled-components";
-import { Layout } from "../components/Layout";
-import { theme } from "../theme/theme";
-import { StaticImage } from "gatsby-plugin-image";
 
-const content = {
-  fi: {
-    h1: "Kiitos tilauksesta!",
-    p: "Olemme sinuun pian yhteydessä.",
-  },
-  en: {
-    h1: "Thanks!",
-    p: "See you soon.",
-  },
-  sv: {
-    h1: "Tack!",
-    p: "Vi ses snart.",
-  },
-};
-
-const Page = () => {
+const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
-  const text = snippet[locale];
+  const { page } = pageContext.data;
 
   return (
     <div
@@ -91,33 +75,18 @@ const Page = () => {
               }
             `}
           >
-            <svg
-              width="110"
-              height="110"
-              viewBox="0 0 110 110"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="55"
-                cy="55"
-                r="53.5"
-                stroke="white"
-                stroke-width="3"
-              />
-              <path
-                d="M86.8727 34.9224L48.9717 72.8228L29.1274 52.9787L26 56.1061L48.9717 79.0776L90 38.0498L86.8727 34.9224Z"
-                fill="white"
-              />
-            </svg>
-
-            <h1>{content[locale].h1}</h1>
-            <p>{content[locale].p}</p>
-            <p>
-              <Link to="/" className="btn white-outlines">
-                <strong>Jatka etusivulle</strong>
-              </Link>
-            </p>
+            <h1>{page.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: page.content }} />
+            {page.cta && (
+              <p>
+                <Link
+                  to={prefix[locale] + page.cta.slug}
+                  className="btn white-outlines"
+                >
+                  <strong>{page.cta.text}</strong>
+                </Link>
+              </p>
+            )}
           </div>
         </main>
       </Layout>
@@ -126,3 +95,19 @@ const Page = () => {
 };
 
 export default Page;
+
+const Checked = () => (
+  <svg
+    width="110"
+    height="110"
+    viewBox="0 0 110 110"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="55" cy="55" r="53.5" stroke="white" stroke-width="3" />
+    <path
+      d="M86.8727 34.9224L48.9717 72.8228L29.1274 52.9787L26 56.1061L48.9717 79.0776L90 38.0498L86.8727 34.9224Z"
+      fill="white"
+    />
+  </svg>
+);

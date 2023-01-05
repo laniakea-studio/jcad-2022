@@ -49,7 +49,7 @@ export const TutorialNavigation = () => {
       : data.allTutorialsEn.edges.filter((i) => i.node.slug);
 
   const kategoriat = [
-    { fi: "Uusi JCAD-käyttäjä", en: "New to JCAD" },
+    { fi: "Uusi JCAD-käyttäjä", en: "How to Guides" },
     { fi: "JCAD Määrät", en: "JCAD" },
     { fi: "JCAD Sähkö", en: "JCAD" },
     { fi: "JCAD LVI", en: "JCAD" },

@@ -1,31 +1,14 @@
-import React, { useContext } from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
-import { LocaleContext } from "../contexts/LocaleContext";
-import * as snippet from "../locales";
-import { HelmetDatoCms } from "gatsby-source-datocms";
-import styled from "styled-components";
-import { Layout } from "../components/Layout";
-import { theme } from "../theme/theme";
+import React from "react";
+import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
+import { useContext } from "react";
+import { Layout } from "../components/Layout";
+import { prefix } from "../constants/slugs";
+import { LocaleContext } from "../contexts/LocaleContext";
 
-const content = {
-  fi: {
-    h1: "Kiitos varauksesta!",
-    p: "Nähdään pian. Lähetimme kalenterivarauksen sähköpostiisi. Jos et saanut varausta tai sinulla on kysyttävää, ota yhteyttä lauri.pasma@jcad.fi.",
-  },
-  en: {
-    h1: "Thanks for booking!",
-    p: "See you soon.",
-  },
-  sv: {
-    h1: "Tack för bokingen!",
-    p: "Vi ses snart.",
-  },
-};
-
-const Page = () => {
+const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
-  const text = snippet[locale];
+  const { page } = pageContext.data;
 
   return (
     <div
@@ -111,13 +94,18 @@ const Page = () => {
               />
             </svg>
 
-            <h1>{content[locale].h1}</h1>
-            <p>{content[locale].p}</p>
-            <p>
-              <Link to="/" className="btn white-outlines">
-                <strong>Jatka etusivulle</strong>
-              </Link>
-            </p>
+            <h1>{page.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: page.content }} />
+            {page.cta && (
+              <p>
+                <Link
+                  to={prefix[locale] + page.cta.slug}
+                  className="btn white-outlines"
+                >
+                  <strong>{page.cta.text}</strong>
+                </Link>
+              </p>
+            )}
           </div>
         </main>
       </Layout>

@@ -1,1 +1,0 @@
-export { NetlifyForm } from "./NetlifyFormJoinWebinar";

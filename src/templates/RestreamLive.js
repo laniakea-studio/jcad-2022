@@ -1,18 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
-import { NetlifyForm } from "@components/NetlifyFormJoinWebinar";
-import { useLocalStorage } from "@hooks/useLocaleStorage";
 import { Booking } from "../components/Booking";
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
-  const text = snippet[locale];
+
   const { page } = pageContext.data;
 
   const [showPlayer, setShowPlayer] = useState(false);
@@ -32,38 +29,9 @@ const Page = ({ pageContext }) => {
     timeStyle: "short",
   });
 
-  // Form data
-  const form = {
-    name: "Webinaariin osallistuneet",
-    inputs: [
-      {
-        type: "email",
-        name: "email",
-        label: "Sähköposti",
-        isRequired: true,
-      },
-      { type: "hidden", name: "webinarName", value: page.title },
-      { type: "hidden", name: "webinarDate", value: date },
-      { type: "submit", text: "Liity webinaariin" },
-    ],
-    messages: {
-      submitSucces: ``,
-      fillAllInputs: "Anna sähköpostiosoitteesi.",
-    },
-  };
-
-  const seoMetaTags = {
-    tags: [
-      {
-        tagName: "title",
-        content: `LIVE: ${page.title}`,
-      },
-    ],
-  };
-
   return (
     <>
-      <HelmetDatoCms seo={seoMetaTags} />
+      <HelmetDatoCms seo={useSetPageTitle(`LIVE: ${page.title}`)} />
       <Layout locale={locale} transparent={false}>
         <main
           className="pagePadding flex"
@@ -112,11 +80,11 @@ const Page = ({ pageContext }) => {
                 }
               `}
             >
-              <span>
+              <span className="inline-flex">
                 <DateSvg />
                 {date}
               </span>
-              <span>
+              <span className="inline-flex">
                 <HourSvg />
                 {hour}
               </span>
@@ -162,7 +130,16 @@ const Page = ({ pageContext }) => {
                 <span>
                   Sähköpostin ei tarvitse olla sama, jolla ilmoittauduit.
                 </span>
-                <NetlifyForm data={form} handleHasJoined={handleHasJoined} />
+
+                <Form
+                  data={{
+                    email: "",
+                    webinarName: page.title,
+                    webinarDate: date,
+                    timestamp: "",
+                  }}
+                  handleHasJoined={handleHasJoined}
+                />
               </div>
               <div
                 style={{
@@ -186,6 +163,166 @@ const Page = ({ pageContext }) => {
 };
 
 export default Page;
+
+const Form = ({ data, handleHasJoined }) => {
+  const [formData, setFormData] = useState(data);
+  const [showMessage, setShowMessage] = useState(null);
+
+  const onInputChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+    setFormData({ ...formData, [key]: value });
+  };
+
+  console.log(JSON.stringify({ data: formData }));
+
+  const submitForm = (e) => {
+    e.preventDefault();
+
+    if (isFormValid()) {
+      fetch("https://hooks.zapier.com/hooks/catch/11989663/bjuiga4/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: formData }),
+      })
+        .then((res) => {
+          console.log(res);
+          handleHasJoined();
+        })
+        .catch((error) => alert(error));
+    } else {
+      setShowMessage("Tarkista osoitteen kirjoitusasu.");
+    }
+  };
+
+  const isFormValid = () => {
+    let formIsValid = false;
+    if (formData.email && validateEmail(formData.email)) {
+      formIsValid = true;
+    }
+    return formIsValid;
+  };
+
+  return (
+    <form
+      css={`
+        font-weight: 400;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        max-width: 560px;
+        display: flex;
+        flex-direction: column;
+        .input {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          padding-bottom: 5px;
+        }
+        .input:focus-within label {
+          color: ${styles.labelFocus};
+        }
+        label {
+          font-size: 16px;
+          margin-bottom: 5px;
+          font-weight: 400;
+          cursor: pointer;
+          color: ${styles.label};
+        }
+        .input textarea,
+        .input input {
+          border-radius: 4px;
+          margin-bottom: 10px;
+          color: ${styles.inputColor};
+          padding: 20px;
+          transition: border-color 0.2s;
+          border: 1px solid ${styles.border};
+          background: ${styles.background};
+          &:focus {
+            border-color: ${styles.borderFocus};
+            transition: border-color 0.2s;
+          }
+          &::placeholder {
+            color: ${styles.placeholder};
+          }
+        }
+        input {
+          height: 50px;
+        }
+
+        button.submit {
+          border-radius: 3px;
+          color: ${styles.buttonColor};
+          background: ${styles.buttonBackground};
+          border: 1px solid ${styles.buttonBorder};
+          height: 50px;
+          text-transform: uppercase;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+        }
+        .messageBox {
+          padding: 12px;
+          text-align: center;
+          font-weight: 500;
+          color: ${styles.messageColor};
+          min-height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          span {
+            padding: 0 8px;
+          }
+        }
+      `}
+    >
+      <div className="input">
+        <label htmlFor="email">Sähköpostisi</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={(e) => onInputChange(e)}
+        />
+      </div>
+      <button className="submit" type="submit" onClick={(e) => submitForm(e)}>
+        Liity webinaariin
+      </button>
+      <div className="messageBox">
+        {showMessage && <span>{showMessage}</span>}
+      </div>
+    </form>
+  );
+};
+
+function validateEmail(email) {
+  var re = /^\S+@\S+\.\S+$/;
+  return re.test(email);
+}
+
+const styles = {
+  label: "rgba(255,255,255,0.6)",
+  labelFocus: "#fff",
+  inputColor: "#fff",
+  border: "#333375",
+  borderFocus: "#fff",
+  background: "#333375",
+  backgroundFocus: "none",
+  buttonBackground: "#fff",
+  buttonBorder: "#fff",
+  buttonColor: theme.primary,
+  placeholder: "rgba(255,255,255,0.3)",
+  switch: "rgba(255,255,255,0.7)",
+  switchColor: "rgba(255,255,255,0.8)",
+  switchBg: "#333274",
+  switchActive: "rgba(255,255,255,1)",
+  switchBgActive: "rgba(255,255,255,0.5)",
+  switchBorderFocus: "rgba(255,255,255,0.5)",
+  messageColor: "#fff",
+};
 
 const DateSvg = () => (
   <svg

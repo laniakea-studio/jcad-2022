@@ -10,7 +10,7 @@ import { NetlifyForm } from "../components/NetlifyForm";
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
-  const { page } = pageContext.data;
+  const { page, redirectTo } = pageContext.data;
 
   // Date Format
   let d = new Date(page.webinaarinAjankohta);
@@ -132,7 +132,7 @@ const Page = ({ pageContext }) => {
               <NetlifyForm
                 data={form}
                 plausibleGoal="Ilmoittautui webinaariin"
-                redirectOnSuccess="/kiitos-webinaariin-ilmoittautumisesta"
+                redirectOnSuccess={redirectTo}
               />
             </div>
           </div>
