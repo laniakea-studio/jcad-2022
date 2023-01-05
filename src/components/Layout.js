@@ -181,6 +181,7 @@ export const Layout = ({ children, page }) => {
                   </a>
                   {locale === "fi" && (
                     <Link
+                      key={order[locale].slug}
                       to={`${prefix[locale] + order[locale].slug}`}
                       activeClassName="active"
                       className="MainLink"
@@ -196,6 +197,7 @@ export const Layout = ({ children, page }) => {
                 </>
               )}
               <Link
+                key={order[locale].slug}
                 className="btn white-outlines"
                 to={`${prefix[locale] + bookDemo[locale].slug}`}
               >
