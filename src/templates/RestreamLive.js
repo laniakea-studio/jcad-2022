@@ -183,6 +183,7 @@ const Form = ({ data, handleHasJoined }) => {
       fetch("https://hooks.zapier.com/hooks/catch/11989663/bjuiga4/", {
         method: "POST",
         headers: {
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ data: formData }),
