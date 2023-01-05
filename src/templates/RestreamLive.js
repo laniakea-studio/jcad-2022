@@ -12,7 +12,7 @@ const Page = ({ pageContext }) => {
 
   const { page } = pageContext.data;
 
-  const [showPlayer, setShowPlayer] = useState(false);
+  const [showPlayer, setShowPlayer] = useState(true);
 
   const handleHasJoined = () => {
     setShowPlayer(true);
