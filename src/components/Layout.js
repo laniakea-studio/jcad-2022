@@ -166,11 +166,6 @@ export const Layout = ({ children, page }) => {
                         EN
                       </Link>
                     )}
-                    {localeSlugs.sv && (
-                      <Link to={localeSlugs.sv} className="localeLink">
-                        SV
-                      </Link>
-                    )}
                   </div>
                   <a
                     className="MainLink"
@@ -474,11 +469,6 @@ const MobileMenu = ({
           {localeSlugs.en && (
             <Link to={localeSlugs.en} className="localeLink">
               EN
-            </Link>
-          )}
-          {localeSlugs.sv && (
-            <Link to={localeSlugs.sv} className="localeLink">
-              SV
             </Link>
           )}
         </div>

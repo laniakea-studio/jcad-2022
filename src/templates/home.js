@@ -44,15 +44,6 @@ const Page = ({ pageContext }) => {
                 >
                   EN
                 </Link>
-                <Link
-                  to="/sv"
-                  className={
-                    "flex justify-center items-center w-[20px] h-[20px] p-[10px] rounded-[4px] text-[11px] mx-[10px] [&.active]:bg-[#ffffff26]" +
-                    (locale === "sv" ? " active" : "")
-                  }
-                >
-                  SV
-                </Link>
               </div>
               <div className="row padding">
                 <div className="col">
