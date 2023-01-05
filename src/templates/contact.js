@@ -23,7 +23,7 @@ const Contact = ({ pageContext }) => {
       <Layout locale={pageContext.locale}>
         <section className="pagePadding flex bg-primary w-full text-white pt-[94px]">
           <div className="container px-[100px] max-[1100px]:px-[40px] max-[600px]:px-[20px] flex flex-col mx-auto pt-[60px] pb-[100px] w-full">
-            <h1 className="text-[32px] text-white normal-case mb-[70px] font-normal">
+            <h1 className="text-[42px] text-white normal-case mb-[70px] font-normal">
               {page.title}
             </h1>
             <div className="grid grid-cols-4 gap-[50px] max-[900px]:grid-cols-2 max-[420px]:grid-cols-1">

@@ -132,7 +132,7 @@ const Main = styled.main`
   background: ${theme.primary};
   h1 {
     font-weight: 400;
-    font-size: 36px;
+    font-size: 42px;
     text-transform: none;
     margin-bottom: 30px;
   }

@@ -249,7 +249,7 @@ const Main = styled.main`
   h1 {
     margin-top: 50px;
     font-weight: 400;
-    font-size: 36px;
+    font-size: 42px;
     text-transform: none;
     margin-bottom: 30px;
   }
