@@ -111,13 +111,17 @@ const Pricing = ({ pageContext }) => {
                     button {
                       height: 48px;
                       width: 48px;
-                      border: 1px solid #fff;
+                      border: 2px solid rgba(255, 255, 255, 0.75);
                       display: flex;
                       border-radius: 50%;
                       font-size: 22px;
                       justify-content: center;
                       align-items: center;
                       color: #fff;
+                      transition: 0.2s;
+                      &:hover:not(:disabled) {
+                        border-color: rgba(255, 255, 255, 1);
+                      }
                       &:disabled {
                         opacity: 0.4;
                         pointer: cursor;
