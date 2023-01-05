@@ -84,6 +84,7 @@ const Page = ({ pageContext }) => {
                 Teams
               </span>
             </div>
+            <h1>{page.title}</h1>
             <div
               css={`
                 p {
@@ -104,7 +105,7 @@ const Page = ({ pageContext }) => {
           </div>
           <div className="col">
             <InlineWidget
-              url={`${page.calendlyLink}?hide_event_type_details=1&hide_gdpr_banner=1&background_color=000053&text_color=ffffff&primary_color=ffffff`}
+              url={`${page.calendlyBookingUrl}?hide_event_type_details=1&hide_gdpr_banner=1&background_color=000053&text_color=ffffff&primary_color=ffffff`}
             />
           </div>
         </div>

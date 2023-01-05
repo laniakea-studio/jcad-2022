@@ -1,5 +1,5 @@
-import React, { useContext, useRef } from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import React, { useContext, useCallback, useEffect, useState } from "react";
+import { Link } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import { HelmetDatoCms } from "gatsby-source-datocms";
@@ -7,140 +7,50 @@ import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { AnimatedBoxLink } from "../components/AnimatedBoxLink";
-import { homeMenu, prefix, ctaProduct } from "../constants/slugs";
+import { prefix, ctaProduct } from "../constants/slugs";
 import { MagneticLinkBox } from "@components/MagneticLinkBox";
 import { useHover } from "../hooks/useHover";
 import { DownloadPDF } from "../components/DowloadPDF";
 import { Video } from "@components/Video";
-import scrollTo from "gatsby-plugin-smoothscroll";
 
 const Page = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
-  const text = snippet[locale];
-  const { page, video } = pageContext.data;
+  const { page } = pageContext.data;
 
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
-      <div
-        css={`
-          height: 100%;
-          background: rgb(0, 0, 83);
-          background: ${theme.primary};
-          overflow: hidden;
-          @media (max-width: 600px) {
-            position: relative;
-          }
-        `}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          css={`
-            margin: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgb(0, 0, 83);
-            display: block;
-            min-width: 100vw;
-            shape-rendering: auto;
-            @media (max-width: 600px) {
-              left: -400px;
-            }
-          `}
-          width="2879"
-          height="993"
-          preserveAspectRatio="xMidYMid"
-          viewBox="0 0 2879 993"
-        >
-          <g transform="translate(1439.5,496.5) scale(1,1) translate(-1439.5,-496.5)">
-            <linearGradient
-              id="lg-0.2510863810006023"
-              x1="0"
-              x2="1"
-              y1="0"
-              y2="0"
-            >
-              <stop stop-color="#0b0b73" offset="0"></stop>
-              <stop stop-color="#161660" offset="1"></stop>
-            </linearGradient>
-            <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
-              <animate
-                attributeName="d"
-                dur="14.285714285714286s"
-                repeatCount="indefinite"
-                keyTimes="0;0.333;0.667;1"
-                calcMode="spline"
-                keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
-                begin="0s"
-                values="M0 0L 0 330.75163812426746Q 479.8333333333333 181.77149861291295  959.6666666666666 157.46535139885233T 1919.3333333333333 135.97171369763038T 2879 -21.518601780996164L 2879 0 Z;M0 0L 0 495.2785027836816Q 479.8333333333333 239.3811209137978  959.6666666666666 214.56633158881T 1919.3333333333333 -1.7300965622308127T 2879 -127.63558841892831L 2879 0 Z;M0 0L 0 369.4262371599777Q 479.8333333333333 272.16451219348227  959.6666666666666 248.02571969871758T 1919.3333333333333 95.10629663772534T 2879 -231.23754229829126L 2879 0 Z;M0 0L 0 330.75163812426746Q 479.8333333333333 181.77149861291295  959.6666666666666 157.46535139885233T 1919.3333333333333 135.97171369763038T 2879 -21.518601780996164L 2879 0 Z"
-              ></animate>
-            </path>
-            <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
-              <animate
-                attributeName="d"
-                dur="14.285714285714286s"
-                repeatCount="indefinite"
-                keyTimes="0;0.333;0.667;1"
-                calcMode="spline"
-                keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
-                begin="-4.761904761904762s"
-                values="M0 0L 0 476.3698688355545Q 479.8333333333333 237.83709995497324  959.6666666666666 210.77828043315546T 1919.3333333333333 109.272024280435T 2879 -204.30408117450685L 2879 0 Z;M0 0L 0 490.27939888235187Q 479.8333333333333 232.47573026976067  959.6666666666666 213.30960777731207T 1919.3333333333333 149.1919411473708T 2879 -166.7263792026784L 2879 0 Z;M0 0L 0 321.13633121046075Q 479.8333333333333 259.92285425806756  959.6666666666666 232.92038920234225T 1919.3333333333333 10.73061713261825T 2879 8.503078880735018L 2879 0 Z;M0 0L 0 476.3698688355545Q 479.8333333333333 237.83709995497324  959.6666666666666 210.77828043315546T 1919.3333333333333 109.272024280435T 2879 -204.30408117450685L 2879 0 Z"
-              ></animate>
-            </path>
-            <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
-              <animate
-                attributeName="d"
-                dur="14.285714285714286s"
-                repeatCount="indefinite"
-                keyTimes="0;0.333;0.667;1"
-                calcMode="spline"
-                keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
-                begin="-9.523809523809524s"
-                values="M0 0L 0 423.72199918448564Q 479.8333333333333 247.72761128281175  959.6666666666666 220.41664569209203T 1919.3333333333333 74.32871994367997T 2879 -93.67572590383526L 2879 0 Z;M0 0L 0 367.08675436013266Q 479.8333333333333 263.0400424962019  959.6666666666666 233.23045889402985T 1919.3333333333333 102.14817430143279T 2879 -36.923321323595644L 2879 0 Z;M0 0L 0 452.1977713828769Q 479.8333333333333 297.6305887992976  959.6666666666666 282.7922093099801T 1919.3333333333333 136.09715821609677T 2879 -128.78467924213055L 2879 0 Z;M0 0L 0 423.72199918448564Q 479.8333333333333 247.72761128281175  959.6666666666666 220.41664569209203T 1919.3333333333333 74.32871994367997T 2879 -93.67572590383526L 2879 0 Z"
-              ></animate>
-            </path>
-          </g>
-        </svg>
+      <div className="h-full bg-[#000053] overflow-hidden max-[600px]:relative">
+        <BgAnimation />
         <Layout locale={pageContext.locale} transparent={false} page="home">
           <Main className="pagePadding">
             <div className="Hero container col relative">
-              <div
-                className="flex absolute"
-                css={`
-                  top: 0;
-                  right: 10px;
-                  position: absolute;
-                  margin: 5px 0;
-                  @media (min-width: 501px) {
-                    display: none;
+              <div className="absolute flex right-[10px] top-0 my-[5px] min-[501px]:hidden">
+                <Link
+                  to="/"
+                  className={
+                    "flex justify-center items-center w-[20px] h-[20px] p-[10px] rounded-[4px] text-[11px] mx-[10px] [&.active]:bg-[#ffffff26]" +
+                    (locale === "fi" ? " active" : "")
                   }
-                  a {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 20px;
-                    height: 20px;
-                    padding: 10px;
-                    border-radius: 4px;
-                    font-size: 11px;
-                    font-weight: 400;
-                    margin-left: 10px;
-                    margin-right: 10px;
-                    &.active {
-                      background: rgba(255, 255, 255, 0.15);
-                    }
-                  }
-                `}
-              >
-                <Link to="/" className={locale === "fi" ? "active" : ""}>
+                >
                   FI
                 </Link>
-                <Link to="/en" className={locale === "en" ? "active" : ""}>
+                <Link
+                  to="/en"
+                  className={
+                    "flex justify-center items-center w-[20px] h-[20px] p-[10px] rounded-[4px] text-[11px] mx-[10px] [&.active]:bg-[#ffffff26]" +
+                    (locale === "en" ? " active" : "")
+                  }
+                >
                   EN
                 </Link>
-                <Link to="/sv" className={locale === "sv" ? "active" : ""}>
+                <Link
+                  to="/sv"
+                  className={
+                    "flex justify-center items-center w-[20px] h-[20px] p-[10px] rounded-[4px] text-[11px] mx-[10px] [&.active]:bg-[#ffffff26]" +
+                    (locale === "sv" ? " active" : "")
+                  }
+                >
                   SV
                 </Link>
               </div>
@@ -174,7 +84,7 @@ const Page = ({ pageContext }) => {
               </div>
 
               <div className="Grid padding">
-                {homeMenu[locale].map((i, index) => {
+                {page.isoValikko.map((i, index) => {
                   const [hoverRef] = useHover();
 
                   return (
@@ -184,7 +94,7 @@ const Page = ({ pageContext }) => {
                     >
                       <AnimatedBoxLink
                         index={index}
-                        animation={i.animation}
+                        animation={i.animaatio}
                         title={i.title}
                       />
                     </MagneticLinkBox>
@@ -192,7 +102,7 @@ const Page = ({ pageContext }) => {
                 })}
               </div>
             </div>
-            {video.video && (locale === "fi" || locale === "en") && (
+            {page.video[0] && (
               <section
                 className="col container padding align-center"
                 css={`
@@ -225,43 +135,40 @@ const Page = ({ pageContext }) => {
                   }
                 `}
               >
-                {locale === "fi" && (
-                  <h3>
-                    Katso, miten rakennusalan urakoitsijat hyödyntävät
-                    JCAD-määrälaskentaohjelmistoa.
-                  </h3>
-                )}
-                {locale === "en" && <h3>Watch JCAD Features in Action</h3>}
-
-                <Video
-                  data={video.video}
-                  poster={video.videoPoster.url}
-                  markers={video.videoMarkers}
-                />
-                <Link
-                  className="HeroLink"
-                  to={ctaProduct[locale].slug}
-                  css={`
-                    margin-top: 20px;
-                  `}
-                >
-                  {" "}
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                <>
+                  <h3>{page.videoHeader}</h3>
+                  <Video
+                    data={page.video[0].file}
+                    poster={page.video[0].poster.url}
+                    markers={page.video[0].markers}
+                  />
+                  <Link
+                    className="HeroLink"
+                    to={page.videoCta[0].slug}
+                    css={`
+                      margin-top: 20px;
+                    `}
                   >
-                    <path
-                      d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
-                      fill="#fff"
-                    />
-                  </svg>
-                  {ctaProduct[locale].title}
-                </Link>
+                    {" "}
+                    <svg
+                      className="mt-[1px]"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                        fill="#fff"
+                      />
+                    </svg>
+                    {page.videoCta[0]?.text}
+                  </Link>
+                </>
               </section>
             )}
+
             <DownloadPDF />
           </Main>
         </Layout>
@@ -1001,3 +908,70 @@ const Main = styled.main`
     }
   }
 `;
+
+const BgAnimation = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    css={`
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgb(0, 0, 83);
+      display: block;
+      min-width: 100vw;
+      shape-rendering: auto;
+      @media (max-width: 600px) {
+        left: -400px;
+      }
+    `}
+    width="2879"
+    height="993"
+    preserveAspectRatio="xMidYMid"
+    viewBox="0 0 2879 993"
+  >
+    <g transform="translate(1439.5,496.5) scale(1,1) translate(-1439.5,-496.5)">
+      <linearGradient id="lg-0.2510863810006023" x1="0" x2="1" y1="0" y2="0">
+        <stop stop-color="#0b0b73" offset="0"></stop>
+        <stop stop-color="#161660" offset="1"></stop>
+      </linearGradient>
+      <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
+        <animate
+          attributeName="d"
+          dur="14.285714285714286s"
+          repeatCount="indefinite"
+          keyTimes="0;0.333;0.667;1"
+          calcMode="spline"
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
+          begin="0s"
+          values="M0 0L 0 330.75163812426746Q 479.8333333333333 181.77149861291295  959.6666666666666 157.46535139885233T 1919.3333333333333 135.97171369763038T 2879 -21.518601780996164L 2879 0 Z;M0 0L 0 495.2785027836816Q 479.8333333333333 239.3811209137978  959.6666666666666 214.56633158881T 1919.3333333333333 -1.7300965622308127T 2879 -127.63558841892831L 2879 0 Z;M0 0L 0 369.4262371599777Q 479.8333333333333 272.16451219348227  959.6666666666666 248.02571969871758T 1919.3333333333333 95.10629663772534T 2879 -231.23754229829126L 2879 0 Z;M0 0L 0 330.75163812426746Q 479.8333333333333 181.77149861291295  959.6666666666666 157.46535139885233T 1919.3333333333333 135.97171369763038T 2879 -21.518601780996164L 2879 0 Z"
+        ></animate>
+      </path>
+      <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
+        <animate
+          attributeName="d"
+          dur="14.285714285714286s"
+          repeatCount="indefinite"
+          keyTimes="0;0.333;0.667;1"
+          calcMode="spline"
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
+          begin="-4.761904761904762s"
+          values="M0 0L 0 476.3698688355545Q 479.8333333333333 237.83709995497324  959.6666666666666 210.77828043315546T 1919.3333333333333 109.272024280435T 2879 -204.30408117450685L 2879 0 Z;M0 0L 0 490.27939888235187Q 479.8333333333333 232.47573026976067  959.6666666666666 213.30960777731207T 1919.3333333333333 149.1919411473708T 2879 -166.7263792026784L 2879 0 Z;M0 0L 0 321.13633121046075Q 479.8333333333333 259.92285425806756  959.6666666666666 232.92038920234225T 1919.3333333333333 10.73061713261825T 2879 8.503078880735018L 2879 0 Z;M0 0L 0 476.3698688355545Q 479.8333333333333 237.83709995497324  959.6666666666666 210.77828043315546T 1919.3333333333333 109.272024280435T 2879 -204.30408117450685L 2879 0 Z"
+        ></animate>
+      </path>
+      <path d="" fill="url(#lg-0.2510863810006023)" opacity="0.4">
+        <animate
+          attributeName="d"
+          dur="14.285714285714286s"
+          repeatCount="indefinite"
+          keyTimes="0;0.333;0.667;1"
+          calcMode="spline"
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
+          begin="-9.523809523809524s"
+          values="M0 0L 0 423.72199918448564Q 479.8333333333333 247.72761128281175  959.6666666666666 220.41664569209203T 1919.3333333333333 74.32871994367997T 2879 -93.67572590383526L 2879 0 Z;M0 0L 0 367.08675436013266Q 479.8333333333333 263.0400424962019  959.6666666666666 233.23045889402985T 1919.3333333333333 102.14817430143279T 2879 -36.923321323595644L 2879 0 Z;M0 0L 0 452.1977713828769Q 479.8333333333333 297.6305887992976  959.6666666666666 282.7922093099801T 1919.3333333333333 136.09715821609677T 2879 -128.78467924213055L 2879 0 Z;M0 0L 0 423.72199918448564Q 479.8333333333333 247.72761128281175  959.6666666666666 220.41664569209203T 1919.3333333333333 74.32871994367997T 2879 -93.67572590383526L 2879 0 Z"
+        ></animate>
+      </path>
+    </g>
+  </svg>
+);

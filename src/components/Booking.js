@@ -3,55 +3,61 @@ import React, { useContext } from "react";
 import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
-import en from "../locales/en.yml";
-import fi from "../locales/fi.yml";
-import sv from "../locales/sv.yml";
 import { theme } from "../theme/theme";
 
 export const Booking = () => {
-  const { locale, localeSlugs } = useContext(LocaleContext);
-  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+  const { locale } = useContext(LocaleContext);
 
-  const data = useStaticQuery(graphql`
+  const { bookingFi, bookingEn, bookingSv } = useStaticQuery(graphql`
     query {
       bookingFi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
-        title
-        content
+        pfTitle
+        pfContent
+        pfCta {
+          text
+          slug
+        }
         calendlyBookingUrl
-        buttonText
       }
       bookingEn: datoCmsTilaaDemo(locale: { eq: "en" }) {
-        title
-        content
+        pfTitle
+        pfContent
+        pfCta {
+          text
+          slug
+        }
         calendlyBookingUrl
-        buttonText
       }
       bookingSv: datoCmsTilaaDemo(locale: { eq: "sv" }) {
-        title
-        content
+        pfTitle
+        pfContent
+        pfCta {
+          text
+          slug
+        }
         calendlyBookingUrl
-        buttonText
       }
     }
   `);
 
-  const booking =
-    locale === "fi"
-      ? data.bookingFi
-      : locale === "en"
-      ? data.bookingEn
-      : data.bookingSv;
+  const data = {
+    fi: bookingFi,
+    en: bookingEn,
+    sv: bookingSv,
+  };
+
+  const booking = data[locale];
 
   return (
     <Div className="pagePadding">
       <div className="container padding col align-center">
-        <h2>{booking.title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: booking.content }} />
+        <h2>{booking.pfTitle}</h2>
+        <div dangerouslySetInnerHTML={{ __html: booking.pfContent }} />
         <div className="DemoBtn">
           <PopupButton
             className="btn white-outlines"
             url={booking.calendlyBookingUrl}
-            text={booking.buttonText}
+            text={booking.pfCta[0].text}
           />
         </div>
       </div>

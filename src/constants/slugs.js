@@ -61,41 +61,12 @@ export const mainMenu = {
     { title: "Product", slug: "product" },
     { title: "Pricing", slug: "pricing" },
     { title: "Tutorials", slug: "tutorials" },
-    //{ title: "Webinars", slug: "webinars" },
     { title: "Contact", slug: "contact" },
   ],
   sv: [
     { title: "Produkten", slug: "produkten" },
     { title: "Prislista", slug: "pris" },
-    //{ title: "Webinarer", slug: "webinarer" },
     { title: "Kontakter", slug: "kontakter" },
-  ],
-};
-
-export const homeMenu = {
-  fi: [
-    {
-      title: "Määrälaskenta",
-      slug: "maaralaskentaohjelmisto",
-      animation: "product",
-    },
-    { title: "Hinnoittelu", slug: "hinta", animation: "crosshair" },
-    { title: "Referenssit", slug: "referenssit", animation: "columns" },
-    { title: "Webinaarit", slug: "webinaarit", animation: "video" },
-    { title: "Tutoriaalit", slug: "tutoriaalit", animation: "bullseye" },
-    { title: "Yhteystiedot", slug: "yhteystiedot", animation: "jcad" },
-    //{ title: "Tilaa JCAD", slug: "tilaa", animation: "columns" },
-  ],
-  en: [
-    { title: "Product", slug: "product", animation: "product" },
-    { title: "Pricing", slug: "pricing", animation: "crosshair" },
-    { title: "Tutorials", slug: "tutorials", animation: "video" },
-    { title: "Contact", slug: "contact", animation: "jcad" },
-  ],
-  sv: [
-    { title: "Produkten", slug: "produkten", animation: "product" },
-    { title: "Prislista", slug: "pris", animation: "crosshair" },
-    { title: "Kontakter", slug: "kontakter", animation: "jcad" },
   ],
 };
 

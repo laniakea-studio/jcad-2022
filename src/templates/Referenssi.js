@@ -1,4 +1,3 @@
-import { Link } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import React, { useContext } from "react";
 import { Layout } from "../components/Layout";

@@ -34,15 +34,12 @@ export const Layout = ({ children, page }) => {
       }
       fi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
         calendlyBookingUrl
-        buttonText
       }
       en: datoCmsTilaaDemo(locale: { eq: "en" }) {
         calendlyBookingUrl
-        buttonText
       }
       sv: datoCmsTilaaDemo(locale: { eq: "sv" }) {
         calendlyBookingUrl
-        buttonText
       }
     }
   `);

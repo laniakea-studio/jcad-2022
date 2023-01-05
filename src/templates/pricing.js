@@ -63,7 +63,7 @@ const Pricing = ({ pageContext }) => {
       <Layout>
         <Main className="pagePadding">
           <div className="col container padding">
-            <h1>{text.menu.pricing}</h1>
+            <h1>{page.title}</h1>
             <p className="lead">{page.lead}</p>
             <div className="selections">
               <div>

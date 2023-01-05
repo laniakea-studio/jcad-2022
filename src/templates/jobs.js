@@ -18,35 +18,6 @@ const Page = ({ pageContext }) => {
   const form = {
     name: "Työhakemus",
     inputs: [
-      /*
-      {
-        type: "radio",
-        name: "kiinnostus",
-        label: "Minua kiinnostaa",
-        value: "Ohjelmistokehitys",
-        options: [
-          {
-            label: "Ohjelmistokehitys",
-            desc: "",
-            value: "Ohjelmistokehitys",
-          },
-          {
-            label: "B2B-myynti",
-            desc: "",
-            value: "B2B-myynti",
-          },
-          {
-            label: "Asiantuntijatehtävät",
-            desc: "",
-            value: "Asiantuntijatehtävät",
-          },
-          {
-            label: "Asiakaspalvelu",
-            desc: "",
-            value: "Asiakaspalvelu",
-          },
-        ],
-      },*/
       {
         type: "text",
         name: "name",
@@ -95,7 +66,7 @@ const Page = ({ pageContext }) => {
           <section className="Hero pagePadding">
             <div className="row container padding">
               <div className="col justify-center">
-                <h1>{page.title}</h1>
+                <h1>{page.otsikko}</h1>
                 <div
                   className="Content"
                   dangerouslySetInnerHTML={{ __html: page.intro }}

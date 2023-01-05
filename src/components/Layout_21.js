@@ -50,15 +50,12 @@ export const Layout = ({ children }) => {
       }
       fi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
         calendlyBookingUrl
-        buttonText
       }
       en: datoCmsTilaaDemo(locale: { eq: "en" }) {
         calendlyBookingUrl
-        buttonText
       }
       sv: datoCmsTilaaDemo(locale: { eq: "sv" }) {
         calendlyBookingUrl
-        buttonText
       }
     }
   `);

@@ -14,9 +14,7 @@ import {
 } from "../components/SvgCollection";
 import Ticker from "../components/Ticker";
 import { LocaleContext } from "../contexts/LocaleContext";
-import en from "../locales/en.yml";
-import fi from "../locales/fi.yml";
-import sv from "../locales/sv.yml";
+import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 import scrollTo from "gatsby-plugin-smoothscroll";
 import { MagneticButton } from "../components/MagneticButton";
@@ -26,7 +24,7 @@ import { bookDemo, prefix } from "../constants/slugs";
 
 const Product = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
-  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+  const text = snippet[locale];
   const { data } = pageContext;
   const [hoverRef] = useHover();
 

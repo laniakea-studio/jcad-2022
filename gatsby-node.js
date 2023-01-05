@@ -58,99 +58,68 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const locales = ["fi", "en", "sv"];
 
-  const slugs = {
-    fi: {
-      product: "maaralaskentaohjelmisto",
-      pricing: "hinta",
-      contact: "yhteystiedot",
-      gdpr: "tietosuojaseloste",
-      about: "meista",
-      references: "referenssit",
-      webinars: "webinaarit",
-      tutoriaalit: "tutoriaalit",
-      jobs: "rekry",
-      order: "tilaa",
-      bookDemo: "varaa-demo",
-      thanksDemoBooking: "kiitos-demon-varauksesta",
-      thanksWebinarBooking: "kiitos-webinaariin-ilmoittautumisesta",
-      thanksOrder: "kiitos-tilauksesta",
-    },
-    en: {
-      product: "product",
-      pricing: "pricing",
-      contact: "contact",
-      gdpr: "gdpr",
-      about: "about",
-      references: "references",
-      webinars: "webinars",
-      tutoriaalit: "tutorials",
-      jobs: "jobs",
-      order: "order",
-      bookDemo: "free-trial",
-      thanksDemoBooking: "thanks-demo-booking",
-      thanksWebinarBooking: "kiitos-webinar-booking",
-      thanksOrder: "thanks-order",
-    },
-    sv: {
-      product: "produkten",
-      pricing: "pris",
-      contact: "kontakter",
-      gdpr: "gdpr",
-      about: "om-oss",
-      references: "referenser",
-      webinars: "webinarer",
-      tutoriaalit: "tutorialer",
-      jobs: "jobb",
-      order: "bestall",
-      bookDemo: "boka-demo",
-      thanksDemoBooking: "tack-demo-bokning",
-      thanksWebinarBooking: "tack-webinar-bokning",
-      thanksOrder: "tack-bestallning",
-    },
+  const prefixes = {
+    fi: "",
+    en: "en/",
+    sv: "sv/",
+  };
+
+  const thanks = {
+    fi: "/kiitos",
+    en: "/thanks",
+    sv: "/tack",
   };
 
   await Promise.all(
     locales.map(async (locale) => {
       const query = await graphql(`
-    {
-      about: datoCmsAbout(locale: { eq: "${locale}" }) {
-        seoMetaTags {
-          tags 
-        }
-        kuva {
-          gatsbyImageData(
-            width: 1600
-            placeholder: BLURRED
-            forceBlurhash: false
-          )
-        }
-        otsikko1
-        otsikko2
-        otsikko3
-        slide1
-        slide2
-        slide3
-        partners {
-          url
-          alt
-        }
-      }
+    {      
       home: datoCmsHome(locale: { eq: "${locale}" })  {
-        seoMetaTags {
-          tags 
-        }
         title
+        seoMetaTags {
+          tags
+        }        
         intro
         cta {
           text
           slug
-        } 
+        }
+        isoValikko {
+          title
+          slug
+          animaatio
+        }
+        videoHeader
+        video {
+          file {
+            video {
+              streamingUrl
+              mp4Url
+            }
+          }
+          poster {
+            url
+          }
+          markers {
+            text
+            positionSec
+          }
+        }
+        videoCta {
+          text
+          slug
+        }
       }
       product: datoCmsTuotesivu(locale: { eq: "${locale}" }) {
+        title
+        slug
+        _allSlugLocales {
+          locale
+          value
+        }
         seoMetaTags {
           tags 
-        }
-        title
+        }        
         lead
         video {
           video {
@@ -179,6 +148,12 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       pricing: datoCmsPricing(locale: { eq: "${locale}" }) {
+        title
+        slug
+        _allSlugLocales {
+          locale
+          value
+        }
         seoMetaTags {
           tags 
         }
@@ -197,22 +172,18 @@ exports.createPages = async ({ graphql, actions }) => {
           label
           value
         }
-      }
-      webinaarit: datoCmsWebinarsPage(locale: { eq: "${locale}" }) {
-        seoMetaTags {
-          tags 
-        }
-        palautteita {
-          content
-        }
-        arvosanat
-        kuvaajanTeksti        
-      }
+      }      
       jobs: datoCmsRekry(locale: { eq: "${locale}" }) {
+        _allSlugLocales {
+          locale
+          value
+        }
         seoMetaTags {
           tags 
         }
         title
+        slug
+        otsikko
         intro
         positio {
           content
@@ -222,21 +193,34 @@ exports.createPages = async ({ graphql, actions }) => {
         askMore
       }
       referenssit: datoCmsReferenssit(locale: { eq: "${locale}" }) {
+        _allSlugLocales {
+          locale
+          value
+        }
+        title
+        slug
         seoMetaTags {
           tags 
-        }        
-        otsikko
+        }                
         kuvaus
       }
       allReferences: allDatoCmsReferenssi(filter: { locale: { eq: "${locale}" } }) {
         edges {
           node {
+            _allSlugLocales {
+              locale
+              value
+            }
+            seoMetaTags {
+              tags 
+            }  
+            title
             slug
-            yritys
+            title
             artikkeli
-            toimiala
-            alue
             otsikko
+            toimiala
+            alue            
             ingressi          
             sisalto  
             video {
@@ -260,12 +244,32 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      webinaarit: datoCmsWebinarsPage(locale: { eq: "${locale}" }) {
+        _allSlugLocales {
+          locale
+          value
+        }
+        title
+        slug
+        seoMetaTags {
+          tags 
+        }
+        palautteita {
+          content
+        }
+        arvosanat
+        kuvaajanTeksti        
+      }
       allWebinars: allDatoCmsWebinar(
         filter: { locale: { eq: "${locale}" } }
         sort: {order: ASC, fields: webinaarinAjankohta}
         ) {
         edges {
           node {
+            _allSlugLocales {
+              locale
+              value
+            }
             seoMetaTags {
               tags 
             }
@@ -282,18 +286,35 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       order: datoCmsOrder(locale: { eq: "${locale}" })  {
+        _allSlugLocales {
+          locale
+          value
+        }
         seoMetaTags {
           tags 
         }
+        title
+        slug
         content
+        kiitosTitle
+        kiitosContent        
+        kiitosCta {
+          text
+          slug
+        }
       }
       booking: datoCmsTilaaDemo(locale: { eq: "${locale}" }) {
+        _allSlugLocales {
+          locale
+          value
+        }
         title
-        content
+        slug
+        seoMetaTags {
+          tags 
+        }        
         calendlyBookingUrl
-        buttonText
         pageContent
-        calendlyLink
         video {
           video {
           streamingUrl
@@ -303,8 +324,54 @@ exports.createPages = async ({ graphql, actions }) => {
         videoPoster {
           url
         }
+        kiitosTitle
+        kiitosContent        
+        kiitosCta {
+          text
+          slug
+        }
+        pfTitle
+        pfContent
+        pfCta {
+          text
+          slug
+        }
       }
-      yhteystiedot: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {
+      about: datoCmsAbout(locale: { eq: "${locale}" }) {
+        _allSlugLocales {
+          locale
+          value
+        }
+        seoMetaTags {
+          tags 
+        }
+        slug
+        title
+        kuva {
+          gatsbyImageData(
+            width: 1600
+            placeholder: BLURRED
+            forceBlurhash: false
+          )
+        }
+        otsikko1
+        otsikko2
+        otsikko3
+        slide1
+        slide2
+        slide3
+        partners {
+          url
+          alt
+        }
+      }
+      contact: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {
+        title
+        slug
+        _allSlugLocales {
+          locale
+          value
+        }
         seoMetaTags {
           tags           
         }     
@@ -358,20 +425,33 @@ exports.createPages = async ({ graphql, actions }) => {
         }
         ytunnus
       }
-      gdpr: datoCmsTietosuoja(locale: { eq: "${locale}" }) {        
+      gdpr: datoCmsTietosuoja(locale: { eq: "${locale}" }) {
+        title      
+        slug
+        _allSlugLocales {
+          locale
+          value
+        }
+        seoMetaTags {
+          tags           
+        }  
         tietosuojaseloste
       }
       allCampaigns: allDatoCmsCampaign(
         filter: { locale: { eq: "${locale}" } }
         ) {
         edges {
-          node {       
+          node {
+            _allSlugLocales {
+              locale
+              value
+            } 
             seoMetaTags {
               tags           
             }   
-            supTitle
-            heading
+            title
             slug
+            supTitle
             videoText
             video {
               video {
@@ -400,6 +480,10 @@ exports.createPages = async ({ graphql, actions }) => {
             seoMetaTags {
               tags           
             }
+            _allSlugLocales {
+              locale
+              value
+            }
             kategoria
             title
             kuvaus
@@ -421,7 +505,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      tutoriaalit: datoCmsTutoriaalit(locale: { eq: "${locale}" }) {       
+      tutorials: datoCmsTutoriaalit(locale: { eq: "${locale}" }) {
+        title   
+        slug
+        _allSlugLocales {
+          locale
+          value
+        }
         seoMetaTags {
           tags           
         } 
@@ -443,7 +533,33 @@ exports.createPages = async ({ graphql, actions }) => {
 
       const { data } = query;
 
-      const prefix = locale === "fi" ? "" : locale === "en" ? "en/" : "sv/";
+      const prefix = prefixes[locale];
+
+      const localeSlugs = (allLocales, allPaths) => {
+        let parsedPath = {
+          fi: "",
+          en: "",
+          sv: "",
+        };
+
+        if (allPaths) {
+          parsedPath = Object.assign(
+            {},
+            ...allPaths.map(({ locale, value }) => ({
+              [locale]: value + "/",
+            }))
+          );
+        }
+
+        const parsed = Object.assign(
+          {},
+          ...allLocales.map(({ locale, value }) => ({
+            [locale]: "/" + prefixes[locale] + parsedPath[locale] + value,
+          }))
+        );
+
+        return parsed;
+      };
 
       createPage({
         path: `/${prefix}`,
@@ -457,126 +573,126 @@ exports.createPages = async ({ graphql, actions }) => {
           },
           data: {
             page: data.home,
-            video: {
-              video: data.product.video,
-              videoteksti: data.product.videoTeksti,
-              videoPoster: data.product.videoPoster,
-              videoMarkers: data.product.videoMarkers,
+          },
+        },
+      });
+
+      if (data.product.slug) {
+        createPage({
+          path: `/${prefix + data.product.slug}`,
+          component: path.resolve(`src/templates/product.js`),
+          context: {
+            locale,
+            localeSlugs: localeSlugs(data.product._allSlugLocales),
+            data: {
+              product: data.product,
+              booking: data.booking,
+              references: data.allReferences.edges,
             },
           },
-        },
-      });
+        });
+      }
 
-      createPage({
-        path: `/${prefix + slugs[locale].product}`,
-        component: path.resolve(`src/templates/product.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.product}`,
-            en: `/en/${slugs.en.product}`,
-            sv: `/sv/${slugs.sv.product}`,
+      if (data.pricing.slug) {
+        createPage({
+          path: `/${prefix + data.pricing.slug}`,
+          component: path.resolve(`src/templates/pricing.js`),
+          context: {
+            locale: locale,
+            localeSlugs: localeSlugs(data.pricing._allSlugLocales),
+            data: { page: data.pricing, booking: data.booking },
           },
-          data: {
-            product: data.product,
-            booking: data.booking,
-            references: data.allReferences.edges,
-          },
-        },
-      });
+        });
+      }
 
-      createPage({
-        path: `/${prefix + slugs[locale].pricing}`,
-        component: path.resolve(`src/templates/pricing.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.pricing}`,
-            en: `/en/${slugs.en.pricing}`,
-            sv: `/sv/${slugs.sv.pricing}`,
+      if (data.about.slug) {
+        createPage({
+          path: `/${prefix + data.about.slug}`,
+          component: path.resolve(`src/templates/about.js`),
+          context: {
+            locale: locale,
+            localeSlugs: localeSlugs(data.about._allSlugLocales),
+            data: {
+              home: data.about,
+              referenssit: data.allReferences,
+            },
           },
-          data: { page: data.pricing, booking: data.booking },
-        },
-      });
+        });
+      }
 
-      createPage({
-        path: `/${prefix + slugs[locale].contact}`,
-        component: path.resolve(`src/templates/contact.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.contact}`,
-            en: `/en/${slugs.en.contact}`,
-            sv: `/sv/${slugs.sv.contact}`,
+      if (data.jobs.slug) {
+        createPage({
+          path: `/${prefix + data.jobs.slug}`,
+          component: path.resolve(`src/templates/jobs.js`),
+          context: {
+            locale,
+            localeSlugs: localeSlugs(data.jobs._allSlugLocales),
+            data: {
+              page: data.jobs,
+            },
           },
-          data: { yhteystiedot: data.yhteystiedot },
-        },
-      });
+        });
+      }
 
-      createPage({
-        path: `/${prefix + slugs[locale].gdpr}`,
-        component: path.resolve(`src/templates/gdpr.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.gdpr}`,
-            en: `/en/${slugs.en.gdpr}`,
-            sv: `/sv/${slugs.sv.gdpr}`,
+      if (data.contact.slug) {
+        createPage({
+          path: `/${prefix + data.contact.slug}`,
+          component: path.resolve(`src/templates/contact.js`),
+          context: {
+            locale: locale,
+            localeSlugs: localeSlugs(data.contact._allSlugLocales),
+            data: { page: data.contact },
           },
-          data: data.gdpr,
-        },
-      });
+        });
+      }
 
-      createPage({
-        path: `/${prefix + slugs[locale].about}`,
-        component: path.resolve(`src/templates/about.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.about}`,
-            en: `/en/${slugs.en.about}`,
-            sv: `/sv/${slugs.sv.about}`,
+      if (data.gdpr.slug) {
+        createPage({
+          path: `/${prefix + data.gdpr.slug}`,
+          component: path.resolve(`src/templates/gdpr.js`),
+          context: {
+            locale,
+            localeSlugs: localeSlugs(data.gdpr._allSlugLocales),
+            data: data.gdpr,
           },
-          data: {
-            home: data.about,
-            referenssit: data.allReferences,
-          },
-        },
-      });
+        });
+      }
 
-      createPage({
-        path: `/${prefix + slugs[locale].references}`,
-        component: path.resolve(`src/templates/referenssit.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.references}`,
-            en: `/en/${slugs.en.references}`,
-            sv: `/sv/${slugs.sv.references}`,
-          },
-          data: {
-            page: data.referenssit,
-            googleSheets: data.allReferenssitGoogleSheets.edges,
-            allReferences: data.allReferences.edges.filter(
-              (i) => i.node.artikkeli
-            ),
-          },
-        },
-      });
+      // References
 
-      data.allReferences.edges
-        .filter((i) => i.node.artikkeli)
-        .map((i) => {
+      if (data.referenssit.slug) {
+        createPage({
+          path: `/${prefix + data.referenssit.slug}`,
+          component: path.resolve(`src/templates/referenssit.js`),
+          context: {
+            locale: locale,
+            localeSlugs: localeSlugs(data.referenssit._allSlugLocales),
+            data: {
+              page: data.referenssit,
+              googleSheets: data.allReferenssitGoogleSheets.edges,
+              allReferences: data.allReferences.edges.filter(
+                (i) => i.node.artikkeli
+              ),
+            },
+          },
+        });
+      }
+
+      const references = data.allReferences.edges.filter(
+        (i) => i.node.artikkeli
+      );
+
+      if (references.length > 0) {
+        references.map((i) => {
           createPage({
-            path: `/${prefix + slugs[locale].references}/${i.node.slug}`,
+            path: `/${prefix + data.referenssit.slug}/${i.node.slug}`,
             component: path.resolve(`src/templates/Referenssi.js`),
             context: {
               locale: locale,
-              localeSlugs: {
-                fi: `/${i.node.slug}`,
-                en: null,
-                sv: null,
-              },
+              localeSlugs: localeSlugs(
+                i.node._allSlugLocales,
+                data.referenssit._allSlugLocales
+              ),
               data: {
                 page: i.node,
                 allReferences: data.allReferences.edges.filter(
@@ -586,92 +702,167 @@ exports.createPages = async ({ graphql, actions }) => {
             },
           });
         });
+      }
 
-      // BOOK DEMO AND THANK YOU PAGES
-      createPage({
-        path: `/${prefix + slugs[locale].bookDemo}`,
-        component: path.resolve(`src/templates/book-demo.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.bookDemo}`,
-            en: `/en/${slugs.en.bookDemo}`,
-            sv: `/sv/${slugs.sv.bookDemo}`,
-          },
-          data: {
-            page: data.booking,
-          },
-        },
-      });
+      // Tutorials
 
-      createPage({
-        path: `/${prefix + slugs[locale].thanksDemoBooking}`,
-        component: path.resolve(`src/templates/thanks-demo-booking.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.thanksDemoBooking}`,
-            en: null,
-            sv: null,
-          },
-          data: {
-            page: "",
-          },
-        },
-      });
-
-      createPage({
-        path: `/${prefix + slugs[locale].thanksWebinarBooking}`,
-        component: path.resolve(`src/templates/thanks-webinar-booking.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.thanksWebinarBooking}`,
-            en: null,
-            sv: null,
-          },
-          data: {
-            page: "",
-          },
-        },
-      });
-
-      createPage({
-        path: `/${prefix + slugs[locale].thanksOrder}`,
-        component: path.resolve(`src/templates/thanks-order.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.thanksOrder}`,
-            en: null,
-            sv: null,
-          },
-          data: {
-            page: "",
-          },
-        },
-      });
-
-      createPage({
-        path: `/${prefix + slugs[locale].tutoriaalit}`,
-        component: path.resolve(`src/templates/tutoriaalit.js`),
-        context: {
-          locale: locale,
-          localeSlugs: {
-            fi: `/${slugs.fi.tutoriaalit}`,
-            en: `/en/${slugs.en.tutoriaalit}`,
-            sv: null,
-          },
-          data: {
-            page: data.tutoriaalit,
-          },
-        },
-      });
-
-      data.allTutorials.edges.map((i) => {
+      if (data.tutorials.slug) {
         createPage({
-          path: `/${prefix + slugs[locale].tutoriaalit}/${i.node.slug}`,
-          component: path.resolve(`src/templates/Tutorial.js`),
+          path: `/${prefix + data.tutorials.slug}`,
+          component: path.resolve(`src/templates/tutoriaalit.js`),
+          context: {
+            locale: locale,
+            localeSlugs: localeSlugs(data.tutorials._allSlugLocales),
+            data: {
+              page: data.tutorials,
+            },
+          },
+        });
+      }
+
+      if (data.allTutorials.edges.length > 0) {
+        data.allTutorials.edges
+          .filter((i) => i.node.slug)
+          .map((i) => {
+            createPage({
+              path: `/${prefix + data.tutorials.slug}/${i.node.slug}`,
+              component: path.resolve(`src/templates/Tutorial.js`),
+              context: {
+                locale: locale,
+                localeSlugs: localeSlugs(
+                  i.node._allSlugLocales,
+                  data.tutorials._allSlugLocales
+                ),
+                data: {
+                  page: i.node,
+                },
+              },
+            });
+          });
+      }
+
+      // Webinars
+
+      if (data.webinaarit.slug) {
+        createPage({
+          path: `/${prefix + data.webinaarit.slug}`,
+          component: path.resolve(`src/templates/webinars.js`),
+          context: {
+            locale,
+            localeSlugs: localeSlugs(data.webinaarit._allSlugLocales),
+            data: {
+              page: data.webinaarit,
+              allWebinars: data.allWebinars.edges,
+            },
+          },
+        });
+      }
+
+      if (data.allWebinars.edges.length > 0) {
+        data.allWebinars.edges
+          .filter((i) => i.node.slug)
+          .map((i) => {
+            createPage({
+              path: `/${prefix + data.webinaarit.slug}/${
+                i.node.slug
+              }-${i.node.webinaarinAjankohta.slice(0, 10)}`,
+              component: path.resolve(`src/templates/Webinar.js`),
+              context: {
+                locale,
+                localeSlugs: {
+                  fi: null,
+                  en: null,
+                  sv: null,
+                },
+                data: {
+                  page: i.node,
+                },
+              },
+            });
+
+            if (i.node.isRestream) {
+              createPage({
+                path: `/live/${i.node.slug}-${i.node.webinaarinAjankohta.slice(
+                  0,
+                  10
+                )}`,
+                component: path.resolve(`src/templates/RestreamLive.js`),
+                context: {
+                  locale: locale,
+                  data: {
+                    page: i.node,
+                  },
+                  localeSlugs: {
+                    fi: null,
+                    en: null,
+                    sv: null,
+                  },
+                },
+              });
+            }
+
+            createPage({
+              path: `/${prefix + "kiitos-webinaariin-ilmoittautumisesta"}`,
+              component: path.resolve(
+                `src/templates/thanks-webinar-booking.js`
+              ),
+              context: {
+                locale: locale,
+                localeSlugs: {
+                  fi: null,
+                  en: null,
+                  sv: null,
+                },
+                data: {
+                  page: "",
+                },
+              },
+            });
+          });
+      }
+
+      // Campaigns
+
+      if (data.allCampaigns.edges.length > 0) {
+        data.allCampaigns.edges
+          .filter((i) => i.node.slug)
+          .map((i) => {
+            createPage({
+              path: `/${i.node.slug}`,
+              component: path.resolve(`src/templates/Campaign.js`),
+              context: {
+                locale: locale,
+                localeSlugs: {
+                  fi: `/${i.node.slug}`,
+                  en: null,
+                  sv: null,
+                },
+                data: {
+                  page: i.node,
+                },
+              },
+            });
+          });
+      }
+
+      // Book Demo
+
+      if (data.booking.slug) {
+        createPage({
+          path: `/${prefix + data.booking.slug}`,
+          component: path.resolve(`src/templates/book-demo.js`),
+          context: {
+            locale,
+            localeSlugs: localeSlugs(data.booking._allSlugLocales),
+            data: {
+              page: data.booking,
+            },
+          },
+        });
+
+        createPage({
+          path: `/${prefix + data.booking.slug + thanks[locale]}`,
+          component: path.resolve(`src/templates/thanks-demo-booking.js`),
           context: {
             locale: locale,
             localeSlugs: {
@@ -680,119 +871,48 @@ exports.createPages = async ({ graphql, actions }) => {
               sv: null,
             },
             data: {
-              page: i.node,
+              page: {
+                title: data.booking.kiitosTitle,
+                content: data.booking.kiitosContent,
+                cta: data.booking.kiitosCta[0],
+              },
             },
           },
         });
-      });
+      }
 
-      // Only Finnish pages
-      if (locale === "fi") {
-        data.allCampaigns.edges.map((i) => {
-          createPage({
-            path: `/${i.node.slug}`,
-            component: path.resolve(`src/templates/Campaign.js`),
-            context: {
-              locale: locale,
-              localeSlugs: {
-                fi: `/${i.node.slug}`,
-                en: null,
-                sv: null,
-              },
-              data: {
-                page: i.node,
-              },
-            },
-          });
-        });
+      // Order JCAD
 
+      if (data.order.slug) {
         createPage({
-          path: `/${prefix + slugs[locale].webinars}`,
-          component: path.resolve(`src/templates/webinars.js`),
-          context: {
-            locale: locale,
-            localeSlugs: {
-              fi: `/${slugs.fi.webinars}`,
-              en: null,
-              sv: null,
-            },
-            data: {
-              page: data.webinaarit,
-              allWebinars: data.allWebinars.edges,
-            },
-          },
-        });
-
-        data.allWebinars.edges.map((i) => {
-          createPage({
-            path: `/${prefix + slugs[locale].webinars}/${
-              i.node.slug
-            }-${i.node.webinaarinAjankohta.slice(0, 10)}`,
-            component: path.resolve(`src/templates/Webinar.js`),
-            context: {
-              locale: locale,
-              data: {
-                page: i.node,
-              },
-              localeSlugs: {
-                fi: `/${prefix + slugs.fi.webinars}`,
-                en: null,
-                sv: null,
-              },
-            },
-          });
-
-          if (i.node.isRestream) {
-            createPage({
-              path: `/live/${i.node.slug}-${i.node.webinaarinAjankohta.slice(
-                0,
-                10
-              )}`,
-              component: path.resolve(`src/templates/RestreamLive.js`),
-              context: {
-                locale: locale,
-                data: {
-                  page: i.node,
-                },
-                localeSlugs: {
-                  fi: `/`,
-                  en: null,
-                  sv: null,
-                },
-              },
-            });
-          }
-        });
-
-        createPage({
-          path: `/${prefix + slugs[locale].jobs}`,
-          component: path.resolve(`src/templates/jobs.js`),
-          context: {
-            locale: locale,
-            localeSlugs: {
-              fi: `/${slugs.fi.jobs}`,
-              en: null,
-              sv: null,
-            },
-            data: {
-              page: data.jobs,
-            },
-          },
-        });
-
-        createPage({
-          path: `/${prefix + slugs[locale].order}`,
+          path: `/${prefix + data.order.slug}`,
           component: path.resolve(`src/templates/order.js`),
           context: {
             locale: locale,
+            localeSlugs: localeSlugs(data.order._allSlugLocales),
+            data: {
+              page: data.order,
+              pricing: data.pricing,
+            },
+          },
+        });
+
+        createPage({
+          path: `/${prefix + data.order.slug + thanks[locale]}`,
+          component: path.resolve(`src/templates/thanks-order.js`),
+          context: {
+            locale: locale,
             localeSlugs: {
-              fi: `/${slugs.fi.order}`,
+              fi: null,
               en: null,
               sv: null,
             },
             data: {
-              page: data.order,
-              pricing: data.pricing,
+              page: {
+                title: data.order.kiitosTitle,
+                content: data.order.kiitosContent,
+                cta: data.order.kiitosCta[0],
+              },
             },
           },
         });

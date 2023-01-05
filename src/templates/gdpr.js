@@ -78,10 +78,11 @@ const TietosuojaPage = ({ pageContext }) => {
           </svg>
           <span>{text.gdpr.buttonBack}</span>
         </button>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={{ __html: data.tietosuojaseloste }}
-        />
+        <div className="content">
+          <h1>{data.title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: data.tietosuojaseloste }} />
+        </div>
+
         <button
           onClick={() => window.history.back()}
           className="button back"

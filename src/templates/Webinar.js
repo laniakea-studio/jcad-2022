@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
-import scrollTo from "gatsby-plugin-smoothscroll";
 import { NetlifyForm } from "../components/NetlifyForm";
 
 const Page = ({ pageContext }) => {
@@ -58,7 +56,7 @@ const Page = ({ pageContext }) => {
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
-      <Layout locale={pageContext.locale} transparent={false}>
+      <Layout locale={locale} transparent={false}>
         <Main
           className="pagePadding"
           css={`
