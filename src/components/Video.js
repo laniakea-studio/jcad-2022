@@ -2,9 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../theme/theme";
 
-export const Video = ({ data, autoplay, poster, markers }) => {
+const isBrowser = typeof window !== "undefined";
+
+export const Video = ({ data, poster, markers, plausibleGoalName }) => {
   const [showPlayButton, setShowPlayButton] = useState(true);
   const [videoDuration, setVideoDuration] = useState(null);
+  const [plausibleHasTriggered, setPlausibleHasTriggered] = useState({
+    0: false,
+    20: false,
+    40: false,
+    60: false,
+    80: false,
+  });
+
   const videoRef = useRef(null);
 
   const seekTo = (timeToStart) => {
@@ -23,6 +33,50 @@ export const Video = ({ data, autoplay, poster, markers }) => {
 
   const handleLoadedMetadata = (e) => {
     setVideoDuration(e.target.duration);
+  };
+
+  const invokePlausible = (percent, text) => {
+    if (isBrowser) {
+      window.plausible(plausibleGoalName, { props: { watched: text } });
+    }
+
+    setPlausibleHasTriggered({ ...plausibleHasTriggered, [percent]: true });
+  };
+
+  console.log("P", plausibleHasTriggered[0]);
+
+  const handleTimeChange = () => {
+    const timeWatched = getPlayedTime(videoRef.current);
+
+    if (timeWatched.percent > 0 && !plausibleHasTriggered[0]) {
+      invokePlausible(0, "Started");
+    }
+    if (timeWatched.percent > 20 && !plausibleHasTriggered[20]) {
+      invokePlausible(20, "20 %");
+    }
+    if (timeWatched.percent > 40 && !plausibleHasTriggered[40]) {
+      invokePlausible(40, "40 %");
+    }
+    if (timeWatched.percent > 60 && !plausibleHasTriggered[60]) {
+      invokePlausible(60, "60 %");
+    }
+    if (timeWatched.percent > 80 && !plausibleHasTriggered[80]) {
+      invokePlausible(80, "80 %");
+    }
+  };
+
+  const getPlayedTime = (player) => {
+    let totalPlayed = 0;
+    let played = player.played;
+
+    for (let i = 0; i < played.length; i++) {
+      totalPlayed += played.end(i) - played.start(i);
+    }
+
+    return {
+      total: totalPlayed,
+      percent: (totalPlayed / player.duration) * 100,
+    };
   };
 
   return (
@@ -68,6 +122,7 @@ export const Video = ({ data, autoplay, poster, markers }) => {
         onLoadedMetadata={handleLoadedMetadata}
         poster={poster && poster}
         onPlay={() => setShowPlayButton(false)}
+        onTimeUpdate={plausibleGoalName && handleTimeChange}
         width="100%"
         height="auto"
         controls

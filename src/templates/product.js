@@ -65,13 +65,20 @@ const Product = ({ pageContext }) => {
               </div>
               <div className="col justify-center VideoCol">
                 {data.product.video && (
-                  <Video
-                    data={data.product.video}
-                    poster={data.product.videoPoster.url}
-                    markers={data.product.videoMarkers}
-                  />
+                  <>
+                    <Video
+                      data={data.product.video[0].file}
+                      poster={data.product.video[0].poster.url}
+                      markers={data.product.video[0].markers}
+                      plausibleGoalName={
+                        data.product.video[0].plausibleGoalName
+                      }
+                    />
+                    <p className="Videoteksti">
+                      {data.product.video[0].videoteksti}
+                    </p>
+                  </>
                 )}
-                <p className="Videoteksti">{data.product.videoteksti}</p>
               </div>
             </div>
           </div>

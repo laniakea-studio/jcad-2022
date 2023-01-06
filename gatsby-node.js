@@ -120,18 +120,21 @@ exports.createPages = async ({ graphql, actions }) => {
         }        
         lead
         video {
-          video {
-          streamingUrl
-          mp4Url
+          file {
+            video {
+              streamingUrl
+              mp4Url
+            }
           }
-        }
-        videoMarkers {
-          positionSec
-          text
-        }
-        videoteksti
-        videoPoster {
-          url
+          markers {
+            positionSec
+            text
+          }
+          poster {
+            url
+          }
+          videoteksti
+          plausibleGoalName
         }
         customers {
           url
@@ -878,7 +881,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
         createPage({
           path: `/${prefix + data.booking.slug + thanks[locale]}`,
-          component: path.resolve(`src/templates/thanks-demo-booking.js`),
+          component: path.resolve(`src/templates/Thanks.js`),
           context: {
             locale: locale,
             localeSlugs: {
