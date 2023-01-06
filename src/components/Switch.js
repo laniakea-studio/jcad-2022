@@ -1,9 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import en from "../locales/en.yml";
-import fi from "../locales/fi.yml";
-import sv from "../locales/sv.yml";
-import { theme } from "../theme/theme";
 
 export const Switch = ({ handleSwitch, label, checked }) => {
   return (

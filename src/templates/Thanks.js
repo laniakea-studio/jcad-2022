@@ -3,12 +3,10 @@ import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { useContext } from "react";
 import { Layout } from "../components/Layout";
-import { prefix } from "../constants/slugs";
 import { LocaleContext } from "../contexts/LocaleContext";
-import * as snippet from "../locales";
 
 const Page = ({ pageContext }) => {
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
   const { page } = pageContext.data;
 
   return (
@@ -80,7 +78,7 @@ const Page = ({ pageContext }) => {
             {page.cta && (
               <p>
                 <Link
-                  to={prefix[locale] + page.cta.slug}
+                  to={prefix + page.cta.slug}
                   className="btn white-outlines"
                 >
                   <strong>{page.cta.text}</strong>

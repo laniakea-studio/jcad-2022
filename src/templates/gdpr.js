@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
 import { LocaleContext } from "../contexts/LocaleContext";
-import en from "../locales/en.yml";
-import fi from "../locales/fi.yml";
-import sv from "../locales/sv.yml";
+import * as snippet from "../locales";
 import "../theme-2021/globals.css";
 import theme from "../theme-2021/theme";
 
 const TietosuojaPage = ({ pageContext }) => {
   const { locale } = useContext(LocaleContext);
-  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+  const text = snippet[locale];
   const { data } = pageContext;
   return (
     <>

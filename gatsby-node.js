@@ -57,9 +57,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const locales = ["fi", "en" /*"sv"*/];
 
   const prefixes = {
-    fi: "",
-    en: "en/",
-    sv: "sv/",
+    fi: "/",
+    en: "/en/",
+    sv: "/sv/",
   };
 
   const thanks = {
@@ -382,6 +382,10 @@ exports.createPages = async ({ graphql, actions }) => {
         seoMetaTags {
           tags           
         }     
+        yhteystiedot {
+          title
+          content
+        }
         ihmiset {
           ryhma
           nimi
@@ -398,37 +402,9 @@ exports.createPages = async ({ graphql, actions }) => {
             )
           }
         }
-        myyntiJaTilaukset {
-          nimi
-          titteli
-          puhelin
-          email
-        }
-        henkilosto {
-          nimi
-          titteli
-          puhelin
-          email
-        }
-        asiakaspalvelu {
-          nimi
-          titteli
-          puhelin
-          email
-        }
-        asiakkuudet {
-          nimi
-          titteli
-          puhelin
-          email
-        }
-        toimipisteet {
-          nimi
-          osoite
-        }
-        laskutus {
-          nimi
-          osoite
+        footerYhteystiedot {
+          title
+          content
         }
         ytunnus
       }
@@ -561,7 +537,7 @@ exports.createPages = async ({ graphql, actions }) => {
         let parsed = Object.assign(
           {},
           ...allLocales.map(({ locale, value }) => ({
-            [locale]: "/" + prefixes[locale] + parsedPath[locale] + value,
+            [locale]: prefixes[locale] + parsedPath[locale] + value,
           }))
         );
 
@@ -577,10 +553,11 @@ exports.createPages = async ({ graphql, actions }) => {
       };
 
       createPage({
-        path: `/${prefix}`,
+        path: prefix,
         component: path.resolve(`src/templates/home.js`),
         context: {
-          locale: locale,
+          locale,
+          prefix,
           localeSlugs: {
             fi: "/",
             en: "/en",
@@ -594,10 +571,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.product.slug) {
         createPage({
-          path: `/${prefix + data.product.slug}`,
+          path: prefix + data.product.slug,
           component: path.resolve(`src/templates/product.js`),
           context: {
             locale,
+            prefix,
             localeSlugs: localeSlugs(data.product._allSlugLocales),
             data: {
               product: data.product,
@@ -610,10 +588,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.pricing.slug) {
         createPage({
-          path: `/${prefix + data.pricing.slug}`,
+          path: prefix + data.pricing.slug,
           component: path.resolve(`src/templates/pricing.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: localeSlugs(data.pricing._allSlugLocales),
             data: { page: data.pricing, booking: data.booking },
           },
@@ -622,10 +601,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.about.slug) {
         createPage({
-          path: `/${prefix + data.about.slug}`,
+          path: prefix + data.about.slug,
           component: path.resolve(`src/templates/about.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: localeSlugs(data.about._allSlugLocales),
             data: {
               home: data.about,
@@ -637,10 +617,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.jobs.slug) {
         createPage({
-          path: `/${prefix + data.jobs.slug}`,
+          path: prefix + data.jobs.slug,
           component: path.resolve(`src/templates/jobs.js`),
           context: {
             locale,
+            prefix,
             localeSlugs: localeSlugs(data.jobs._allSlugLocales),
             data: {
               page: data.jobs,
@@ -651,10 +632,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.contact.slug) {
         createPage({
-          path: `/${prefix + data.contact.slug}`,
+          path: prefix + data.contact.slug,
           component: path.resolve(`src/templates/contact.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: localeSlugs(data.contact._allSlugLocales),
             data: { page: data.contact },
           },
@@ -663,10 +645,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.gdpr.slug) {
         createPage({
-          path: `/${prefix + data.gdpr.slug}`,
+          path: prefix + data.gdpr.slug,
           component: path.resolve(`src/templates/gdpr.js`),
           context: {
             locale,
+            prefix,
             localeSlugs: localeSlugs(data.gdpr._allSlugLocales),
             data: data.gdpr,
           },
@@ -677,10 +660,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.referenssit.slug) {
         createPage({
-          path: `/${prefix + data.referenssit.slug}`,
+          path: prefix + data.referenssit.slug,
           component: path.resolve(`src/templates/referenssit.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: localeSlugs(data.referenssit._allSlugLocales),
             data: {
               page: data.referenssit,
@@ -700,10 +684,11 @@ exports.createPages = async ({ graphql, actions }) => {
       if (references.length > 0) {
         references.map((i) => {
           createPage({
-            path: `/${prefix + data.referenssit.slug}/${i.node.slug}`,
+            path: prefix + data.referenssit.slug + "/" + i.node.slug,
             component: path.resolve(`src/templates/Referenssi.js`),
             context: {
-              locale: locale,
+              locale,
+              prefix,
               localeSlugs: localeSlugs(
                 i.node._allSlugLocales,
                 data.referenssit._allSlugLocales
@@ -723,10 +708,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.tutorials.slug) {
         createPage({
-          path: `/${prefix + data.tutorials.slug}`,
+          path: prefix + data.tutorials.slug,
           component: path.resolve(`src/templates/tutoriaalit.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: localeSlugs(data.tutorials._allSlugLocales),
             data: {
               page: data.tutorials,
@@ -740,10 +726,11 @@ exports.createPages = async ({ graphql, actions }) => {
           .filter((i) => i.node.slug)
           .map((i) => {
             createPage({
-              path: `/${prefix + data.tutorials.slug}/${i.node.slug}`,
+              path: prefix + data.tutorials.slug + "/" + i.node.slug,
               component: path.resolve(`src/templates/Tutorial.js`),
               context: {
-                locale: locale,
+                locale,
+                prefix,
                 localeSlugs: localeSlugs(
                   i.node._allSlugLocales,
                   data.tutorials._allSlugLocales
@@ -760,10 +747,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.webinaarit.slug) {
         createPage({
-          path: `/${prefix + data.webinaarit.slug}`,
+          path: prefix + data.webinaarit.slug,
           component: path.resolve(`src/templates/webinars.js`),
           context: {
             locale,
+            prefix,
             localeSlugs: localeSlugs(data.webinaarit._allSlugLocales),
             data: {
               page: data.webinaarit,
@@ -772,10 +760,11 @@ exports.createPages = async ({ graphql, actions }) => {
           },
         });
         createPage({
-          path: `/${prefix + data.webinaarit.slug + thanks[locale]}`,
+          path: prefix + data.webinaarit.slug + thanks[locale],
           component: path.resolve(`src/templates/Thanks.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: {
               fi: null,
               en: null,
@@ -797,12 +786,13 @@ exports.createPages = async ({ graphql, actions }) => {
           .filter((i) => i.node.slug)
           .map((i) => {
             createPage({
-              path: `/${prefix + data.webinaarit.slug}/${
+              path: `${prefix + data.webinaarit.slug}/${
                 i.node.slug
               }-${i.node.webinaarinAjankohta.slice(0, 10)}`,
               component: path.resolve(`src/templates/Webinar.js`),
               context: {
                 locale,
+                prefix,
                 localeSlugs: {
                   fi: null,
                   en: null,
@@ -810,9 +800,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 },
                 data: {
                   page: i.node,
-                  redirectTo: `/${
-                    prefix + data.webinaarit.slug + thanks[locale]
-                  }`,
+                  redirectTo: prefix + data.webinaarit.slug + thanks[locale],
                 },
               },
             });
@@ -825,7 +813,8 @@ exports.createPages = async ({ graphql, actions }) => {
                 )}`,
                 component: path.resolve(`src/templates/RestreamLive.js`),
                 context: {
-                  locale: locale,
+                  locale,
+                  prefix,
                   data: {
                     page: i.node,
                   },
@@ -850,7 +839,8 @@ exports.createPages = async ({ graphql, actions }) => {
               path: `/${i.node.slug}`,
               component: path.resolve(`src/templates/Campaign.js`),
               context: {
-                locale: locale,
+                locale,
+                prefix,
                 localeSlugs: {
                   fi: `/${i.node.slug}`,
                   en: null,
@@ -868,10 +858,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.booking.slug) {
         createPage({
-          path: `/${prefix + data.booking.slug}`,
+          path: prefix + data.booking.slug,
           component: path.resolve(`src/templates/book-demo.js`),
           context: {
             locale,
+            prefix,
             localeSlugs: localeSlugs(data.booking._allSlugLocales),
             data: {
               page: data.booking,
@@ -880,10 +871,11 @@ exports.createPages = async ({ graphql, actions }) => {
         });
 
         createPage({
-          path: `/${prefix + data.booking.slug + thanks[locale]}`,
+          path: prefix + data.booking.slug + thanks[locale],
           component: path.resolve(`src/templates/Thanks.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: {
               fi: null,
               en: null,
@@ -904,24 +896,26 @@ exports.createPages = async ({ graphql, actions }) => {
 
       if (data.order.slug) {
         createPage({
-          path: `/${prefix + data.order.slug}`,
+          path: prefix + data.order.slug,
           component: path.resolve(`src/templates/order.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: localeSlugs(data.order._allSlugLocales),
             data: {
               page: data.order,
               pricing: data.pricing,
-              redirectTo: `/${prefix + data.order.slug + thanks[locale]}`,
+              redirectTo: prefix + data.order.slug + thanks[locale],
             },
           },
         });
 
         createPage({
-          path: `/${prefix + data.order.slug + thanks[locale]}`,
+          path: prefix + data.order.slug + thanks[locale],
           component: path.resolve(`src/templates/Thanks.js`),
           context: {
-            locale: locale,
+            locale,
+            prefix,
             localeSlugs: {
               fi: null,
               en: null,

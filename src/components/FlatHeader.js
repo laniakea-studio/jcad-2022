@@ -1,22 +1,20 @@
 import { Link } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { useScrollData } from "scroll-data-hook";
-import { bookDemo, prefix } from "../constants/slugs";
 import { LocaleContext } from "../contexts/LocaleContext";
-import en from "../locales/en.yml";
-import fi from "../locales/fi.yml";
-import sv from "../locales/sv.yml";
+import * as snippet from "../locales";
 import "../theme-2021/globals.css";
 import { BurgerIcon } from "./BurgerIcon";
 import { SvgLogo } from "./SvgCollection.js";
+import { getLocaleValue } from "@hooks/getLocaleValue";
 
 // TODO: Remove menu from props
-const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
+const FlatHeader = ({ menu, bookDemoBtn, menuOpen, setMenuOpen }) => {
   const [show, setShow] = useState(false);
   const { direction, position } = useScrollData();
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
 
-  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
+  const text = snippet[locale];
 
   const path = typeof window !== "undefined" ? window.location.pathname : "";
   const isHome =
@@ -38,10 +36,6 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
       return;
     }
   }, [direction]);
-
-  const scrollToTopOfPage = () => {
-    window.scrollTo(0, 0);
-  };
 
   return (
     <header
@@ -133,20 +127,20 @@ const FlatHeader = ({ menu, booking, menuOpen, setMenuOpen }) => {
       `}
     >
       <div className="container padding">
-        <Link className="logo" to={`${prefix[locale]}`}>
+        <Link className="logo" to={prefix}>
           <SvgLogo />
         </Link>
         <nav className="mainNav">
           {menu.map((i) => (
-            <Link to={`${prefix[locale] + i.slug}`} activeClassName="active">
+            <Link to={prefix + i.slug} activeClassName="active">
               {i.title}
             </Link>
           ))}
           <Link
             className="BookDemo btn white-outlines"
-            to={`${prefix[locale] + bookDemo[locale].slug}`}
+            to={prefix + getLocaleValue(bookDemoBtn.slug, locale)}
           >
-            {text.bookDemo}
+            {getLocaleValue(bookDemoBtn.title, locale)}
           </Link>
         </nav>
 

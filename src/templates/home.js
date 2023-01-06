@@ -1,20 +1,18 @@
-import React, { useContext, useCallback, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
-import * as snippet from "../locales";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import styled from "styled-components";
 import { Layout } from "../components/Layout";
 import { theme } from "../theme/theme";
 import { AnimatedBoxLink } from "../components/AnimatedBoxLink";
-import { prefix, ctaProduct } from "../constants/slugs";
 import { MagneticLinkBox } from "@components/MagneticLinkBox";
 import { useHover } from "../hooks/useHover";
 import { DownloadPDF } from "../components/DowloadPDF";
 import { Video } from "@components/Video";
 
 const Page = ({ pageContext }) => {
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
   const { page } = pageContext.data;
 
   return (
@@ -22,7 +20,7 @@ const Page = ({ pageContext }) => {
       <HelmetDatoCms seo={page.seoMetaTags} />
       <div className="h-full bg-[#000053] overflow-hidden max-[600px]:relative">
         <BgAnimation />
-        <Layout locale={pageContext.locale} transparent={false} page="home">
+        <Layout locale={pageContext.locale} transparent={false} template="home">
           <Main className="pagePadding">
             <div className="Hero container col relative">
               <div className="absolute flex right-[10px] top-0 my-[5px] min-[501px]:hidden">
@@ -54,7 +52,7 @@ const Page = ({ pageContext }) => {
 
                   <div className="col">
                     {page.cta.map((i) => (
-                      <Link className="HeroLink" to={prefix[locale] + i.slug}>
+                      <Link className="HeroLink" to={prefix + i.slug}>
                         <svg
                           width="24"
                           height="24"
@@ -79,10 +77,7 @@ const Page = ({ pageContext }) => {
                   const [hoverRef] = useHover();
 
                   return (
-                    <MagneticLinkBox
-                      ref={hoverRef}
-                      path={prefix[locale] + i.slug}
-                    >
+                    <MagneticLinkBox ref={hoverRef} path={prefix + i.slug}>
                       <AnimatedBoxLink
                         index={index}
                         animation={i.animaatio}

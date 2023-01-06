@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
-import { LocaleContext } from "../../contexts/LocaleContext";
-import * as snippet from "../../locales";
 import { Switch } from "./Switch";
 import { Radio } from "./Radio";
 import { DragDropFile } from "./DragDropFile";
 
-/* E.g. data 
+/* Example Data:
  const form = {
     name: "Webinaari",
     inputs: [

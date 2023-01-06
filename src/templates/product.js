@@ -1,5 +1,5 @@
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import kuva1 from "../assets/kuva1.jpg";
@@ -20,12 +20,28 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 import { MagneticButton } from "../components/MagneticButton";
 import { useHover } from "../hooks/useHover";
 import { Video } from "../components/Video";
-import { bookDemo, prefix } from "../constants/slugs";
+import { getLocaleValue } from "@hooks/getLocaleValue";
 
 const Product = ({ pageContext }) => {
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
   const text = snippet[locale];
   const { data } = pageContext;
+
+  const { bookDemo } = useStaticQuery(graphql`
+    query {
+      bookDemo: datoCmsTilaaDemo {
+        slug: _allSlugLocales {
+          locale
+          value
+        }
+        title: _allTitleLocales {
+          locale
+          value
+        }
+      }
+    }
+  `);
+
   const [hoverRef] = useHover();
 
   return (
@@ -55,9 +71,9 @@ const Product = ({ pageContext }) => {
                   />
                   <Link
                     className="btn white-outlines"
-                    to={`${prefix[locale] + bookDemo[locale].slug}`}
+                    to={prefix + getLocaleValue(bookDemo.slug, locale)}
                   >
-                    {text.bookDemo}
+                    {getLocaleValue(bookDemo.title, locale)}
                   </Link>
                 </div>
 

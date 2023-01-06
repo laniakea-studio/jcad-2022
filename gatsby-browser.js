@@ -6,6 +6,7 @@ export const wrapPageElement = ({ element, props }) => {
     <LocaleContextProvider
       value={{
         locale: props.pageContext.locale,
+        prefix: props.pageContext.prefix,
         localeSlugs: props.pageContext.localeSlugs,
       }}
     >

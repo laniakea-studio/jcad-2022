@@ -2,19 +2,25 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useContext, useState } from "react";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
-import { tutorials } from "../constants/slugs";
+import { getLocaleValue } from "@hooks/getLocaleValue";
 
 const isBrowser = typeof window !== "undefined";
 
 export const TutorialNavigation = () => {
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
   const text = snippet[locale];
 
   const [isHidden, setIsHidden] = useState(false);
 
   const data = useStaticQuery(graphql`
     query {
-      allTutorialsFi: allDatoCmsTutoriaali(filter: { locale: { eq: "fi" } }) {
+      tutorials: datoCmsTutoriaalit {
+        slug: _allSlugLocales {
+          locale
+          value
+        }
+      }
+      fi: allDatoCmsTutoriaali(filter: { locale: { eq: "fi" } }) {
         edges {
           node {
             kategoria
@@ -27,7 +33,7 @@ export const TutorialNavigation = () => {
           }
         }
       }
-      allTutorialsEn: allDatoCmsTutoriaali(filter: { locale: { eq: "en" } }) {
+      en: allDatoCmsTutoriaali(filter: { locale: { eq: "en" } }) {
         edges {
           node {
             kategoria
@@ -43,10 +49,7 @@ export const TutorialNavigation = () => {
     }
   `);
 
-  const allTutorials =
-    locale === "fi"
-      ? data.allTutorialsFi.edges.filter((i) => i.node.slug)
-      : data.allTutorialsEn.edges.filter((i) => i.node.slug);
+  const allTutorials = data[locale].edges.filter((i) => i.node.slug);
 
   const kategoriat = [
     { fi: "Uusi JCAD-käyttäjä", en: "How to Guides" },
@@ -55,7 +58,6 @@ export const TutorialNavigation = () => {
     { fi: "JCAD LVI", en: "JCAD" },
   ];
 
-  console.log(allTutorials);
   return (
     <>
       <button
@@ -171,9 +173,12 @@ export const TutorialNavigation = () => {
                               {index > 0 && <div className="Line" />}
                               <span className="Dot" />
                               <Link
-                                to={`${
-                                  text.prefix + tutorials[locale] + i.node.slug
-                                }`}
+                                to={
+                                  prefix +
+                                  getLocaleValue(data.tutorials.slug, locale) +
+                                  "/" +
+                                  i.node.slug
+                                }
                               >
                                 {i.node.title}
                               </Link>
@@ -210,8 +215,12 @@ export const TutorialNavigation = () => {
                                     <Link
                                       className="opacity-50 hover:opacity-90 transition"
                                       to={`${
-                                        text.prefix +
-                                        tutorials[locale] +
+                                        prefix +
+                                        getLocaleValue(
+                                          data.tutorials.slug,
+                                          locale
+                                        ) +
+                                        "/" +
                                         i.node.slug +
                                         "#" +
                                         video.linkId

@@ -1,13 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import React, { useContext } from "react";
+import { Link } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import styled from "styled-components";
 import { Layout } from "../components/Layout";
-import { theme } from "../theme/theme";
-import scrollTo from "gatsby-plugin-smoothscroll";
-import { webinar, prefix } from "../constants/slugs";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -16,12 +13,11 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { getFriendlyDateAndHour } from "../hooks/getFriendlyDateAndHour";
-import { transform } from "framer-motion";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const Page = ({ pageContext }) => {
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
   const text = snippet[locale];
   const { page, allWebinars } = pageContext.data;
   const now = new Date();
@@ -37,7 +33,6 @@ const Page = ({ pageContext }) => {
   );
 
   const graphArrSource = page.arvosanat.split(",");
-  const graphDataIsValid = graphArrSource.length === 10;
   const graphData = graphArrSource.map((number) => {
     return parseInt(number.trim());
   });
@@ -92,7 +87,7 @@ const Page = ({ pageContext }) => {
 
                 <p style={{ marginBottom: 30 }}>{nextWebinar.node.nosto}</p>
                 <Link
-                  to={`${prefix[locale] + webinar[locale]}/${
+                  to={`${prefix + page.slug}/${
                     nextWebinar.node.slug
                   }-${nextWebinar.node.webinaarinAjankohta.slice(0, 10)}`}
                   className="btn white-outlines"
@@ -143,7 +138,7 @@ const Page = ({ pageContext }) => {
                       <Link
                         key={date}
                         className="Item row"
-                        to={`${prefix[locale] + webinar[locale]}/${
+                        to={`${prefix + page.slug}/${
                           i.node.slug
                         }-${i.node.webinaarinAjankohta.slice(0, 10)}`}
                       >
@@ -206,7 +201,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   color: #fff;
-  background: ${theme.primary};
+  background: #000053;
   padding-top: 94px;
   .Hero {
     h1 {

@@ -7,123 +7,42 @@ import * as snippet from "../locales";
 import { theme } from "../theme/theme";
 import { SvgLogoFooter } from "./SvgCollection.js";
 import { useIntersection } from "../hooks/useIntersection";
-import { contact, prefix } from "../constants/slugs";
 
-export const Footer = ({ menu }) => {
-  const { locale } = useContext(LocaleContext);
+export const Footer = ({ template }) => {
+  const { locale, prefix } = useContext(LocaleContext);
   const text = snippet[locale];
-  const path = typeof window !== "undefined" ? window.location.pathname : "";
-  const isContactPage =
-    path === "/yhteystiedot"
-      ? true
-      : path === "/en/contact"
-      ? true
-      : path === "/sv/kontakter"
-      ? true
-      : false;
 
-  const { yhteystiedotFi, yhteystiedotEn, yhteystiedotSv } =
-    useStaticQuery(graphql`
-      query {
-        yhteystiedotFi: datoCmsYhteystiedot(locale: { eq: "fi" }) {
-          myyntiJaTilaukset {
-            nimi
-            titteli
-            puhelin
-            email
+  const { data } = useStaticQuery(graphql`
+    query {
+      data: datoCmsYhteystiedot {
+        _allFooterYhteystiedotLocales {
+          locale
+          value {
+            title
+            content
           }
-          asiakaspalvelu {
-            nimi
-            titteli
-            puhelin
-            email
-          }
-          asiakkuudet {
-            nimi
-            titteli
-            puhelin
-            email
-          }
-          toimipisteet {
-            nimi
-            osoite
-          }
-          ytunnus
         }
-        yhteystiedotEn: datoCmsYhteystiedot(locale: { eq: "en" }) {
-          myyntiJaTilaukset {
-            nimi
-            titteli
-            puhelin
-            email
-          }
-          asiakaspalvelu {
-            nimi
-            titteli
-            puhelin
-            email
-          }
-          asiakkuudet {
-            nimi
-            titteli
-            puhelin
-            email
-          }
-          toimipisteet {
-            nimi
-            osoite
-          }
-          ytunnus
+        _allSlugLocales {
+          locale
+          value
         }
-        yhteystiedotSv: datoCmsYhteystiedot(locale: { eq: "sv" }) {
-          myyntiJaTilaukset {
-            nimi
-            titteli
-            puhelin
-            email
-          }
-          asiakaspalvelu {
-            nimi
-            titteli
-            puhelin
-            email
-          }
-          asiakkuudet {
-            nimi
-            titteli
-            puhelin
-            email
-          }
-          toimipisteet {
-            nimi
-            osoite
-          }
-          ytunnus
+        _allTitleLocales {
+          locale
+          value
         }
       }
-    `);
+    }
+  `);
 
-  const yhteystiedot =
-    locale === "fi"
-      ? yhteystiedotFi
-      : locale === "en"
-      ? yhteystiedotEn
-      : yhteystiedotSv;
+  const { value: yhteystiedot } = data._allFooterYhteystiedotLocales.find(
+    (o) => o.locale === locale
+  );
+  const { value: slug } = data._allSlugLocales.find((o) => o.locale === locale);
+  const { value: title } = data._allTitleLocales.find(
+    (o) => o.locale === locale
+  );
 
-  const contacts = [
-    {
-      title: text.footer.sales,
-      data: yhteystiedot.myyntiJaTilaukset[0],
-    },
-    {
-      title: text.footer.support,
-      data: yhteystiedot.asiakaspalvelu[0],
-    },
-    {
-      title: text.footer.accounts,
-      data: yhteystiedot.asiakkuudet[0],
-    },
-  ];
+  console.log(title, slug);
 
   // Animate Logo when in viewport
   const ref = useRef();
@@ -140,94 +59,64 @@ export const Footer = ({ menu }) => {
             <div className="Logo">
               <SvgLogoFooter />
             </div>
-            {!isContactPage &&
-              contacts.map((i, index) => (
-                <div className="Contact col">
-                  <h3>{i.title}</h3>
-                  <p>
-                    {i.data.nimi && index !== 1 && (
-                      <span className="name">
-                        {i.data.nimi}
-                        <br />
-                      </span>
-                    )}
-                    {i.data.titteli && (
-                      <>
-                        {i.data.titteli} <br />
-                      </>
-                    )}
-                    {i.data.puhelin && (
-                      <>
-                        <a
-                          href={`tel:${i.data.puhelin.replace(/\s+/g, "")}`}
-                          className="ga-contact-phone"
-                        >
-                          {i.data.puhelin}
-                        </a>
-                        <br />
-                      </>
-                    )}
-                    <a
-                      href={`mailto:${i.data.email.replace(/\s+/g, "")}`}
-                      className="ga-contact-mail"
-                    >
-                      {i.data.email}
-                    </a>
-                  </p>
-                </div>
-              ))}
-            {!isContactPage && (
-              <div
-                className="col"
-                css={`
-                  justify-self: end;
-                  width: fit-content;
-                  min-width: 120px;
-                  @media (max-width: 900px) {
-                    margin-left: 0;
-                  }
-                `}
-              >
+
+            {template !== "contact" && (
+              <>
+                {yhteystiedot.map((i, index) => (
+                  <div className="Contact col">
+                    <h3>{i.title}</h3>
+                    <div dangerouslySetInnerHTML={{ __html: i.content }} />
+                  </div>
+                ))}
+
                 <div
-                  className="row"
+                  className="col"
                   css={`
-                    .HeroLink {
-                      display: inline-flex;
-                      font-size: 18px;
-                      font-weight: 600;
-                      opacity: 0.6;
-                      svg {
-                        margin-bottom: -6px;
-                      }
-                      &:hover {
-                        opacity: 1;
-                      }
+                    justify-self: end;
+                    width: fit-content;
+                    min-width: 120px;
+                    @media (max-width: 900px) {
+                      margin-left: 0;
                     }
                   `}
                 >
-                  <Link
-                    className="HeroLink"
-                    to={`${prefix[locale] + contact[locale].slug}`}
+                  <div
+                    className="row"
+                    css={`
+                      .HeroLink {
+                        display: inline-flex;
+                        font-size: 18px;
+                        font-weight: 600;
+                        opacity: 0.6;
+                        svg {
+                          margin-bottom: -6px;
+                        }
+                        &:hover {
+                          opacity: 1;
+                        }
+                      }
+                    `}
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
-                        fill="#fff"
-                      />
-                    </svg>
-                    {contact[locale].title}
-                  </Link>
+                    <Link className="HeroLink" to={prefix + slug}>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.99997 6L8.58997 7.41L13.17 12L8.58997 16.59L9.99997 18L16 12L9.99997 6Z"
+                          fill="#fff"
+                        />
+                      </svg>
+                      {title}
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
-
           <div ref={ref}>
             <div className="BigLogo row">
               <svg

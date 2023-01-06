@@ -7,18 +7,31 @@ import { theme } from "../theme/theme";
 import { Video } from "@components/Video";
 import * as snippet from "../locales";
 import { TutorialNavigation } from "@components/TutorialNavigation";
-import { tutorials } from "../constants/slugs";
+import { getLocaleValue } from "@hooks/getLocaleValue";
 
 const Page = ({ pageContext }) => {
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
   const { page } = pageContext.data;
   const text = snippet[locale];
+
+  const data = useStaticQuery(graphql`
+    query {
+      tutorials: datoCmsTutoriaalit {
+        slug: _allSlugLocales {
+          locale
+          value
+        }
+      }
+    }
+  `);
+
   const [linkCopied, setLinkCopied] = useState(null);
 
   function handleLinkCopy(e, link) {
+    console.log(link);
     navigator.clipboard.writeText(
       `https://www.jcad.fi${
-        text.prefix + tutorials[locale] + page.slug
+        prefix + getLocaleValue(data.tutorials.slug, locale) + "/" + page.slug
       }#${link}`
     );
     setLinkCopied(link);

@@ -3,11 +3,10 @@ import { HelmetDatoCms } from "gatsby-source-datocms";
 import React, { useContext, useState } from "react";
 import { Layout } from "../components/Layout";
 import { LocaleContext } from "../contexts/LocaleContext";
-import { prefix, references } from "../constants/slugs";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const Page = ({ pageContext }) => {
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
   const { page, allReferences, googleSheets } = pageContext.data;
   const [showCases, setShowCases] = useState(30);
 
@@ -55,7 +54,7 @@ const Page = ({ pageContext }) => {
           <section className="AllReferences container padding flex flex-col items-center pt-[80px] pb-[80px]">
             {allReferences.map(({ node }) => (
               <Link
-                to={`${prefix[locale] + references[locale] + node.slug}`}
+                to={prefix + page.slug + "/" + node.slug}
                 className="Reference flex max-w-[1100px] py-[20px] border-b-[0.8px] border-dashed"
                 key={node.slug}
                 css={`

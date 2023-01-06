@@ -1,15 +1,11 @@
-import { graphql, Link, useStaticQuery } from "gatsby";
-import React, { useContext, useRef } from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import svgJcadLogo from "../assets/svgJcad.svg";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
-import { theme } from "../theme/theme";
-import { SvgLogoFooter } from "./SvgCollection.js";
-import { useIntersection } from "../hooks/useIntersection";
 import { DownloadPdfForm } from "./DownloadPdfForm";
 
-export const DownloadPDF = ({ menu, prefix }) => {
+export const DownloadPDF = () => {
   const { locale } = useContext(LocaleContext);
   const text = snippet[locale];
 

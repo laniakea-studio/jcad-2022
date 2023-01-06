@@ -1,13 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { LocaleContext } from "../contexts/LocaleContext";
-import * as snippet from "../locales";
 
 export const CompanyFacts = () => {
-  const { locale } = useContext(LocaleContext);
-  const text = snippet[locale];
-
   const { facts } = useStaticQuery(graphql`
     query {
       facts: datoCmsRekry(locale: { eq: "fi" }) {

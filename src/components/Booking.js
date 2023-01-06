@@ -3,14 +3,13 @@ import React, { useContext } from "react";
 import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
-import { theme } from "../theme/theme";
 
 export const Booking = () => {
   const { locale } = useContext(LocaleContext);
 
-  const { bookingFi, bookingEn, bookingSv } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query {
-      bookingFi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
+      fi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
         pfTitle
         pfContent
         pfCta {
@@ -19,16 +18,7 @@ export const Booking = () => {
         }
         calendlyBookingUrl
       }
-      bookingEn: datoCmsTilaaDemo(locale: { eq: "en" }) {
-        pfTitle
-        pfContent
-        pfCta {
-          text
-          slug
-        }
-        calendlyBookingUrl
-      }
-      bookingSv: datoCmsTilaaDemo(locale: { eq: "sv" }) {
+      en: datoCmsTilaaDemo(locale: { eq: "en" }) {
         pfTitle
         pfContent
         pfCta {
@@ -39,12 +29,6 @@ export const Booking = () => {
       }
     }
   `);
-
-  const data = {
-    fi: bookingFi,
-    en: bookingEn,
-    sv: bookingSv,
-  };
 
   const booking = data[locale];
 
@@ -66,7 +50,7 @@ export const Booking = () => {
 };
 
 const Div = styled.div`
-  background: ${theme.primary};
+  background: #000053;
   color: #fff;
   .container {
     padding-top: 120px;

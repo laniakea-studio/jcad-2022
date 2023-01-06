@@ -7,13 +7,11 @@ import { Layout } from "../components/Layout";
 import { Switch } from "../components/Switch";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
-import { theme } from "../theme/theme";
 import { valikkoSopimuskausi, extraHinnasto } from "@constants/pricing";
-import { bookDemo, prefix } from "../constants/slugs";
 
 // Warning: Changing order of card items will break to url parameters generation
 const Pricing = ({ pageContext }) => {
-  const { locale } = useContext(LocaleContext);
+  const { locale, prefix } = useContext(LocaleContext);
   const text = snippet[locale];
   const isFinnish = locale === "fi";
 
@@ -212,9 +210,9 @@ const Pricing = ({ pageContext }) => {
                     {!isFinnish && (
                       <Link
                         className="btn white-outlines"
-                        to={`${prefix[locale] + bookDemo[locale].slug}`}
+                        to={prefix + "free-trial"}
                       >
-                        {text.bookDemo}
+                        Free Trial
                       </Link>
                     )}
 
@@ -246,7 +244,7 @@ export default Pricing;
 const Main = styled.main`
   position: relative;
   color: #fff;
-  background: ${theme.primary};
+  background: #000053;
   > .container {
     padding-top: 94px;
   }
@@ -282,7 +280,7 @@ const Main = styled.main`
     padding-left: 30px;
     padding-right: 20px;
     margin-bottom: 40px;
-    background: ${theme.primary};
+    background: #000053;
     box-sizing: border-box;
     cursor: pointer;
     .dropindicator {
@@ -303,27 +301,27 @@ const Main = styled.main`
     border: 1px solid #fff;
   }
   .optionItem {
-    color: ${theme.primary};
+    color: #000053;
     width: 100%;
     height: 48px;
     display: flex;
     align-items: center;
     width: 100%;
     &:not(:last-child) {
-      border-bottom: 1px solid ${theme.primary};
+      border-bottom: 1px solid #000053;
     }
     .ball {
       visibility: hidden;
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: ${theme.primary};
+      background: #000053;
       margin: auto 12px;
     }
     &:hover {
       transition: all 0.1s;
       color: #fff;
-      background-color: ${theme.primary};
+      background-color: #000053;
 
       &.active .ball {
         background: #fff;
@@ -360,7 +358,7 @@ const Main = styled.main`
       border-radius: 4px;
       &.active {
         background: rgba(255, 255, 255, 1);
-        color: ${theme.primary};
+        color: #000053;
       }
     }
     button:not(:last-child) {

@@ -43,8 +43,6 @@ export const Video = ({ data, poster, markers, plausibleGoalName }) => {
     setPlausibleHasTriggered({ ...plausibleHasTriggered, [percent]: true });
   };
 
-  console.log("P", plausibleHasTriggered[0]);
-
   const handleTimeChange = () => {
     const timeWatched = getPlayedTime(videoRef.current);
 

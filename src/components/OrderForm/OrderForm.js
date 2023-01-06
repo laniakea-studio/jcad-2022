@@ -1,8 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import { theme } from "../../theme/theme";
-import { LocaleContext } from "../../contexts/LocaleContext";
-import * as snippet from "../../locales";
 import { Switch } from "./Switch";
 import { Radio } from "./Radio";
 

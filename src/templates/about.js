@@ -6,39 +6,22 @@ import {
 } from "framer-motion";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useScrollYPosition } from "react-use-scroll-position";
 import svgBg1 from "../assets/svgBg1.svg";
-import svgTriangle from "../assets/svgTriangle.svg";
 import { CompanyFacts } from "../components/CompanyFacts";
 import { Layout } from "../components/Layout";
-import {
-  Svg2ndBottomRight,
-  SvgCircle,
-  SvgDottedThinX,
-  SvgDottedThinX2,
-  SvgHorizontal,
-  SvgLineXXX,
-  SvgVertical,
-  SvgVerticalXXX,
-} from "../components/SvgCollection-2021";
+import { SvgLineXXX, SvgVertical } from "../components/SvgCollection-2021";
 import Ticker from "../components/Ticker";
-import { LocaleContext } from "../contexts/LocaleContext";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
-import en from "../locales/en.yml";
-import fi from "../locales/fi.yml";
-import sv from "../locales/sv.yml";
 import "../theme-2021/globals.css";
 import theme from "../theme-2021/theme";
 
 const HomePage = ({ pageContext }) => {
-  const { locale, localeSlugs } = useContext(LocaleContext);
-  const text = locale === "fi" ? fi : locale === "en" ? en : sv;
   const { data } = pageContext;
 
   const { height } = useWindowDimensions();
   const { scrollY } = useViewportScroll();
-  const [showModal, setShowModal] = useState(false);
 
   const [pulseOne, setPulseOne] = useState(false);
   const [pulseTwo, setPulseTwo] = useState(false);
@@ -181,7 +164,7 @@ const HomePage = ({ pageContext }) => {
   return (
     <>
       <HelmetDatoCms seo={data.home.seoMetaTags} />
-      <Layout page="about">
+      <Layout template="about">
         <main className="homePage">
           <div
             id="intro"

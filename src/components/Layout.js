@@ -10,42 +10,45 @@ import { BurgerIcon } from "./BurgerIcon";
 import FlatHeader from "./FlatHeader";
 import { Footer } from "./Footer";
 import { SvgLogo } from "./SvgCollection";
-import {
-  fullMenu,
-  mainMenu,
-  prefix,
-  order,
-  bookDemo,
-} from "../constants/slugs";
+import { fullMenu, mainMenu } from "../constants/menu";
+import { getLocaleValue } from "@hooks/getLocaleValue";
 
 const isBrowser = typeof window !== "undefined";
 
-export const Layout = ({ children, page }) => {
+export const Layout = ({ children, template }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { locale, localeSlugs } = useContext(LocaleContext);
+  const { locale, prefix, localeSlugs } = useContext(LocaleContext);
   const text = snippet[locale];
 
-  const data = useStaticQuery(graphql`
+  const { site, bookDemo, order } = useStaticQuery(graphql`
     query {
       site: datoCmsSite {
         faviconMetaTags {
           tags
         }
       }
-      fi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
-        calendlyBookingUrl
+      bookDemo: datoCmsTilaaDemo {
+        slug: _allSlugLocales {
+          locale
+          value
+        }
+        title: _allTitleLocales {
+          locale
+          value
+        }
       }
-      en: datoCmsTilaaDemo(locale: { eq: "en" }) {
-        calendlyBookingUrl
-      }
-      sv: datoCmsTilaaDemo(locale: { eq: "sv" }) {
-        calendlyBookingUrl
+      order: datoCmsOrder {
+        slug: _allSlugLocales {
+          locale
+          value
+        }
+        title: _allTitleLocales {
+          locale
+          value
+        }
       }
     }
   `);
-
-  const { site, fi, en, sv } = data;
-  const booking = locale === "fi" ? fi : locale === "en" ? en : sv;
 
   useEffect(() => {
     if (menuOpen) {
@@ -65,19 +68,19 @@ export const Layout = ({ children, page }) => {
         />
       </HelmetDatoCms>
       <FlatHeader
+        bookDemoBtn={bookDemo}
         menu={mainMenu[locale]}
-        booking={booking}
         menuOpen={menuOpen}
         setMenuOpen={() => setMenuOpen(!menuOpen)}
       />
       <Header className="pagePadding">
         <div
           className={`row align-center container padding${
-            page === "about" ? " hideSideBorders" : ""
+            template === "about" ? " hideSideBorders" : ""
           }`}
         >
           <div>
-            <Link className="logo" to={`${prefix[locale]}`}>
+            <Link className="logo" to={prefix}>
               <SvgLogo />
             </Link>
           </div>
@@ -87,6 +90,7 @@ export const Layout = ({ children, page }) => {
               css={`
                 a.MainLink {
                   position: relative;
+                  text-align: center;
                   &:before {
                     content: "";
                     position: absolute;
@@ -127,10 +131,10 @@ export const Layout = ({ children, page }) => {
                 }
               `}
             >
-              {page !== "home" &&
+              {template !== "home" &&
                 mainMenu[locale].map((i) => (
                   <Link
-                    to={`${prefix[locale] + i.slug}`}
+                    to={prefix + i.slug}
                     activeClassName="active"
                     className="MainLink"
                     style={{ transition: "0.1s", opacity: menuOpen ? 0 : 1 }}
@@ -138,7 +142,7 @@ export const Layout = ({ children, page }) => {
                     {i.title}
                   </Link>
                 ))}
-              {page === "home" && (
+              {template === "home" && (
                 <>
                   <div
                     className="row"
@@ -181,8 +185,7 @@ export const Layout = ({ children, page }) => {
                   </a>
                   {locale === "fi" && (
                     <Link
-                      key={order[locale].slug}
-                      to={`${prefix[locale] + order[locale].slug}`}
+                      to={prefix + getLocaleValue(order.slug, locale)}
                       activeClassName="active"
                       className="MainLink"
                       style={{
@@ -191,17 +194,16 @@ export const Layout = ({ children, page }) => {
                         minWidth: "130px",
                       }}
                     >
-                      {order[locale].title}
+                      {getLocaleValue(order.title, locale)}
                     </Link>
                   )}
                 </>
               )}
               <Link
-                key={order[locale].slug}
                 className="btn white-outlines"
-                to={`${prefix[locale] + bookDemo[locale].slug}`}
+                to={prefix + getLocaleValue(bookDemo.slug, locale)}
               >
-                {text.bookDemo}
+                {getLocaleValue(bookDemo.title, locale)}
               </Link>
               <BurgerIcon
                 menuOpen={menuOpen}
@@ -220,12 +222,11 @@ export const Layout = ({ children, page }) => {
         text={text}
         closeMenu={() => setMenuOpen(false)}
         localeSlugs={localeSlugs}
-        prefix={prefix[locale]}
-        bookingUrl={booking.calendlyBookingUrl}
+        prefix={prefix}
         locale={locale}
       />
       {children}
-      <Footer menu={fullMenu[locale]} prefix={prefix[locale]} />
+      <Footer template={template} />
     </>
   );
 };
@@ -317,14 +318,7 @@ const Header = styled.header`
   }
 `;
 
-const MobileMenu = ({
-  menu,
-  menuOpen,
-  text,
-  localeSlugs,
-  isFlatHeader,
-  prefix,
-}) => {
+const MobileMenu = ({ menu, menuOpen, text, localeSlugs, prefix }) => {
   const color = "#fff";
   return (
     <div
