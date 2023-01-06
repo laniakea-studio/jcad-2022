@@ -24,7 +24,7 @@ const Contact = ({ pageContext }) => {
               {page.title}
             </h1>
             <div className="grid grid-cols-4 gap-[50px] max-[900px]:grid-cols-2 max-[420px]:grid-cols-1">
-              {page.footerYhteystiedot.map((i) => (
+              {page.yhteystiedot.map((i) => (
                 <div className="flex flex-col">
                   <h3 className="uppercase text-[16px]">{i.title}</h3>
                   <div dangerouslySetInnerHTML={{ __html: i.content }} />
