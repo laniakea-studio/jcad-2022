@@ -28,7 +28,6 @@ const Page = ({ pageContext }) => {
   const [linkCopied, setLinkCopied] = useState(null);
 
   function handleLinkCopy(e, link) {
-    console.log(link);
     navigator.clipboard.writeText(
       `https://www.jcad.fi${
         prefix + getLocaleValue(data.tutorials.slug, locale) + "/" + page.slug

@@ -42,8 +42,6 @@ export const Footer = ({ template }) => {
     (o) => o.locale === locale
   );
 
-  console.log(title, slug);
-
   // Animate Logo when in viewport
   const ref = useRef();
   const inViewport = useIntersection(ref, "-300px");
