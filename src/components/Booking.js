@@ -35,7 +35,7 @@ export const Booking = () => {
   const booking = data[locale];
 
   const form = {
-    name: "Get Started",
+    name: "GetStarted",
     inputs: [
       {
         type: "email",
@@ -69,7 +69,18 @@ export const Booking = () => {
           </div>
         )}
 
-        {locale === "en" && <GetStartedForm data={form} />}
+        {locale === "en" && (
+          <p>
+            <strong>
+              Send an email to{" "}
+              <a href="mailto:darryl.stafford@jcad.io">
+                darryl.stafford@jcad.io
+              </a>{" "}
+              to activate the free trial.
+            </strong>
+          </p>
+        )}
+        {/*locale === "en" && <GetStartedForm data={form} />*/}
       </div>
     </Div>
   );

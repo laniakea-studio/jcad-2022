@@ -115,11 +115,9 @@ export const NetlifyForm = ({ data, isLightBg }) => {
 
       fetch("/", {
         method: "POST",
-
         body: data,
       })
         .then(() => {
-          // Open PDF in new Tab
           setShowMessage(messages.submitSucces);
           setFormData(schema);
         })
