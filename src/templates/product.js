@@ -62,20 +62,38 @@ const Product = ({ pageContext }) => {
               >
                 <h1 dangerouslySetInnerHTML={{ __html: data.product.title }} />
                 <p className="Lead">{data.product.lead}</p>
-                <div className="btns">
-                  <MagneticButton
-                    ref={hoverRef}
-                    className="btn white"
-                    onClick={() => scrollTo("#customers")}
-                    text={text.seeMore}
-                  />
-                  <Link
-                    className="btn white-outlines"
-                    to={prefix + getLocaleValue(bookDemo.slug, locale)}
-                  >
-                    {getLocaleValue(bookDemo.title, locale)}
-                  </Link>
-                </div>
+                {locale === "fi" && (
+                  <div className="btns z-[1] flex-wrap">
+                    <MagneticButton
+                      ref={hoverRef}
+                      className="btn white w-[180px] mr-[20px] mb-[20px]"
+                      onClick={() => scrollTo("#customers")}
+                      text={text.seeMore}
+                    />
+                    <Link
+                      className="btn white-outlines w-[180px]"
+                      to={prefix + getLocaleValue(bookDemo.slug, locale)}
+                    >
+                      {getLocaleValue(bookDemo.title, locale)}
+                    </Link>
+                  </div>
+                )}
+                {locale === "en" && (
+                  <div className="btns z-[1] flex-wrap">
+                    <MagneticButton
+                      ref={hoverRef}
+                      className="btn white w-[180px] mr-[20px] mb-[20px]"
+                      onClick={() => scrollTo("#get-started")}
+                      text="Get started free"
+                    />
+                    <Link
+                      className="btn white-outlines w-[180px]"
+                      to={prefix + getLocaleValue(bookDemo.slug, locale)}
+                    >
+                      {getLocaleValue(bookDemo.title, locale)}
+                    </Link>
+                  </div>
+                )}
 
                 <SvgCircle id="circle-2" />
               </div>
@@ -185,13 +203,12 @@ const Product = ({ pageContext }) => {
           <div className="pagePadding">
             <div className="sec-3 container padding wrap">
               <h2>{text.product.references}</h2>
-
               <div className="references">
                 {data.references
                   .filter((item) => item.node.naytaSitaattiTuotesivulla)
                   .map(({ node }) => (
-                    <div className="item" key={node.yritys}>
-                      <h4>{node.yritys}</h4>
+                    <div className="item" key={node.title}>
+                      <h4>{node.title}</h4>
                       <p>{node.quote}</p>
                       <span>{node.nimi}</span>
                     </div>

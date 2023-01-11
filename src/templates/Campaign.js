@@ -85,14 +85,16 @@ const Page = ({ pageContext }) => {
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout locale={locale} transparent={false}>
         <main
-          className="pagePadding flex"
+          className="pagePadding flex flex-col pt-[94px] bg-primary"
           css={`
-            color: #fff;
-            padding-top: 94px;
-            background: ${theme.primary};
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            h1,
+            h2,
+            h3,
+            span,
+            p,
+            li {
+              color: #fff;
+            }
           `}
         >
           <section
@@ -122,7 +124,7 @@ const Page = ({ pageContext }) => {
             `}
           >
             <span className="SubTitle">{page.supTitle}</span>
-            <h1>{page.heading}</h1>
+            <h1>{page.title}</h1>
             <button
               className="btn white"
               onClick={() => scrollTo("#aloita")}

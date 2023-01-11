@@ -3,10 +3,12 @@ import React, { useContext } from "react";
 import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
+import { NetlifyForm } from "./NetlifyForm";
+import * as snippet from "../locales";
 
 export const Booking = () => {
   const { locale } = useContext(LocaleContext);
-
+  const text = snippet[locale];
   const data = useStaticQuery(graphql`
     query {
       fi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
@@ -33,17 +35,44 @@ export const Booking = () => {
   const booking = data[locale];
 
   return (
-    <Div className="pagePadding">
+    <Div id="get-started" className="pagePadding">
       <div className="container padding col align-center">
         <h2>{booking.pfTitle}</h2>
-        <div dangerouslySetInnerHTML={{ __html: booking.pfContent }} />
-        <div className="DemoBtn">
-          <PopupButton
-            className="btn white-outlines"
-            url={booking.calendlyBookingUrl}
-            text={booking.pfCta[0].text}
+        <div
+          className="mb-[30px]"
+          dangerouslySetInnerHTML={{ __html: booking.pfContent }}
+        />
+        {locale === "fi" && (
+          <div className="DemoBtn">
+            <PopupButton
+              className="btn white-outlines"
+              url={booking.calendlyBookingUrl}
+              text={booking.pfCta[0].text}
+            />
+          </div>
+        )}
+
+        {locale === "en" && (
+          <NetlifyForm
+            plausibleGoal="EN Get Started"
+            data={{
+              name: "Get Started",
+              inputs: [
+                {
+                  type: "email",
+                  name: "email",
+                  label: text.contact.email,
+                  isRequired: true,
+                },
+                { type: "submit", text: "Get started" },
+              ],
+              messages: {
+                submitSucces: "Thanks, we'll contact you soon!",
+                fillAllInputs: "Please fill email field.",
+              },
+            }}
           />
-        </div>
+        )}
       </div>
     </Div>
   );
@@ -68,14 +97,24 @@ const Div = styled.div`
     }
   }
   h2 {
-    font-size: 52px;
+    font-size: 36px;
     margin-bottom: 30px;
     text-align: center;
   }
   p {
+    font-size: 18px;
+    margin-bottom: 18px;
     max-width: 580px;
     text-align: center;
-    font-size: 20px;
+    a {
+      opacity: 0.7;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: 0.2s;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
   .box {
     width: 400px;

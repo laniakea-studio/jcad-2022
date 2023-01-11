@@ -836,13 +836,13 @@ exports.createPages = async ({ graphql, actions }) => {
           .filter((i) => i.node.slug)
           .map((i) => {
             createPage({
-              path: `/${i.node.slug}`,
+              path: prefix + i.node.slug,
               component: path.resolve(`src/templates/Campaign.js`),
               context: {
                 locale,
                 prefix,
                 localeSlugs: {
-                  fi: `/${i.node.slug}`,
+                  fi: null,
                   en: null,
                   sv: null,
                 },
@@ -851,6 +851,29 @@ exports.createPages = async ({ graphql, actions }) => {
                 },
               },
             });
+
+            if (i.node.kiitosTitle) {
+              createPage({
+                path: prefix + i.node.slug + thanks[locale],
+                component: path.resolve(`src/templates/Thanks.js`),
+                context: {
+                  locale,
+                  prefix,
+                  localeSlugs: {
+                    fi: null,
+                    en: null,
+                    sv: null,
+                  },
+                  data: {
+                    page: {
+                      title: i.node.kiitosTitle,
+                      content: i.node.kiitosContent,
+                      cta: i.node.kiitosCta[0],
+                    },
+                  },
+                },
+              });
+            }
           });
       }
 
