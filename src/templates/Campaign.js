@@ -5,9 +5,7 @@ import * as snippet from "../locales";
 import styled from "styled-components";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { Layout } from "../components/Layout";
-import { theme } from "../theme/theme";
 import { NetlifyForm } from "@components/NetlifyForm";
-import { useLocalStorage } from "@hooks/useLocaleStorage";
 import { Video } from "@components/Video";
 import scrollTo from "gatsby-plugin-smoothscroll";
 

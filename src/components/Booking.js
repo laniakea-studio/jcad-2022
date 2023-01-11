@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { PopupButton } from "react-calendly";
 import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
-import { NetlifyForm } from "./NetlifyForm";
+import { GetStartedForm } from "./GetStartedForm";
 import * as snippet from "../locales";
 
 export const Booking = () => {
@@ -34,6 +34,23 @@ export const Booking = () => {
 
   const booking = data[locale];
 
+  const form = {
+    name: "Get Started",
+    inputs: [
+      {
+        type: "email",
+        name: "email",
+        label: text.contact.email,
+        isRequired: true,
+      },
+      { type: "submit", text: "Get started" },
+    ],
+    messages: {
+      submitSucces: `Thanks, we'll contact you soon.`,
+      fillAllInputs: text.contact.fillEmail,
+    },
+  };
+
   return (
     <Div id="get-started" className="pagePadding">
       <div className="container padding col align-center">
@@ -52,27 +69,7 @@ export const Booking = () => {
           </div>
         )}
 
-        {locale === "en" && (
-          <NetlifyForm
-            plausibleGoal="EN Get Started"
-            data={{
-              name: "Get Started",
-              inputs: [
-                {
-                  type: "email",
-                  name: "email",
-                  label: text.contact.email,
-                  isRequired: true,
-                },
-                { type: "submit", text: "Get started" },
-              ],
-              messages: {
-                submitSucces: "Thanks, we'll contact you soon!",
-                fillAllInputs: "Please fill email field.",
-              },
-            }}
-          />
-        )}
+        {locale === "en" && <GetStartedForm data={form} />}
       </div>
     </Div>
   );
