@@ -69,17 +69,6 @@ export const Booking = () => {
           </div>
         )}
 
-        {locale === "en" && (
-          <p>
-            <strong>
-              Send an email to{" "}
-              <a href="mailto:darryl.stafford@jcad.io">
-                darryl.stafford@jcad.io
-              </a>{" "}
-              to activate the free trial.
-            </strong>
-          </p>
-        )}
         {/*locale === "en" && <GetStartedForm data={form} />*/}
       </div>
     </Div>
