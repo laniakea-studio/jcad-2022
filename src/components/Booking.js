@@ -34,6 +34,8 @@ export const Booking = () => {
 
   const booking = data[locale];
 
+  console.log(booking);
+
   const form = {
     name: "GetStarted",
     inputs: [
