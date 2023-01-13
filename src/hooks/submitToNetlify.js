@@ -10,9 +10,11 @@ export const submitToNetlify = (data) => {
     body: formData,
   })
     .then(() => {
+      console.log("Ok");
       return { status: "Ok", formData };
     })
     .catch((error) => {
+      console.log("Err");
       return { status: "Error", error };
     });
 };
