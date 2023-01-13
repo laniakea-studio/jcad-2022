@@ -34,25 +34,6 @@ export const Booking = () => {
 
   const booking = data[locale];
 
-  console.log(booking);
-
-  const form = {
-    name: "GetStarted",
-    inputs: [
-      {
-        type: "email",
-        name: "email",
-        label: text.contact.email,
-        isRequired: true,
-      },
-      { type: "submit", text: "Get started" },
-    ],
-    messages: {
-      submitSucces: `Thanks, we'll contact you soon.`,
-      fillAllInputs: text.contact.fillEmail,
-    },
-  };
-
   return (
     <Div id="get-started" className="pagePadding">
       <div className="container padding col align-center">
@@ -71,7 +52,7 @@ export const Booking = () => {
           </div>
         )}
 
-        {/*locale === "en" && <GetStartedForm data={form} />*/}
+        {locale === "en" && <GetStartedForm />}
       </div>
     </Div>
   );

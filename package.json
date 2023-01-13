@@ -38,6 +38,7 @@
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.41.5",
     "react-use-scroll-position": "^2.0.0",
     "scroll-data-hook": "^1.0.4",
     "sib-api-v3-sdk": "^8.4.2",
