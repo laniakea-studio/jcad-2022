@@ -18,11 +18,16 @@ export const GetStartedForm = () => {
 
   console.log(watch("email"));
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    handleSubmit(submitToNetlify);
+  };
+
   return (
     <form
       name={formName}
       data-netlify="true"
-      onSubmit={handleSubmit(submitToNetlify)}
+      method="POST"
       className="flex flex-col w-full max-w-[340px]"
     >
       <label className="text-[14px] text-[#ffffff80]">Email</label>
@@ -37,7 +42,11 @@ export const GetStartedForm = () => {
           This field is required
         </span>
       )}
-      <button type="submit" className="btn white w-full mt-[20px] ">
+      <button
+        onClick={(e) => handleOnSubmit(e)}
+        type="submit"
+        className="btn white w-full mt-[20px] "
+      >
         Get started
       </button>
     </form>
