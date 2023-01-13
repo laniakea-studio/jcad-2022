@@ -11,8 +11,10 @@ export const submitToNetlify = (data) => {
   })
     .then(() => {
       console.log("Ok");
+      alert("Thanks, we'll contact you soon.");
     })
     .catch((error) => {
       console.log("Err", error);
+      alert("Oh, something went wrong. Try again.");
     });
 };
