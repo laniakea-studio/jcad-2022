@@ -28,6 +28,7 @@ export const GetStartedForm = () => {
     >
       <label className="text-[14px] text-[#ffffff80]">Email</label>
       <input
+        name="email"
         type="email"
         {...register("email", { required: true })}
         className="rounded-[4px] border-[1px] border-[#333375] bg-[#333375] p-[10px] h-[50px] outline-none"

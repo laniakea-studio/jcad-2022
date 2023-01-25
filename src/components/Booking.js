@@ -52,7 +52,7 @@ export const Booking = () => {
           </div>
         )}
 
-        {locale === "__" && <GetStartedForm />}
+        {locale === "en" && <GetStartedForm />}
       </div>
     </Div>
   );
