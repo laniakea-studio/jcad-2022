@@ -52,27 +52,6 @@ export const Booking = () => {
             />
           </div>
         )}
-
-        {locale === "en" && (
-          <GetStartedForm2
-            data={{
-              name: "Get started EN",
-              inputs: [
-                {
-                  type: "email",
-                  name: "email",
-                  label: text.contact.email,
-                  isRequired: true,
-                },
-                { type: "submit", text: "Get started" },
-              ],
-              messages: {
-                submitSucces: `<p>Thanks, follow your email.</p>`,
-                fillAllInputs: text.contact.fillEmail,
-              },
-            }}
-          />
-        )}
       </div>
     </Div>
   );

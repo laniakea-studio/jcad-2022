@@ -20,6 +20,7 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 import { MagneticButton } from "../components/MagneticButton";
 import { useHover } from "../hooks/useHover";
 import { Video } from "../components/Video";
+import { GetStartedForm2 } from "../components/GetStartedForm2";
 import { getLocaleValue } from "@hooks/getLocaleValue";
 
 const Product = ({ pageContext }) => {
@@ -215,6 +216,28 @@ const Product = ({ pageContext }) => {
                   ))}
               </div>
             </div>
+          </div>
+          <div className="flex flex-col bg-primary text-white items-center py-[60px]">
+            {locale === "en" && (
+              <GetStartedForm2
+                data={{
+                  name: "Get Started EN",
+                  inputs: [
+                    {
+                      type: "email",
+                      name: "email",
+                      label: text.contact.email,
+                      isRequired: true,
+                    },
+                    { type: "submit", text: "Get started" },
+                  ],
+                  messages: {
+                    submitSucces: `<p>Thanks, follow your email.</p>`,
+                    fillAllInputs: text.contact.fillEmail,
+                  },
+                }}
+              />
+            )}
           </div>
           <Booking />
         </Main>
