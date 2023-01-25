@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { LocaleContext } from "../contexts/LocaleContext";
 import { GetStartedForm } from "./GetStartedForm";
 import * as snippet from "../locales";
+import { GetStartedForm2 } from "./GetStartedForm2";
 
 export const Booking = () => {
   const { locale } = useContext(LocaleContext);
@@ -52,7 +53,26 @@ export const Booking = () => {
           </div>
         )}
 
-        {locale === "en" && <GetStartedForm />}
+        {locale === "en" && (
+          <GetStartedForm2
+            data={{
+              name: "Get started EN",
+              inputs: [
+                {
+                  type: "email",
+                  name: "email",
+                  label: text.contact.email,
+                  isRequired: true,
+                },
+                { type: "submit", text: "Get started" },
+              ],
+              messages: {
+                submitSucces: `<p>Thanks, follow your email.</p>`,
+                fillAllInputs: text.contact.fillEmail,
+              },
+            }}
+          />
+        )}
       </div>
     </Div>
   );
