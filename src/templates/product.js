@@ -217,7 +217,7 @@ const Product = ({ pageContext }) => {
               </div>
             </div>
           </div>
-          {locale === "__" && (
+          {locale === "en" && (
             <div className="flex flex-col bg-primary text-white items-center py-[60px]">
               <GetStartedForm2
                 data={{
