@@ -217,8 +217,8 @@ const Product = ({ pageContext }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col bg-primary text-white items-center py-[60px]">
-            {locale === "en" && (
+          {locale === "__" && (
+            <div className="flex flex-col bg-primary text-white items-center py-[60px]">
               <GetStartedForm2
                 data={{
                   name: "Get Started EN",
@@ -237,8 +237,8 @@ const Product = ({ pageContext }) => {
                   },
                 }}
               />
-            )}
-          </div>
+            </div>
+          )}
           <Booking />
         </Main>
       </Layout>
