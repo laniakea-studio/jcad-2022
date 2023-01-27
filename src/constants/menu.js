@@ -8,6 +8,7 @@ export const mainMenu = {
   en: [
     { title: "Product", slug: "product" },
     { title: "Pricing", slug: "pricing" },
+    { title: "References", slug: "references" },
     { title: "Tutorials", slug: "tutorials" },
     { title: "Contact", slug: "contact" },
   ],
@@ -33,6 +34,7 @@ export const fullMenu = {
   en: [
     { title: "Product", slug: "product" },
     { title: "Pricing", slug: "pricing" },
+    { title: "References", slug: "references" },
     { title: "Tutorials", slug: "tutorials" },
     //{ title: "Webinars", slug: "webinars" },
     { title: "Contact", slug: "contact" },
