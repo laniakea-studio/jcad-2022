@@ -7,13 +7,48 @@ var apiKey = defaultClient.authentications["api-key"];
 apiKey.apiKey = SENDINBLUE_API_KEY;
 
 // Form names as in Netlify. CHANGE IN TWO PLACES
-const forms = ["Webinaari", "Kustannuslaskenta-kampanja"];
+const forms = ["Webinaari", "Kustannuslaskenta-kampanja", "Get Started EN"];
 
 exports.handler = async (event) => {
   const { data, form_name } = JSON.parse(event.body).payload;
 
   if (!forms.includes(form_name)) {
     return console.log("No Netlify function for this form");
+  }
+
+  if (form_name === "Get Started EN") {
+    const dataString = JSON.stringify(data);
+
+    const options = {
+      hostname: "jcad-trial-service.azurewebsites.net",
+      path: "/license/create",
+      method: "POST",
+      /*
+      headers: {
+        "Content-Type": "application/json",    
+      },*/
+    };
+
+    const req = https
+      .request(options, (res) => {
+        let data = "";
+
+        console.log("Status Code:", res.statusCode);
+
+        res.on("data", (chunk) => {
+          data += chunk;
+        });
+
+        res.on("end", () => {
+          console.log("Body: ", JSON.parse(data));
+        });
+      })
+      .on("error", (err) => {
+        console.log("Error: ", err.message);
+      });
+
+    req.write(dataString);
+    req.end();
   }
 
   var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
@@ -63,4 +98,19 @@ exports.handler = async (event) => {
       console.error("Error", error);
     }
   );
+};
+
+const data = JSON.stringify({
+  name: "John Doe",
+  job: "Content Writer",
+});
+
+const options = {
+  hostname: "reqres.in",
+  path: "/api/users",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Content-Length": data.length,
+  },
 };
