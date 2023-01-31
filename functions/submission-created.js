@@ -20,9 +20,9 @@ exports.handler = async (event) => {
     console.log("START");
 
     axios
-      .post("https://jcad-trial-service.azurewebsites.net/license/create", [
-        { email: data.email },
-      ])
+      .post("https://jcad-trial-service.azurewebsites.net/license/create", {
+        email: data.email,
+      })
       .then((response) => console.log("RES:", response))
       .catch((err) => console.log("ERR:", err));
   }
