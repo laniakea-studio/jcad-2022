@@ -13,6 +13,7 @@ const forms = ["Webinaari", "Kustannuslaskenta-kampanja"];
 exports.handler = async (event) => {
   const { data, form_name } = JSON.parse(event.body).payload;
 
+  console.log({ data, form_name });
   if (form_name === "Get Started EN") {
     const dataString = JSON.stringify(data);
 
