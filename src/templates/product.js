@@ -24,9 +24,9 @@ import { GetStartedForm2 } from "../components/GetStartedForm2";
 import { getLocaleValue } from "@hooks/getLocaleValue";
 
 const Product = ({ pageContext }) => {
-  const { locale, prefix } = useContext(LocaleContext);
+  const { prefix } = useContext(LocaleContext);
   const text = snippet[locale];
-  const { data } = pageContext;
+  const { data, locale } = pageContext;
 
   const { bookDemo } = useStaticQuery(graphql`
     query {
