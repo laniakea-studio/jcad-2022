@@ -13,8 +13,6 @@ export const GetStartedForm = () => {
     formState: { errors },
   } = useForm();
 
-  console.log(watch("email"));
-
   return (
     <form
       name={formName}
