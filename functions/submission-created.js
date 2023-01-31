@@ -1,4 +1,5 @@
 require("dotenv").config();
+const https = require("https");
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const { SENDINBLUE_API_KEY } = process.env;
