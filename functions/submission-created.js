@@ -1,5 +1,5 @@
 require("dotenv").config();
-const p = require("phin");
+const axios = require("axios");
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const { SENDINBLUE_API_KEY } = process.env;
@@ -18,15 +18,12 @@ exports.handler = async (event) => {
   if (form_name === "Get Started EN") {
     console.log("START");
 
-    const post = await p({
-      url: "https://jcad-trial-service.azurewebsites.net/license/create",
-      method: "POST",
-      data: {
+    axios
+      .post("https://jcad-trial-service.azurewebsites.net/license/create", {
         email: data.email,
-      },
-    });
-
-    console.log("P", post);
+      })
+      .then((response) => console.log("RES:", response))
+      .catch((err) => console.log("ERR:", err));
   }
 
   if (!forms.includes(form_name)) {
