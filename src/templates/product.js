@@ -20,9 +20,7 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 import { MagneticButton } from "../components/MagneticButton";
 import { useHover } from "../hooks/useHover";
 import { Video } from "../components/Video";
-import { GetStartedForm2 } from "../components/GetStartedForm2";
 import { getLocaleValue } from "@hooks/getLocaleValue";
-import { GetStartedForm } from "../components/GetStartedForm";
 
 const Product = ({ pageContext }) => {
   const { prefix } = useContext(LocaleContext);

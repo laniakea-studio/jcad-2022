@@ -10,11 +10,12 @@ export const submitToNetlify = (data) => {
     body: formData,
   })
     .then(() => {
-      console.log("Ok");
-      alert("Thanks, we'll contact you soon.");
+      //alert("Thanks, follow your email!");
+      return { status: "success" };
     })
     .catch((error) => {
       console.log("Err", error);
-      alert("Oh, something went wrong. Try again.");
+      //alert("Oh, something went wrong. Try again.");
+      return { status: "error", message: error };
     });
 };

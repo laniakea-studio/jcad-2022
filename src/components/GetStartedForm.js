@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { submitToNetlify } from "../hooks/submitToNetlify";
 
@@ -6,19 +6,35 @@ const formName = "Get Started EN";
 const success = "Thanks, we'll contact you soon.";
 
 export const GetStartedForm = () => {
+  const [message, setMessage] = useState("");
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const submit = handleSubmit(submitToNetlify);
+    console.log("S", submit);
+  };
 
   return (
     <form
       name={formName}
       data-netlify="true"
       method="POST"
-      onSubmit={handleSubmit(submitToNetlify)}
+      onSubmit={handleSubmit((data) => {
+        try {
+          submitToNetlify(data);
+          resetField("email");
+          setMessage("Thank you, follow your email!");
+          console.log("YES");
+        } catch (e) {
+          setMessage("Oh, something went wrong. Try again.");
+          console.log("OH");
+        }
+      })}
       className="flex flex-col w-full max-w-[340px]"
     >
       <label className="text-[14px] text-[#ffffff80]">Email</label>
@@ -41,6 +57,7 @@ export const GetStartedForm = () => {
       >
         Get started
       </button>
+      {message && <p className="pt-[5px] text-[15px]">{message}</p>}
     </form>
   );
 };
