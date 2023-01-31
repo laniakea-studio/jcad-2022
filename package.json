@@ -33,6 +33,7 @@
     "gatsby-source-google-spreadsheets": "^3.0.8",
     "gatsby-transformer-sharp": "^4.3.0",
     "node-fetch": "^2.6.7",
+    "phin": "^3.7.0",
     "react": "^17.0.1",
     "react-calendly": "^2.2.2",
     "react-chartjs-2": "^4.1.0",

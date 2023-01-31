@@ -3181,6 +3181,11 @@
   "resolved" "https://registry.npmjs.org/ccount/-/ccount-1.1.0.tgz"
   "version" "1.1.0"
 
+"centra@^2.6.0":
+  "integrity" "sha512-dgh+YleemrT8u85QL11Z6tYhegAs3MMxsaWAq/oXeAmYJ7VxL3SI9TZtnfaEvNDMAPolj25FXIb3S+HCI4wQaQ=="
+  "resolved" "https://registry.npmjs.org/centra/-/centra-2.6.0.tgz"
+  "version" "2.6.0"
+
 "chalk@^2.0.0", "chalk@^2.4.1", "chalk@^2.4.2", "chalk@2.4.2":
   "integrity" "sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ=="
   "resolved" "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz"
@@ -9541,6 +9546,13 @@
   "integrity" "sha512-CzFr90qM24ju5f88quFC/6qohjC144rehe5n6DH900lgXmUe86+xCKc10ev56gRKC4/BkHUoG4uSiQgBiIXwDA=="
   "resolved" "https://registry.npmjs.org/phin/-/phin-2.9.3.tgz"
   "version" "2.9.3"
+
+"phin@^3.7.0":
+  "integrity" "sha512-DqnVNrpYhKGBZppNKprD+UJylMeEKOZxHgPB+ZP6mGzf3uA2uox4Ep9tUm+rUc8WLIdHT3HcAE4X8fhwQA9JKg=="
+  "resolved" "https://registry.npmjs.org/phin/-/phin-3.7.0.tgz"
+  "version" "3.7.0"
+  dependencies:
+    "centra" "^2.6.0"
 
 "physical-cpu-count@^2.0.0":
   "integrity" "sha1-GN4vl+S/epVRrXURlCtUlverpmA="

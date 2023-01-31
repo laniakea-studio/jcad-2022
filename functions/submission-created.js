@@ -8,14 +8,10 @@ var apiKey = defaultClient.authentications["api-key"];
 apiKey.apiKey = SENDINBLUE_API_KEY;
 
 // Form names as in Netlify. CHANGE IN TWO PLACES
-const forms = ["Webinaari", "Kustannuslaskenta-kampanja", "Get Started EN"];
+const forms = ["Webinaari", "Kustannuslaskenta-kampanja"];
 
 exports.handler = async (event) => {
   const { data, form_name } = JSON.parse(event.body).payload;
-
-  if (!forms.includes(form_name)) {
-    return console.log("No Netlify function for this form");
-  }
 
   if (form_name === "Get Started EN") {
     const dataString = JSON.stringify(data);
@@ -50,6 +46,10 @@ exports.handler = async (event) => {
 
     req.write(dataString);
     req.end();
+  }
+
+  if (!forms.includes(form_name)) {
+    return console.log("No Netlify function for this form");
   }
 
   var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
