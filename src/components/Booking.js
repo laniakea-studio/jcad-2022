@@ -2,14 +2,10 @@ import { graphql, useStaticQuery } from "gatsby";
 import React, { useContext } from "react";
 import { PopupButton } from "react-calendly";
 import styled from "styled-components";
-import { LocaleContext } from "../contexts/LocaleContext";
 import { GetStartedForm } from "./GetStartedForm";
 import * as snippet from "../locales";
-import { GetStartedForm2 } from "./GetStartedForm2";
 
-export const Booking = () => {
-  const { locale } = useContext(LocaleContext);
-  const text = snippet[locale];
+export const Booking = ({ locale }) => {
   const data = useStaticQuery(graphql`
     query {
       fi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
@@ -52,6 +48,7 @@ export const Booking = () => {
             />
           </div>
         )}
+        {locale === "en" && <GetStartedForm />}
       </div>
     </Div>
   );

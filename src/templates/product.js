@@ -22,6 +22,7 @@ import { useHover } from "../hooks/useHover";
 import { Video } from "../components/Video";
 import { GetStartedForm2 } from "../components/GetStartedForm2";
 import { getLocaleValue } from "@hooks/getLocaleValue";
+import { GetStartedForm } from "../components/GetStartedForm";
 
 const Product = ({ pageContext }) => {
   const { prefix } = useContext(LocaleContext);
@@ -83,7 +84,7 @@ const Product = ({ pageContext }) => {
                   <div className="btns z-[1] flex-wrap">
                     <MagneticButton
                       ref={hoverRef}
-                      className="!hidden btn white w-[180px] mr-[20px] mb-[20px]"
+                      className="btn white w-[180px] mr-[20px] mb-[20px]"
                       onClick={() => scrollTo("#get-started")}
                       text="Get started free"
                     />
@@ -217,29 +218,8 @@ const Product = ({ pageContext }) => {
               </div>
             </div>
           </div>
-          {locale === "en" && (
-            <div className="flex flex-col bg-primary text-white items-center py-[60px]">
-              <GetStartedForm2
-                data={{
-                  name: "GetStarted",
-                  inputs: [
-                    {
-                      type: "email",
-                      name: "email",
-                      label: text.contact.email,
-                      isRequired: true,
-                    },
-                    { type: "submit", text: "Get started" },
-                  ],
-                  messages: {
-                    submitSucces: `<p>Thanks, follow your email.</p>`,
-                    fillAllInputs: text.contact.fillEmail,
-                  },
-                }}
-              />
-            </div>
-          )}
-          {locale === "fi" && <Booking />}
+
+          <Booking locale={locale} />
         </Main>
       </Layout>
     </>

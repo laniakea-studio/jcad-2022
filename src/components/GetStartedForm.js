@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
-import { LocaleContext } from "../contexts/LocaleContext";
-import * as snippet from "../locales";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { submitToNetlify } from "../hooks/submitToNetlify";
 
-const formName = "Get Started";
+const formName = "Get Started EN";
 const success = "Thanks, we'll contact you soon.";
 
 export const GetStartedForm = () => {
