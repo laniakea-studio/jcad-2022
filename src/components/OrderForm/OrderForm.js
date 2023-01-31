@@ -67,6 +67,7 @@ export const OrderForm = ({ data, prices, isLightBg, redirectOnSuccess }) => {
   const onRadioChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const submitForm = (e) => {
     e.preventDefault();
     if (isFormValid()) {

@@ -221,7 +221,7 @@ const Product = ({ pageContext }) => {
             <div className="flex flex-col bg-primary text-white items-center py-[60px]">
               <GetStartedForm2
                 data={{
-                  name: "Get Started EN",
+                  name: "GetStarted",
                   inputs: [
                     {
                       type: "email",

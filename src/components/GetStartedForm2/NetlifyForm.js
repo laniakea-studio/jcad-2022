@@ -86,19 +86,14 @@ export const NetlifyForm = ({ data, isLightBg }) => {
     e.preventDefault();
 
     if (isFormValid()) {
-      const data = new FormData();
-
-      Object.keys(formData).forEach((i) => {
-        data.append(i, formData[i]);
-      });
-
       fetch("/", {
         method: "POST",
-        body: data,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode(formData),
       })
         .then(() => {
           window.plausible("Get Started");
-          // Open PDF in new Tab
+          console.log("OK");
           setShowMessage(messages.submitSucces);
           setFormData(schema);
         })
@@ -119,7 +114,7 @@ export const NetlifyForm = ({ data, isLightBg }) => {
 
   return (
     <form
-      name={schema["form-name"]}
+      name="GetStarted"
       method="POST"
       data-netlify="true"
       enctype="multipart/form-data"
@@ -325,3 +320,9 @@ export const NetlifyForm = ({ data, isLightBg }) => {
     </form>
   );
 };
+
+function encode(data) {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
