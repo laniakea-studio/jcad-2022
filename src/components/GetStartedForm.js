@@ -19,11 +19,11 @@ export const GetStartedForm = () => {
       name={formName}
       data-netlify="true"
       method="POST"
-      onSubmit={handleSubmit((data) => {
+      onSubmit={handleSubmit((data, e) => {
         try {
-          submitToNetlify(data);
+          submitToNetlify(data, e);
           resetField("email");
-          setMessage("Thank you, follow your email!");
+          //setMessage("Thank you, follow your email!");
         } catch (e) {
           console.log("Err", e);
           setMessage("Oh, something went wrong. Try again.");
