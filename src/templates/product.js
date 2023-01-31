@@ -25,8 +25,8 @@ import { getLocaleValue } from "@hooks/getLocaleValue";
 
 const Product = ({ pageContext }) => {
   const { prefix } = useContext(LocaleContext);
-  const text = snippet[locale];
   const { data, locale } = pageContext;
+  const text = snippet[locale];
 
   const { bookDemo } = useStaticQuery(graphql`
     query {
