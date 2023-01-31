@@ -47,7 +47,7 @@ export const GetStartedForm = () => {
       <button
         //onClick={(e) => handleOnSubmit(e)}
         type="submit"
-        className="btn white w-full mt-[20px] "
+        className="text-primary bg-white rounded-sm w-full h-[58px] flex items-center justify-center uppercase tracking-wide font-medium mt-[20px]"
       >
         Get started
       </button>
