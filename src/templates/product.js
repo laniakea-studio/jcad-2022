@@ -47,7 +47,7 @@ const Product = ({ pageContext }) => {
   return (
     <>
       <HelmetDatoCms seo={data.product.seoMetaTags} />
-      <Layout locale={pageContext.locale} transparent={false}>
+      <Layout locale={locale} transparent={false}>
         <Main>
           <div className="Hero pagePadding row">
             <div className="container row padding">

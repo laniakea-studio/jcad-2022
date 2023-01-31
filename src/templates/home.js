@@ -12,7 +12,8 @@ import { DownloadPDF } from "../components/DowloadPDF";
 import { Video } from "@components/Video";
 
 const Page = ({ pageContext }) => {
-  const { locale, prefix } = useContext(LocaleContext);
+  const { prefix } = useContext(LocaleContext);
+  const { locale } = pageContext;
   const { page } = pageContext.data;
 
   return (
@@ -20,7 +21,7 @@ const Page = ({ pageContext }) => {
       <HelmetDatoCms seo={page.seoMetaTags} />
       <div className="h-full bg-[#000053] overflow-hidden max-[600px]:relative">
         <BgAnimation />
-        <Layout locale={pageContext.locale} transparent={false} template="home">
+        <Layout locale={locale} transparent={false} template="home">
           <Main className="pagePadding">
             <div className="Hero container col relative">
               <div className="absolute flex right-[10px] top-0 my-[5px] min-[501px]:hidden">

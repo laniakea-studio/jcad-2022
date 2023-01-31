@@ -15,9 +15,15 @@ import { getLocaleValue } from "@hooks/getLocaleValue";
 
 const isBrowser = typeof window !== "undefined";
 
-export const Layout = ({ children, template }) => {
+export const Layout = ({ children, template, locale: localeServer }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { locale, prefix, localeSlugs } = useContext(LocaleContext);
+  const {
+    locale: localeContext,
+    prefix,
+    localeSlugs,
+  } = useContext(LocaleContext);
+
+  const locale = localeServer || localeContext;
   const text = snippet[locale];
 
   const { site, bookDemo, order } = useStaticQuery(graphql`
