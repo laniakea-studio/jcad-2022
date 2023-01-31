@@ -32,8 +32,6 @@ export const Booking = ({ locale }) => {
 
   const booking = data[locale];
 
-  console.log(booking);
-
   return (
     <Div id="get-started" className="pagePadding">
       <div className="container padding col align-center">

@@ -9,15 +9,10 @@ export const GetStartedForm = () => {
   const [message, setMessage] = useState("");
   const {
     register,
+    resetField,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const submit = handleSubmit(submitToNetlify);
-    console.log("S", submit);
-  };
 
   return (
     <form
@@ -29,10 +24,9 @@ export const GetStartedForm = () => {
           submitToNetlify(data);
           resetField("email");
           setMessage("Thank you, follow your email!");
-          console.log("YES");
         } catch (e) {
+          console.log("Err", e);
           setMessage("Oh, something went wrong. Try again.");
-          console.log("OH");
         }
       })}
       className="flex flex-col w-full max-w-[340px]"

@@ -1,5 +1,5 @@
 export const submitToNetlify = (data) => {
-  const formData = new FormData();
+  let formData = new FormData();
 
   Object.keys(data).forEach((i) => {
     formData.append(i, data[i]);
@@ -10,12 +10,9 @@ export const submitToNetlify = (data) => {
     body: formData,
   })
     .then(() => {
-      //alert("Thanks, follow your email!");
-      return { status: "success" };
+      console.log("Form submit success");
     })
     .catch((error) => {
-      console.log("Err", error);
-      //alert("Oh, something went wrong. Try again.");
-      return { status: "error", message: error };
+      console.log("Error inside submitToNetlify();", error);
     });
 };
