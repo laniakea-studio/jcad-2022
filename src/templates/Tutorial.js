@@ -73,7 +73,9 @@ const Page = ({ pageContext }) => {
             <TutorialNavigation />
 
             <div className="col">
-              <span className="SubTitle">Tutoriaali</span>
+              <span className="SubTitle">
+                {locale === "en" ? "Tutorial" : "Tutoriaali"}
+              </span>
               <h1>{page.title}</h1>
               <div
                 className="Kuvaus"
