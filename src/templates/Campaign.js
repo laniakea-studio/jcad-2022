@@ -10,8 +10,10 @@ import { Video } from "@components/Video";
 import scrollTo from "gatsby-plugin-smoothscroll";
 import { GetStartedForm } from "../components/GetStartedForm";
 
-const Page = ({ pageContext, locale }) => {
+const Page = ({ pageContext }) => {
   const { page } = pageContext.data;
+  const { locale } = pageContext;
+  console.log(locale);
 
   // Form
   const form = {
