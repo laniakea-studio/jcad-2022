@@ -161,7 +161,7 @@ const Page = ({ pageContext, locale }) => {
             </div>
             {page.asiakkaidenKommentteja.length > 0 && (
               <>
-                <h3>Asiakkaiden kommentteja</h3>
+                {locale === "fi" && <h3>Asiakkaiden kommentteja</h3>}
                 <div
                   className="row col-600"
                   css={`
