@@ -36,7 +36,7 @@ export const GetStartedForm = () => {
         name="email"
         type="email"
         {...register("email", { required: true })}
-        className="rounded-[4px] border-[1px] border-[#333375] bg-[#333375] p-[10px] h-[50px] outline-none"
+        className="rounded-[4px] border-[1px] border-[#333375] bg-[#333375] p-[10px] h-[50px] text-white outline-none"
       />
 
       {errors.email && (
