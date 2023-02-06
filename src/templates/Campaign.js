@@ -213,7 +213,7 @@ const Page = ({ pageContext, locale }) => {
                   redirectOnSuccess={null}
                 />
               )}
-              {locale === "en" && <GetStartedForm />}
+              {locale !== "fi" && <GetStartedForm />}
             </div>
           </section>
         </main>
