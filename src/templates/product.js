@@ -82,7 +82,7 @@ const Product = ({ pageContext }) => {
                   <div className="btns z-[1] flex-wrap">
                     <MagneticButton
                       ref={hoverRef}
-                      className="btn white w-[180px] mr-[20px] mb-[20px]"
+                      className="!hidden btn white w-[180px] mr-[20px] mb-[20px]"
                       onClick={() => scrollTo("#get-started")}
                       text="Get started free"
                     />
@@ -217,7 +217,7 @@ const Product = ({ pageContext }) => {
             </div>
           </div>
 
-          <Booking locale={locale} />
+          {locale === "fi" && <Booking locale={locale} />}
         </Main>
       </Layout>
     </>

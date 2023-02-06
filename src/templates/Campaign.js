@@ -8,9 +8,9 @@ import { Layout } from "../components/Layout";
 import { NetlifyForm } from "@components/NetlifyForm";
 import { Video } from "@components/Video";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import { GetStartedForm } from "../components/GetStartedForm";
 
-const Page = ({ pageContext }) => {
-  const { locale } = useContext(LocaleContext);
+const Page = ({ pageContext, locale }) => {
   const { page } = pageContext.data;
 
   // Form
@@ -123,28 +123,32 @@ const Page = ({ pageContext }) => {
           >
             <span className="SubTitle">{page.supTitle}</span>
             <h1>{page.title}</h1>
-            <button
-              className="btn white"
-              onClick={() => scrollTo("#aloita")}
-              css={`
-                margin-bottom: 50px;
-              `}
-            >
-              Aktivoi kokeilu
-            </button>
+            {locale === "fi" && (
+              <button
+                className="btn white"
+                onClick={() => scrollTo("#aloita")}
+                css={`
+                  margin-bottom: 50px;
+                `}
+              >
+                Aktivoi kokeilu
+              </button>
+            )}
 
             <div
-              className="row col-1000 mx-auto"
+              className="flex col-1000 mx-auto mt-[40px]"
               css={`
                 max-width: ${page.video ? "1150px" : "600px"};
                 margin-bottom: 120px;
               `}
             >
-              {page.video && (
-                <Video data={page.video} poster={page.videoPoster.url} />
-              )}
-
+              <div className="flex-1">
+                {page.video && (
+                  <Video data={page.video} poster={page.videoPoster.url} />
+                )}
+              </div>
               <div
+                className="flex-1"
                 css={`
                   padding-top: 30px;
                   padding-left: 50px;
@@ -188,7 +192,7 @@ const Page = ({ pageContext }) => {
               `}
             >
               <div>
-                <h3>Aktivoi kokeilujakso</h3>
+                {locale === "fi" && <h3>Aktivoi kokeilujakso</h3>}
                 <div
                   dangerouslySetInnerHTML={{ __html: page.aloitaKokeilujakso }}
                   css={`
@@ -197,15 +201,19 @@ const Page = ({ pageContext }) => {
                   `}
                 />
               </div>
-              <NetlifyForm
-                data={
-                  page.lomakkeenNimi === "Ilmainen-kokeilujakso"
-                    ? formIlmainenKokeilu
-                    : form
-                }
-                plausibleGoal={page.plausibleGoal}
-                redirectOnSuccess={null}
-              />
+
+              {locale === "fi" && (
+                <NetlifyForm
+                  data={
+                    page.lomakkeenNimi === "Ilmainen-kokeilujakso"
+                      ? formIlmainenKokeilu
+                      : form
+                  }
+                  plausibleGoal={page.plausibleGoal}
+                  redirectOnSuccess={null}
+                />
+              )}
+              {locale === "en" && <GetStartedForm />}
             </div>
           </section>
         </main>
