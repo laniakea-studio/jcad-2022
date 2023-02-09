@@ -22,6 +22,7 @@ export const GetStartedForm = () => {
       onSubmit={handleSubmit((data, e) => {
         try {
           submitToNetlify(data, e);
+          resetField("company");
           resetField("email");
           //setMessage("Thank you, follow your email!");
         } catch (e) {
@@ -31,6 +32,13 @@ export const GetStartedForm = () => {
       })}
       className="flex flex-col w-full max-w-[340px]"
     >
+      <label className="text-[14px] text-[#ffffff80]">Company (optional)</label>
+      <input
+        name="company"
+        type="text"
+        {...register("company", { required: false })}
+        className="rounded-[4px] border-[1px] border-[#333375] bg-[#333375] p-[10px] mb-[10px] h-[50px] text-white outline-none"
+      />
       <label className="text-[14px] text-[#ffffff80]">Email</label>
       <input
         name="email"
