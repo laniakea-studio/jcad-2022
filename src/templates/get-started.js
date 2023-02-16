@@ -37,12 +37,12 @@ const Page = ({ pageContext }) => {
         >
           <div className="Hero relative overflow-hidden">
             <GatsbyImage
-              className="absolute h-full"
+              className="!absolute h-full"
               image={page.heroImage.gatsbyImageData}
             />
             <div className="Layer absolute w-full h-full" />
             <div className="relative pagePadding pt-[94px]">
-              <section className="pl-[110px] flex flex-col border-x-[0.8px] border-dashed border-[#fff] h-full text-white pt-[90px] pb-[240px]">
+              <section className="pl-[110px] flex flex-col container border-x-[0.8px] border-dashed border-[#fff] h-full text-white pt-[90px] pb-[240px]">
                 <span className="flex uppercase text-[15px] mb-[10px]">
                   <Caret className="mt-[5px] mr-[5px]" />
                   Get started
@@ -60,7 +60,7 @@ const Page = ({ pageContext }) => {
             </div>
           </div>
           <div className="pagePadding">
-            <div className="flex flex-col border-x-[0.8px] border-dashed border-[#222]">
+            <div className="flex container flex-col border-x-[0.8px] border-dashed border-[#222]">
               <div className="flex flex-col ml-auto mr-[40px] max-w-[900px] mt-[-150px] relative pb-[100px]">
                 <span className="flex uppercase text-[15px] mb-[10px] text-white">
                   <Caret className="mt-[5px] mr-[5px]" />
@@ -139,7 +139,7 @@ const Page = ({ pageContext }) => {
           </div>
           <div className="Hero relative overflow-hidden">
             <GatsbyImage
-              className="absolute h-full"
+              className="!absolute h-full"
               image={page.heroImage.gatsbyImageData}
             />
             <div className="Layer absolute w-full h-full" />
