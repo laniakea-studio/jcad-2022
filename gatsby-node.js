@@ -500,6 +500,44 @@ exports.createPages = async ({ graphql, actions }) => {
         } 
         content
       }
+      getStarted: datoCmsGetStarted(locale: { eq: "${locale}" }) {
+        title   
+        slug
+        _allSlugLocales {
+          locale
+          value
+        }
+        seoMetaTags {
+          tags           
+        } 
+        heroImage {          
+          alt
+          gatsbyImageData(
+            width: 1700
+            placeholder: BLURRED
+            forceBlurhash: false
+          )
+        }
+        video {
+          file {
+            video {
+              streamingUrl
+              mp4Url
+            }
+          }
+          poster {
+            url
+          }
+          markers {
+            text
+            positionSec
+          }
+        }
+        logos {
+          alt
+          url          
+        }
+      }
       allReferenssitGoogleSheets {
         edges {
           node {
@@ -950,6 +988,24 @@ exports.createPages = async ({ graphql, actions }) => {
                 content: data.order.kiitosContent,
                 cta: data.order.kiitosCta[0],
               },
+            },
+          },
+        });
+      }
+
+      // Get started
+
+      if (data.getStarted.slug) {
+        createPage({
+          path: prefix + data.getStarted.slug,
+          component: path.resolve(`src/templates/get-started.js`),
+          context: {
+            locale,
+            prefix,
+            localeSlugs: localeSlugs(data.getStarted._allSlugLocales),
+            data: {
+              page: data.getStarted,
+              references: data.allReferences.edges,
             },
           },
         });
