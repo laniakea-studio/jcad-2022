@@ -61,7 +61,7 @@ const Page = ({ pageContext }) => {
           </div>
           <div className="pagePadding">
             <div className="flex container flex-col border-x-[0.8px] border-dashed border-[#222]">
-              <div className="flex flex-col ml-auto mr-[40px] max-w-[900px] mt-[-150px] relative pb-[100px]">
+              <div className="flex flex-col ml-auto mr-[10%] max-w-[900px] mt-[-150px] relative pb-[100px]">
                 <span className="flex uppercase text-[15px] mb-[10px] text-white">
                   <Caret className="mt-[5px] mr-[5px]" />
                   How JCAD works?
@@ -79,7 +79,7 @@ const Page = ({ pageContext }) => {
                   </p>
                 </div>
               </div>
-              <div className="flex justify-around pb-[160px]">
+              <div className="flex justify-around pb-[160px] mx-auto max-w-[1300px] w-full">
                 <p className="text-[32px] max-w-[365px] leading-normal">
                   More than 1,700 in the construction industry in the Nordic
                   countries are using JCAD to calculate material quantities
