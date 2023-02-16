@@ -144,7 +144,7 @@ const Page = ({ pageContext }) => {
             />
             <div className="Layer absolute w-full h-full" />
             <div className="relative pagePadding">
-              <div className="pl-[110px] flex flex-col border-x-[0.8px] border-dashed border-[#fff] h-full text-white pt-[90px] pb-[240px]">
+              <div className="pl-[110px] flex flex-col container border-x-[0.8px] border-dashed border-[#fff] h-full text-white pt-[90px] pb-[240px]">
                 <div className="flex items-center">
                   <span className="flex justify-center items-center text-[36px] border-[0.8px] border-dashed border-[#fff] rounded-full w-[160px] h-[160px] mr-[50px]">
                     1.
@@ -193,11 +193,11 @@ const Page = ({ pageContext }) => {
             </div>
           </div>
           <div className="pagePadding">
-            <div className="flex border-x-[0.8px] [&>a:nth-child(2)]:border-x-[0.8px]">
+            <div className="flex container border-x-[0.8px] [&>a:nth-child(2)]:border-x-[0.8px]">
               {selected.slice(0, 3).map(({ node }) => (
                 <Link
                   to={prefix + node.slug}
-                  className="flex flex-col py-[80px] px-[40px] flex-1 border-dashed border-[#222] group"
+                  className="flex flex-col py-[100px] px-[80px] flex-1 border-dashed border-[#222] group"
                 >
                   <div className="flex flex-col group-hover:scale-105 transition">
                     <span>{node.toimiala}</span>
