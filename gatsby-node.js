@@ -1005,7 +1005,10 @@ exports.createPages = async ({ graphql, actions }) => {
             localeSlugs: localeSlugs(data.getStarted._allSlugLocales),
             data: {
               page: data.getStarted,
-              references: data.allReferences.edges,
+              references: {
+                articles: data.allReferences.edges,
+                path: data.referenssit.slug,
+              },
             },
           },
         });

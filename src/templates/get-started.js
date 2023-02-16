@@ -14,7 +14,7 @@ const Page = ({ pageContext }) => {
   const { page, references } = pageContext.data;
   const { locale } = pageContext;
 
-  const selected = references.filter((i) => i.node.otsikko);
+  const selected = references.articles.filter((i) => i.node.otsikko);
   console.log(selected);
 
   return (
@@ -193,10 +193,10 @@ const Page = ({ pageContext }) => {
             </div>
           </div>
           <div className="pagePadding">
-            <div className="flex container border-x-[0.8px] [&>a:nth-child(2)]:border-x-[0.8px]">
+            <div className="flex container border-x-[0.8px] border-dashed border-[#222] [&>a:nth-child(2)]:border-x-[0.8px]">
               {selected.slice(0, 3).map(({ node }) => (
                 <Link
-                  to={prefix + node.slug}
+                  to={prefix + references.path + "/" + node.slug}
                   className="flex flex-col py-[100px] px-[80px] flex-1 border-dashed border-[#222] group"
                 >
                   <div className="flex flex-col group-hover:scale-105 transition">
