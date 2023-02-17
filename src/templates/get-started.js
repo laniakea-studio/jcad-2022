@@ -59,7 +59,7 @@ const Page = ({ pageContext }) => {
           </div>
           <div className="pagePadding">
             <div className="container flex flex-col border-x-[0.8px] border-dashed border-[#222] max-[600px]:border-none">
-              <div className="relative ml-auto mr-[10%] mt-[-150px] flex max-w-[1000px] flex-col px-[20px] pb-[100px] max-[1100px]:mr-auto">
+              <div className="relative ml-auto mr-[10%] mt-[-150px] flex max-w-[1000px] flex-col px-[20px] pb-[100px] max-[1400px]:mr-auto">
                 <span className="mb-[10px] flex text-[15px] uppercase text-white">
                   <Caret className="mt-[5px] mr-[5px]" />
                   Watch key features in action
