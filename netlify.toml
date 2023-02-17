@@ -1,5 +1,3 @@
-[[plugins]]
-  package = "@netlify/plugin-gatsby"
 [build]
   base = "."
   functions = "./functions"

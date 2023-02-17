@@ -10,12 +10,14 @@ const Page = ({ pageContext }) => {
   const { page, allReferences, googleSheets } = pageContext.data;
   const [showCases, setShowCases] = useState(30);
 
+  console.log(allReferences);
+
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout locale={locale} transparent={false}>
         <main
-          className="pagePadding flex flex-col bg-[#000053] text-[#fff] pt-[94px]"
+          className="pagePadding flex flex-col bg-[#000053] pt-[94px] text-[#fff]"
           css={`
             @media (max-width: 600px) {
               .Hero {
@@ -37,9 +39,9 @@ const Page = ({ pageContext }) => {
             }
           `}
         >
-          <section className="Hero container padding flex border-b-[0.8px] border-dashed border-white overflow-hidden">
+          <section className="Hero padding container flex overflow-hidden border-b-[0.8px] border-dashed border-white">
             <div className="flex flex-col">
-              <h1 className="text-[42px] pt-[50px] pb-[20px] font-normal !normal-case">
+              <h1 className="pt-[50px] pb-[20px] text-[42px] font-normal !normal-case">
                 {page.title}
               </h1>
               <p className="max-w-[600px] pb-[60px] text-[18px]">
@@ -47,15 +49,15 @@ const Page = ({ pageContext }) => {
               </p>
             </div>
 
-            <div className="ColMap flex max-h-[300px] justify-center flex-1">
+            <div className="ColMap flex max-h-[300px] flex-1 justify-center">
               <SvgMap />
             </div>
           </section>
-          <section className="AllReferences container padding flex flex-col items-center pt-[80px] pb-[80px]">
+          <section className="AllReferences padding container flex flex-col items-center pt-[80px] pb-[80px]">
             {allReferences.map(({ node }) => (
               <Link
                 to={prefix + page.slug + "/" + node.slug}
-                className="Reference flex max-w-[1100px] py-[20px] border-b-[0.8px] border-dashed"
+                className="Reference flex max-w-[1100px] border-b-[0.8px] border-dashed py-[20px]"
                 key={node.slug}
                 css={`
                   &:hover {
@@ -71,7 +73,7 @@ const Page = ({ pageContext }) => {
                   }
                 `}
               >
-                <div className="flex flex-col flex-2 px-[20px] justify-center">
+                <div className="flex-2 flex flex-col justify-center px-[20px]">
                   {!node.kuva && <SvgLike className="w-full" />}
                   {node.kuva && (
                     <div className="w-full">
@@ -83,12 +85,12 @@ const Page = ({ pageContext }) => {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col flex-2 px-[20px] py-[40px]">
-                  <div className="Tags opacity-[0.6] text-[15px]">
+                <div className="flex-2 flex flex-col px-[20px] py-[40px]">
+                  <div className="Tags text-[15px] opacity-[0.6]">
                     <span className="pr-[15px] uppercase">{node.toimiala}</span>
                     <span>{node.yritys}</span>
                   </div>
-                  <h2 className="text-[25px] normal-case pt-[5px] pb-[20px]">
+                  <h2 className="pt-[5px] pb-[20px] text-[25px] normal-case">
                     {node.otsikko}
                   </h2>
                   <p className="text-[18px]">{node.ingressi}</p>
@@ -99,28 +101,28 @@ const Page = ({ pageContext }) => {
             {locale === "fi" &&
               googleSheets.slice(0, showCases).map(({ node }) => (
                 <div
-                  className="flex w-full max-w-[1100px] justify-between items-center py-[50px] border-b-[0.8px] border-dashed max-[600]:flex-col"
+                  className="max-[600]:flex-col flex w-full max-w-[1100px] items-center justify-between border-b-[0.8px] border-dashed py-[50px]"
                   css={`
                     @media (max-width: 600px) {
                       flex-direction: column;
                     }
                   `}
                 >
-                  <h4 className="text-[20px] flex-[2]">{node.Yritys}</h4>
-                  <span className="text-[12px] uppercase flex-[1]">
+                  <h4 className="flex-[2] text-[20px]">{node.Yritys}</h4>
+                  <span className="flex-[1] text-[12px] uppercase">
                     {node.Toimiala}
                   </span>
-                  <span className="text-[12px] uppercase flex-[1]">
+                  <span className="flex-[1] text-[12px] uppercase">
                     {node.Alue}
                   </span>
-                  <span className="text-[12px] uppercase flex-[1]">
+                  <span className="flex-[1] text-[12px] uppercase">
                     {node.Liikevaihto && <>Liikevaihto {node.Liikevaihto}</>}
                   </span>
                 </div>
               ))}
             {locale === "fi" && setShowCases !== googleSheets.length && (
               <button
-                className="mx-auto mt-[50px] btn white-outlines"
+                className="btn white-outlines mx-auto mt-[50px]"
                 onClick={() => setShowCases(googleSheets.length)}
               >
                 Näytä kaikki

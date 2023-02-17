@@ -205,7 +205,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }                
         kuvaus
       }
-      allReferences: allDatoCmsReferenssi(filter: { locale: { eq: "${locale}" } }) {
+      allReferences: allDatoCmsReferenssi(sort: { position: ASC}, filter: { locale: { eq: "fi" } }) {
         edges {
           node {
             _allSlugLocales {
