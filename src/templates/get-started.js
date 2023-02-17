@@ -1,13 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { LocaleContext } from "../contexts/LocaleContext";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { Layout } from "../components/Layout";
 import { Video } from "@components/Video";
-import scrollTo from "gatsby-plugin-smoothscroll";
 import { GetStartedForm } from "../components/GetStartedForm";
-import { data } from "autoprefixer";
 import { Booking } from "../components/Booking";
 
 const Page = ({ pageContext }) => {
@@ -49,7 +47,7 @@ const Page = ({ pageContext }) => {
                   Laske seuraavan urakkasi määrät JCAD-sovelluksella – aktivoi
                   kokeilujakso ilman sitoumuksia
                 </h1>
-                <span className="mb-[10px]">
+                <span className="mb-[10px] opacity-60">
                   Aloita maksuton kokeilu syöttämällä sähköpostisi ja asenna
                   sovellus.
                 </span>
@@ -222,7 +220,7 @@ const Page = ({ pageContext }) => {
 export default Page;
 
 const CircleNumber = (props) => (
-  <span className="mb-[20px] mr-[50px] flex h-[160px] w-[160px] min-w-[100px] items-center justify-center rounded-full border-[0.8px] border-dashed border-[#fff] text-[36px] max-[950px]:h-[100px] max-[950px]:w-[100px]">
+  <span className="my-[20px] mr-[50px] flex h-[160px] w-[160px] min-w-[100px] items-center justify-center rounded-full border-[0.8px] border-dashed border-[#fff] text-[36px] max-[950px]:h-[100px] max-[950px]:w-[100px]">
     {props.data}
   </span>
 );
