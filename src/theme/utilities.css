@@ -32,9 +32,12 @@
   }
 }
 
-.container {
-  max-width: 100% !important;
+@media (max-width: 1500px) {
+  .container {
+    max-width: 100% !important;
+  }
 }
+
 .padding {
   padding-left: 20px;
   padding-right: 20px;

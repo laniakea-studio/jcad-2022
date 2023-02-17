@@ -38,14 +38,14 @@ const Page = ({ pageContext }) => {
               className="!absolute h-full"
               image={page.heroImage.gatsbyImageData}
             />
-            <div className="Layer absolute w-full h-full" />
-            <div className="relative pagePadding pt-[94px]">
-              <section className="pl-[110px] max-[700px]:pl-[40px] flex flex-col container border-x-[0.8px] border-dashed border-[#fff] max-[600px]:border-none h-full text-white pt-[90px] pb-[240px]">
-                <span className="flex uppercase text-[15px] mb-[10px]">
+            <div className="Layer absolute h-full w-full" />
+            <div className="pagePadding relative pt-[94px]">
+              <section className="container flex h-full flex-col border-x-[0.8px] border-dashed border-[#fff] pl-[110px] pt-[90px] pb-[240px] text-white max-[700px]:pl-[20px] max-[600px]:border-none">
+                <span className="mb-[10px] flex text-[15px] uppercase">
                   <Caret className="mt-[5px] mr-[5px]" />
                   Get started
                 </span>
-                <h1 className="max-w-[840px] text-[52px] normal-case font-normal mb-[40px] max-[600px]:leading-normal max-[600px]:text-[36px]">
+                <h1 className="mb-[40px] max-w-[840px] text-[52px] font-normal normal-case max-[600px]:text-[36px] max-[600px]:leading-normal">
                   Laske seuraavan urakkasi määrät JCAD-sovelluksella – aktivoi
                   kokeilujakso ilman sitoumuksia
                 </h1>
@@ -58,9 +58,9 @@ const Page = ({ pageContext }) => {
             </div>
           </div>
           <div className="pagePadding">
-            <div className="flex container flex-col border-x-[0.8px] max-[600px]:border-none border-dashed border-[#222]">
-              <div className="flex flex-col ml-auto mr-[10%] max-[1100px]:mr-auto max-w-[900px] mt-[-150px] relative pb-[100px] px-[20px]">
-                <span className="flex uppercase text-[15px] mb-[10px] text-white">
+            <div className="container flex flex-col border-x-[0.8px] border-dashed border-[#222] max-[600px]:border-none">
+              <div className="relative ml-auto mr-[10%] mt-[-150px] flex max-w-[1000px] flex-col px-[20px] pb-[100px] max-[1100px]:mr-auto">
+                <span className="mb-[10px] flex text-[15px] uppercase text-white">
                   <Caret className="mt-[5px] mr-[5px]" />
                   Watch key features in action
                 </span>
@@ -70,29 +70,32 @@ const Page = ({ pageContext }) => {
                     poster={page.video[0].poster.url}
                     markers={page.video[0].markers}
                   />
-                  <p className="text-center max-w-[490px] mx-auto mt-[5px]">
+                  <p className="mx-auto mt-[5px] max-w-[490px] text-center">
                     With JCAD material take-off software, you can easily
                     calculate the material quantities of surfaces, spaces, and
                     structures.
                   </p>
                 </div>
               </div>
-              <div className="flex max-[800px]:flex-col-reverse items-center justify-around pb-[120px] px-[20px] mx-auto max-w-[1300px] w-full">
-                <p className="text-[32px] max-w-[365px] leading-normal">
+              <div className="mx-auto flex w-full max-w-[1300px] items-center justify-around px-[20px] pb-[120px] max-[800px]:flex-col-reverse">
+                <p className="max-w-[365px] text-[32px] leading-normal">
                   More than 1,700 in the construction industry in the Nordic
                   countries are using JCAD to calculate material quantities
                   directly from floor plans.
                 </p>
-                <div className="grid grid-cols-2 gap-[50px] mb-[50px]">
+                <div className="mb-[50px] grid grid-cols-2 gap-[50px]">
                   {page.logos.map((i) => (
                     <img src={i.url} alt={i.alt} className="max-w-[120px]" />
                   ))}
                 </div>
               </div>
-              <div className="grid grid-cols-2 max-[800px]:grid-cols-1 border-t-[0.8px] border-dashed border-[#222]">
-                <div className="text-center text-[#222] flex flex-col justify-center items-center p-[100px] max-[400px]:px-[40px] border-b-[0.8px] border-r-[0.8px] max-[800px]:border-r-0 border-dashed border-[#222]">
+              <div
+                before="WHY?"
+                className="relative grid grid-cols-2 border-t-[0.8px] border-dashed border-[#222] before:absolute before:top-[20px] before:left-[-39px] before:-rotate-90 before:text-[#222] before:content-[attr(before)] max-[800px]:grid-cols-1 max-[600px]:before:top-[10px] max-[600px]:before:left-[10px] max-[600px]:before:rotate-0"
+              >
+                <div className="flex flex-col items-center justify-center border-b-[0.8px] border-r-[0.8px] border-dashed border-[#222] p-[100px] text-center text-[#222] max-[800px]:border-r-0 max-[400px]:px-[40px]">
                   <Fast />
-                  <h3 className="text-[26px] normal-case font-normal mt-[25px] mb-[15px]">
+                  <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
                     Säästä arvokasta työaikaasi
                   </h3>
                   <p>
@@ -101,9 +104,9 @@ const Page = ({ pageContext }) => {
                     laskee tarvikkeen määrän ja hinnan.
                   </p>
                 </div>
-                <div className="text-center text-[#222] flex flex-col justify-center items-center p-[100px] max-[400px]:px-[40px] max-[800px]:border-b-[0.8px] border-dashed border-[#222]">
+                <div className="flex flex-col items-center justify-center border-dashed border-[#222] p-[100px] text-center text-[#222] max-[800px]:border-b-[0.8px] max-[400px]:px-[40px]">
                   <Crosshair />
-                  <h3 className="text-[26px] normal-case font-normal mt-[25px] mb-[15px]">
+                  <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
                     Vähennä hävikkiä
                   </h3>
                   <p>
@@ -111,9 +114,9 @@ const Page = ({ pageContext }) => {
                     pienentää yli- ja alijäämää.
                   </p>
                 </div>
-                <div className="text-center text-[#222] flex flex-col justify-center items-center p-[100px] max-[400px]:px-[40px]">
+                <div className="flex flex-col items-center justify-center p-[100px] text-center text-[#222] max-[400px]:px-[40px]">
                   <List />
-                  <h3 className="text-[26px] normal-case font-normal mt-[25px] mb-[15px]">
+                  <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
                     Pidä määräluettelo ajan tasalla
                   </h3>
                   <p>
@@ -122,9 +125,9 @@ const Page = ({ pageContext }) => {
                     ja työnjohdosta dokumentointiin.
                   </p>
                 </div>
-                <div className="text-center text-[#222] flex flex-col justify-center items-center p-[100px] max-[400px]:px-[40px] border-l-[0.8px] border-t-[0.8px] border-dashed border-[#222]">
+                <div className="flex flex-col items-center justify-center border-l-[0.8px] border-t-[0.8px] border-dashed border-[#222] p-[100px] text-center text-[#222] max-[400px]:px-[40px]">
                   <Team />
-                  <h3 className="text-[26px] normal-case font-normal mt-[25px] mb-[15px]">
+                  <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
                     Kehitä työskentelytapoja
                   </h3>
                   <p>
@@ -140,13 +143,16 @@ const Page = ({ pageContext }) => {
               className="!absolute h-full"
               image={page.heroImage.gatsbyImageData}
             />
-            <div className="Layer absolute w-full h-full" />
-            <div className="relative pagePadding">
-              <div className="pl-[110px] max-[800px]:pl-[20px] pr-[20px] flex flex-col container border-x-[0.8px] max-[600px]:border-none border-dashed border-[#fff] h-full text-white pt-[120px] pb-[240px]">
-                <div className="flex max-[600px]:flex-col max-[600px]:items-start items-center">
+            <div className="Layer absolute h-full w-full" />
+            <div className="pagePadding relative">
+              <div
+                before="TRY NOW"
+                className="container relative flex h-full flex-col border-x-[0.8px] border-dashed border-[#fff] pl-[110px] pr-[20px] pt-[120px] pb-[240px] text-white before:absolute before:top-[40px] before:left-[-52px] before:-rotate-90 before:text-white before:content-[attr(before)] max-[800px]:pl-[20px] max-[600px]:border-none max-[600px]:before:top-[10px] max-[600px]:before:left-[10px] max-[600px]:before:rotate-0"
+              >
+                <div className="flex items-center max-[600px]:flex-col max-[600px]:items-start">
                   <CircleNumber data="1" />
-                  <div className="flex flex-col max-w-[500px]">
-                    <h3 className="text-[28px] normal-case font-normal">
+                  <div className="flex max-w-[500px] flex-col">
+                    <h3 className="text-[28px] font-normal normal-case">
                       Get started for free
                     </h3>
                     <p className="mb-[15px]">
@@ -157,10 +163,10 @@ const Page = ({ pageContext }) => {
                     <GetStartedForm />
                   </div>
                 </div>
-                <div className="flex max-[600px]:flex-col max-[600px]:items-start items-center mt-[50px]">
+                <div className="mt-[50px] flex items-center max-[600px]:flex-col max-[600px]:items-start">
                   <CircleNumber data="2" />
-                  <div className="flex flex-col max-w-[500px]">
-                    <h3 className="text-[28px] normal-case font-normal">
+                  <div className="flex max-w-[500px] flex-col">
+                    <h3 className="text-[28px] font-normal normal-case">
                       Calculate your first quantities
                     </h3>
                     <p>
@@ -169,10 +175,10 @@ const Page = ({ pageContext }) => {
                     </p>
                   </div>
                 </div>
-                <div className="flex max-[600px]:flex-col max-[600px]:items-start items-center mt-[50px]">
+                <div className="mt-[50px] flex items-center max-[600px]:flex-col max-[600px]:items-start">
                   <CircleNumber data="3" />
-                  <div className="flex flex-col max-w-[500px]">
-                    <h3 className="text-[28px] normal-case font-normal">
+                  <div className="flex max-w-[500px] flex-col">
+                    <h3 className="text-[28px] font-normal normal-case">
                       Talk with our expert
                     </h3>
                     <p>
@@ -185,18 +191,21 @@ const Page = ({ pageContext }) => {
             </div>
           </div>
           <div className="pagePadding">
-            <div className="flex max-[800px]:flex-col container border-x-[0.8px] max-[600px]:border-none border-dashed border-[#222] [&>a:nth-child(2)]:border-x-[0.8px] max-[800px]:[&>a:nth-child(2)]:!border-x-0 max-[800px]:[&>a:nth-child(2)]:border-y-[0.8px]">
+            <div
+              before="REFERENCES"
+              className="container relative flex border-x-[0.8px] border-dashed border-[#222] before:absolute before:top-[50px] before:left-[-66px] before:-rotate-90 before:text-[#222] before:content-[attr(before)] max-[800px]:flex-col max-[800px]:[&>a:nth-child(2)]:border-y-[0.8px] max-[800px]:[&>a:nth-child(2)]:!border-x-0 max-[600px]:border-none max-[600px]:before:top-[10px] max-[600px]:before:left-[10px] max-[600px]:before:rotate-0 [&>a:nth-child(2)]:border-x-[0.8px]"
+            >
               {selected.slice(0, 3).map(({ node }) => (
                 <Link
                   to={prefix + references.path + "/" + node.slug}
-                  className="flex flex-col py-[100px] px-[80px] max-[1100px]:px-[40px] flex-1 border-dashed border-[#222] group"
+                  className="group flex flex-1 flex-col border-dashed border-[#222] py-[100px] px-[80px] max-[1100px]:px-[40px]"
                 >
-                  <div className="flex flex-col group-hover:scale-105 transition">
+                  <div className="flex flex-col transition group-hover:scale-105">
                     <span>{node.toimiala}</span>
-                    <h2 className="text-[20px] normal-case font-normal mt-[5px] mb-[15px]">
+                    <h2 className="mt-[5px] mb-[15px] text-[20px] font-normal normal-case">
                       {node.otsikko}
                     </h2>
-                    <p className="text-[#464646] mb-[10px]">{node.ingressi}</p>
+                    <p className="mb-[10px] text-[#464646]">{node.ingressi}</p>
                     <span>{node.title}</span>
                   </div>
                 </Link>
@@ -213,7 +222,7 @@ const Page = ({ pageContext }) => {
 export default Page;
 
 const CircleNumber = (props) => (
-  <span className="flex justify-center items-center mb-[20px] text-[36px] border-[0.8px] border-dashed border-[#fff] rounded-full w-[160px] h-[160px] mr-[50px] max-[950px]:w-[100px] max-[950px]:h-[100px] min-w-[100px]">
+  <span className="mb-[20px] mr-[50px] flex h-[160px] w-[160px] min-w-[100px] items-center justify-center rounded-full border-[0.8px] border-dashed border-[#fff] text-[36px] max-[950px]:h-[100px] max-[950px]:w-[100px]">
     {props.data}
   </span>
 );
