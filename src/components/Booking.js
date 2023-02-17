@@ -40,16 +40,14 @@ export const Booking = ({ locale }) => {
           className="mb-[30px]"
           dangerouslySetInnerHTML={{ __html: booking?.pfContent }}
         />
-        {locale === "fi" && (
-          <div className="DemoBtn">
-            <PopupButton
-              className="btn white-outlines"
-              url={booking?.calendlyBookingUrl}
-              text={booking?.pfCta[0].text}
-            />
-          </div>
-        )}
-        {locale === "en" && <GetStartedForm />}
+
+        <div className="DemoBtn">
+          <PopupButton
+            className="btn white-outlines"
+            url={booking?.calendlyBookingUrl}
+            text={booking?.pfCta[0].text}
+          />
+        </div>
       </div>
     </Div>
   );

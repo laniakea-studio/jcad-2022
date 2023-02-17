@@ -30,34 +30,38 @@ export const GetStartedForm = () => {
           setMessage("Oh, something went wrong. Try again.");
         }
       })}
-      className="flex flex-col w-full max-w-[340px]"
+      className="flex w-full max-w-[440px]"
     >
-      <label className="Company text-[14px] text-[#ffffff80]">
-        Company (optional)
-      </label>
-      <input
-        name="company"
-        type="text"
-        {...register("company", { required: false })}
-        className="Company rounded-[4px] border-[1px] border-[#333375] bg-[#333375] p-[10px] mb-[10px] h-[50px] text-white outline-none"
-      />
-      <label className="text-[14px] text-[#ffffff80]">Email</label>
-      <input
-        name="email"
-        type="email"
-        {...register("email", { required: true })}
-        className="rounded-[4px] border-[1px] border-[#333375] bg-[#333375] p-[10px] h-[50px] text-white outline-none"
-      />
+      <div className="!hidden">
+        <label className="text-[14px] text-[#ffffff80]">
+          Company (optional)
+        </label>
+        <input
+          name="company"
+          type="text"
+          {...register("company", { required: false })}
+          className="rounded-[4px] border-[1px] border-[#333375] bg-[#333375] p-[10px] mb-[10px] h-[50px] text-white outline-none"
+        />
+      </div>
+      <div className="flex flex-col w-full">
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          {...register("email", { required: true })}
+          className="rounded-[4px] border-[1px] border-[#333375] bg-[#333375] p-[10px] h-[50px] text-white outline-none"
+        />
 
-      {errors.email && (
-        <span className="text-[13px] text-[#ffffff90]">
-          This field is required
-        </span>
-      )}
+        {errors.email && (
+          <span className="text-[13px] text-[#ffffff90]">
+            This field is required
+          </span>
+        )}
+      </div>
       <button
         //onClick={(e) => handleOnSubmit(e)}
         type="submit"
-        className="text-primary bg-white rounded-sm w-full h-[58px] flex items-center justify-center uppercase tracking-wide font-medium mt-[20px]"
+        className="text-primary bg-white rounded-sm w-full h-[50px] flex items-center justify-center uppercase tracking-wide font-medium ml-[5px] max-w-[160px] opacity-90 hover:opacity-100"
       >
         Get started
       </button>
