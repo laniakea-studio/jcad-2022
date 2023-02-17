@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { submitToNetlify } from "../hooks/submitToNetlify";
 
-const formName = "Free Rrial EN";
+const formName = "Free Trial EN";
 const success = "Thanks, we'll contact you soon.";
 
 export const GetStartedForm = () => {

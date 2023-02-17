@@ -16,12 +16,13 @@ exports.handler = async (event) => {
 
   console.log({ data, form_name });
 
-  if (form_name === "Get Started EN") {
+  if (form_name === "Free Trial EN") {
     console.log("START");
 
     await axios
       .post("https://jcad-trial-service.azurewebsites.net/license/create", {
-        email: data.email,
+        Email: data.email,
+        Company: "",
       })
       .then((response) => console.log("RES:", response))
       .catch((err) => console.log("ERR:", err));
