@@ -76,7 +76,7 @@ const Page = ({ pageContext }) => {
                 </div>
               </div>
               <div className="mx-auto flex w-full max-w-[1300px] items-center justify-around px-[20px] pb-[120px] max-[800px]:flex-col-reverse">
-                <p className="max-w-[365px] text-[32px] leading-normal">
+                <p className="max-w-[380px] text-[32px] leading-normal">
                   More than 1,700 in the construction industry in the Nordic
                   countries are already using JCAD to calculate material
                   quantities directly from floor plans.
@@ -116,7 +116,7 @@ const Page = ({ pageContext }) => {
                 <div className="flex flex-col items-center justify-center p-[100px] text-center text-[#222] max-[400px]:px-[40px]">
                   <List />
                   <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
-                    Keep up-to-date material quantity lists
+                    Keep up-to-date material quantity
                   </h3>
                   <p>
                     Prepare an offer in an instant and maintain up-to-date
@@ -157,9 +157,8 @@ const Page = ({ pageContext }) => {
                       Activate the trial period
                     </h3>
                     <p className="mb-[15px]">
-                      JCAD-määrälaskentaohjelmiston avulla lasket pintojen,
-                      tilojen ja rakenteiden määrät helposti. Laadit tarjouksen
-                      hetkessä.
+                      No commitment or credit card needed. The software requires
+                      the Windows operating system.
                     </p>
                     <GetStartedForm />
                   </div>
@@ -172,9 +171,14 @@ const Page = ({ pageContext }) => {
                     </h3>
                     <p>
                       Get started easy with help of our step-by-step video
-                      tutorials. Calculate the material quantities of your next
-                      project.
+                      tutorials.
                     </p>
+                    <Link
+                      to={"/en/tutorials/new-to-jcad/"}
+                      className="mt-[10px] font-bold uppercase underline underline-offset-2 opacity-70 hover:opacity-100"
+                    >
+                      Video tutorials
+                    </Link>
                   </div>
                 </div>
                 <div className="mt-[50px] flex items-center max-[600px]:flex-col max-[600px]:items-start">
@@ -187,6 +191,12 @@ const Page = ({ pageContext }) => {
                       Book a meating with with our expert when you have any kind
                       of questions.
                     </p>
+                    <Link
+                      to={"/en/get-demo"}
+                      className="mt-[10px] font-bold uppercase underline underline-offset-2 opacity-70 hover:opacity-100"
+                    >
+                      Schedule a meeting
+                    </Link>
                   </div>
                 </div>
               </div>

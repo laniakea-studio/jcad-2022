@@ -51,9 +51,9 @@ export const GetStartedForm = () => {
         type="submit"
         className="ml-[5px] flex h-[50px] w-full max-w-[160px] items-center justify-center rounded-sm bg-white font-medium uppercase tracking-wide text-primary opacity-90 hover:opacity-100"
       >
-        Get started
+        Start the trial
       </button>
-      {message && <p className="pt-[5px] text-[15px]">{message}</p>}
+      <p className="h-[20px] pt-[5px] text-[15px]">{message}</p>
     </form>
   );
 };
