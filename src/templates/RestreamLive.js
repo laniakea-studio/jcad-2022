@@ -45,7 +45,7 @@ const Page = ({ pageContext }) => {
           `}
         >
           <section
-            className="col padding container align-center"
+            className="col padding align-center container"
             css={`
               padding-top: 60px;
               padding-bottom: 160px;
@@ -173,8 +173,6 @@ const Form = ({ data, handleHasJoined }) => {
     const value = e.target.value;
     setFormData({ ...formData, [key]: value });
   };
-
-  console.log(JSON.stringify({ data: formData }));
 
   const submitForm = (e) => {
     e.preventDefault();

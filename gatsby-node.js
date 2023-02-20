@@ -70,487 +70,470 @@ exports.createPages = async ({ graphql, actions }) => {
 
   await Promise.all(
     locales.map(async (locale) => {
-      const query = await graphql(`
-    {      
-      home: datoCmsHome(locale: { eq: "${locale}" })  {
-        title
-        seoMetaTags {
-          tags
-        }        
-        intro
-        cta {
-          text
-          slug
+      const query = await graphql(`{
+        home: datoCmsHome(locale: {eq: "${locale}"}) {
+          title
+          seoMetaTags {
+            tags
+          }
+          intro
+          cta {
+            text
+            slug
+          }
+          isoValikko {
+            title
+            slug
+            animaatio
+          }
+          videoHeader
+          video {
+            file {
+              video {
+                streamingUrl
+                mp4Url
+              }
+            }
+            poster {
+              url
+            }
+            markers {
+              text
+              positionSec
+            }
+          }
+          videoCta {
+            text
+            slug
+          }
         }
-        isoValikko {
+        product: datoCmsTuotesivu(locale: {eq: "${locale}"}) {
           title
           slug
-          animaatio
-        }
-        videoHeader
-        video {
-          file {
-            video {
-              streamingUrl
-              mp4Url
+          _allSlugLocales {
+            locale
+            value
+          }
+          seoMetaTags {
+            tags
+          }
+          lead
+          video {
+            file {
+              video {
+                streamingUrl
+                mp4Url
+              }
             }
-          }
-          poster {
-            url
-          }
-          markers {
-            text
-            positionSec
-          }
-        }
-        videoCta {
-          text
-          slug
-        }
-      }
-      product: datoCmsTuotesivu(locale: { eq: "${locale}" }) {
-        title
-        slug
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags 
-        }        
-        lead
-        video {
-          file {
-            video {
-              streamingUrl
-              mp4Url
+            markers {
+              positionSec
+              text
             }
+            poster {
+              url
+            }
+            videoteksti
+            plausibleGoalName
           }
-          markers {
-            positionSec
-            text
-          }
-          poster {
-            url
-          }
-          videoteksti
-          plausibleGoalName
-        }
-        customers {
-          url
-          alt
-        }
-        activeUser
-        customerHappiness
-        tooltip
-        section1Content
-        points {
-          content
-        }
-      }
-      pricing: datoCmsPricing(locale: { eq: "${locale}" }) {
-        title
-        slug
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags 
-        }
-        lead
-        tuotteet {
-          icon {
+          customers {
             url
             alt
           }
+          activeUser
+          customerHappiness
+          tooltip
+          section1Content
+          points {
+            content
+          }
+        }
+        pricing: datoCmsPricing(locale: {eq: "${locale}"}) {
           title
-          teksti1
-          price
-          startprice
-        }
-        valikkoOhjelmisto {
-          label
-          value
-        }
-      }      
-      jobs: datoCmsRekry(locale: { eq: "${locale}" }) {
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags 
-        }
-        title
-        slug
-        otsikko
-        intro
-        positio {
-          content
-        }
-        liikevaihto
-        employees
-        askMore
-      }
-      referenssit: datoCmsReferenssit(locale: { eq: "${locale}" }) {
-        _allSlugLocales {
-          locale
-          value
-        }
-        title
-        slug
-        seoMetaTags {
-          tags 
-        }                
-        kuvaus
-      }
-      allReferences: allDatoCmsReferenssi(sort: { position: ASC}, filter: { locale: { eq: "${locale}" } }) {
-        edges {
-          node {
-            _allSlugLocales {
-              locale
-              value
+          slug
+          _allSlugLocales {
+            locale
+            value
+          }
+          seoMetaTags {
+            tags
+          }
+          lead
+          tuotteet {
+            icon {
+              url
+              alt
             }
-            seoMetaTags {
-              tags 
-            }  
             title
-            slug
-            title
-            artikkeli
-            otsikko
-            toimiala
-            alue            
-            ingressi          
-            sisalto  
-            video {
+            teksti1
+            price
+            startprice
+          }
+          valikkoOhjelmisto {
+            label
+            value
+          }
+        }
+        jobs: datoCmsRekry(locale: {eq: "${locale}"}) {
+          _allSlugLocales {
+            locale
+            value
+          }
+          seoMetaTags {
+            tags
+          }
+          title
+          slug
+          otsikko
+          intro
+          positio {
+            content
+          }
+          liikevaihto
+          employees
+          askMore
+        }
+        referenssit: datoCmsReferenssit(locale: {eq: "${locale}"}) {
+          _allSlugLocales {
+            locale
+            value
+          }
+          title
+          slug
+          seoMetaTags {
+            tags
+          }
+          kuvaus
+        }
+        allReferences: allDatoCmsReferenssi(
+          sort: {position: ASC}
+          filter: {locale: {eq: "${locale}"}}
+        ) {
+          edges {
+            node {
+              _allSlugLocales {
+                locale
+                value
+              }
+              seoMetaTags {
+                tags
+              }
+              title
+              slug
+              title
+              artikkeli
+              otsikko
+              toimiala
+              alue
+              ingressi
+              sisalto
               video {
+                video {
+                  streamingUrl
+                  mp4Url
+                }
+              }
+              kuva {
+                url
+                alt
+                gatsbyImageData(width: 1600, placeholder: BLURRED, forceBlurhash: false)
+              }
+              naytaSitaattiTuotesivulla
+              quote
+              nimi
+            }
+          }
+        }
+        webinaarit: datoCmsWebinarsPage(locale: {eq: "${locale}"}) {
+          _allSlugLocales {
+            locale
+            value
+          }
+          title
+          slug
+          seoMetaTags {
+            tags
+          }
+          palautteita {
+            content
+          }
+          arvosanat
+          kuvaajanTeksti
+          kiitosTitle
+          kiitosContent
+          kiitosCta {
+            text
+            slug
+          }
+        }
+        allWebinars: allDatoCmsWebinar(
+          filter: {locale: {eq: "${locale}"}}
+          sort: {webinaarinAjankohta: ASC}
+        ) {
+          edges {
+            node {
+              _allSlugLocales {
+                locale
+                value
+              }
+              seoMetaTags {
+                tags
+              }
+              title
+              slug
+              webinaarinAjankohta
+              kestoMinuuttia
+              nosto
+              kuvaus
+              puhuja
+              isRestream
+              restreamCode
+            }
+          }
+        }
+        order: datoCmsOrder(locale: {eq: "${locale}"}) {
+          _allSlugLocales {
+            locale
+            value
+          }
+          seoMetaTags {
+            tags
+          }
+          title
+          slug
+          content
+          kiitosTitle
+          kiitosContent
+          kiitosCta {
+            text
+            slug
+          }
+        }
+        booking: datoCmsTilaaDemo(locale: {eq: "${locale}"}) {
+          _allSlugLocales {
+            locale
+            value
+          }
+          title
+          slug
+          seoMetaTags {
+            tags
+          }
+          calendlyBookingUrl
+          pageContent
+          video {
+            video {
               streamingUrl
               mp4Url
-              }
             }
+          }
+          videoPoster {
+            url
+          }
+          kiitosTitle
+          kiitosContent
+          kiitosCta {
+            text
+            slug
+          }
+          pfTitle
+          pfContent
+          pfCta {
+            text
+            slug
+          }
+        }
+        about: datoCmsAbout(locale: {eq: "${locale}"}) {
+          _allSlugLocales {
+            locale
+            value
+          }
+          seoMetaTags {
+            tags
+          }
+          slug
+          title
+          kuva {
+            gatsbyImageData(width: 1600, placeholder: BLURRED, forceBlurhash: false)
+          }
+          otsikko1
+          otsikko2
+          otsikko3
+          slide1
+          slide2
+          slide3
+          partners {
+            url
+            alt
+          }
+        }
+        contact: datoCmsYhteystiedot(locale: {eq: "${locale}"}) {
+          title
+          slug
+          _allSlugLocales {
+            locale
+            value
+          }
+          seoMetaTags {
+            tags
+          }
+          yhteystiedot {
+            title
+            content
+          }
+          ihmiset {
+            ryhma
+            nimi
+            titteli
+            puhelin
+            email
             kuva {
               url
               alt
-              gatsbyImageData(
-                width: 1600
-                placeholder: BLURRED
-                forceBlurhash: false
-              )
+              gatsbyImageData(width: 800, placeholder: BLURRED, forceBlurhash: false)
             }
-            naytaSitaattiTuotesivulla            
-            quote
-            nimi
           }
-        }
-      }
-      webinaarit: datoCmsWebinarsPage(locale: { eq: "${locale}" }) {
-        _allSlugLocales {
-          locale
-          value
-        }
-        title
-        slug
-        seoMetaTags {
-          tags 
-        }
-        palautteita {
-          content
-        }
-        arvosanat
-        kuvaajanTeksti        
-        kiitosTitle
-        kiitosContent
-        kiitosCta {
-          text
-          slug
-        }
-      }
-      allWebinars: allDatoCmsWebinar(
-        filter: { locale: { eq: "${locale}" } }
-        sort: {order: ASC, fields: webinaarinAjankohta}
-        ) {
-        edges {
-          node {
-            _allSlugLocales {
-              locale
-              value
-            }
-            seoMetaTags {
-              tags 
-            }
+          footerYhteystiedot {
             title
-            slug
-            webinaarinAjankohta
-            kestoMinuuttia
-            nosto
-            kuvaus
-            puhuja
-            isRestream
-            restreamCode
+            content
           }
+          ytunnus
         }
-      }
-      order: datoCmsOrder(locale: { eq: "${locale}" })  {
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags 
-        }
-        title
-        slug
-        content
-        kiitosTitle
-        kiitosContent        
-        kiitosCta {
-          text
-          slug
-        }
-      }
-      booking: datoCmsTilaaDemo(locale: { eq: "${locale}" }) {
-        _allSlugLocales {
-          locale
-          value
-        }
-        title
-        slug
-        seoMetaTags {
-          tags 
-        }        
-        calendlyBookingUrl
-        pageContent
-        video {
-          video {
-          streamingUrl
-          mp4Url
-          }
-        }
-        videoPoster {
-          url
-        }
-        kiitosTitle
-        kiitosContent        
-        kiitosCta {
-          text
-          slug
-        }
-        pfTitle
-        pfContent
-        pfCta {
-          text
-          slug
-        }
-      }
-      about: datoCmsAbout(locale: { eq: "${locale}" }) {
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags 
-        }
-        slug
-        title
-        kuva {
-          gatsbyImageData(
-            width: 1600
-            placeholder: BLURRED
-            forceBlurhash: false
-          )
-        }
-        otsikko1
-        otsikko2
-        otsikko3
-        slide1
-        slide2
-        slide3
-        partners {
-          url
-          alt
-        }
-      }
-      contact: datoCmsYhteystiedot(locale: { eq: "${locale}" }) {
-        title
-        slug
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags           
-        }     
-        yhteystiedot {
+        gdpr: datoCmsTietosuoja(locale: {eq: "${locale}"}) {
           title
-          content
-        }
-        ihmiset {
-          ryhma
-          nimi
-          titteli
-          puhelin
-          email
-          kuva {
-            url
-            alt
-            gatsbyImageData(
-              width: 800
-              placeholder: BLURRED
-              forceBlurhash: false
-            )
+          slug
+          _allSlugLocales {
+            locale
+            value
           }
+          seoMetaTags {
+            tags
+          }
+          tietosuojaseloste
         }
-        footerYhteystiedot {
-          title
-          content
-        }
-        ytunnus
-      }
-      gdpr: datoCmsTietosuoja(locale: { eq: "${locale}" }) {
-        title      
-        slug
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags           
-        }  
-        tietosuojaseloste
-      }
-      allCampaigns: allDatoCmsCampaign(
-        filter: { locale: { eq: "${locale}" } }
-        ) {
-        edges {
-          node {
-            _allSlugLocales {
-              locale
-              value
-            } 
-            seoMetaTags {
-              tags           
-            }   
-            title
-            slug
-            supTitle
-            videoText
-            video {
+        allCampaigns: allDatoCmsCampaign(filter: {locale: {eq: "${locale}"}}) {
+          edges {
+            node {
+              _allSlugLocales {
+                locale
+                value
+              }
+              seoMetaTags {
+                tags
+              }
+              title
+              slug
+              supTitle
+              videoText
               video {
-              streamingUrl
-              mp4Url
+                video {
+                  streamingUrl
+                  mp4Url
+                }
+              }
+              videoPoster {
+                url
+              }
+              asiakkaidenKommentteja {
+                content
+              }
+              aloitaKokeilujakso
+              lomakkeenNimi
+              plausibleGoal
+            }
+          }
+        }
+        allTutorials: allDatoCmsTutoriaali(
+          filter: {locale: {eq: "${locale}"}}
+          sort: {position: ASC}
+        ) {
+          edges {
+            node {
+              seoMetaTags {
+                tags
+              }
+              _allSlugLocales {
+                locale
+                value
+              }
+              kategoria
+              title
+              kuvaus
+              slug
+              videot {
+                otsikko
+                linkId
+                kuvaus
+                videot {
+                  title
+                  alt
+                  video {
+                    streamingUrl
+                    mp4Url
+                    thumbnailUrl
+                  }
+                }
               }
             }
-            videoPoster {
-              url
-            }
-            asiakkaidenKommentteja {
-              content
-            }
-            aloitaKokeilujakso
-            lomakkeenNimi
-            plausibleGoal
           }
         }
-      }
-      allTutorials: allDatoCmsTutoriaali(
-        filter: { locale: { eq: "${locale}" } }
-        sort: { order: ASC, fields: position }
-        ) {
-        edges {
-          node {       
-            seoMetaTags {
-              tags           
-            }
-            _allSlugLocales {
-              locale
-              value
-            }
-            kategoria
-            title
-            kuvaus
-            slug
-            videot {
-              otsikko
-              linkId
-              kuvaus
-              videot {
-                title
-                alt
-                video {
+        tutorials: datoCmsTutoriaalit(locale: {eq: "${locale}"}) {
+          title
+          slug
+          _allSlugLocales {
+            locale
+            value
+          }
+          seoMetaTags {
+            tags
+          }
+          content
+        }
+        getStarted: datoCmsGetStarted(locale: {eq: "${locale}"}) {
+          title
+          slug
+          _allSlugLocales {
+            locale
+            value
+          }
+          seoMetaTags {
+            tags
+          }
+          heroImage {
+            alt
+            gatsbyImageData(width: 1700, placeholder: BLURRED, forceBlurhash: false)
+          }
+          video {
+            file {
+              video {
                 streamingUrl
                 mp4Url
-                thumbnailUrl
-                }
-              }              
-            }            
-          }
-        }
-      }
-      tutorials: datoCmsTutoriaalit(locale: { eq: "${locale}" }) {
-        title   
-        slug
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags           
-        } 
-        content
-      }
-      getStarted: datoCmsGetStarted(locale: { eq: "${locale}" }) {
-        title   
-        slug
-        _allSlugLocales {
-          locale
-          value
-        }
-        seoMetaTags {
-          tags           
-        } 
-        heroImage {          
-          alt
-          gatsbyImageData(
-            width: 1700
-            placeholder: BLURRED
-            forceBlurhash: false
-          )
-        }
-        video {
-          file {
-            video {
-              streamingUrl
-              mp4Url
+              }
+            }
+            poster {
+              url
+            }
+            markers {
+              text
+              positionSec
             }
           }
-          poster {
+          logos {
+            alt
             url
           }
-          markers {
-            text
-            positionSec
+        }
+        allReferenssitGoogleSheets {
+          edges {
+            node {
+              Alue
+              Kunta
+              Liikevaihto
+              Toimiala
+              Yritys
+            }
           }
         }
-        logos {
-          alt
-          url          
-        }
-      }
-      allReferenssitGoogleSheets {
-        edges {
-          node {
-            Alue
-            Kunta
-            Liikevaihto
-            Toimiala
-            Yritys
-          }
-        }
-      }
-    }
-  `);
+      }`);
 
       const { data } = query;
 

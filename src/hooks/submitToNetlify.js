@@ -5,8 +5,6 @@ export const submitToNetlify = (data, e) => {
     formData.append(i, data[i]);
   });
 
-  console.log(data, e);
-
   fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },

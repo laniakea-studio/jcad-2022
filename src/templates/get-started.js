@@ -14,7 +14,6 @@ const Page = ({ pageContext }) => {
   const { locale } = pageContext;
 
   const selected = references.articles.filter((i) => i.node.otsikko);
-  console.log(selected);
 
   return (
     <>
@@ -44,12 +43,13 @@ const Page = ({ pageContext }) => {
                   Get started
                 </span>
                 <h1 className="mb-[40px] max-w-[840px] text-[52px] font-normal normal-case max-[600px]:text-[36px] max-[600px]:leading-normal">
-                  Laske seuraavan urakkasi määrät JCAD-sovelluksella – aktivoi
-                  kokeilujakso ilman sitoumuksia
+                  Calculate the material quantities of your next project using
+                  JCAD software - activate the trial period without any
+                  commitments
                 </h1>
                 <span className="mb-[10px] opacity-60">
-                  Aloita maksuton kokeilu syöttämällä sähköpostisi ja asenna
-                  sovellus.
+                  Start the trial by entering your email and installing the
+                  software.
                 </span>
                 <GetStartedForm />
               </section>
@@ -78,8 +78,8 @@ const Page = ({ pageContext }) => {
               <div className="mx-auto flex w-full max-w-[1300px] items-center justify-around px-[20px] pb-[120px] max-[800px]:flex-col-reverse">
                 <p className="max-w-[365px] text-[32px] leading-normal">
                   More than 1,700 in the construction industry in the Nordic
-                  countries are using JCAD to calculate material quantities
-                  directly from floor plans.
+                  countries are already using JCAD to calculate material
+                  quantities directly from floor plans.
                 </p>
                 <div className="mb-[50px] grid grid-cols-2 gap-[50px]">
                   {page.logos.map((i) => (
@@ -94,43 +94,46 @@ const Page = ({ pageContext }) => {
                 <div className="flex flex-col items-center justify-center border-b-[0.8px] border-r-[0.8px] border-dashed border-[#222] p-[100px] text-center text-[#222] max-[800px]:border-r-0 max-[400px]:px-[40px]">
                   <Fast />
                   <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
-                    Säästä arvokasta työaikaasi
+                    Save valuable worktime
                   </h3>
                   <p>
-                    Tee määrälaskennasta helppoa. Mittaa rakenteet, pinnat ja
-                    muodot suoraan pohjapiirustuksesta (DWG tai PDF). Ohjelmisto
-                    laskee tarvikkeen määrän ja hinnan.
+                    Make material quantity calculation easy. Measure structures,
+                    surfaces, and shapes directly from floor plans (DWG or PDF).
+                    The software calculates the quantity and price of the
+                    materials.
                   </p>
                 </div>
                 <div className="flex flex-col items-center justify-center border-dashed border-[#222] p-[100px] text-center text-[#222] max-[800px]:border-b-[0.8px] max-[400px]:px-[40px]">
                   <Crosshair />
                   <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
-                    Vähennä hävikkiä
+                    Reduce waste
                   </h3>
                   <p>
-                    Täsmällisempi määrälaskenta ennaltaehkäisee virheitä sekä
-                    pienentää yli- ja alijäämää.
+                    More accurate quantity calculation prevents errors and
+                    reduces both material surpluses and shortages.
                   </p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-[100px] text-center text-[#222] max-[400px]:px-[40px]">
                   <List />
                   <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
-                    Pidä määräluettelo ajan tasalla
+                    Keep up-to-date material quantity lists
                   </h3>
                   <p>
-                    Laadit tarjouksen hetkessä ja pidät määräluettelon ajan
-                    tasalla läpi projektin: tarjouksesta tarvikkeiden hankintaan
-                    ja työnjohdosta dokumentointiin.
+                    Prepare an offer in an instant and maintain up-to-date
+                    material quantity lists throughout a project: from the offer
+                    to the procurement of supplies and from work management to
+                    documentation.
                   </p>
                 </div>
                 <div className="flex flex-col items-center justify-center border-l-[0.8px] border-t-[0.8px] border-dashed border-[#222] p-[100px] text-center text-[#222] max-[400px]:px-[40px]">
                   <Team />
                   <h3 className="mt-[25px] mb-[15px] text-[26px] font-normal normal-case">
-                    Kehitä työskentelytapoja
+                    Develop work methods
                   </h3>
                   <p>
-                    Yhtenäistä määrälaskentatavat yrityksessäsi. Perehdytä uusia
-                    ihmisiä määrälaskentaan.
+                    Standardize your company’s material quantity calculation
+                    methods. Familiarize new people with material quantity
+                    calculations.
                   </p>
                 </div>
               </div>
@@ -151,7 +154,7 @@ const Page = ({ pageContext }) => {
                   <CircleNumber data="1" />
                   <div className="flex max-w-[500px] flex-col">
                     <h3 className="text-[28px] font-normal normal-case">
-                      Get started for free
+                      Activate the trial period
                     </h3>
                     <p className="mb-[15px]">
                       JCAD-määrälaskentaohjelmiston avulla lasket pintojen,
@@ -165,11 +168,12 @@ const Page = ({ pageContext }) => {
                   <CircleNumber data="2" />
                   <div className="flex max-w-[500px] flex-col">
                     <h3 className="text-[28px] font-normal normal-case">
-                      Calculate your first quantities
+                      Calculate your first project
                     </h3>
                     <p>
-                      Get started with help of our step-by-step video tutorials.
-                      Calculate the material quantities of your next project.
+                      Get started easy with help of our step-by-step video
+                      tutorials. Calculate the material quantities of your next
+                      project.
                     </p>
                   </div>
                 </div>

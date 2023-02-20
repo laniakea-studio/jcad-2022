@@ -10,8 +10,6 @@ const Page = ({ pageContext }) => {
   const { page, allReferences, googleSheets } = pageContext.data;
   const [showCases, setShowCases] = useState(30);
 
-  console.log(allReferences);
-
   return (
     <>
       <HelmetDatoCms seo={page.seoMetaTags} />

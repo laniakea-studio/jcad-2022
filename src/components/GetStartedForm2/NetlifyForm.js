@@ -93,7 +93,6 @@ export const NetlifyForm = ({ data, isLightBg }) => {
       })
         .then(() => {
           window.plausible("Get Started");
-          console.log("OK");
           setShowMessage(messages.submitSucces);
           setFormData(schema);
         })

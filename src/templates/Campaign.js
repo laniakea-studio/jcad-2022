@@ -13,7 +13,6 @@ import { GetStartedForm } from "../components/GetStartedForm";
 const Page = ({ pageContext }) => {
   const { page } = pageContext.data;
   const { locale } = pageContext;
-  console.log(locale);
 
   // Form
   const form = {
@@ -85,7 +84,7 @@ const Page = ({ pageContext }) => {
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout locale={locale} transparent={false}>
         <main
-          className="pagePadding flex flex-col pt-[94px] bg-primary"
+          className="pagePadding flex flex-col bg-primary pt-[94px]"
           css={`
             h1,
             h2,
@@ -98,7 +97,7 @@ const Page = ({ pageContext }) => {
           `}
         >
           <section
-            className="col padding container align-center"
+            className="col padding align-center container"
             css={`
               padding-top: 60px;
               padding-bottom: 160px;
@@ -138,7 +137,7 @@ const Page = ({ pageContext }) => {
             )}
 
             <div
-              className="flex col-1000 mx-auto mt-[40px]"
+              className="col-1000 mx-auto mt-[40px] flex"
               css={`
                 max-width: ${page.video ? "1150px" : "600px"};
                 margin-bottom: 120px;

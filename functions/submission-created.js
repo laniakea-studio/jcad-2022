@@ -14,11 +14,7 @@ const forms = ["Webinaari", "Kustannuslaskenta-kampanja"];
 exports.handler = async (event) => {
   const { data, form_name } = JSON.parse(event.body).payload;
 
-  console.log({ data, form_name });
-
   if (form_name === "Free Trial EN") {
-    console.log("START");
-
     await axios
       .post("https://jcad-trial-service.azurewebsites.net/license/create", {
         Email: data.email,
@@ -26,10 +22,6 @@ exports.handler = async (event) => {
       })
       .then((response) => console.log("RES:", response))
       .catch((err) => console.log("ERR:", err));
-  }
-
-  if (!forms.includes(form_name)) {
-    return console.log("No Netlify function for this form");
   }
 
   var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();

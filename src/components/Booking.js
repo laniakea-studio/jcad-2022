@@ -6,7 +6,6 @@ import { GetStartedForm } from "./GetStartedForm";
 import * as snippet from "../locales";
 
 export const Booking = ({ locale }) => {
-  console.log(locale);
   const data = useStaticQuery(graphql`
     query {
       fi: datoCmsTilaaDemo(locale: { eq: "fi" }) {
@@ -34,7 +33,7 @@ export const Booking = ({ locale }) => {
 
   return (
     <Div id="get-started" className="pagePadding">
-      <div className="container padding col align-center">
+      <div className="padding col align-center container">
         <h2>{booking?.pfTitle}</h2>
         <div
           className="mb-[30px]"

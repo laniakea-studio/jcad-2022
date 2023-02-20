@@ -51,7 +51,7 @@ export const DragDropFile = ({ name, styles, handleFile, value }) => {
   const validateFile = (files) => {
     let isValid = true;
     setErrors([]);
-    console.log("validate: ", files);
+
     if (files.length > options.maxFiles) {
       isValid = false;
       setErrors([
@@ -244,7 +244,7 @@ export const DragDropFile = ({ name, styles, handleFile, value }) => {
             <SvgFile />
 
             <span>{value.name}</span>
-            <button onClick={(e) => clearInput(e)} className="flex all-center">
+            <button onClick={(e) => clearInput(e)} className="all-center flex">
               <span>Poista</span>
               <svg
                 width="24"
