@@ -233,7 +233,7 @@ const Pricing = ({ pageContext }) => {
             </div>
           </div>
         </Main>
-        {locale === "fi" && <Booking locale={locale} />}
+        <Booking locale={locale} />
       </Layout>
     </>
   );
