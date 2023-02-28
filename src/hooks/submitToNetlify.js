@@ -15,7 +15,7 @@ export const submitToNetlify = (data, e) => {
   })
     .then(() => {
       alert("Thank you, follow your email!");
-      console.log("Form submit success");
+      console.log("Form submit to Netlify success");
     })
     .catch((error) => {
       alert("Something went wrong. Try again.");

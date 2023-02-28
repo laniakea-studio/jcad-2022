@@ -60,7 +60,7 @@ const Page = ({ pageContext }) => {
               <div className="relative ml-auto mr-[10%] mt-[-150px] flex max-w-[1000px] flex-col px-[20px] pb-[100px] max-[1400px]:mr-auto">
                 <span className="mb-[10px] flex text-[15px] uppercase text-white">
                   <Caret className="mt-[5px] mr-[5px]" />
-                  Watch key features in action
+                  Watch the key features in action
                 </span>
                 <div className="bg-white p-[80px] max-[800px]:p-[40px] max-[600px]:p-[20px]">
                   <Video
@@ -170,7 +170,7 @@ const Page = ({ pageContext }) => {
                       Calculate your first project
                     </h3>
                     <p>
-                      Get started easy with help of our step-by-step video
+                      Get started easily with the help of our step-by-step video
                       tutorials.
                     </p>
                     <Link
@@ -185,11 +185,11 @@ const Page = ({ pageContext }) => {
                   <CircleNumber data="3" />
                   <div className="flex max-w-[500px] flex-col">
                     <h3 className="text-[28px] font-normal normal-case">
-                      Talk with our expert
+                      Talk with our experts
                     </h3>
                     <p>
-                      Book a meating with with our expert when you have any kind
-                      of questions.
+                      Book a meeting with one of our experts if you have
+                      questions of any kind.
                     </p>
                     <Link
                       to={"/en/get-demo"}
