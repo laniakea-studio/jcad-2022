@@ -60,7 +60,7 @@ const Pricing = ({ pageContext }) => {
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout>
         <Main className="pagePadding">
-          <div className="col container padding">
+          <div className="col padding container">
             <h1>{page.title}</h1>
             <p className="lead">{page.lead}</p>
             <div className="selections">
@@ -233,7 +233,7 @@ const Pricing = ({ pageContext }) => {
             </div>
           </div>
         </Main>
-        <Booking />
+        {locale === "fi" && <Booking locale={locale} />}
       </Layout>
     </>
   );
