@@ -1,25 +1,23 @@
 export const submitToNetlify = (data, e) => {
-  let formData = new FormData();
+  const formName = e.target.getAttribute("name");
 
-  Object.keys(data).forEach((i) => {
-    formData.append(i, data[i]);
-  });
+  const body = {
+    "form-name": formName,
+    ...data,
+  };
 
-  fetch("/", {
+  return fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encode({
-      "form-name": event.target.getAttribute("name"),
-      ...data,
-    }),
+    body: encode(body),
   })
     .then(() => {
-      alert("Thank you, follow your email!");
-      console.log("Form submit to Netlify success");
+      console.log(`Submit to Netlify success`, body);
+      return { success: true, data: body };
     })
     .catch((error) => {
-      alert("Something went wrong. Try again.");
-      console.log("Error inside submitToNetlify();", error);
+      console.log("Submit to Netlify failed", error);
+      return { success: false, data: body };
     });
 };
 

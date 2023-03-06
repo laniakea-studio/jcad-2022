@@ -14,14 +14,30 @@ export const GetStartedForm = () => {
     formState: { errors },
   } = useForm();
 
+  /*
+  const submit = () => {
+    handleSubmit(async (data, e) => {
+      try {
+        const submit = await submitToNetlify(data, e);
+        resetField("email");
+        //setMessage("Thank you, follow your email!");
+      } catch (e) {
+        console.log("Err", e);
+        setMessage("Oh, something went wrong. Try again.");
+      }
+    })
+  }
+*/
+
   return (
     <form
       name={formName}
       data-netlify="true"
       method="POST"
-      onSubmit={handleSubmit((data, e) => {
+      onSubmit={handleSubmit(async (data, e) => {
         try {
-          submitToNetlify(data, e);
+          const submit = await submitToNetlify(data, e);
+          console.log(submit);
           resetField("email");
           //setMessage("Thank you, follow your email!");
         } catch (e) {
