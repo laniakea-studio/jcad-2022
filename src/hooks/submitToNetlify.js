@@ -12,10 +12,12 @@ export const submitToNetlify = (data, e) => {
     body: encode(body),
   })
     .then(() => {
+      alert("Thank you, follow your email!");
       console.log(`Submit to Netlify success`, body);
       return { success: true, data: body };
     })
     .catch((error) => {
+      alert("Something went wrong. Try again.");
       console.log("Submit to Netlify failed", error);
       return { success: false, data: body };
     });
