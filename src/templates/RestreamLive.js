@@ -12,7 +12,7 @@ const Page = ({ pageContext }) => {
 
   const { page } = pageContext.data;
 
-  const [showPlayer, setShowPlayer] = useState(true);
+  const [showPlayer, setShowPlayer] = useState(false);
 
   const handleHasJoined = () => {
     setShowPlayer(true);
@@ -152,7 +152,7 @@ const Page = ({ pageContext }) => {
                   }
                 `}
               >
-                <Booking />
+                <Booking locale="fi" />
               </div>
             </div>
           </section>
