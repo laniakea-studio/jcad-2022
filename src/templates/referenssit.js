@@ -59,6 +59,7 @@ const Page = ({ pageContext }) => {
                 key={node.slug}
                 css={`
                   &:hover {
+                    .Play,
                     .Tags,
                     .Arrow {
                       transition: 0.2s;
@@ -74,12 +75,26 @@ const Page = ({ pageContext }) => {
                 <div className="flex-2 flex flex-col justify-center px-[20px]">
                   {!node.kuva && <SvgLike className="w-full" />}
                   {node.kuva && (
-                    <div className="w-full">
+                    <div className="relative w-full">
                       <GatsbyImage
                         className="imgHero"
                         image={node.kuva.gatsbyImageData}
                         alt={node.kuva?.url}
                       />
+                      {node.video && (
+                        <svg
+                          className="Play absolute top-0 bottom-0 left-0 right-0 m-auto opacity-80"
+                          width="60"
+                          viewBox="0 0 40 40"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M10 20.6499V9.0999C10 6.53323 12.7833 4.93323 15 6.21657L25 11.9832L35 17.7499C37.2167 19.0332 37.2167 22.2332 35 23.5166L25 29.2832L15 35.0499C12.7833 36.3332 10 34.7332 10 32.1666V20.6499Z"
+                            fill="white"
+                          />
+                        </svg>
+                      )}
                     </div>
                   )}
                 </div>

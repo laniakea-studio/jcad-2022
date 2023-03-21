@@ -80,7 +80,7 @@ const Page = ({ pageContext }) => {
                   {page.otsikko}
                 </h1>
                 {page.video && (
-                  <div className="flex px-[60px] pb-[30px]">
+                  <div className="flex pb-[30px]">
                     <Video
                       data={page.video}
                       poster={page.kuva.url}
