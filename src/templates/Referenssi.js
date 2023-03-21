@@ -1,5 +1,6 @@
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import React, { useContext } from "react";
+import { Video } from "../components/Video";
 import { Layout } from "../components/Layout";
 import { LocaleContext } from "../contexts/LocaleContext";
 import * as snippet from "../locales";
@@ -14,7 +15,7 @@ const Page = ({ pageContext }) => {
       <HelmetDatoCms seo={page.seoMetaTags} />
       <Layout locale={locale} transparent={false}>
         <main
-          className="pagePadding flex flex-col bg-[#000053] text-[#fff] pt-[94px]"
+          className="pagePadding flex flex-col bg-[#000053] pt-[94px] text-[#fff]"
           css={`
             .IntroCol {
               max-width: 800px;
@@ -59,8 +60,8 @@ const Page = ({ pageContext }) => {
             }
           `}
         >
-          <section className="container padding flex">
-            <div className="Article flex flex-col flex-3 px-[30px] pb-[60px] relative">
+          <section className="padding container flex">
+            <div className="Article flex-3 relative flex flex-col px-[30px] pb-[60px]">
               <button
                 onClick={() => window.history.back()}
                 className="Back absolute top-[60px] left-[40px]"
@@ -68,26 +69,36 @@ const Page = ({ pageContext }) => {
               >
                 <span>{text.gdpr.buttonBack}</span>
               </button>
-              <div className="IntroCol flex flex-col pb-[30px] border-b-[0.8px] border-dashed border-[#fff]">
+              <div className="IntroCol flex flex-col border-b-[0.8px] border-dashed border-[#fff] pb-[30px]">
                 <div className="Tags text-[15px]">
-                  <span className="pr-[15px] opacity-[0.6] uppercase">
+                  <span className="pr-[15px] uppercase opacity-[0.6]">
                     {page.toimiala}
                   </span>
                   <span className="text-[22px]">{page.yritys}</span>
                 </div>
-                <h1 className="text-[42px] pt-[25px] pb-[40px] normal-case">
+                <h1 className="pt-[25px] pb-[40px] text-[42px] normal-case">
                   {page.otsikko}
                 </h1>
+                {page.video && (
+                  <div className="flex px-[60px] pb-[30px]">
+                    <Video
+                      data={page.video}
+                      poster={page.kuva.url}
+                      markers={[]}
+                    />
+                  </div>
+                )}
                 <p className="text-[22px] max-[600px]:text-[20px]">
                   {page.ingressi}
                 </p>
               </div>
             </div>
-            <div className="MediaCol flex flex-col flex-2 justify-center">
+            <div className="MediaCol flex-2 flex flex-col justify-center">
               <SvgLike className="w-full" />
             </div>
           </section>
-          <section className="container padding flex flex-col">
+
+          <section className="padding container flex flex-col">
             <div
               css={`
                 max-width: 600px;
