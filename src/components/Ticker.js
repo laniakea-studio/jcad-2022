@@ -5,6 +5,7 @@ import styled from "styled-components";
 const Ticker = ({ data }) => {
   const [logos, setLogos] = React.useState([]);
 
+  console.log({ data });
   useEffect(() => {
     setLogos([...data, ...data]);
   }, []);
@@ -34,7 +35,7 @@ const Div = styled.div`
   .img-ticker {
     display: flex;
     box-sizing: border-box;
-    animation: ticker-kf 45s linear infinite;
+    animation: ticker-kf 50s linear infinite;
   }
   .item {
     flex: none;
@@ -61,7 +62,7 @@ const Div = styled.div`
     }
 
     100% {
-      transform: translate3d(-1600px, 0, 0);
+      transform: translate3d(-7000px, 0, 0);
     }
   }
 `;
