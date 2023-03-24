@@ -37,7 +37,7 @@ tutorials:
   hideMenu: Hide Menu
   linkCopied: Link copied!
 pricing:
-  vat: + VAT 24 %
+  vat: VAT 0 %
   selectPeriod: Contract period
   selectLicense: Licenses
   selectProduct: Software

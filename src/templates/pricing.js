@@ -68,7 +68,15 @@ const Pricing = ({ pageContext }) => {
                 <h3 className="selectHeading">
                   1. {text.pricing.selectPeriod}{" "}
                 </h3>
-                <div className="periodBtns">
+                <div
+                  className="periodBtns"
+                  css={`
+                    ${locale === "en" &&
+                    `button:last-child {
+                    display: none;
+                  }`}
+                  `}
+                >
                   {valikkoSopimuskausi.map((i) => (
                     <button
                       className={
