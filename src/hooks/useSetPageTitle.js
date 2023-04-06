@@ -3,7 +3,7 @@ export const useSetPageTitle = (title) => {
     tags: [
       {
         tagName: "title",
-        content: `${title} • Kuuskodit.fi`,
+        content: `${title} • jcad.fi`,
       },
     ],
   };
