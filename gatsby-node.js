@@ -280,6 +280,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               title
               slug
+              piilotaWebinaariListoilta
               webinaarinAjankohta
               kestoMinuuttia
               nosto
@@ -776,7 +777,9 @@ exports.createPages = async ({ graphql, actions }) => {
             localeSlugs: localeSlugs(data.webinaarit._allSlugLocales),
             data: {
               page: data.webinaarit,
-              allWebinars: data.allWebinars.edges,
+              allWebinars: data.allWebinars.edges.filter(
+                ({ node }) => !node.piilotaWebinaariListoilta
+              ),
             },
           },
         });
